@@ -8,4 +8,6 @@
     <color name="ranger">#023c19</color>
     <color name="sorcerer">#00184b</color>
     <color name="cleric">#f6f7f1</color>
+
+    <color name="transparent">#00000000</color>
 </resources>
