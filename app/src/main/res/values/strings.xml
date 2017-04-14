@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">StepQuest</string>
+    <string name="default_character_name">Character Name</string>
+    <string name="default_race_class">Race Class</string>
+    <string name="default_str_display">STR: 20</string>
+    <string name="default_con_display">CON: 9</string>
+    <string name="default_int_display">INT: 4</string>
+    <string name="default_dex_display">DEX: 9</string>
+    <string name="default_wis_display">WIS: 19</string>
+    <string name="default_chr_display">CHR: 4</string>
+    <string name="default_event_description">Slaying kobold...</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="default_level">Level: 3</string>
+</resources>
