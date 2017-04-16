@@ -11,9 +11,12 @@ public class Vocation {
 
     private static final int FIGHTER = 0, RANGER = 1, WIZARD = 2, CLERIC = 3;
     private int mClass;
+    private int mGoodWeapon, mBadWeapon;
 
-    private Vocation(int vocation){
+    private Vocation(int vocation, int weapon_good, int weapon_bad){
         mClass = vocation;
+        mGoodWeapon = weapon_good;
+        mBadWeapon = weapon_bad;
     }
 
     //returns color id for the vocation
@@ -26,19 +29,19 @@ public class Vocation {
     }
 
     public static Vocation Fighter(){
-        return new Vocation(FIGHTER);
+        return new Vocation(FIGHTER, Weapon.BLADE, Weapon.STAFF);
     }
 
     public static Vocation Ranger(){
-        return new Vocation(RANGER);
+        return new Vocation(RANGER, Weapon.BOW, Weapon.BLUNT);
     }
 
     public static Vocation Wizard(){
-        return new Vocation(WIZARD);
+        return new Vocation(WIZARD, Weapon.STAFF, Weapon.BOW);
     }
 
     public static Vocation Cleric(){
-        return new Vocation(CLERIC);
+        return new Vocation(CLERIC, Weapon.BLUNT, Weapon.BLADE);
     }
 
     //makes new vocation based on string
