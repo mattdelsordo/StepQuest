@@ -13,6 +13,13 @@ public class Weapon {
     private final int mType;
     private final double mModifier;
 
+    //default constructor until I sort out how to load this
+    public Weapon(){
+        mName = "Stick";
+        mType = BLUNT;
+        mModifier = 1;
+    }
+
     public Weapon(String name, int type, double modifier){
         mName = name;
         mType = type;

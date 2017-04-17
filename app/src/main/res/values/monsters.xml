@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="monsters">
+        <item>@array/Aarakocra</item>
+        <item>@array/Armor</item>
+        <item>@array/Sword</item>
+        <item>@array/Ankheg</item>
+        <item>@array/Azer</item>
+    </array>
+
+    <string-array name="Aarakocra">
+        <item name = "desc">Fighting an Aarakocra...</item>
+        <item name = "exp">50</item>
+    </string-array>
+
+    <string-array name="Armor">
+        <item name = "desc">Fighting Animated Armor...</item>
+        <item name="exp">200</item>
+    </string-array>
+    
+    <string-array name="Sword">
+        <item name="desc">Fighting a Flying Sword...</item>
+        <item name="exp">50</item>
+    </string-array>
+
+    <string-array name="Ankheg">
+        <item name="desc">Fighting an Ankheg...</item>
+        <item name="exp">450</item>
+    </string-array>
+
+    <string-array name="Azer">
+        <item name="desc">Fighting an Azer...</item>
+        <item name="exp">450</item>
+    </string-array>
+
+</resources>

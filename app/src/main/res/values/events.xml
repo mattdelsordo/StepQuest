@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="events">
+        <item>@array/Villager</item>
+    </array>
+
+    <string-array name="Villager">
+        <item name="desc">Talking to a villager...</item>
+        <item name ="exp">30</item>
+    </string-array>
+</resources>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <array name="bosses">
+        <item>@array/Aboleth</item>
+    </array>
+    
+    
+    <string-array name="Aboleth">
+        <item name="desc">Battling an Aboleth...</item>
+        <item name = "exp">5900</item>
+    </string-array>
+</resources>

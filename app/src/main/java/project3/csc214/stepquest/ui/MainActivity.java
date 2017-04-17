@@ -6,11 +6,11 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.ProgressBar;
 
 import java.util.ArrayList;
 
 import project3.csc214.stepquest.R;
+import project3.csc214.stepquest.data.EventList;
 
 /**
  * This Activity controls the rest of the app
@@ -37,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
             mProgress = new ProgressFragment();
             getSupportFragmentManager().beginTransaction().add(R.id.frame_main_progress, mProgress).commit();
         }
+
+        EventList.getInstance(getApplicationContext());
     }
 
 

@@ -1,5 +1,7 @@
 package project3.csc214.stepquest.model;
 
+import android.content.Context;
+
 import java.util.ArrayList;
 
 /**
@@ -14,21 +16,23 @@ public class EventQueue {
 
     private ArrayList<Event> mQueue; //queue of events
     private int mElapsedTime;
+    private Context mAppContext;
 
-    private EventQueue(){
+    private EventQueue(Context context){
+        mAppContext = context;
         mQueue = new ArrayList<>();
         mElapsedTime = 0;
     }
 
     public EventQueue getInstance(){
-        if(sEventQueue == null) sEventQueue = new EventQueue();
+        if(sEventQueue == null) sEventQueue = new EventQueue(mAppContext);
         return sEventQueue;
     }
 
     //returns the top event of the queue
     public Event getTopEvent(){
         Event topEvent = mQueue.get(0);
-        if(topEvent == null) addEvents(Dungeon.newRandomDungeon());
+        if(topEvent == null) addEvents(Dungeon.newRandomDungeon(mAppContext));
         return topEvent;
     }
 
@@ -47,6 +51,7 @@ public class EventQueue {
             //if sufficient time has passed, update EVERYTHING
             //TODO: implement updating exp, money, new weapons from event
             mQueue.remove(0); //remove the top event
+            mElapsedTime -= currentEvent.getDuration(); //subtract elapsed time
         }
     }
 }
