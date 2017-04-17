@@ -9,8 +9,19 @@
     <string name="default_wis_display">WIS: 19</string>
     <string name="default_chr_display">CHR: 4</string>
     <string name="default_event_description">Slaying kobold...</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="default_level">Level: 3</string>
+
+    <string-array name="class_choices">
+        <item>Warrior</item>
+        <item>Sorcerer</item>
+        <item>Ranger</item>
+        <item>Cleric</item>
+    </string-array>
+
+    <string-array name="race_choices">
+        <item>Birdperson</item>
+        <item>Math'head</item>
+        <item>Pump-kin</item>
+        <item>Elf</item>
+    </string-array>
 </resources>
