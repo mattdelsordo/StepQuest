@@ -11,6 +11,8 @@ import java.util.ArrayList;
 
 import project3.csc214.stepquest.R;
 import project3.csc214.stepquest.data.EventList;
+import project3.csc214.stepquest.model.*;
+import project3.csc214.stepquest.model.Character;
 
 /**
  * This Activity controls the rest of the app
@@ -39,6 +41,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
         EventList.getInstance(getApplicationContext());
+
+
+        /** Do check that there's a character in the database, otherwise, make a new one.*/
+        Character activeCharacter = ActiveCharacter.getInstance().getActiveCharacter();
+        if(activeCharacter == null) startActivityForResult(CharacterCreationActivity.newInstance(this), CharacterCreationActivity.REQUEST_CHARACTER_INFO);
     }
 
 

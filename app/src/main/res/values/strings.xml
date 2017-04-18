@@ -10,6 +10,15 @@
     <string name="default_chr_display">CHR: 4</string>
     <string name="default_event_description">Slaying kobold...</string>
     <string name="default_level">Level: 3</string>
+    <string name="str">STR:</string>
+    <string name="default_stat_value">00</string>
+    <string name="roll">Roll Stats</string>
+    <string name="create">Create Character </string>
+    <string name="dex">DEX:</string>
+    <string name="con">CON:</string>
+    <string name="intelligence_abbrev">INT:</string>
+    <string name="wis">WIS:</string>
+    <string name="chr">CHR:</string>
 
     <string-array name="class_choices">
         <item>Warrior</item>
@@ -20,7 +29,7 @@
 
     <string-array name="race_choices">
         <item>Birdperson</item>
-        <item>Math'head</item>
+        <item>Math\'head</item>
         <item>Pump-kin</item>
         <item>Elf</item>
     </string-array>

@@ -8,35 +8,32 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_centerInParent="true">
+        android:id="@+id/layout_creation_top"
+        android:layout_marginTop="20dp">
 
-        <LinearLayout
+        <FrameLayout
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:id="@+id/frame_creation_character"
+            android:layout_margin="4dp">
 
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/imageview_creation_class"
+                android:background="@color/warrior"
+                android:padding="2dp"/>
 
-            <FrameLayout
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/frame_creation_character">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/imageview_creation_class" />
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/imageview_creation_race"
-                    android:scaleType="fitXY"
-                    android:adjustViewBounds="true"/>
-            </FrameLayout>
-
-        </LinearLayout>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/imageview_creation_race"
+                android:scaleType="fitXY"
+                android:adjustViewBounds="true"
+                android:src="@drawable/birdperson1"
+                android:padding="2dp"/>
+        </FrameLayout>
 
         <LinearLayout
             android:layout_width="0dp"
@@ -52,6 +49,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/default_character_name"
                 android:id="@+id/edittext_creation_name"
+                android:textSize="20sp"
                 android:paddingBottom="5dp"/>
 
             <Spinner
@@ -69,5 +67,200 @@
 
         </LinearLayout>
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@+id/layout_creation_top"
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:divider="?android:attr/dividerHorizontal"
+            android:showDividers="middle"
+            android:layout_margin="4dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/str"
+                    android:textSize="26sp"
+                    android:paddingEnd="2dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/default_stat_value"
+                    android:textSize="26sp"
+                    android:paddingStart="2dp"
+                    android:id="@+id/textview_create_strval"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dex"
+                    android:textSize="26sp"
+                    android:paddingEnd="2dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/default_stat_value"
+                    android:textSize="26sp"
+                    android:paddingStart="2dp"
+                    android:id="@+id/textview_create_dexval"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:divider="?android:attr/dividerHorizontal"
+            android:showDividers="middle"
+            android:layout_margin="4dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/con"
+                    android:textSize="26sp"
+                    android:paddingEnd="2dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/default_stat_value"
+                    android:textSize="26sp"
+                    android:paddingStart="2dp"
+                    android:id="@+id/textview_create_conval"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/intelligence_abbrev"
+                    android:textSize="26sp"
+                    android:paddingEnd="2dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/default_stat_value"
+                    android:textSize="26sp"
+                    android:paddingStart="2dp"
+                    android:id="@+id/textview_create_intval"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:divider="?android:attr/dividerHorizontal"
+            android:showDividers="middle"
+            android:layout_margin="4dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/wis"
+                    android:textSize="26sp"
+                    android:paddingEnd="2dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/default_stat_value"
+                    android:textSize="26sp"
+                    android:paddingStart="2dp"
+                    android:id="@+id/textview_create_wisval"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/chr"
+                    android:textSize="26sp"
+                    android:paddingEnd="2dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/default_stat_value"
+                    android:textSize="26sp"
+                    android:paddingStart="2dp"
+                    android:id="@+id/textview_create_chrval"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/roll"
+            android:id="@+id/button_create_generateStats"/>
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:text="@string/create"
+        android:id="@+id/button_create_create"/>
 
 </RelativeLayout>

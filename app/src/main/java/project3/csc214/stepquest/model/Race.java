@@ -9,7 +9,7 @@ import project3.csc214.stepquest.R;
 
 public class Race {
 
-    private static final int BIRDPERSON = 0, ELF = 1, MATHHEAD = 2, PUMPKIN = 3;
+    public static final int BIRDPERSON = 0, ELF = 1, MATHHEAD = 2, PUMPKIN = 3;
     private final int[] mBonuses;
     private final int mRace;
 

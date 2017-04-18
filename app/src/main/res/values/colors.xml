@@ -7,7 +7,13 @@
     <color name="warrior">#990000</color>
     <color name="ranger">#023c19</color>
     <color name="sorcerer">#00184b</color>
-    <color name="cleric">#f6f7f1</color>
+    <color name="cleric">#f4f1ea</color>
+    <color name="clericOld">#f6f7f1</color>
 
     <color name="transparent">#00000000</color>
+    <color name="character_border">#000000</color>
+
+    <color name="bad">#ca3333</color>
+    <color name="neutral">#fad201</color>
+    <color name="good">#33a532</color>
 </resources>

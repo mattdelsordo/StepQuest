@@ -9,7 +9,7 @@ import project3.csc214.stepquest.R;
 
 public class Vocation {
 
-    private static final int FIGHTER = 0, RANGER = 1, WIZARD = 2, CLERIC = 3;
+    public static final int FIGHTER = 0, RANGER = 1, WIZARD = 2, CLERIC = 3;
     private int mClass;
     private int mGoodWeapon, mBadWeapon;
 
