@@ -10,11 +10,19 @@ import project3.csc214.stepquest.R;
 public class Race {
 
     public static final int BIRDPERSON = 0, ELF = 1, MATHHEAD = 2, PUMPKIN = 3;
+    private final String mName;
     private final int[] mBonuses;
     private final int mRace;
 
     private Race(int race, int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma){
         mRace = race;
+
+        //TODO: these should really be static variables
+        if(race == BIRDPERSON) mName = "Birdperson";
+        else if(race == ELF) mName = "Elf";
+        else if(race == MATHHEAD) mName = "Math'head";
+        else if(race == PUMPKIN) mName = "Pump-kin";
+        else mName = "????";
 
         mBonuses = new int[Stats.STAT_VOLUME];
         mBonuses[Stats.STR] = strength;
@@ -66,5 +74,10 @@ public class Race {
         else if (race == MATHHEAD) return Mathhead();
         else if(race == BIRDPERSON) return Birdperson();
         else return null;
+    }
+
+    @Override
+    public String toString() {
+        return mName;
     }
 }

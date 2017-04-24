@@ -10,11 +10,20 @@ import project3.csc214.stepquest.R;
 public class Vocation {
 
     public static final int FIGHTER = 0, RANGER = 1, WIZARD = 2, CLERIC = 3;
+    private final String mName;
     private int mClass;
     private int mGoodWeapon, mBadWeapon;
 
     private Vocation(int vocation, int weapon_good, int weapon_bad){
         mClass = vocation;
+
+        //TODO: these should really be static variables
+        if(vocation == FIGHTER) mName = "Warrior";
+        else if(vocation == RANGER) mName = "Ranger";
+        else if(vocation == WIZARD) mName = "Sorcerer";
+        else if(vocation == CLERIC) mName = "Cleric";
+        else mName = "????";
+
         mGoodWeapon = weapon_good;
         mBadWeapon = weapon_bad;
     }
@@ -51,5 +60,10 @@ public class Vocation {
         else if (vocation == WIZARD) return Wizard();
         else if (vocation == CLERIC) return Cleric();
         else return null;
+    }
+
+    @Override
+    public String toString() {
+        return mName;
     }
 }

@@ -1,5 +1,6 @@
 package project3.csc214.stepquest.ui;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ViewPager mViewPager;
     private ProgressFragment mProgress;
+    private ScreenPagerAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
 
         //set adapter to view pager
         mViewPager = (ViewPager)findViewById(R.id.viewpager_main);
-        ScreenPagerAdapter pagerAdapter = new ScreenPagerAdapter(getSupportFragmentManager());
-        mViewPager.setAdapter(pagerAdapter);
+        mAdapter = new ScreenPagerAdapter(getSupportFragmentManager());
+        mViewPager.setAdapter(mAdapter);
 
         //put progress bar in frame
         mProgress = (ProgressFragment)getSupportFragmentManager().findFragmentById(R.id.frame_main_progress);
@@ -48,8 +50,24 @@ public class MainActivity extends AppCompatActivity {
         if(activeCharacter == null) startActivityForResult(CharacterCreationActivity.newInstance(this), CharacterCreationActivity.REQUEST_CHARACTER_INFO);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == CharacterCreationActivity.REQUEST_CHARACTER_INFO){
+            if(resultCode == RESULT_OK){
+                String name = data.getStringExtra(CharacterCreationFragment.ARG_NAME);
+                int race = data.getIntExtra(CharacterCreationFragment.ARG_RACE, Race.BIRDPERSON);
+                int vocation = data.getIntExtra(CharacterCreationFragment.ARG_CLASS, Vocation.FIGHTER);
+                int[] stats = data.getIntArrayExtra(CharacterCreationFragment.ARG_STATS);
 
+                Race bigRace = Race.newRace(race);
+                Vocation bigVocation = Vocation.newVocation(vocation);
 
+                Character newGuy = new Character(name, bigVocation, bigRace, stats);
+                ActiveCharacter.getInstance().setActiveCharacter(newGuy);
+                //mAdapter.refreshCharInfo(newGuy);
+            }
+        }
+    }
 
     //adapter for the viewpager
     public class ScreenPagerAdapter extends FragmentPagerAdapter{
@@ -72,6 +90,11 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public int getCount() {
             return mFragments.size();
+        }
+
+        public void refreshCharInfo(Character c){
+            CharacterInfoFragment info = (CharacterInfoFragment) mFragments.get(0);
+            info.updateUI(c);
         }
     }
 }

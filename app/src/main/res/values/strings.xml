@@ -19,6 +19,7 @@
     <string name="intelligence_abbrev">INT:</string>
     <string name="wis">WIS:</string>
     <string name="chr">CHR:</string>
+    <string name="error_name_required">You gotta name your dude!</string>
 
     <string-array name="class_choices">
         <item>Warrior</item>

@@ -82,37 +82,43 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/default_str_display"
-                android:textSize="20sp"/>
+                android:textSize="20sp"
+                android:id="@+id/textview_character_str"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/default_dex_display"
-                android:textSize="20sp"/>
+                android:textSize="20sp"
+                android:id="@+id/textview_character_dex"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/default_con_display"
-                android:textSize="20sp"/>
+                android:textSize="20sp"
+                android:id="@+id/textview_character_con"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/default_int_display"
-                android:textSize="20sp"/>
+                android:textSize="20sp"
+                android:id="@+id/textview_character_int"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/default_wis_display"
-                android:textSize="20sp"/>
+                android:textSize="20sp"
+                android:id="@+id/textview_character_wis"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/default_chr_display"
-                android:textSize="20sp"/>
+                android:textSize="20sp"
+                android:id="@+id/textview_character_chr"/>
 
         </LinearLayout>
     </LinearLayout>

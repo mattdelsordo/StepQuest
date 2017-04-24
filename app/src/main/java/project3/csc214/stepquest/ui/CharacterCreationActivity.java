@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import project3.csc214.stepquest.R;
 
-public class CharacterCreationActivity extends AppCompatActivity {
+public class CharacterCreationActivity extends AppCompatActivity implements CharacterCreationFragment.CreationCompleteListener{
 
     CharacterCreationFragment fragment;
 
@@ -27,5 +27,11 @@ public class CharacterCreationActivity extends AppCompatActivity {
             fragment = new CharacterCreationFragment();
             getSupportFragmentManager().beginTransaction().add(R.id.frame_charactercreation, fragment).commit();
         }
+    }
+
+    @Override
+    public void creationComplete(Intent intent) {
+        setResult(RESULT_OK, intent);
+        finish();
     }
 }

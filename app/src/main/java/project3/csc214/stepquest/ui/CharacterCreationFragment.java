@@ -1,6 +1,8 @@
 package project3.csc214.stepquest.ui;
 
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
@@ -15,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import project3.csc214.stepquest.R;
 import project3.csc214.stepquest.model.Die;
@@ -28,12 +31,14 @@ import project3.csc214.stepquest.model.Vocation;
 public class CharacterCreationFragment extends Fragment {
 
     private static final String TAG = "CharacterCreationFrag";
+    public static final String ARG_NAME = "creation_name", ARG_RACE = "creation_race", ARG_CLASS = "creation_class", ARG_STATS = "creation_stats";
 
     private ImageView mClassImage, mRaceImage;
     private EditText mName;
     private Spinner mClassSpinner, mRaceSpinner;
     private TextView mStrView, mDexView, mConView, mIntView, mWisView, mChrView;
     private Button mRoll, mCreate;
+    private CreationCompleteListener mListener;
 
     private int[] mStats = new int[Stats.STAT_VOLUME]; //stats
     private int mRace = Race.BIRDPERSON;
@@ -144,13 +149,32 @@ public class CharacterCreationFragment extends Fragment {
         mCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: send data back to main activity
+                String name = mName.getText().toString();
+                if(!name.equals(null) && !name.equals("")){
+                    Intent returnIntent = new Intent();
+                    returnIntent.putExtra(ARG_NAME, name);
+                    returnIntent.putExtra(ARG_STATS, mStats);
+                    returnIntent.putExtra(ARG_CLASS, mClass);
+                    returnIntent.putExtra(ARG_RACE, mRace);
+                    mListener.creationComplete(returnIntent);
+                }else{
+                    Toast.makeText(getActivity(), getString(R.string.error_name_required), Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
 
         //generate stats
         generateStats();
+
+        //load stuff from the saved state
+        if(savedInstanceState != null){
+            mName.setText(savedInstanceState.getString(ARG_NAME));
+            mClass = savedInstanceState.getInt(ARG_CLASS);
+            mRace = savedInstanceState.getInt(ARG_RACE);
+            mStats = savedInstanceState.getIntArray(ARG_STATS);
+            updateAllStatViews();
+        }
 
         return view;
     }
@@ -183,5 +207,27 @@ public class CharacterCreationFragment extends Fragment {
         if(stat < 7) text.setTextColor(ContextCompat.getColor(getContext(), R.color.bad));
         else if(stat > 13) text.setTextColor(ContextCompat.getColor(getContext(), R.color.good));
         else text.setTextColor(ContextCompat.getColor(getContext(), R.color.neutral));
+    }
+
+    //persist all this garbage aka kill me
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString(ARG_NAME, mName.getText().toString());
+        outState.putInt(ARG_CLASS, mClass);
+        outState.putInt(ARG_RACE, mRace);
+        outState.putIntArray(ARG_STATS, mStats);
+    }
+
+    //attach listener
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mListener = (CreationCompleteListener)context;
+    }
+
+    //listener for this fragment
+    public interface CreationCompleteListener{
+        void creationComplete(Intent intent);
     }
 }
