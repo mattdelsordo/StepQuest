@@ -6,14 +6,19 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import project3.csc214.stepquest.R;
+import project3.csc214.stepquest.model.EventQueue;
 
 /**
  * This fragment handles the master progress bar
  */
 public class ProgressFragment extends Fragment {
 
+    private ProgressBar mProgress;
+    private TextView mDesc;
 
     public ProgressFragment() {
         // Required empty public constructor
@@ -24,7 +29,25 @@ public class ProgressFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_progress, container, false);
+        View view = inflater.inflate(R.layout.fragment_progress, container, false);
+
+        mDesc = (TextView)view.findViewById(R.id.textview_progress_description);
+
+        mProgress = (ProgressBar)view.findViewById(R.id.progressbar_progress_THE_BAR);
+
+        //refresh progress
+        refresh();
+
+        return view;
+
+    }
+
+    //updates progress bar/description based on top event on the event queue
+    public void refresh(){
+        EventQueue queue = EventQueue.getInstance(getContext());
+        mDesc.setText(queue.getTopEvent().getDescription());
+        mProgress.setMax(queue.getTopEvent().getDuration());
+        mProgress.setProgress(queue.getProgress());
     }
 
 }

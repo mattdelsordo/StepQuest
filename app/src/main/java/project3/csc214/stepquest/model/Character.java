@@ -12,6 +12,7 @@ public class Character {
     private final Race mRace;
     private int mLevel;
     private int[] mBaseStats;
+    private int mFunds;
 
     //constructor for creating a new character
     public Character(String name, Vocation vocation, Race race, int[] stats){
@@ -71,5 +72,13 @@ public class Character {
 
     public void setBaseStats(int[] mBaseStats) {
         this.mBaseStats = mBaseStats;
+    }
+
+    public int getmFunds() {
+        return mFunds;
+    }
+
+    public void setmFunds(int mFunds) {
+        this.mFunds = mFunds;
     }
 }

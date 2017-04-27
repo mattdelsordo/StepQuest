@@ -86,4 +86,9 @@ public class Event {
     public void setItemReward(Weapon mItemReward) {
         this.mItemReward = mItemReward;
     }
+
+    @Override
+    public String toString() {
+        return mDescription;
+    }
 }
