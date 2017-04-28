@@ -10,12 +10,13 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import project3.csc214.stepquest.R;
+import project3.csc214.stepquest.model.Event;
 import project3.csc214.stepquest.model.EventQueue;
 
 /**
  * This fragment handles the master progress bar
  */
-public class ProgressFragment extends Fragment {
+public class ProgressFragment extends Fragment implements EventQueue.EventUpdateListener{
 
     private ProgressBar mProgress;
     private TextView mDesc;
@@ -35,19 +36,30 @@ public class ProgressFragment extends Fragment {
 
         mProgress = (ProgressBar)view.findViewById(R.id.progressbar_progress_THE_BAR);
 
+        //bind to event queue
+        EventQueue queue = EventQueue.getInstance(getContext());
+        queue.bindUpdateListener(this);
+
         //refresh progress
-        refresh();
+        updateEvent(queue.getTopEvent(), queue.getProgress());
 
         return view;
 
     }
 
     //updates progress bar/description based on top event on the event queue
-    public void refresh(){
-        EventQueue queue = EventQueue.getInstance(getContext());
-        mDesc.setText(queue.getTopEvent().getDescription());
-        mProgress.setMax(queue.getTopEvent().getDuration());
-        mProgress.setProgress(queue.getProgress());
-    }
+//    public void refresh(){
+//        EventQueue queue = EventQueue.getInstance(getContext());
+//        mDesc.setText(queue.getTopEvent().getDescription());
+//        mProgress.setMax(queue.getTopEvent().getDuration());
+//        mProgress.setProgress(queue.getProgress());
+//    }
 
+    //updates the event, called by the event queue when updates happen
+    @Override
+    public void updateEvent(Event e, int progress) {
+        mDesc.setText(e.getDescription());
+        mProgress.setMax(e.getDuration());
+        mProgress.setProgress(progress);
+    }
 }

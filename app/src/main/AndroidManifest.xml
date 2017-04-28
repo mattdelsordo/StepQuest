@@ -16,7 +16,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.CharacterCreationActivity"></activity>
+        <activity android:name=".ui.CharacterCreationActivity" />
+
+        <service
+            android:name=".pedometer.PedometerService"
+            android:exported="false"></service>
     </application>
 
 </manifest>

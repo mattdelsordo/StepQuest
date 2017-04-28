@@ -21,6 +21,12 @@ public class EventQueue {
     private int mProgress;
     private Context mAppContext;
 
+    //listener to allow updating of the gui on progress changes
+    public interface EventUpdateListener{
+        void updateEvent(Event e, int progress);
+    }
+    private EventUpdateListener mUpdateListener;
+
     private EventQueue(Context context){
         mAppContext = context;
         mQueue = new ArrayList<>();
@@ -64,6 +70,21 @@ public class EventQueue {
         }
     }
 
+    //handles incrementing the step on a detected step
+    public void incrementProgress(){
+        Log.i(TAG, "Step taken");
+
+        //TODO: implement the rest of this shit but I'm tired af
+        mProgress++;
+        //do event is over check
+        //if so, do the updates for event rewards
+        //also get new event in the queue
+
+        mUpdateListener.updateEvent(getTopEvent(), mProgress);
+
+
+    }
+
     public int getProgress() {
         return mProgress;
     }
@@ -72,5 +93,8 @@ public class EventQueue {
         this.mProgress = mProgress;
     }
 
+    public void bindUpdateListener(EventUpdateListener eul){
+        mUpdateListener = eul;
+    }
 
 }

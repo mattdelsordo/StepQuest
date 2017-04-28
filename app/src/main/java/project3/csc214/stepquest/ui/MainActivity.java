@@ -1,6 +1,10 @@
 package project3.csc214.stepquest.ui;
 
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
+import android.os.IBinder;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -14,6 +18,7 @@ import project3.csc214.stepquest.R;
 import project3.csc214.stepquest.data.EventList;
 import project3.csc214.stepquest.model.*;
 import project3.csc214.stepquest.model.Character;
+import project3.csc214.stepquest.pedometer.PedometerService;
 
 /**
  * This Activity controls the rest of the app
@@ -33,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         //set adapter to view pager
         mViewPager = (ViewPager)findViewById(R.id.viewpager_main);
         mAdapter = new ScreenPagerAdapter(getSupportFragmentManager());
+        //TODO: this keeps causing the program to crash in landscape mode, I might just get rid of the viewpager all together
         mViewPager.setAdapter(mAdapter);
 
         //put progress bar in frame
@@ -42,12 +48,14 @@ public class MainActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction().add(R.id.frame_main_progress, mProgress).commit();
         }
 
+        //load list of events
         EventList.getInstance(getApplicationContext());
 
 
         /** Do check that there's a character in the database, otherwise, make a new one.*/
         Character activeCharacter = ActiveCharacter.getInstance().getActiveCharacter();
         if(activeCharacter == null) startActivityForResult(CharacterCreationActivity.newInstance(this), CharacterCreationActivity.REQUEST_CHARACTER_INFO);
+        else doBindService();
     }
 
     @Override
@@ -65,7 +73,37 @@ public class MainActivity extends AppCompatActivity {
                 Character newGuy = new Character(name, bigVocation, bigRace, stats);
                 ActiveCharacter.getInstance().setActiveCharacter(newGuy);
                 //mAdapter.refreshCharInfo(newGuy);
+
+                doBindService();
             }
+        }
+    }
+
+    //Starts up pedometer service, somehow. I'm not entirely sure what does what but it seems to work
+    private PedometerService mService;
+    private boolean mIsBound;
+    private ServiceConnection mConnection = new ServiceConnection(){
+
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            mService = ((PedometerService.LocalBinder)service).getService();
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            mService = null;
+        }
+    };
+
+    private void doBindService(){
+        bindService(new Intent(MainActivity.this, PedometerService.class), mConnection, Context.BIND_AUTO_CREATE);
+        mIsBound = true;
+    }
+
+    private void doUnbindService(){
+        if(mIsBound){
+            unbindService(mConnection);
+            mIsBound = false;
         }
     }
 
