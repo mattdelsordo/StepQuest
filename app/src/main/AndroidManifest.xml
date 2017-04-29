@@ -20,7 +20,8 @@
 
         <service
             android:name=".pedometer.PedometerService"
-            android:exported="false"></service>
+            android:exported="false"
+            android:stopWithTask="true"></service>
     </application>
 
 </manifest>

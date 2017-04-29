@@ -46,8 +46,12 @@ public class EventQueue {
     public Event getTopEvent(){
         if(mQueue.isEmpty()) addEvents(Dungeon.newRandomDungeon(mAppContext));
         Event e = mQueue.get(0);
-        Log.i(TAG, "Duration " + e.getDuration());
         return e;
+    }
+
+    //removes top event from the queue
+    public void popTopEvent(){
+        mQueue.remove(0);
     }
 
     //adds a dungeon's stuff to the queue
@@ -56,31 +60,34 @@ public class EventQueue {
         //Log.i(TAG, "Queue size: " + mQueue.size());
     }
 
-    //updates the queue based off of a new step reading
-    public void updateQueue(int stepsTaken){
-        //TODO: connect this to the pedometer in some way
-
-        mProgress += stepsTaken;
-        Event currentEvent = getTopEvent();
-        if(mProgress >= currentEvent.getDuration()){
-            //if sufficient time has passed, update EVERYTHING
-            //TODO: implement updating exp, money, new weapons from event
-            mQueue.remove(0); //remove the top event
-            mProgress -= currentEvent.getDuration(); //subtract elapsed time
-        }
-    }
-
     //handles incrementing the step on a detected step
     public void incrementProgress(){
-        Log.i(TAG, "Step taken");
+        Log.i(TAG, "Step taken (" + mProgress + ")");
 
         //TODO: implement the rest of this shit but I'm tired af
-        mProgress++;
-        //do event is over check
-        //if so, do the updates for event rewards
-        //also get new event in the queue
+        mProgress+=10;
+        Event currentEvent = getTopEvent();
+        if(mProgress >= currentEvent.getDuration()){
+            //if the progress threshold has been met:
+            //get active character
+            Character active = ActiveCharacter.getInstance().getActiveCharacter();
+            //give the player exp
+            active.addExp(currentEvent.getExp());
+            //give the player money
+            active.setFunds(active.getFunds() + currentEvent.getGoldReward());
+            //give the player any weapon
+            //TODO: implement adding a weapon to the weapon table
 
-        mUpdateListener.updateEvent(getTopEvent(), mProgress);
+            //reset progress
+            mProgress -= currentEvent.getDuration();
+            //remove current event from the queue
+            popTopEvent();
+        }
+
+        //update the ui if the ui exists
+        if(mUpdateListener != null) mUpdateListener.updateEvent(getTopEvent(), mProgress);
+        //else make sure to call getTopEvent() anyway so that there is some event in the queue
+        else getTopEvent();
 
 
     }
@@ -96,5 +103,6 @@ public class EventQueue {
     public void bindUpdateListener(EventUpdateListener eul){
         mUpdateListener = eul;
     }
+    public void unbindUpdateListener(){mUpdateListener = null;}
 
 }

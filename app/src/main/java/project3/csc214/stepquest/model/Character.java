@@ -1,5 +1,7 @@
 package project3.csc214.stepquest.model;
 
+import android.util.Log;
+
 /**
  * Created by mdelsord on 4/13/17.
  * Models a character with a bunch of stats
@@ -7,12 +9,18 @@ package project3.csc214.stepquest.model;
 
 public class Character {
 
+    private static final int BASE_LEVELUP_EXP = 150; //How much it takes to go from lvl one to lvl 2, in steps (??)
+
+    private static final String TAG = "Character";
+
     private final String mName;
     private final Vocation mVocation;
     private final Race mRace;
     private int mLevel;
     private int[] mBaseStats;
     private int mFunds;
+    private int mExp;
+    private int mLevelUpTokens; //these keep track of how many points the character has for levelling up
 
     //constructor for creating a new character
     public Character(String name, Vocation vocation, Race race, int[] stats){
@@ -74,11 +82,39 @@ public class Character {
         this.mBaseStats = mBaseStats;
     }
 
-    public int getmFunds() {
+    public int getFunds() {
         return mFunds;
     }
 
-    public void setmFunds(int mFunds) {
+    public void setFunds(int mFunds) {
         this.mFunds = mFunds;
+    }
+
+    public void addLvlUpToken(){mLevelUpTokens++;}
+    public void spendLvlUpToken(){mLevelUpTokens--;}
+    public int getLvlUpTokenAmnt(){return mLevelUpTokens;}
+
+    public int getExp(){return mExp;}
+
+    public void addExp(int exp){
+        mExp += exp;
+
+        //do check for level up
+        while(canLevelUp(mExp, mLevel)){
+            mLevel++;
+            addLvlUpToken();
+            Log.i(TAG, mName + " level'd up! (" + mLevel + ")");
+        }
+    }
+
+    //returns true if the criteria for leveling up has been met, false otherwise
+    //implements levelling experience function
+    public static boolean canLevelUp(int exp, int level){
+        return exp >= levelUpFunction(level);
+    }
+
+    public static int levelUpFunction(int level){
+        if(level == 1) return BASE_LEVELUP_EXP;
+        else return levelUpFunction(level - 1) + (int)(levelUpFunction(level - 1) * 1.1);
     }
 }

@@ -37,14 +37,22 @@ public class ProgressFragment extends Fragment implements EventQueue.EventUpdate
         mProgress = (ProgressBar)view.findViewById(R.id.progressbar_progress_THE_BAR);
 
         //bind to event queue
-        EventQueue queue = EventQueue.getInstance(getContext());
-        queue.bindUpdateListener(this);
+//        EventQueue queue = EventQueue.getInstance(getContext());
+//        queue.bindUpdateListener(this);
+        EventQueue.getInstance(getContext()).bindUpdateListener(this);
 
         //refresh progress
-        updateEvent(queue.getTopEvent(), queue.getProgress());
+//        updateEvent(queue.getTopEvent(), queue.getProgress());
 
         return view;
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        EventQueue queue = EventQueue.getInstance(getContext());
+        updateEvent(queue.getTopEvent(), queue.getProgress());
     }
 
     //updates progress bar/description based on top event on the event queue

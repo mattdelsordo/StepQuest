@@ -59,6 +59,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventQueue.getInstance(getApplicationContext()).unbindUpdateListener();
+        doUnbindService(); //unbind service so it doesnt throw that error
+
+        //this might stop the service when changing orientations but it already crashes during that so thats an issue for another day
+        //actually it might not be an issue cause itll get just started up again if this activity is recreated
+        //stopService(new Intent(this, PedometerService.class));
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == CharacterCreationActivity.REQUEST_CHARACTER_INFO){
             if(resultCode == RESULT_OK){
@@ -96,7 +107,8 @@ public class MainActivity extends AppCompatActivity {
     };
 
     private void doBindService(){
-        bindService(new Intent(MainActivity.this, PedometerService.class), mConnection, Context.BIND_AUTO_CREATE);
+        //bindService(new Intent(MainActivity.this, PedometerService.class), mConnection, Context.BIND_AUTO_CREATE);
+        getApplicationContext().bindService(new Intent(getApplicationContext(), PedometerService.class), mConnection, Context.BIND_AUTO_CREATE);
         mIsBound = true;
     }
 

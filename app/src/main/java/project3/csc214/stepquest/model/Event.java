@@ -91,4 +91,9 @@ public class Event {
     public String toString() {
         return mDescription;
     }
+
+    //returns the amount of exp this event gives, as a function of duration, which I might change
+    public int getExp(){
+        return getDuration(); //TODO: I might change this up
+    }
 }
