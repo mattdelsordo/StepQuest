@@ -4,6 +4,8 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.res.AssetManager;
+import android.media.MediaPlayer;
 import android.os.IBinder;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -11,6 +13,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -25,10 +28,16 @@ import project3.csc214.stepquest.pedometer.PedometerService;
  */
 
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "MainActivity";
 
     private ViewPager mViewPager;
     private ProgressFragment mProgress;
     private ScreenPagerAdapter mAdapter;
+    private MusicPlayerFragment mMusic;
+
+    //requisite media player components
+    private MediaPlayer mPlayer;
+    private AssetManager mAssets;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +55,14 @@ public class MainActivity extends AppCompatActivity {
         if(mProgress == null){
             mProgress = new ProgressFragment();
             getSupportFragmentManager().beginTransaction().add(R.id.frame_main_progress, mProgress).commit();
+        }
+
+        //put music in frame/play it?
+        mMusic = (MusicPlayerFragment)getSupportFragmentManager().findFragmentById(R.id.frame_main_musicplayer);
+        if(mMusic == null){
+            Log.i(TAG, "Creating music player");
+            mMusic = MusicPlayerFragment.newInstance("main_track_zacwilkins_loopermandotcom.wav");
+            getSupportFragmentManager().beginTransaction().add(R.id.frame_main_musicplayer, mMusic).commit();
         }
 
         //load list of events
@@ -120,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //adapter for the viewpager
+    //TODO: might get rid of this
     public class ScreenPagerAdapter extends FragmentPagerAdapter{
         private ArrayList<Fragment> mFragments;
 

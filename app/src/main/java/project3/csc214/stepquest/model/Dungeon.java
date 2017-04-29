@@ -8,6 +8,8 @@ import project3.csc214.stepquest.data.EventList;
 
 /**
  * Created by mdelsord on 4/15/17.
+ * Handles random event generation
+ *
  * A dungeon is just a series of events in a prescribed order.
  * A single event is just a one-long list of events
  */

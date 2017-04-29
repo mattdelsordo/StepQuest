@@ -65,7 +65,7 @@ public class EventQueue {
         Log.i(TAG, "Step taken (" + mProgress + ")");
 
         //TODO: implement the rest of this shit but I'm tired af
-        mProgress+=10;
+        mProgress++;
         Event currentEvent = getTopEvent();
         if(mProgress >= currentEvent.getDuration()){
             //if the progress threshold has been met:

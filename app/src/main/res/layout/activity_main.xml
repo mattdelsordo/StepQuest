@@ -7,6 +7,12 @@
     android:orientation="vertical"
     tools:context="project3.csc214.stepquest.ui.MainActivity">
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:id="@+id/frame_main_musicplayer"/>
+
     <android.support.v4.view.ViewPager
         android:layout_width="match_parent"
         android:layout_height="0dp"
