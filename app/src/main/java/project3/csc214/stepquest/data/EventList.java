@@ -19,7 +19,7 @@ import project3.csc214.stepquest.model.Weapon;
 
 public class EventList {
 
-    private static EventList sMonsterList;
+    private static EventList sEventList;
     private static String TAG = "EventList";
 
     private ArrayList<Event> mMonsters;
@@ -45,8 +45,8 @@ public class EventList {
 
     //returns list instance
     public static EventList getInstance(Context appContext){
-        if(sMonsterList == null) sMonsterList = new EventList(appContext);
-        return sMonsterList;
+        if(sEventList == null) sEventList = new EventList(appContext);
+        return sEventList;
     }
 
     //loads list of monsters from the xml file
@@ -71,7 +71,7 @@ public class EventList {
         for(String[] a : array){
             Event monster = new Event(a[0], Integer.parseInt(a[1]));
             if(a.length > 2) monster.setGoldReward(Integer.parseInt(a[2]));
-            if(a.length > 3) monster.setItemReward(new Weapon()); //TODO: this line should be temporary
+            if(a.length > 3) monster.setItemReward(WeaponList.getInstance(mAppContext).getWeaponById(a[3]));
             list.add(monster);
         }
 

@@ -66,4 +66,12 @@ public class Vocation {
     public String toString() {
         return mName;
     }
+
+    public int getGoodWeapon() {
+        return mGoodWeapon;
+    }
+
+    public int getBadWeapon() {
+        return mBadWeapon;
+    }
 }

@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--Array of weapons-->
+    <!--BLADE = 0, BOW = 1, STAFF = 2, BLUNT = 3-->
+
+    <!--Wood weapons-->
+    <array name="wood">
+        <item>WOOD</item>
+        <item>@array/wood_sword</item>
+        <item>@array/wood_bow</item>
+        <item>@array/wood_staff</item>
+        <item>@array/wood_club</item>
+    </array>
+    <string-array name="wood_sword">
+        <item name="id">wood_sword</item>
+        <item name="name">Wooden Shortsword</item>
+        <item name="type">BLADE</item>
+    </string-array>
+    <string-array name="wood_bow">
+        <item name="id">wood_bow</item>
+        <item name="name">Balsa Bow</item>
+        <item name="type">BOW</item>
+    </string-array>
+    <string-array name="wood_staff">
+        <item name="id">wood_staff</item>
+        <item name="name">Balsa Wand</item>
+        <item name="type">STAFF</item>
+    </string-array>
+    <string-array name="wood_club">
+        <item name="id">wood_club</item>
+        <item name="name">Oaken Club</item>
+        <item name="type">BLUNT</item>
+    </string-array>
+
+    <!--Bronze weapons-->
+    <array name="bronze">
+        <item>BRONZE</item>
+        <item>@array/bronze_sword</item>
+        <item>@array/bronze_bow</item>
+        <item>@array/bronze_staff</item>
+        <item>@array/bronze_club</item>
+    </array>
+    <string-array name="bronze_sword">
+        <item name="id">bronze_sword</item>
+        <item name="name">Bronze Shortsword</item>
+        <item name="type">BLADE</item>
+    </string-array>
+    <string-array name="bronze_bow">
+        <item name="id">bronze_bow</item>
+        <item name="name">Bronze Composite Bow</item>
+        <item name="type">BOW</item>
+    </string-array>
+    <string-array name="bronze_staff">
+        <item name="id">bronze_staff</item>
+        <item name="name">Bronze Staff</item>
+        <item name="type">STAFF</item>
+    </string-array>
+    <string-array name="bronze_club">
+        <item name="id">bronze_club</item>
+        <item name="name">Bronze Mace</item>
+        <item name="type">BLUNT</item>
+    </string-array>
+
+    <!--Iron weapons-->
+    <array name="iron">
+        <item>IRON</item>
+        <item>@array/iron_sword</item>
+        <item>@array/iron_bow</item>
+        <item>@array/iron_staff</item>
+        <item>@array/iron_club</item>
+    </array>
+    <string-array name="iron_sword">
+        <item name="id">iron_sword</item>
+        <item name="name">Iron Longsword</item>
+        <item name="type">BLADE</item>
+    </string-array>
+    <string-array name="iron_bow">
+        <item name="id">iron_bow</item>
+        <item name="name">Iron Composite Bow</item>
+        <item name="type">BOW</item>
+    </string-array>
+    <string-array name="iron_staff">
+        <item name="id">iron_staff</item>
+        <item name="name">Iron Staff</item>
+        <item name="type">STAFF</item>
+    </string-array>
+    <string-array name="iron_club">
+        <item name="id">iron_club</item>
+        <item name="name">Iron Mace</item>
+        <item name="type">BLUNT</item>
+    </string-array>
+
+    <!--Steel weapons-->
+    <array name="steel">
+        <item>STEEL</item>
+        <item>@array/steel_sword</item>
+        <item>@array/steel_bow</item>
+        <item>@array/steel_staff</item>
+        <item>@array/steel_club</item>
+    </array>
+    <string-array name="steel_sword">
+        <item name="id">steel_sword</item>
+        <item name="name">Steel Katana</item>
+        <item name="type">BLADE</item>
+    </string-array>
+    <string-array name="steel_bow">
+        <item name="id">steel_bow</item>
+        <item name="name">Steel Composite Longbow</item>
+        <item name="type">BOW</item>
+    </string-array>
+    <string-array name="steel_staff">
+        <item name="id">steel_staff</item>
+        <item name="name">Steel Staff</item>
+        <item name="type">STAFF</item>
+    </string-array>
+    <string-array name="steel_club">
+        <item name="id">steel_club</item>
+        <item name="name">Steel Morning Star</item>
+        <item name="type">BLUNT</item>
+    </string-array>
+
+    <!--Obsidian weapons-->
+    <array name="obsidian">
+        <item>OBSIDIAN</item>
+        <item>@array/obsidian_sword</item>
+        <item>@array/obsidian_bow</item>
+        <item>@array/obsidian_staff</item>
+        <item>@array/obsidian_club</item>
+    </array>
+    <string-array name="obsidian_sword">
+        <item name="id">obsidian_sword</item>
+        <item name="name">Macuahuitl</item>
+        <item name="type">BLADE</item>
+    </string-array>
+    <string-array name="obsidian_bow">
+        <item name="id">obsidian_bow</item>
+        <item name="name">Obsidian Composite Bow</item>
+        <item name="type">BOW</item>
+    </string-array>
+    <string-array name="obsidian_staff">
+        <item name="id">obsidian_staff</item>
+        <item name="name">Obsidian Staff</item>
+        <item name="type">STAFF</item>
+    </string-array>
+    <string-array name="obsidian_club">
+        <item name="id">obsidian_club</item>
+        <item name="name">Incredibly Brittle Mace</item>
+        <item name="type">BLUNT</item>
+    </string-array>
+
+    <!--Mithril weapons-->
+    <array name="mithril">
+        <item>MITHRIL</item>
+        <item>@array/mithril_sword</item>
+        <item>@array/mithril_bow</item>
+        <item>@array/mithril_staff</item>
+        <item>@array/mithril_club</item>
+    </array>
+    <string-array name="mithril_sword">
+        <item name="id">mithril_sword</item>
+        <item name="name">Mithril Sword</item>
+        <item name="type">BLADE</item>
+    </string-array>
+    <string-array name="mithril_bow">
+        <item name="id">mithril_bow</item>
+        <item name="name">Mithril Composite Bow</item>
+        <item name="type">BOW</item>
+    </string-array>
+    <string-array name="mithril_staff">
+        <item name="id">mithril_staff</item>
+        <item name="name">Mithril Battlestaff</item>
+        <item name="type">STAFF</item>
+    </string-array>
+    <string-array name="mithril_club">
+        <item name="id">mithril_club</item>
+        <item name="name">Mithril Otsuchi</item>
+        <item name="type">BLUNT</item>
+    </string-array>
+
+    <!--Legendaries-->
+    <array name="legendary_weapons">
+        <item>@array/excalibur</item>
+    </array>
+    <string-array name="excalibur">
+        <item name="id">excalibur</item>
+        <item name = "name">Excalibur</item>
+        <item name = "type">BLADE</item>
+        <item name = "material">6.0</item>
+    </string-array>
+
+</resources>
