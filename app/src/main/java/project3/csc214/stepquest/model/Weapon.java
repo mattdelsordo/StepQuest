@@ -1,5 +1,7 @@
 package project3.csc214.stepquest.model;
 
+import android.util.NoSuchPropertyException;
+
 import java.util.NoSuchElementException;
 
 /**
@@ -15,6 +17,7 @@ public class Weapon {
 
     public static final double GOOD = 1.5, BAD = (2 / 3); //multipliers for experience gain for weapons
 
+    private final String mId;
     private final String mName;
     private final int mType;
     private final double mMaterial;
@@ -22,13 +25,15 @@ public class Weapon {
 
     //default constructor until I sort out how to load this
     public Weapon() {
+        mId = "stick";
         mName = "Stick";
         mType = BLUNT;
         //mModifier = 1;
         mMaterial = WOOD;
     }
 
-    public Weapon(String name, int type, double material) {
+    public Weapon(String id, String name, int type, double material) {
+        mId = id;
         mName = name;
         mType = type;
         //mModifier = modifier;
@@ -61,7 +66,7 @@ public class Weapon {
             case "MITHRIL":
                 return MITHRIL;
             default:
-                throw new NoSuchElementException();
+                throw new NoSuchPropertyException(material);
         }
     }
 
@@ -77,7 +82,7 @@ public class Weapon {
             case "BLUNT":
                 return BLUNT;
             default:
-                throw new NoSuchElementException();
+                throw new NoSuchPropertyException(type);
         }
     }
 
@@ -98,4 +103,3 @@ public class Weapon {
         return mMaterial;
     }
 }
-

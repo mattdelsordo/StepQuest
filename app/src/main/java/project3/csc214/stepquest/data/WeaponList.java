@@ -7,7 +7,10 @@ import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Random;
 
 import project3.csc214.stepquest.R;
 import project3.csc214.stepquest.model.Weapon;
@@ -25,12 +28,12 @@ public class WeaponList {
     private static WeaponList sWeaponList;
 
     //lists that contain the weapons
-    private HashMap<String, Weapon> mWood;
-    private HashMap<String, Weapon> mBronze;
-    private HashMap<String, Weapon> mIron;
-    private HashMap<String, Weapon> mSteel;
-    private HashMap<String, Weapon> mObsidian;
-    private HashMap<String, Weapon> mMithril;
+    private LinkedHashMap<String, Weapon> mWood;
+    private LinkedHashMap<String, Weapon> mBronze;
+    private LinkedHashMap<String, Weapon> mIron;
+    private LinkedHashMap<String, Weapon> mSteel;
+    private LinkedHashMap<String, Weapon> mObsidian;
+    private LinkedHashMap<String, Weapon> mMithril;
     private HashMap<String, Weapon> mLegendary;
     private ArrayList<HashMap<String, Weapon>> mListList;
 
@@ -40,13 +43,13 @@ public class WeaponList {
         mAppContext = appContext;
 
         //create lists
-        mWood = new HashMap<>();
-        mBronze = new HashMap<>();
-        mIron = new HashMap<>();
-        mSteel = new HashMap<>();
-        mObsidian = new HashMap<>();
-        mMithril = new HashMap<>();
-        mLegendary = new HashMap<>();
+        mWood = new LinkedHashMap<>();
+        mBronze = new LinkedHashMap<>();
+        mIron = new LinkedHashMap<>();
+        mSteel = new LinkedHashMap<>();
+        mObsidian = new LinkedHashMap<>();
+        mMithril = new LinkedHashMap<>();
+        mLegendary = new LinkedHashMap<>();
 
         //fill lists
         fillGenericWeaponList(mWood, R.array.wood);
@@ -74,7 +77,7 @@ public class WeaponList {
     }
 
     //fills a given list with a given list from xml
-    private void fillGenericWeaponList(HashMap<String, Weapon> list, int arrayId){
+    private void fillGenericWeaponList(LinkedHashMap<String, Weapon> list, int arrayId){
         //load weapons from xml as strings
         Log.i(TAG, "Loading weapon list...");
         Resources res = mAppContext.getResources();
@@ -99,7 +102,7 @@ public class WeaponList {
             String id = array[i][0];
             String name = array[i][1];
             int type = Integer.parseInt(array[i][2]);
-            Weapon weapon = new Weapon(name, type, material);
+            Weapon weapon = new Weapon(id, name, type, material);
             list.put(id, weapon);
         }
 
@@ -134,7 +137,7 @@ public class WeaponList {
             String name = array[i][1];
             int type = Integer.parseInt(array[i][2]);
             double material = Double.parseDouble(array[i][3]);
-            Weapon weapon = new Weapon(name, type, material);
+            Weapon weapon = new Weapon(id, name, type, material);
             list.put(id, weapon);
         }
 
@@ -151,5 +154,32 @@ public class WeaponList {
             if(w != null) return w;
         }
         throw new NoSuchElementException();
+    }
+
+    //returns a random weapon based on the character's level
+    public Weapon getRandomLevelledWeapon(int charLevel){
+        //turn user level into some threshold to determine what weapons are available
+        int threshold;
+        if(charLevel < 3) threshold = 0;
+        else if(charLevel < 6) threshold = 1;
+        else if(charLevel < 9) threshold = 2;
+        else if(charLevel < 12) threshold = 3;
+        else if(charLevel < 15) threshold = 4;
+        else if(charLevel < 18) threshold = 5;
+        else threshold = 6;
+
+        Random rand = new Random();
+        List<Weapon> sampleSpace;
+        int listPick = rand.nextInt(threshold);
+        if(listPick < 1) sampleSpace = new ArrayList<>(mWood.values());
+        else if(listPick < 2) sampleSpace = new ArrayList<>(mBronze.values());
+        else if(listPick < 3) sampleSpace = new ArrayList<>(mIron.values());
+        else if(listPick < 4) sampleSpace = new ArrayList<>(mSteel.values());
+        else if(listPick < 5) sampleSpace = new ArrayList<>(mObsidian.values());
+        else if(listPick < 6) sampleSpace = new ArrayList<>(mMithril.values());
+        else throw new IndexOutOfBoundsException(); //I have no idea what kind of exception this should be
+
+        //return random element of sample space
+        return sampleSpace.get(rand.nextInt(sampleSpace.size()));
     }
 }

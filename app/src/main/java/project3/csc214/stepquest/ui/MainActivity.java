@@ -19,6 +19,7 @@ import java.util.ArrayList;
 
 import project3.csc214.stepquest.R;
 import project3.csc214.stepquest.data.EventList;
+import project3.csc214.stepquest.data.WeaponList;
 import project3.csc214.stepquest.model.*;
 import project3.csc214.stepquest.model.Character;
 import project3.csc214.stepquest.pedometer.PedometerService;
@@ -100,8 +101,22 @@ public class MainActivity extends AppCompatActivity {
 
                 Character newGuy = new Character(name, bigVocation, bigRace, stats);
                 ActiveCharacter.getInstance().setActiveCharacter(newGuy);
-                //mAdapter.refreshCharInfo(newGuy);
 
+                Weapon firstWeapon;
+                switch(newGuy.getVocation().getGoodWeapon()){
+                    case(Weapon.BLADE): firstWeapon = WeaponList.getInstance(getApplicationContext()).getWeaponById("wood_sword");
+                        break;
+                    case(Weapon.BOW): firstWeapon = WeaponList.getInstance(getApplicationContext()).getWeaponById("wood_bow");
+                        break;
+                    case(Weapon.STAFF): firstWeapon = WeaponList.getInstance(getApplicationContext()).getWeaponById("wood_staff");
+                        break;
+                    case(Weapon.BLUNT): firstWeapon = WeaponList.getInstance(getApplicationContext()).getWeaponById("wood_club");
+                        break;
+                    default: firstWeapon = new Weapon();
+                }
+                ActiveCharacter.getInstance().addWeaponToInventory(firstWeapon);
+
+                //connect to service (start game process)
                 doBindService();
             }
         }
