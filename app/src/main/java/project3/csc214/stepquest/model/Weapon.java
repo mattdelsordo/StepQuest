@@ -2,7 +2,10 @@ package project3.csc214.stepquest.model;
 
 import android.util.NoSuchPropertyException;
 
+import java.util.Comparator;
 import java.util.NoSuchElementException;
+
+import project3.csc214.stepquest.R;
 
 /**
  * Created by mdelsord on 4/15/17.
@@ -12,7 +15,7 @@ import java.util.NoSuchElementException;
 public class Weapon {
 
     public static final int BLADE = 0, BOW = 1, STAFF = 2, BLUNT = 3; //weapon classes
-    public static final double WOOD = 1.0, BRONZE = 1.5, IRON = 2.0, STEEL = 2.5, OBSIDIAN = 3.0, MITHRIL = 4.0;//material bonuses
+    public static final Double WOOD = 1.0, BRONZE = 1.5, IRON = 2.0, STEEL = 2.5, OBSIDIAN = 3.0, MITHRIL = 4.0;//material bonuses
 
 
     public static final double GOOD = 1.5, BAD = (2 / 3); //multipliers for experience gain for weapons
@@ -86,6 +89,28 @@ public class Weapon {
         }
     }
 
+    //accepts an int type and returns the corresponding resource id
+    //This should get string resources from
+    public static int getTypeString(int type){
+        switch (type){
+            case BLADE: return R.string.blade;
+            case BOW: return R.string.bow;
+            case STAFF: return R.string.staff;
+            case BLUNT: return R.string.blunt;
+            default: return R.string.unknown_parameter;
+        }
+    }
+
+    public static int getMaterialString(double material){
+        if(material == WOOD) return R.string.wood;
+        else if(material == IRON) return R.string.iron;
+        else if(material == BRONZE) return R.string.bronze;
+        else if(material == STEEL) return R.string.steel;
+        else if(material == OBSIDIAN) return R.string.obsidian;
+        else if(material == MITHRIL) return R.string.mithril;
+        else return R.string.unknown_parameter;
+    }
+
     @Override
     public String toString() {
         return mName + "(" + mMaterial + " " + mType + ")";
@@ -99,7 +124,24 @@ public class Weapon {
         return mType;
     }
 
-    public double getMaterial() {
+    public Double getMaterial() {
         return mMaterial;
+    }
+
+    public String getId() {
+        return mId;
+    }
+
+    //nested class compares two weapons
+    public static class WeaponComparator implements Comparator<Weapon> {
+        @Override
+        public int compare(Weapon o1, Weapon o2) {
+            return o1.getMaterial().compareTo(o2.getMaterial());
+        }
+    }
+
+    //returns the percent buff for a given character
+    public double calcBuff(Vocation v){
+        return (getModifier(v) * 100) - 100;
     }
 }

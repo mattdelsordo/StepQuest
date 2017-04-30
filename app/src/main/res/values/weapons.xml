@@ -6,12 +6,13 @@
 
     <!--Wood weapons-->
     <array name="wood">
-        <item>WOOD</item>
+        <item>@array/wood_id</item>
         <item>@array/wood_sword</item>
         <item>@array/wood_bow</item>
         <item>@array/wood_staff</item>
         <item>@array/wood_club</item>
     </array>
+    <string-array name="wood_id"><item>WOOD</item></string-array>
     <string-array name="wood_sword">
         <item name="id">wood_sword</item>
         <item name="name">Wooden Shortsword</item>
@@ -35,12 +36,13 @@
 
     <!--Bronze weapons-->
     <array name="bronze">
-        <item>BRONZE</item>
+        <item>@array/bronze_id</item>
         <item>@array/bronze_sword</item>
         <item>@array/bronze_bow</item>
         <item>@array/bronze_staff</item>
         <item>@array/bronze_club</item>
     </array>
+    <string-array name="bronze_id"><item>BRONZE</item></string-array>
     <string-array name="bronze_sword">
         <item name="id">bronze_sword</item>
         <item name="name">Bronze Shortsword</item>
@@ -64,12 +66,13 @@
 
     <!--Iron weapons-->
     <array name="iron">
-        <item>IRON</item>
+        <item>@array/iron_id</item>
         <item>@array/iron_sword</item>
         <item>@array/iron_bow</item>
         <item>@array/iron_staff</item>
         <item>@array/iron_club</item>
     </array>
+    <string-array name="iron_id"><item>IRON</item></string-array>
     <string-array name="iron_sword">
         <item name="id">iron_sword</item>
         <item name="name">Iron Longsword</item>
@@ -93,12 +96,13 @@
 
     <!--Steel weapons-->
     <array name="steel">
-        <item>STEEL</item>
+        <item>@array/steel_id</item>
         <item>@array/steel_sword</item>
         <item>@array/steel_bow</item>
         <item>@array/steel_staff</item>
         <item>@array/steel_club</item>
     </array>
+    <string-array name="steel_id"><item>STEEL</item></string-array>
     <string-array name="steel_sword">
         <item name="id">steel_sword</item>
         <item name="name">Steel Katana</item>
@@ -122,12 +126,13 @@
 
     <!--Obsidian weapons-->
     <array name="obsidian">
-        <item>OBSIDIAN</item>
+        <item>@array/obsidian_id</item>
         <item>@array/obsidian_sword</item>
         <item>@array/obsidian_bow</item>
         <item>@array/obsidian_staff</item>
         <item>@array/obsidian_club</item>
     </array>
+    <string-array name="obsidian_id"><item>OBSIDIAN</item></string-array>
     <string-array name="obsidian_sword">
         <item name="id">obsidian_sword</item>
         <item name="name">Macuahuitl</item>
@@ -151,12 +156,13 @@
 
     <!--Mithril weapons-->
     <array name="mithril">
-        <item>MITHRIL</item>
+        <item>@array/mithril_id</item>
         <item>@array/mithril_sword</item>
         <item>@array/mithril_bow</item>
         <item>@array/mithril_staff</item>
         <item>@array/mithril_club</item>
     </array>
+    <string-array name="mithril_id"><item>MITHRIL</item></string-array>
     <string-array name="mithril_sword">
         <item name="id">mithril_sword</item>
         <item name="name">Mithril Sword</item>

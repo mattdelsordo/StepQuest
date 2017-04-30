@@ -1,6 +1,7 @@
 package project3.csc214.stepquest.model;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 
 /**
@@ -13,11 +14,11 @@ public class ActiveCharacter{
     private static ActiveCharacter sActiveCharacter;
 
     private Character mCharacter;
-    private ArrayList<Weapon> mWeaponSet;
+    private HashMap<Weapon, Integer> mWeaponSet;
     private Weapon mEquippedWeapon;
 
     private ActiveCharacter(){
-        mWeaponSet = new ArrayList<>();
+        mWeaponSet = new HashMap<>();
     }
 
     public void setActiveCharacter(Character c){
@@ -35,9 +36,24 @@ public class ActiveCharacter{
 
     //adds a weapon to the inventory
     public void addWeaponToInventory(Weapon w){
-        mWeaponSet.add(w);
+        Integer i = mWeaponSet.get(w);
+        if(i != null) mWeaponSet.put(w, i + 1);
+        else mWeaponSet.put(w, 1);
+        //mWeaponSet.put(w, mWeaponSet.get(w) + 1);
         //equip weapon if there's none equipped
         if(mEquippedWeapon == null) mEquippedWeapon = w;
+    }
+
+    public void setEquippedWeapon(Weapon w){
+        mEquippedWeapon = w;
+    }
+
+    public Weapon getEquippedWeapon(){
+        return mEquippedWeapon;
+    }
+
+    public Collection<Weapon> getWeaponInventory(){
+        return mWeaponSet.keySet();
     }
 }
 

@@ -88,20 +88,23 @@ public class WeaponList {
         //start by loading in whole array
         for(int i = 0; i < arrayLength; i++){
             int id = ta.getResourceId(i, 0);
-            if(id > 0){
-                array[i] = res.getStringArray(id);
-            }else{
-                Log.e(TAG, "id " + id + "==0?");
-            }
+            array[i] = res.getStringArray(id);
+            //Log.i(TAG, array[i][0]);
+//            if(id > 0){
+//                array[i] = res.getStringArray(id);
+//            }else{
+//                Log.e(TAG, "id " + id + "==0?");
+//            }
         }
         ta.recycle();
 
         //parse array into events
+        //Log.i(TAG, array[0][0]);
         double material = Weapon.parseMaterial(array[0][0]); //first element is the classification
         for(int i = 1; i < array.length; i++){
             String id = array[i][0];
             String name = array[i][1];
-            int type = Integer.parseInt(array[i][2]);
+            int type = Weapon.parseType(array[i][2]);
             Weapon weapon = new Weapon(id, name, type, material);
             list.put(id, weapon);
         }
@@ -114,7 +117,7 @@ public class WeaponList {
 
     private void fillLegendaryWeaponList(HashMap<String, Weapon> list, int arrayId){
         //load weapons from xml as strings
-        Log.i(TAG, "Loading weapon list...");
+        Log.i(TAG, "Loading legendary weapon list...");
         Resources res = mAppContext.getResources();
         TypedArray ta = res.obtainTypedArray(arrayId);
         int arrayLength = ta.length();
@@ -123,11 +126,12 @@ public class WeaponList {
         //start by loading in whole array
         for(int i = 0; i < arrayLength; i++){
             int id = ta.getResourceId(i, 0);
-            if(id > 0){
-                array[i] = res.getStringArray(id);
-            }else{
-                Log.e(TAG, "id " + id + "==0?");
-            }
+            array[i] = res.getStringArray(id);
+//            if(id > 0){
+//                array[i] = res.getStringArray(id);
+//            }else{
+//                Log.e(TAG, "id " + id + "==0?");
+//            }
         }
         ta.recycle();
 
