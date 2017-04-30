@@ -106,12 +106,12 @@ public class MusicPlayerFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-        if(mPlayer.isPlaying())mPlayer.pause();
+        if(mPlayer.isPlaying())mPlayer.stop();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        if(!mPlayer.isPlaying()) mPlayer.start();
+        if(!mPlayer.isPlaying()) play(mTrackPath);
     }
 }

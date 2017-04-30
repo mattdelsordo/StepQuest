@@ -11,7 +11,8 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:id="@+id/layout_weapon_background"
-        android:padding="2dp">
+        android:padding="2dp"
+        android:gravity="center">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -27,7 +28,17 @@
             android:text="@string/weapon_name"
             android:textStyle="bold"
             android:padding="6dp"
+            android:paddingEnd="3dp"
             android:textSize="18sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textview_weapon_quantity"
+            android:text="@string/default_weapon_quantity"
+            android:padding="4dp"
+            android:paddingStart="0dp"
+            android:textSize="18dp"/>
 
         <LinearLayout
             android:layout_width="wrap_content"

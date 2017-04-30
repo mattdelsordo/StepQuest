@@ -68,7 +68,7 @@ public class EventQueue {
 
     //handles incrementing the step on a detected step
     public void incrementProgress(){
-        Log.i(TAG, "Step taken (" + mProgress + ")");
+        //Log.i(TAG, "Step taken (" + mProgress + ")");
 
         mProgress++;
         Event currentEvent = getTopEvent();
@@ -81,15 +81,15 @@ public class EventQueue {
             active.addExp(expGain);
             //give the player money
             int fundReward = currentEvent.getGoldReward();
-            active.setFunds(active.getFunds() + fundReward);
+            ActiveCharacter.getInstance().addFunds(fundReward);
             //give the player any weapon
             Weapon weaponReward = currentEvent.getItemReward();
             if(weaponReward != null) ActiveCharacter.getInstance().addWeaponToInventory(weaponReward);
 
             //notify player of event completion
             if(mToastListener != null){
-                mToastListener.makeToast("Task complete! +" + expGain + "exp.", Toast.LENGTH_SHORT);
-                if(fundReward != 0) mToastListener.makeToast("You recieved " + fundReward + "gold!", Toast.LENGTH_SHORT);
+                mToastListener.makeToast("Task complete! +" + expGain + " exp!", Toast.LENGTH_SHORT);
+                if(fundReward != 0) mToastListener.makeToast("You recieved " + fundReward + " gold!", Toast.LENGTH_SHORT);
                 if(weaponReward != null) mToastListener.makeToast("You recieved a " + weaponReward.getName() + "!!", Toast.LENGTH_SHORT);
             }
 

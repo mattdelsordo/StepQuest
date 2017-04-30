@@ -155,7 +155,7 @@ public class WeaponList {
     public Weapon getWeaponById(String id){
         for(HashMap<String, Weapon> map : mListList){
             Weapon w = map.get(id);
-            if(w != null) return w;
+            if(w != null) return new Weapon(w);
         }
         throw new NoSuchElementException();
     }
@@ -174,7 +174,8 @@ public class WeaponList {
 
         Random rand = new Random();
         List<Weapon> sampleSpace;
-        int listPick = rand.nextInt(threshold);
+        int listPick = 0;
+        if(listPick > 0) listPick = rand.nextInt(threshold);
         if(listPick < 1) sampleSpace = new ArrayList<>(mWood.values());
         else if(listPick < 2) sampleSpace = new ArrayList<>(mBronze.values());
         else if(listPick < 3) sampleSpace = new ArrayList<>(mIron.values());
@@ -184,6 +185,9 @@ public class WeaponList {
         else throw new IndexOutOfBoundsException(); //I have no idea what kind of exception this should be
 
         //return random element of sample space
-        return sampleSpace.get(rand.nextInt(sampleSpace.size()));
+        //Log.i(TAG, "Sample space size: " + sampleSpace.size());
+        Weapon selected = sampleSpace.get(rand.nextInt(sampleSpace.size()));
+        //Log.i(TAG, "Selected: " + selected.getId());
+        return new Weapon(selected);
     }
 }

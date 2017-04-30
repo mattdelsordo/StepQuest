@@ -23,9 +23,10 @@ import project3.csc214.stepquest.model.Weapon;
 /**
  * Maintains a recyclerview that handles the inventory
  */
-public class InventoryFragment extends Fragment {
+public class InventoryFragment extends Fragment implements ActiveCharacter.FundsUpdateListener{
 
     private RecyclerView mRecycler;
+    private TextView mGoldCount;
 
     public InventoryFragment() {
         // Required empty public constructor
@@ -37,6 +38,10 @@ public class InventoryFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_inventory, container, false);
+
+        //get goldcount
+        mGoldCount = (TextView)view.findViewById(R.id.textview_inventory_goldcount);
+        updateFunds(ActiveCharacter.getInstance().getActiveCharacter().getFunds());
 
         //get and set up recyclerview
         mRecycler = (RecyclerView)view.findViewById(R.id.recyclerview_inventory);
@@ -51,13 +56,30 @@ public class InventoryFragment extends Fragment {
         mRecycler.setAdapter(refresh);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        ActiveCharacter.getInstance().bindFundsUpdater(this);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        ActiveCharacter.getInstance().unbindFundsUpdater();
+    }
+
+    @Override
+    public void updateFunds(int totalFunds) {
+        mGoldCount.setText("Gold: " + totalFunds);
+    }
+
     //viewholder for the list of weapons
     public class WeaponViewHolder extends RecyclerView.ViewHolder{
 
         private Weapon mWeapon;
         private View mView;
         private ImageView mIcon;
-        private TextView mName, mType, mMaterial, mBuff;
+        private TextView mName, mType, mMaterial, mBuff, mQuantity;
 
         public WeaponViewHolder(View itemView) {
             super(itemView);
@@ -68,6 +90,7 @@ public class InventoryFragment extends Fragment {
             mType = (TextView)itemView.findViewById(R.id.textview_weapon_type);
             mMaterial = (TextView)itemView.findViewById(R.id.textview_weapon_material);
             mBuff = (TextView)itemView.findViewById(R.id.textview_weapon_buff);
+            mQuantity = (TextView)itemView.findViewById(R.id.textview_weapon_quantity);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -85,7 +108,8 @@ public class InventoryFragment extends Fragment {
             mType.setText(Weapon.getTypeString(mWeapon.getType()));
             mMaterial.setText(Weapon.getMaterialString(mWeapon.getMaterial()));
             double buff = mWeapon.calcBuff(ActiveCharacter.getInstance().getActiveCharacter().getVocation());
-            mBuff.setText("+" + buff + "%");
+            mBuff.setText((buff > 0.0 ? "+" : "") + buff + "%");
+            mQuantity.setText("x" + ActiveCharacter.getInstance().getWeaponQuantity(mWeapon));
 
             if(mWeapon.getId() == ActiveCharacter.getInstance().getEquippedWeapon().getId()){
                 mView.findViewById(R.id.layout_weapon_background).setBackgroundColor(Color.rgb(255,215,0)); //should probably make this color a resource

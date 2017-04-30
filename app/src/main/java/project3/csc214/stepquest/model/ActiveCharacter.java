@@ -1,5 +1,7 @@
 package project3.csc214.stepquest.model;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -12,7 +14,7 @@ import java.util.TreeMap;
  */
 
 public class ActiveCharacter{
-
+    private static final String TAG = "ActiveCharacter";
     private static ActiveCharacter sActiveCharacter;
 
     private Character mCharacter;
@@ -38,7 +40,10 @@ public class ActiveCharacter{
 
     //adds a weapon to the inventory
     public void addWeaponToInventory(Weapon w){
+        //TODO: error that this process is happening very wrong
+        //Log.i(TAG, "Adding " + w);
         Integer i = mWeaponSet.get(w);
+        //Log.i(TAG, "There are " + i);
         if(i != null) mWeaponSet.put(w, i + 1);
         else mWeaponSet.put(w, 1);
 
@@ -57,11 +62,32 @@ public class ActiveCharacter{
     }
 
     public Collection<Weapon> getWeaponInventory(){
+//        for(Weapon w : mWeaponSet.keySet()){
+//            Log.i("heh", w.toString());
+//        }
         return mWeaponSet.keySet();
     }
 
     public double getExpModifier(){
         return mEquippedWeapon.getModifier(mCharacter.getVocation());
     }
+
+    public int getWeaponQuantity(Weapon weapon){
+        return mWeaponSet.get(weapon);
+    }
+
+    public void addFunds(int funds){
+        mCharacter.setFunds(mCharacter.getFunds() + funds);
+        if(mFundsUpdateListener != null) mFundsUpdateListener.updateFunds(mCharacter.getFunds());
+    }
+    //listens for gold amount updates
+    public interface FundsUpdateListener{
+        void updateFunds(int totalFunds);
+    }
+    private FundsUpdateListener mFundsUpdateListener;
+    public void bindFundsUpdater(FundsUpdateListener ful){
+        mFundsUpdateListener = ful;
+    }
+    public void unbindFundsUpdater(){mFundsUpdateListener = null;}
 }
 

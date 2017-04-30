@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
     protected void onDestroy() {
         super.onDestroy();
 
-        doUnbindService(); //unbind service so it doesnt throw that error
+        //doUnbindService(); //unbind service so it doesnt throw that error
 
         //this might stop the service when changing orientations but it already crashes during that so thats an issue for another day
         //actually it might not be an issue cause itll get just started up again if this activity is recreated

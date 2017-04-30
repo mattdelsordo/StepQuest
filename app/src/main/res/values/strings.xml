@@ -55,4 +55,6 @@
     <string name="weapon_material">Weapon Material</string>
     <string name="default_buff_text">+0%</string>
     <string name="loading">Loading...</string>
+    <string name="default_gold_text">Gold: 0</string>
+    <string name="default_weapon_quantity">x00</string>
 </resources>

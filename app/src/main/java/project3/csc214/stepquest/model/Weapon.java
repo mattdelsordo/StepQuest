@@ -1,5 +1,6 @@
 package project3.csc214.stepquest.model;
 
+import android.util.Log;
 import android.util.NoSuchPropertyException;
 
 import java.util.Comparator;
@@ -13,12 +14,13 @@ import project3.csc214.stepquest.R;
  */
 
 public class Weapon {
+    public static final String TAG = "Weapon";
 
     public static final int BLADE = 0, BOW = 1, STAFF = 2, BLUNT = 3; //weapon classes
     public static final Double WOOD = 1.0, BRONZE = 1.5, IRON = 2.0, STEEL = 2.5, OBSIDIAN = 3.0, MITHRIL = 4.0;//material bonuses
 
 
-    public static final double GOOD = 1.5, BAD = (2 / 3); //multipliers for experience gain for weapons
+    public static final double GOOD = 1.5, BAD = 0.6666; //multipliers for experience gain for weapons
 
     private final String mId;
     private final String mName;
@@ -43,10 +45,19 @@ public class Weapon {
         mMaterial = material;
     }
 
+    //cloner constructor
+    public Weapon(Weapon w){
+        mId = w.getId();
+        mName = w.getName();
+        mType = w.getType();
+        mMaterial = w.getMaterial();
+    }
+
     public double getModifier(Vocation vocation) {
         if (mType == vocation.getGoodWeapon()) {
             return mMaterial * GOOD;
         } else if (mType == vocation.getBadWeapon()) {
+            //Log.i(TAG, "Bad=" + BAD);
             return mMaterial * BAD;
         } else {
             return mMaterial;
@@ -136,12 +147,27 @@ public class Weapon {
     public static class WeaponComparator implements Comparator<Weapon> {
         @Override
         public int compare(Weapon o1, Weapon o2) {
-            return o1.getMaterial().compareTo(o2.getMaterial());
+            int materialComp = o1.getMaterial().compareTo(o2.getMaterial());
+            if(materialComp == 0){
+                return o1.getName().compareTo(o2.getName());
+            }
+            else return materialComp;
         }
     }
 
     //returns the percent buff for a given character
     public double calcBuff(Vocation v){
-        return (getModifier(v) * 100) - 100;
+        double modifier = getModifier(v) * 100;
+        Log.i(TAG, "Modifier: " + modifier);
+        return Math.round(modifier - 100.0);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof Weapon){
+            Weapon w = (Weapon)obj;
+            return mId.equals(w.getId());
+        }
+        return false;
     }
 }

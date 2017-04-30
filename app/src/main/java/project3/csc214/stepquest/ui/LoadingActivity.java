@@ -58,7 +58,18 @@ public class LoadingActivity extends AppCompatActivity {
                 default: firstWeapon = new Weapon();
             }
             ActiveCharacter.getInstance().addWeaponToInventory(firstWeapon);
-            //ActiveCharacter.getInstance().addWeaponToInventory(new Weapon());
+
+            //TODO: remove this!!
+            //for debugging, populate with tons of weapons
+            ActiveCharacter a = ActiveCharacter.getInstance();
+            for(int i = 0; i < 20; i++){
+                Weapon w = WeaponList.getInstance(this).getRandomLevelledWeapon(a.getActiveCharacter().getLevel());
+                Log.i(TAG, "Selected " + w);
+                a.addWeaponToInventory(w);
+            }
+
+            //start main activity
+            startActivityForResult(new Intent(this, MainActivity.class), MainActivity.RC);
 
         }
         else finish();
