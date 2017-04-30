@@ -55,12 +55,13 @@ public class MusicPlayerFragment extends Fragment {
         mAssets = getActivity().getAssets();
         mPlayer = new MediaPlayer();
         mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-        mPlayer.setLooping(true); //loop the track
+
         mPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mp) {
-                Log.i(TAG, "Music player is prepared...");
+                //Log.i(TAG, "Music player is prepared...");
                 mPlayer.start();
+                mPlayer.setLooping(true); //loop the track
             }
         });
     }
@@ -100,5 +101,17 @@ public class MusicPlayerFragment extends Fragment {
         super.onDestroy();
         mPlayer.release();
         mPlayer = null;
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if(mPlayer.isPlaying())mPlayer.pause();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(!mPlayer.isPlaying()) mPlayer.start();
     }
 }

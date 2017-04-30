@@ -14,6 +14,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -28,8 +29,9 @@ import project3.csc214.stepquest.pedometer.PedometerService;
  * This Activity controls the rest of the app
  */
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements EventQueue.MakeToastListener{
     private static final String TAG = "MainActivity";
+    public static final int RC = 4;
 
     private ViewPager mViewPager;
     private ProgressFragment mProgress;
@@ -67,59 +69,38 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //load list of events
-        EventList.getInstance(getApplicationContext());
+        //EventList.getInstance(getApplicationContext());
 
 
-        /** Do check that there's a character in the database, otherwise, make a new one.*/
-        Character activeCharacter = ActiveCharacter.getInstance().getActiveCharacter();
-        if(activeCharacter == null) startActivityForResult(CharacterCreationActivity.newInstance(this), CharacterCreationActivity.REQUEST_CHARACTER_INFO);
-        else doBindService();
+//        /** Do check that there's a character in the database, otherwise, make a new one.*/
+        //This happens in the loading activity now
+//        Character activeCharacter = ActiveCharacter.getInstance().getActiveCharacter();
+//        if(activeCharacter == null) startActivityForResult(CharacterCreationActivity.newInstance(this), CharacterCreationActivity.REQUEST_CHARACTER_INFO);
+//        else doBindService();
+        doBindService();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        EventQueue.getInstance(getApplicationContext()).bindToastListener(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        EventQueue.getInstance(getApplicationContext()).unbindToastListener();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        EventQueue.getInstance(getApplicationContext()).unbindUpdateListener();
+
         doUnbindService(); //unbind service so it doesnt throw that error
 
         //this might stop the service when changing orientations but it already crashes during that so thats an issue for another day
         //actually it might not be an issue cause itll get just started up again if this activity is recreated
         //stopService(new Intent(this, PedometerService.class));
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == CharacterCreationActivity.REQUEST_CHARACTER_INFO){
-            if(resultCode == RESULT_OK){
-                String name = data.getStringExtra(CharacterCreationFragment.ARG_NAME);
-                int race = data.getIntExtra(CharacterCreationFragment.ARG_RACE, Race.BIRDPERSON);
-                int vocation = data.getIntExtra(CharacterCreationFragment.ARG_CLASS, Vocation.FIGHTER);
-                int[] stats = data.getIntArrayExtra(CharacterCreationFragment.ARG_STATS);
-
-                Race bigRace = Race.newRace(race);
-                Vocation bigVocation = Vocation.newVocation(vocation);
-
-                Character newGuy = new Character(name, bigVocation, bigRace, stats);
-                ActiveCharacter.getInstance().setActiveCharacter(newGuy);
-
-                Weapon firstWeapon;
-                switch(newGuy.getVocation().getGoodWeapon()){
-                    case(Weapon.BLADE): firstWeapon = WeaponList.getInstance(getApplicationContext()).getWeaponById("wood_sword");
-                        break;
-                    case(Weapon.BOW): firstWeapon = WeaponList.getInstance(getApplicationContext()).getWeaponById("wood_bow");
-                        break;
-                    case(Weapon.STAFF): firstWeapon = WeaponList.getInstance(getApplicationContext()).getWeaponById("wood_staff");
-                        break;
-                    case(Weapon.BLUNT): firstWeapon = WeaponList.getInstance(getApplicationContext()).getWeaponById("wood_club");
-                        break;
-                    default: firstWeapon = new Weapon();
-                }
-                ActiveCharacter.getInstance().addWeaponToInventory(firstWeapon);
-
-                //connect to service (start game process)
-                doBindService();
-            }
-        }
     }
 
     //Starts up pedometer service, somehow. I'm not entirely sure what does what but it seems to work
@@ -151,6 +132,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void makeToast(String text, int duration) {
+        Toast.makeText(this, text, duration).show();
+    }
+
     //adapter for the viewpager
     //TODO: might get rid of this
     public class ScreenPagerAdapter extends FragmentPagerAdapter{
@@ -179,5 +165,11 @@ public class MainActivity extends AppCompatActivity {
             CharacterInfoFragment info = (CharacterInfoFragment) mFragments.get(0);
             info.updateUI(c);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        setResult(RESULT_CANCELED);
+        finish();
     }
 }

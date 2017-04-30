@@ -70,4 +70,10 @@ public class ProgressFragment extends Fragment implements EventQueue.EventUpdate
         mProgress.setMax(e.getDuration());
         mProgress.setProgress(progress);
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventQueue.getInstance(getContext()).unbindUpdateListener();
+    }
 }

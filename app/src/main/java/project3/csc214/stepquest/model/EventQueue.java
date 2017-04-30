@@ -3,6 +3,7 @@ package project3.csc214.stepquest.model;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -26,6 +27,11 @@ public class EventQueue {
         void updateEvent(Event e, int progress);
     }
     private EventUpdateListener mUpdateListener;
+
+    public interface MakeToastListener{
+        void makeToast(String text, int duration);
+    }
+    private MakeToastListener mToastListener;
 
     private EventQueue(Context context){
         mAppContext = context;
@@ -64,7 +70,6 @@ public class EventQueue {
     public void incrementProgress(){
         Log.i(TAG, "Step taken (" + mProgress + ")");
 
-        //TODO: implement the rest of this shit but I'm tired af
         mProgress++;
         Event currentEvent = getTopEvent();
         if(mProgress >= currentEvent.getDuration()){
@@ -72,11 +77,21 @@ public class EventQueue {
             //get active character
             Character active = ActiveCharacter.getInstance().getActiveCharacter();
             //give the player exp
-            active.addExp(currentEvent.getExp());
+            int expGain = (int)(currentEvent.getExp() * ActiveCharacter.getInstance().getExpModifier());
+            active.addExp(expGain);
             //give the player money
-            active.setFunds(active.getFunds() + currentEvent.getGoldReward());
+            int fundReward = currentEvent.getGoldReward();
+            active.setFunds(active.getFunds() + fundReward);
             //give the player any weapon
-            //TODO: implement adding a weapon to the weapon table
+            Weapon weaponReward = currentEvent.getItemReward();
+            if(weaponReward != null) ActiveCharacter.getInstance().addWeaponToInventory(weaponReward);
+
+            //notify player of event completion
+            if(mToastListener != null){
+                mToastListener.makeToast("Task complete! +" + expGain + "exp.", Toast.LENGTH_SHORT);
+                if(fundReward != 0) mToastListener.makeToast("You recieved " + fundReward + "gold!", Toast.LENGTH_SHORT);
+                if(weaponReward != null) mToastListener.makeToast("You recieved a " + weaponReward.getName() + "!!", Toast.LENGTH_SHORT);
+            }
 
             //reset progress
             mProgress -= currentEvent.getDuration();
@@ -104,5 +119,8 @@ public class EventQueue {
         mUpdateListener = eul;
     }
     public void unbindUpdateListener(){mUpdateListener = null;}
+
+    public void bindToastListener(MakeToastListener tl){mToastListener = tl;}
+    public void unbindToastListener(){mToastListener = null;};
 
 }
