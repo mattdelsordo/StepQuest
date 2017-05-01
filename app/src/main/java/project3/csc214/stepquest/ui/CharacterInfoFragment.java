@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import project3.csc214.stepquest.model.ActiveCharacter;
@@ -20,10 +21,11 @@ import project3.csc214.stepquest.model.Stats;
 /**
  * This class displays all character info.
  */
-public class CharacterInfoFragment extends Fragment {
+public class CharacterInfoFragment extends Fragment implements ActiveCharacter.ExpUpdateListener{
 
     private TextView mName, mRaceClass, mLevel, mSTR, mDEX, mCON, mINT, mWIS, mCHR;
     private ImageView mRaceImage, mClassImage;
+    private ProgressBar mExpProgress;
 
 
     public CharacterInfoFragment() {
@@ -49,9 +51,13 @@ public class CharacterInfoFragment extends Fragment {
         mCHR = (TextView)view.findViewById(R.id.textview_character_chr);
         mRaceImage = (ImageView)view.findViewById(R.id.imageview_character_race);
         mClassImage = (ImageView)view.findViewById(R.id.imageview_character_class);
+        mExpProgress = (ProgressBar)view.findViewById(R.id.progressbar_character_exp);
 
         Character active = ActiveCharacter.getInstance().getActiveCharacter();
-        if(active != null) updateUI(active);
+        if(active != null){
+            updateUI(active);
+            updateExpProgress(active);
+        }
 
         return view;
     }
@@ -71,4 +77,25 @@ public class CharacterInfoFragment extends Fragment {
         mClassImage.setBackgroundColor(ContextCompat.getColor(getContext(), character.getVocation().getColor()));
     }
 
+    @Override
+    public void updateExpProgress(Character c) {
+        int level = c.getLevel();
+        int floor = Character.levelUpFunction(level - 1);
+        int ceiling = Character.levelUpFunction(level);
+
+        mExpProgress.setMax(ceiling);
+        mExpProgress.setProgress(c.getExp() - floor);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ActiveCharacter.getInstance().bindExpListener(this);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        ActiveCharacter.getInstance().unbindExpListener();
+    }
 }

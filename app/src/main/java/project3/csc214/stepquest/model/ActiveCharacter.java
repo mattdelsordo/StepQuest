@@ -54,6 +54,12 @@ public class ActiveCharacter{
         if(mWeaponListener != null) mWeaponListener.updateList();
     }
 
+    //adds exp to the character
+    public void addExp(int exp){
+        mCharacter.addExp(exp);
+        if(mExpListener != null) mExpListener.updateExpProgress(mCharacter);
+    }
+
     public void setEquippedWeapon(Weapon w){
         mEquippedWeapon = w;
     }
@@ -101,5 +107,12 @@ public class ActiveCharacter{
     public void bindWeaponListener(WeaponUpdateListener wul){mWeaponListener = wul;}
     public void unbindWeaponListener(){mWeaponListener = null;}
 
+    //listens for exp updates
+    public interface ExpUpdateListener{
+        void updateExpProgress(Character c);
+    }
+    private ExpUpdateListener mExpListener;
+    public void bindExpListener(ExpUpdateListener eul){mExpListener = eul;}
+    public void unbindExpListener(){mExpListener = null;}
 }
 

@@ -4,12 +4,23 @@
     android:layout_height="match_parent"
     tools:context="project3.csc214.stepquest.ui.CharacterCreationFragment">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/create_your_hero"
+        android:layout_centerHorizontal="true"
+        android:textSize="30sp"
+        android:id="@+id/textview_create_title"
+        android:textStyle="bold"
+        android:padding="6dp"/>
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:id="@+id/layout_creation_top"
-        android:layout_marginTop="20dp">
+        android:layout_below="@+id/textview_create_title">
 
         <FrameLayout
             android:layout_width="0dp"

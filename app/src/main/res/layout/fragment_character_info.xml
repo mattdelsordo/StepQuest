@@ -75,8 +75,14 @@
                 android:layout_height="wrap_content"
                 android:text="@string/default_level"
                 android:textSize="22sp"
-                android:paddingBottom="10dp"
+
                 android:id="@+id/textview_character_level"/>
+
+            <ProgressBar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/ProgressBarStyle"
+                android:id="@+id/progressbar_character_exp"/>
 
             <TextView
                 android:layout_width="wrap_content"

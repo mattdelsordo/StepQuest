@@ -77,10 +77,10 @@ public class EventQueue {
         if(mProgress >= currentEvent.getDuration()){
             //if the progress threshold has been met:
             //get active character
-            Character active = ActiveCharacter.getInstance().getActiveCharacter();
+//            Character active = ActiveCharacter.getInstance().getActiveCharacter();
             //give the player exp
             int expGain = currentEvent.getExp();
-            active.addExp(expGain);
+            ActiveCharacter.getInstance().addExp(expGain);
             //give the player money
             int fundReward = currentEvent.getGoldReward();
             ActiveCharacter.getInstance().addFunds(fundReward);
