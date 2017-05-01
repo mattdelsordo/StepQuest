@@ -23,7 +23,7 @@ import project3.csc214.stepquest.model.Weapon;
 /**
  * Maintains a recyclerview that handles the inventory
  */
-public class InventoryFragment extends Fragment implements ActiveCharacter.FundsUpdateListener{
+public class InventoryFragment extends Fragment implements ActiveCharacter.FundsUpdateListener, ActiveCharacter.WeaponUpdateListener{
 
     private RecyclerView mRecycler;
     private TextView mGoldCount;
@@ -60,17 +60,24 @@ public class InventoryFragment extends Fragment implements ActiveCharacter.Funds
     public void onResume() {
         super.onResume();
         ActiveCharacter.getInstance().bindFundsUpdater(this);
+        ActiveCharacter.getInstance().bindWeaponListener(this);
     }
 
     @Override
     public void onPause() {
         super.onPause();
         ActiveCharacter.getInstance().unbindFundsUpdater();
+        ActiveCharacter.getInstance().unbindWeaponListener();
     }
 
     @Override
     public void updateFunds(int totalFunds) {
         mGoldCount.setText("Gold: " + totalFunds);
+    }
+
+    @Override
+    public void updateList() {
+        updateUI();
     }
 
     //viewholder for the list of weapons

@@ -14,6 +14,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -134,7 +135,9 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
 
     @Override
     public void makeToast(String text, int duration) {
-        Toast.makeText(this, text, duration).show();
+        Toast t = Toast.makeText(this, text, duration);
+        t.setGravity(Gravity.BOTTOM, 0,20);
+        t.show();
     }
 
     //adapter for the viewpager

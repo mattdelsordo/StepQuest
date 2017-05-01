@@ -51,6 +51,7 @@ public class ActiveCharacter{
         //equip weapon if there's none equipped
         if(mEquippedWeapon == null) mEquippedWeapon = w;
 
+        if(mWeaponListener != null) mWeaponListener.updateList();
     }
 
     public void setEquippedWeapon(Weapon w){
@@ -68,8 +69,10 @@ public class ActiveCharacter{
         return mWeaponSet.keySet();
     }
 
-    public double getExpModifier(){
-        return mEquippedWeapon.getModifier(mCharacter.getVocation());
+    public double getExpModifier()
+    {
+        if(mEquippedWeapon == null) return 1.0;
+        else return mEquippedWeapon.getModifier(mCharacter.getVocation());
     }
 
     public int getWeaponQuantity(Weapon weapon){
@@ -89,5 +92,14 @@ public class ActiveCharacter{
         mFundsUpdateListener = ful;
     }
     public void unbindFundsUpdater(){mFundsUpdateListener = null;}
+
+    //listens for weapon updates
+    public interface WeaponUpdateListener{
+        void updateList();
+    }
+    private WeaponUpdateListener mWeaponListener;
+    public void bindWeaponListener(WeaponUpdateListener wul){mWeaponListener = wul;}
+    public void unbindWeaponListener(){mWeaponListener = null;}
+
 }
 

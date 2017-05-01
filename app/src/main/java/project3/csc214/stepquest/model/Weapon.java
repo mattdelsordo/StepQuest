@@ -7,6 +7,7 @@ import java.util.Comparator;
 import java.util.NoSuchElementException;
 
 import project3.csc214.stepquest.R;
+import project3.csc214.stepquest.data.WeaponList;
 
 /**
  * Created by mdelsord on 4/15/17.
@@ -170,4 +171,5 @@ public class Weapon {
         }
         return false;
     }
+
 }

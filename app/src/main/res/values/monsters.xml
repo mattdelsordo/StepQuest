@@ -7,6 +7,23 @@
         <item>@array/Sword</item>
         <item>@array/Ankheg</item>
         <item>@array/Azer</item>
+        <item>@array/cyclops</item>
+        <item>@array/undead_hand</item>
+        <item>@array/couatl</item>
+        <item>@array/cockatrice</item>
+        <item>@array/cloaker</item>
+        <item>@array/chuul</item>
+        <item>@array/chimera</item>
+        <item>@array/centaur</item>
+        <item>@array/carrion_crawler</item>
+        <item>@array/cambion</item>
+        <item>@array/bullywug</item>
+        <item>@array/bulette</item>
+        <item>@array/bugbear</item>
+        <item>@array/blight</item>
+        <item>@array/behir</item>
+        <item>@array/basilisk</item>
+        <item>@array/banshee</item>
     </array>
 
     <string-array name="Aarakocra">
@@ -32,6 +49,91 @@
     <string-array name="Azer">
         <item name="desc">Fighting an Azer...</item>
         <item name="exp">450</item>
+    </string-array>
+
+    <string-array name="banshee">
+        <item name="desc">Battling a Banshee...</item>
+        <item name="exp">1100</item>
+    </string-array>
+
+    <string-array name="basilisk">
+        <item name="desc">Battling a Basilisk...</item>
+        <item name="exp">700</item>
+    </string-array>
+
+    <string-array name="behir">
+        <item name="desc">Battling a Behir...</item>
+        <item name="exp">7200</item>
+    </string-array>
+
+    <string-array name="blight">
+        <item name="desc">Battling a Blight...</item>
+        <item name="exp">50</item>
+    </string-array>
+
+    <string-array name="bugbear">
+        <item name="desc">Battling a Bugbear...</item>
+        <item name="exp">200</item>
+    </string-array>
+
+    <string-array name="bulette">
+        <item name="desc">Battling a Bulette...</item>
+        <item name="exp">1800</item>
+    </string-array>
+
+    <string-array name="bullywug">
+        <item name="desc">Battling a Bullywug...</item>
+        <item name="exp">50</item>
+    </string-array>
+
+    <string-array name="cambion">
+        <item name="desc">Fighting a Cambion...</item>
+        <item name="exp">1800</item>
+    </string-array>
+
+    <string-array name="carrion_crawler">
+        <item name="desc">Fighting a Carrion Crawler...</item>
+        <item name="exp">450</item>
+    </string-array>
+
+    <string-array name="centaur">
+        <item name="desc">Fighting a Centaur...</item>
+        <item name="exp">450</item>
+    </string-array>
+
+    <string-array name="chimera">
+        <item name="desc">Fighting a Chimera...</item>
+        <item name="exp">2300</item>
+    </string-array>
+
+    <string-array name="chuul">
+        <item name="desc">Fighting a Chuul...</item>
+        <item name="exp">1100</item>
+    </string-array>
+
+    <string-array name="cloaker">
+        <item name="desc">Fighting a Cloaker...</item>
+        <item name="exp">3900</item>
+    </string-array>
+
+    <string-array name="cockatrice">
+        <item name="desc">Fighting a Cockatrice...</item>
+        <item name="exp">100</item>
+    </string-array>
+
+    <string-array name="couatl">
+        <item name="desc">Fighting a Couatl...</item>
+        <item name="exp">1100</item>
+    </string-array>
+
+    <string-array name="undead_hand">
+        <item name="desc">Fighting an Undead Hand...</item>
+        <item name="exp">10</item>
+    </string-array>
+
+    <string-array name="cyclops">
+        <item name="desc">Fighting a Cyclops...</item>
+        <item name="exp">2300</item>
     </string-array>
 
 </resources>

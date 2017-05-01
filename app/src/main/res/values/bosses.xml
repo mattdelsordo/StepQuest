@@ -3,11 +3,21 @@
     
     <array name="bosses">
         <item>@array/Aboleth</item>
+        <item>@array/beholder</item>
     </array>
     
     
     <string-array name="Aboleth">
-        <item name="desc">Battling an Aboleth...</item>
+        <item name="desc">In combat with an Aboleth...</item>
         <item name = "exp">5900</item>
+        <item name="gold">0</item>
+        <item name="weapon">aboleth_fang</item>
+    </string-array>
+
+    <string-array name="beholder">
+        <item name="desc">In combat with a Beholder...</item>
+        <item name="exp">10000</item>
+        <item name="gold">0</item>
+        <item name="weapon">eye_of_beholder</item>
     </string-array>
 </resources>

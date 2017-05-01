@@ -28,24 +28,13 @@ public class Event {
         mItemReward = null;
     }
 
-    //randomly generates an event from the xml file I guess
-//    public static Event randomMonster(Context context){
-//        //get resources from xml
-////        Resources res = context.getResources();
-////        TypedArray ta = res.obtainTypedArray(R.array.monster_array);
-////        int length = ta.length();
-////        String[][] array = new String[length][];
-////        for(int i = 0; i < length; i++){
-////            int id = ta.getResourceId(i, 0);
-////            if(id > 0){
-////                array[i] = res.getStringArray(id);
-////            }
-////            else{
-////                //TODO: Something wrong, throw error?
-////            }
-////        }
-////        ta.recycle();
-//    }
+    //cloner constructor
+    public Event(Event e){
+        mDescription = e.getDescription();
+        mDuration = e.getDuration();
+        mGoldReward = e.getGoldReward();
+        if(e.getItemReward() != null) mItemReward = new Weapon(e.getItemReward());
+    }
 
     public String getDescription() {
         return mDescription;

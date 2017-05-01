@@ -2,10 +2,94 @@
 <resources>
     <array name="events">
         <item>@array/Villager</item>
+        <item>@array/tournament_lose</item>
+        <item>@array/tournament_win</item>
+        <item>@array/pat_dog</item>
+        <item>@array/rescue_cat</item>
+        <item>@array/tavern_eating</item>
+        <item>@array/fair</item>
+        <item>@array/pining_for_betrothed</item>
+        <item>@array/eating_sandwich</item>
+        <item>@array/find_bag_of_money</item>
+        <item>@array/giving_directions</item>
+        <item>@array/high_five</item>
+        <item>@array/smell_flower</item>
     </array>
 
     <string-array name="Villager">
         <item name="desc">Talking to a villager...</item>
         <item name ="exp">30</item>
+    </string-array>
+
+    <string-array name="tournament_win">
+        <item name="desc">Competing in a local tournament...</item>
+        <item name ="exp">300</item>
+        <item name="gold">200</item>
+    </string-array>
+
+    <string-array name="tournament_lose">
+        <item name="desc">Competing in a local tournament...</item>
+        <item name ="exp">450</item>
+        <item name="gold">-50</item>
+    </string-array>
+
+    <string-array name="pat_dog">
+        <item name="desc">Patting a dog...</item>
+        <item name ="exp">10</item>
+        <item name="gold">0</item>
+    </string-array>
+
+    <string-array name="rescue_cat">
+        <item name="desc">Rescuing a cat from a tree...</item>
+        <item name ="exp">50</item>
+        <item name="gold">5</item>
+    </string-array>
+
+    <string-array name="tavern_eating">
+        <item name="desc">Eating dinner at a local tavern...</item>
+        <item name ="exp">60</item>
+        <item name="gold">0</item>
+    </string-array>
+
+    <string-array name="fair">
+        <item name="desc">Perusing a harvest festival...</item>
+        <item name ="exp">60</item>
+        <item name="gold">0</item>
+    </string-array>
+
+    <string-array name="pining_for_betrothed">
+        <item name="desc">Pining for your betrothed...</item>
+        <item name ="exp">40</item>
+        <item name="gold">0</item>
+    </string-array>
+
+    <string-array name="eating_sandwich">
+        <item name="desc">Eating a sandwich...</item>
+        <item name ="exp">20</item>
+        <item name="gold">0</item>
+    </string-array>
+
+    <string-array name="find_bag_of_money">
+        <item name="desc">Finding bag of money in a bush...</item>
+        <item name ="exp">50</item>
+        <item name="gold">200</item>
+    </string-array>
+
+    <string-array name="giving_directions">
+        <item name="desc">Directing travellers to the nearest settlement...</item>
+        <item name ="exp">100</item>
+        <item name="gold">10</item>
+    </string-array>
+
+    <string-array name="high_five">
+        <item name="desc">High-fiving your bro...</item>
+        <item name ="exp">50</item>
+        <item name="gold">0</item>
+    </string-array>
+
+    <string-array name="smell_flower">
+        <item name="desc">Smelling the roses...</item>
+        <item name ="exp">30</item>
+        <item name="gold">0</item>
     </string-array>
 </resources>

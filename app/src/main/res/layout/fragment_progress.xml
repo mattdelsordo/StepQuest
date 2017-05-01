@@ -1,16 +1,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     tools:context="project3.csc214.stepquest.ui.ProgressFragment">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:id="@+id/textview_progress_description"
         android:text="@string/default_event_description"
-        android:textSize="25sp" />
+        android:textSize="25sp"
+        android:padding="4dp"/>
 
     <ProgressBar
         android:id="@+id/progressbar_progress_THE_BAR"

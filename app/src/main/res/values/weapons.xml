@@ -186,12 +186,19 @@
 
     <!--Legendaries-->
     <array name="legendary_weapons">
-        <item>@array/excalibur</item>
+        <item>@array/aboleth_fang</item>
+        <item>@array/eye_of_beholder</item>
     </array>
-    <string-array name="excalibur">
-        <item name="id">excalibur</item>
-        <item name = "name">Excalibur</item>
+    <string-array name="aboleth_fang">
+        <item name="id">aboleth_fang</item>
+        <item name = "name">Aboleth Fang</item>
         <item name = "type">BLADE</item>
+        <item name = "material">6.0</item>
+    </string-array>
+    <string-array name="eye_of_beholder">
+        <item name="id">eye_of_beholder</item>
+        <item name = "name">Eye of The Beholder</item>
+        <item name = "type">STAFF</item>
         <item name = "material">6.0</item>
     </string-array>
 

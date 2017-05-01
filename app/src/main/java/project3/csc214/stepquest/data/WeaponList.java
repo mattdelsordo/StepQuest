@@ -13,6 +13,7 @@ import java.util.NoSuchElementException;
 import java.util.Random;
 
 import project3.csc214.stepquest.R;
+import project3.csc214.stepquest.model.Vocation;
 import project3.csc214.stepquest.model.Weapon;
 
 /**
@@ -34,8 +35,8 @@ public class WeaponList {
     private LinkedHashMap<String, Weapon> mSteel;
     private LinkedHashMap<String, Weapon> mObsidian;
     private LinkedHashMap<String, Weapon> mMithril;
-    private HashMap<String, Weapon> mLegendary;
-    private ArrayList<HashMap<String, Weapon>> mListList;
+    private LinkedHashMap<String, Weapon> mLegendary;
+    private ArrayList<LinkedHashMap<String, Weapon>> mListList;
 
     private Context mAppContext;
 
@@ -61,6 +62,7 @@ public class WeaponList {
         //fill legendary list
         fillLegendaryWeaponList(mLegendary, R.array.legendary_weapons);
 
+        //make list of lists to search through
         mListList = new ArrayList<>();
         mListList.add(mWood);
         mListList.add(mBronze);
@@ -136,10 +138,10 @@ public class WeaponList {
         ta.recycle();
 
         //parse array into events
-        for(int i = 1; i < array.length; i++){
+        for(int i = 0; i < array.length; i++){
             String id = array[i][0];
             String name = array[i][1];
-            int type = Integer.parseInt(array[i][2]);
+            int type = Weapon.parseType(array[i][2]);
             double material = Double.parseDouble(array[i][3]);
             Weapon weapon = new Weapon(id, name, type, material);
             list.put(id, weapon);
@@ -153,9 +155,13 @@ public class WeaponList {
 
     //returns a weapon given an id
     public Weapon getWeaponById(String id){
-        for(HashMap<String, Weapon> map : mListList){
+        Log.i(TAG, "Searching for " + id);
+        for(LinkedHashMap<String, Weapon> map : mListList){
             Weapon w = map.get(id);
-            if(w != null) return new Weapon(w);
+            if(w != null){
+                Log.i(TAG, "got " + w.toString());
+                return new Weapon(w);
+            }
         }
         throw new NoSuchElementException();
     }
@@ -189,5 +195,16 @@ public class WeaponList {
         Weapon selected = sampleSpace.get(rand.nextInt(sampleSpace.size()));
         //Log.i(TAG, "Selected: " + selected.getId());
         return new Weapon(selected);
+    }
+
+
+    public Weapon firstWeapon(Vocation v){
+        switch(v.getGoodWeapon()){
+            case(Weapon.BLADE): return new Weapon(WeaponList.getInstance(mAppContext).getWeaponById("wood_sword"));
+            case(Weapon.BOW): return new Weapon(WeaponList.getInstance(mAppContext).getWeaponById("wood_bow"));
+            case(Weapon.STAFF): return new Weapon(WeaponList.getInstance(mAppContext).getWeaponById("wood_staff"));
+            case(Weapon.BLUNT): return new Weapon(WeaponList.getInstance(mAppContext).getWeaponById("wood_club"));
+            default: return new Weapon();
+        }
     }
 }

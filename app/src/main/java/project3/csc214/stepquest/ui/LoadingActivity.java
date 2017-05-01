@@ -9,6 +9,8 @@ import project3.csc214.stepquest.R;
 import project3.csc214.stepquest.data.WeaponList;
 import project3.csc214.stepquest.model.ActiveCharacter;
 import project3.csc214.stepquest.model.Character;
+import project3.csc214.stepquest.model.Dungeon;
+import project3.csc214.stepquest.model.EventQueue;
 import project3.csc214.stepquest.model.Race;
 import project3.csc214.stepquest.model.Vocation;
 import project3.csc214.stepquest.model.Weapon;
@@ -45,28 +47,30 @@ public class LoadingActivity extends AppCompatActivity {
             Character newGuy = new Character(name, bigVocation, bigRace, stats);
             ActiveCharacter.getInstance().setActiveCharacter(newGuy);
 
-            Weapon firstWeapon;
-            switch(newGuy.getVocation().getGoodWeapon()){
-                case(Weapon.BLADE): firstWeapon = WeaponList.getInstance(getApplicationContext()).getWeaponById("wood_sword");
-                    break;
-                case(Weapon.BOW): firstWeapon = WeaponList.getInstance(getApplicationContext()).getWeaponById("wood_bow");
-                    break;
-                case(Weapon.STAFF): firstWeapon = WeaponList.getInstance(getApplicationContext()).getWeaponById("wood_staff");
-                    break;
-                case(Weapon.BLUNT): firstWeapon = WeaponList.getInstance(getApplicationContext()).getWeaponById("wood_club");
-                    break;
-                default: firstWeapon = new Weapon();
-            }
-            ActiveCharacter.getInstance().addWeaponToInventory(firstWeapon);
+//            Weapon firstWeapon;
+//            switch(newGuy.getVocation().getGoodWeapon()){
+//                case(Weapon.BLADE): firstWeapon = WeaponList.getInstance(getApplicationContext()).getWeaponById("wood_sword");
+//                    break;
+//                case(Weapon.BOW): firstWeapon = WeaponList.getInstance(getApplicationContext()).getWeaponById("wood_bow");
+//                    break;
+//                case(Weapon.STAFF): firstWeapon = WeaponList.getInstance(getApplicationContext()).getWeaponById("wood_staff");
+//                    break;
+//                case(Weapon.BLUNT): firstWeapon = WeaponList.getInstance(getApplicationContext()).getWeaponById("wood_club");
+//                    break;
+//                default: firstWeapon = new Weapon();
+//            }
+//            ActiveCharacter.getInstance().addWeaponToInventory(firstWeapon);
 
             //TODO: remove this!!
             //for debugging, populate with tons of weapons
-            ActiveCharacter a = ActiveCharacter.getInstance();
-            for(int i = 0; i < 20; i++){
-                Weapon w = WeaponList.getInstance(this).getRandomLevelledWeapon(a.getActiveCharacter().getLevel());
-                Log.i(TAG, "Selected " + w);
-                a.addWeaponToInventory(w);
-            }
+//            ActiveCharacter a = ActiveCharacter.getInstance();
+//            for(int i = 0; i < 20; i++){
+//                Weapon w = WeaponList.getInstance(this).getRandomLevelledWeapon(a.getActiveCharacter().getLevel());
+//                Log.i(TAG, "Selected " + w);
+//                a.addWeaponToInventory(w);
+//            }
+
+            EventQueue.getInstance(this).addEvents(Dungeon.generateBackstory(this));
 
             //start main activity
             startActivityForResult(new Intent(this, MainActivity.class), MainActivity.RC);

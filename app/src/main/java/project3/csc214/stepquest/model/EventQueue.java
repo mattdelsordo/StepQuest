@@ -61,7 +61,7 @@ public class EventQueue {
     }
 
     //adds a dungeon's stuff to the queue
-    private void addEvents(Dungeon dungeon){
+    public void addEvents(Dungeon dungeon){
         for(Event e : dungeon) mQueue.add(e);
         //Log.i(TAG, "Queue size: " + mQueue.size());
     }
@@ -70,14 +70,16 @@ public class EventQueue {
     public void incrementProgress(){
         //Log.i(TAG, "Step taken (" + mProgress + ")");
 
-        mProgress++;
+        int step = 1;
+        if(ActiveCharacter.getInstance().getExpModifier() > 0) step *= ActiveCharacter.getInstance().getExpModifier();
+        mProgress += step;
         Event currentEvent = getTopEvent();
         if(mProgress >= currentEvent.getDuration()){
             //if the progress threshold has been met:
             //get active character
             Character active = ActiveCharacter.getInstance().getActiveCharacter();
             //give the player exp
-            int expGain = (int)(currentEvent.getExp() * ActiveCharacter.getInstance().getExpModifier());
+            int expGain = currentEvent.getExp();
             active.addExp(expGain);
             //give the player money
             int fundReward = currentEvent.getGoldReward();
