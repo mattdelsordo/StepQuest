@@ -73,12 +73,12 @@ public class LevelUpFragment extends Fragment implements StatManipulationFragmen
 
         //add stat manipulators to layout
         FragmentManager manager = getChildFragmentManager();
-        StatManipulationFragment mStr = (StatManipulationFragment)manager.findFragmentById(R.id.frame_levelup_str);
-        StatManipulationFragment mDex = (StatManipulationFragment)manager.findFragmentById(R.id.frame_levelup_dex);
-        StatManipulationFragment mCon = (StatManipulationFragment)manager.findFragmentById(R.id.frame_levelup_con);
-        StatManipulationFragment mInt = (StatManipulationFragment)manager.findFragmentById(R.id.frame_levelup_int);
-        StatManipulationFragment mWis = (StatManipulationFragment)manager.findFragmentById(R.id.frame_levelup_wis);
-        StatManipulationFragment mChr = (StatManipulationFragment)manager.findFragmentById(R.id.frame_levelup_chr);
+        mStr = (StatManipulationFragment)manager.findFragmentById(R.id.frame_levelup_str);
+        mDex = (StatManipulationFragment)manager.findFragmentById(R.id.frame_levelup_dex);
+        mCon = (StatManipulationFragment)manager.findFragmentById(R.id.frame_levelup_con);
+        mInt = (StatManipulationFragment)manager.findFragmentById(R.id.frame_levelup_int);
+        mWis = (StatManipulationFragment)manager.findFragmentById(R.id.frame_levelup_wis);
+        mChr = (StatManipulationFragment)manager.findFragmentById(R.id.frame_levelup_chr);
         if(mStr == null){
             mStr = StatManipulationFragment.newInstance(Stats.STR, active.getStat(Stats.STR));
             getChildFragmentManager().beginTransaction().add(R.id.frame_levelup_str, mStr).commit();
@@ -110,13 +110,16 @@ public class LevelUpFragment extends Fragment implements StatManipulationFragmen
             @Override
             public void onClick(View v) {
                 //check to see if all points have been allocated
-                if(mLevelUpTokenTotal == 0){
+                if(mLevelUpTokenTotal > 0){
                     Toast.makeText(getContext(), "You have " + mLevelUpTokenTotal + " points left to allocate!", Toast.LENGTH_SHORT).show();
                 }else{
                     //else, commit the changes and finish
                     for(int i = 0; i < mStatIncrements.length; i++){
-                        ActiveCharacter.getInstance().getActiveCharacter().incrementBaseStat(i);
+                        ActiveCharacter.getInstance().getActiveCharacter().addToBaseStat(i, mStatIncrements[i]);
                     }
+
+                    //remove lvl up tokens
+                    ActiveCharacter.getInstance().getActiveCharacter().clearLvlUpTokens();
 
                     //done
                     mListener.lvlUpDone();
@@ -153,6 +156,14 @@ public class LevelUpFragment extends Fragment implements StatManipulationFragmen
         mStatIncrements[stat]++;
         mLevelUpTokenTotal--;
         updateTokenTotal(mLevelUpTokenTotal);
+
+        mStr.updateButtons(mStatIncrements[Stats.STR], mLevelUpTokenTotal);
+        mDex.updateButtons(mStatIncrements[Stats.DEX], mLevelUpTokenTotal);
+        mInt.updateButtons(mStatIncrements[Stats.INT], mLevelUpTokenTotal);
+        mWis.updateButtons(mStatIncrements[Stats.WIS], mLevelUpTokenTotal);
+        mCon.updateButtons(mStatIncrements[Stats.CON], mLevelUpTokenTotal);
+        mChr.updateButtons(mStatIncrements[Stats.CHR], mLevelUpTokenTotal);
+
         return mLevelUpTokenTotal;
     }
 
@@ -161,6 +172,14 @@ public class LevelUpFragment extends Fragment implements StatManipulationFragmen
         mStatIncrements[stat]--;
         mLevelUpTokenTotal++;
         updateTokenTotal(mLevelUpTokenTotal);
+
+        mStr.updateButtons(mStatIncrements[Stats.STR], mLevelUpTokenTotal);
+        mDex.updateButtons(mStatIncrements[Stats.DEX], mLevelUpTokenTotal);
+        mInt.updateButtons(mStatIncrements[Stats.INT], mLevelUpTokenTotal);
+        mWis.updateButtons(mStatIncrements[Stats.WIS], mLevelUpTokenTotal);
+        mCon.updateButtons(mStatIncrements[Stats.CON], mLevelUpTokenTotal);
+        mChr.updateButtons(mStatIncrements[Stats.CHR], mLevelUpTokenTotal);
+
         return mStatIncrements[stat];
     }
 

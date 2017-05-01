@@ -70,9 +70,7 @@ public class EventQueue {
     public void incrementProgress(){
         //Log.i(TAG, "Step taken (" + mProgress + ")");
 
-        int step = 1;
-        if(ActiveCharacter.getInstance().getExpModifier() > 0) step *= ActiveCharacter.getInstance().getExpModifier();
-        mProgress += step;
+        mProgress += oneStepValue();
         Event currentEvent = getTopEvent();
         if(mProgress >= currentEvent.getDuration()){
             //if the progress threshold has been met:
@@ -109,10 +107,15 @@ public class EventQueue {
 
     }
 
+    private int oneStepValue(){
+        int step = 10;
+        if(ActiveCharacter.getInstance().getExpModifier() > 0) step *= ActiveCharacter.getInstance().getExpModifier();
+        return step;
+    }
+
     public int getProgress() {
         return mProgress;
     }
-
     public void setProgress(int mProgress) {
         this.mProgress = mProgress;
     }

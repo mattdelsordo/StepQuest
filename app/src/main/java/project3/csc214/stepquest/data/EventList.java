@@ -11,7 +11,7 @@ import java.util.Random;
 import project3.csc214.stepquest.R;
 import project3.csc214.stepquest.model.ActiveCharacter;
 import project3.csc214.stepquest.model.Event;
-import project3.csc214.stepquest.model.Weapon;
+import project3.csc214.stepquest.model.Character;
 
 /**
  * Created by mdelsord on 4/16/17.
@@ -101,5 +101,16 @@ public class EventList {
         if(contentChance > 70) chest.setItemReward(WeaponList.getInstance(mAppContext).getRandomLevelledWeapon(ActiveCharacter.getInstance().getActiveCharacter().getLevel() + 1));
         else chest.setGoldReward(rand.nextInt(400));
         return chest;
+    }
+
+    //returns a random event of appropriate difficulty for a given character
+    //TODO: this needs refining
+    public Event getLevelledMonster(int level){
+        int cap = Character.levelUpFunction(level) /2;
+
+        Event event = getRandomMonster();
+        while(event.getDuration() > cap) event = getRandomMonster();
+
+        return event;
     }
 }

@@ -32,7 +32,7 @@ public class Dungeon extends ArrayList<Event> {
 
     public static Dungeon singleMonster(Context context){
         Dungeon dungeon = new Dungeon();
-        dungeon.add(EventList.getInstance(context).getRandomMonster());
+        dungeon.add(EventList.getInstance(context).getLevelledMonster(ActiveCharacter.getInstance().getActiveCharacter().getLevel()));
         return dungeon;
     }
 
@@ -48,9 +48,9 @@ public class Dungeon extends ArrayList<Event> {
 
         dungeon.add(new Event("Heading into the wilderness...", 100));
 
-        int duration = rand.nextInt(12);
+        int duration = rand.nextInt(9) + 3;
         for(int i = 0; i < duration; i++){
-            dungeon.add(EventList.getInstance(context).getRandomMonster());
+            dungeon.add(EventList.getInstance(context).getLevelledMonster(ActiveCharacter.getInstance().getActiveCharacter().getLevel()));
         }
 
         return dungeon;
@@ -63,7 +63,7 @@ public class Dungeon extends ArrayList<Event> {
         //TODO: make a town name generator
         dungeon.add(new Event("Approaching a small town...", 100));
 
-        int duration = rand.nextInt(12);
+        int duration = rand.nextInt(7) + 5;
         for(int i = 0; i < duration; i++){
             dungeon.add(EventList.getInstance(context).getRandomEvent());
         }
@@ -78,10 +78,10 @@ public class Dungeon extends ArrayList<Event> {
         //TODO: make a dungeon name generator
         dungeon.add(new Event("Entering a dungeon...", 100));
 
-        int duration = rand.nextInt(12);
+        int duration = rand.nextInt(8) + 7;
         for(int i = 0; i < duration; i++){
             int chance = rand.nextInt(3);
-            if(chance > 0)dungeon.add(EventList.getInstance(context).getRandomMonster());
+            if(chance > 0)dungeon.add(EventList.getInstance(context).getLevelledMonster(ActiveCharacter.getInstance().getActiveCharacter().getLevel()));
             else dungeon.add(EventList.getInstance(context).getChest());
         }
         dungeon.add(EventList.getInstance(context).getRandomBoss());
@@ -99,7 +99,7 @@ public class Dungeon extends ArrayList<Event> {
         gold.setGoldReward(20);
         backstory.add(gold);
         backstory.add(new Event("You hear a crash from outside...", 6));
-        Event monster = EventList.getInstance(context).getRandomMonster();
+        Event monster = EventList.getInstance(context).getLevelledMonster(ActiveCharacter.getInstance().getActiveCharacter().getLevel());
         String[] descSplit = monster.getDescription().split(" ");
         String monsterName = descSplit[descSplit.length - 1];
         monsterName = monsterName.substring(0, monsterName.length() -3);

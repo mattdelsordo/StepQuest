@@ -7,6 +7,8 @@ import project3.csc214.stepquest.R;
 
 public class LevelUpActivity extends AppCompatActivity implements LevelUpFragment.LevelUpDoneListener{
 
+    public static boolean sIsRunning = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,5 +27,17 @@ public class LevelUpActivity extends AppCompatActivity implements LevelUpFragmen
         //TODO: save character
         setResult(RESULT_OK);
         finish();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        sIsRunning = true;
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        sIsRunning = false;
     }
 }

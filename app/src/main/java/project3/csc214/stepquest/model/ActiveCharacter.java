@@ -56,8 +56,12 @@ public class ActiveCharacter{
 
     //adds exp to the character
     public void addExp(int exp){
-        mCharacter.addExp(exp);
+        boolean levelledUp = mCharacter.addExp(exp);
         if(mExpListener != null) mExpListener.updateExpProgress(mCharacter);
+
+        if(levelledUp){
+            if(mLevelUpListener != null) mLevelUpListener.doLevelUp();
+        }
     }
 
     public void setEquippedWeapon(Weapon w){
@@ -89,6 +93,8 @@ public class ActiveCharacter{
         mCharacter.setFunds(mCharacter.getFunds() + funds);
         if(mFundsUpdateListener != null) mFundsUpdateListener.updateFunds(mCharacter.getFunds());
     }
+
+    /** WELCOME TO THE INTERFACE ZONE **/
     //listens for gold amount updates
     public interface FundsUpdateListener{
         void updateFunds(int totalFunds);
@@ -114,5 +120,13 @@ public class ActiveCharacter{
     private ExpUpdateListener mExpListener;
     public void bindExpListener(ExpUpdateListener eul){mExpListener = eul;}
     public void unbindExpListener(){mExpListener = null;}
+
+    //listens for levelups
+    public interface LevelUpListener{
+        void doLevelUp();
+    }
+    public LevelUpListener mLevelUpListener;
+    public void bindLevelUpListener(LevelUpListener lul){mLevelUpListener = lul;}
+    public void unbindLevelUpListener(){mLevelUpListener = null;}
 }
 

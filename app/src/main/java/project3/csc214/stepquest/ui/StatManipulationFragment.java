@@ -4,6 +4,7 @@ package project3.csc214.stepquest.ui;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,8 @@ import project3.csc214.stepquest.model.Stats;
  * Handles the increment/decrement buttons for each individual stat
  */
 public class StatManipulationFragment extends Fragment {
+
+    private static final String TAG = "StatManipulation";
 
     //factory method for this fragment
     private static final String ARG_STAT = "arg_stat", ARG_ORIGINAL = "arg_original";
@@ -48,6 +51,7 @@ public class StatManipulationFragment extends Fragment {
         mOriginal = getArguments().getInt(ARG_ORIGINAL);
 
         mStatIndicator = (TextView)view.findViewById(R.id.textview_statmanip_text);
+        updateStatIndicator();
 
         mDecrement = (Button)view.findViewById(R.id.button_statmanip_decrement);
         mDecrement.setOnClickListener(new View.OnClickListener() {
@@ -55,9 +59,9 @@ public class StatManipulationFragment extends Fragment {
             public void onClick(View v) {
                 mOriginal--;
                 updateStatIndicator();
-                int increments = mListener.statDecremented(mStat);
-                if(increments == 0) mDecrement.setEnabled(false);
-                mIncrement.setEnabled(true);
+                mListener.statDecremented(mStat);
+//                if(increments == 0) mDecrement.setEnabled(false);
+//                mIncrement.setEnabled(true);
             }
         });
 
@@ -67,9 +71,9 @@ public class StatManipulationFragment extends Fragment {
             public void onClick(View v) {
                 mOriginal++;
                 updateStatIndicator();
-                int pointsLeft = mListener.statIncremented(mStat);
-                if(pointsLeft == 0) mIncrement.setEnabled(false);
-                mDecrement.setEnabled(true);
+                mListener.statIncremented(mStat);
+//                if(pointsLeft == 0) mIncrement.setEnabled(false);
+//                mDecrement.setEnabled(true);
             }
         });
 
@@ -80,6 +84,16 @@ public class StatManipulationFragment extends Fragment {
         }
 
         return view;
+    }
+
+    //updates the buttons based on some parameters
+    public void updateButtons(int increments, int pointsLeft){
+        Log.i(TAG, Stats.statToText(mStat) + ": " + increments + " " + pointsLeft);
+        if(increments > 0) mDecrement.setEnabled(true);
+        else mDecrement.setEnabled(false);
+
+        if(pointsLeft > 0) mIncrement.setEnabled(true);
+        else mIncrement.setEnabled(false);
     }
 
     public void updateStatIndicator(){

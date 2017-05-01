@@ -91,6 +91,7 @@ public class CharacterInfoFragment extends Fragment implements ActiveCharacter.E
     public void onResume() {
         super.onResume();
         ActiveCharacter.getInstance().bindExpListener(this);
+        updateUI(ActiveCharacter.getInstance().getActiveCharacter());
     }
 
     @Override

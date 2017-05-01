@@ -9,7 +9,7 @@ import android.util.Log;
 
 public class Character {
 
-    private static final int BASE_LEVELUP_EXP = 150; //How much it takes to go from lvl one to lvl 2, in steps (??)
+    private static final int BASE_LEVELUP_EXP = 200; //How much it takes to go from lvl one to lvl 2, in steps (??)
 
     private static final String TAG = "Character";
 
@@ -81,9 +81,7 @@ public class Character {
     public void setBaseStats(int[] mBaseStats) {
         this.mBaseStats = mBaseStats;
     }
-    public void incrementBaseStat(int stat){
-        mBaseStats[stat]++;
-    }
+    public void addToBaseStat(int stat, int amount){mBaseStats[stat] += amount;}
 
     public int getFunds() {
         return mFunds;
@@ -95,20 +93,27 @@ public class Character {
 
     public void addLvlUpToken(){mLevelUpTokens++;}
     public void spendLvlUpToken(){mLevelUpTokens--;}
+    public void clearLvlUpTokens(){mLevelUpTokens = 0;}
     public int getLvlUpTokenAmnt(){return mLevelUpTokens;}
 
     public int getExp(){return mExp;}
 
-    public void addExp(int exp){
+    //returns true if a level up took place
+    public boolean addExp(int exp){
         mExp += exp;
+        boolean levelledUp = false;
 
         //do check for level up
         while(canLevelUp(mExp, mLevel)){
             mLevel++;
             addLvlUpToken();
             Log.i(TAG, mName + " level'd up! (" + mLevel + ")");
+            levelledUp = true;
         }
+
+        return levelledUp;
     }
+
 
     //returns true if the criteria for leveling up has been met, false otherwise
     //implements levelling experience function

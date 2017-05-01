@@ -30,7 +30,7 @@ import project3.csc214.stepquest.pedometer.PedometerService;
  * This Activity controls the rest of the app
  */
 
-public class MainActivity extends AppCompatActivity implements EventQueue.MakeToastListener{
+public class MainActivity extends AppCompatActivity implements EventQueue.MakeToastListener, ActiveCharacter.LevelUpListener{
     private static final String TAG = "MainActivity";
     public static final int RC = 4;
 
@@ -85,12 +85,17 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
     protected void onResume() {
         super.onResume();
         EventQueue.getInstance(getApplicationContext()).bindToastListener(this);
+        ActiveCharacter.getInstance().bindLevelUpListener(this);
+
+        //check whether a level up is possible
+        if(ActiveCharacter.getInstance().getActiveCharacter().getLvlUpTokenAmnt() > 0) doLevelUp();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         EventQueue.getInstance(getApplicationContext()).unbindToastListener();
+        ActiveCharacter.getInstance().unbindExpListener();
     }
 
     @Override
@@ -140,6 +145,12 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
         t.show();
     }
 
+    @Override
+    public void doLevelUp() {
+        //do check to avoid popping up tons of things at once
+        if(!LevelUpActivity.sIsRunning) startActivity(new Intent(MainActivity.this, LevelUpActivity.class));
+    }
+
     //adapter for the viewpager
     //TODO: might get rid of this
     public class ScreenPagerAdapter extends FragmentPagerAdapter{
@@ -175,4 +186,5 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
         setResult(RESULT_CANCELED);
         finish();
     }
+
 }
