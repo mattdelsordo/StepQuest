@@ -58,4 +58,10 @@
     <string name="default_gold_text">Gold: 0</string>
     <string name="default_weapon_quantity">x00</string>
     <string name="create_your_hero">Create Your Hero!</string>
+    <string name="left"><![CDATA[<]]></string>
+    <string name="right"><![CDATA[>]]></string>
+    <string name="level_up_points_2">Level Up Points: 2</string>
+    <string name="commit">Commit</string>
+    <string name="congratz_you_levelled_up">Congratz! You levelled up!</string>
+    <string name="you_levelled_up_allocate_your_stat_points">You levelled up! Allocate your stat points!</string>
 </resources>

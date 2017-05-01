@@ -81,6 +81,9 @@ public class Character {
     public void setBaseStats(int[] mBaseStats) {
         this.mBaseStats = mBaseStats;
     }
+    public void incrementBaseStat(int stat){
+        mBaseStats[stat]++;
+    }
 
     public int getFunds() {
         return mFunds;
