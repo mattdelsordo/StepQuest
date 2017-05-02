@@ -41,7 +41,7 @@ public class InventoryFragment extends Fragment implements ActiveCharacter.Funds
 
         //get goldcount
         mGoldCount = (TextView)view.findViewById(R.id.textview_inventory_goldcount);
-        updateFunds(ActiveCharacter.getInstance().getActiveCharacter().getFunds());
+        updateFunds(ActiveCharacter.getInstance(getContext()).getActiveCharacter().getFunds());
 
         //get and set up recyclerview
         mRecycler = (RecyclerView)view.findViewById(R.id.recyclerview_inventory);
@@ -52,22 +52,22 @@ public class InventoryFragment extends Fragment implements ActiveCharacter.Funds
     }
 
     public void updateUI(){
-        WeaponAdapter refresh = new WeaponAdapter(ActiveCharacter.getInstance().getWeaponInventory());
+        WeaponAdapter refresh = new WeaponAdapter(ActiveCharacter.getInstance(getContext()).getWeaponInventory());
         mRecycler.setAdapter(refresh);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        ActiveCharacter.getInstance().bindFundsUpdater(this);
-        ActiveCharacter.getInstance().bindWeaponListener(this);
+        ActiveCharacter.getInstance(getContext()).bindFundsUpdater(this);
+        ActiveCharacter.getInstance(getContext()).bindWeaponListener(this);
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        ActiveCharacter.getInstance().unbindFundsUpdater();
-        ActiveCharacter.getInstance().unbindWeaponListener();
+        ActiveCharacter.getInstance(getContext()).unbindFundsUpdater();
+        ActiveCharacter.getInstance(getContext()).unbindWeaponListener();
     }
 
     @Override
@@ -102,7 +102,7 @@ public class InventoryFragment extends Fragment implements ActiveCharacter.Funds
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ActiveCharacter.getInstance().setEquippedWeapon(mWeapon);
+                    ActiveCharacter.getInstance(getContext()).setEquippedWeapon(mWeapon);
                     updateUI();
                 }
             });
@@ -114,11 +114,11 @@ public class InventoryFragment extends Fragment implements ActiveCharacter.Funds
             mName.setText(weapon.getName());
             mType.setText(Weapon.getTypeString(mWeapon.getType()));
             mMaterial.setText(Weapon.getMaterialString(mWeapon.getMaterial()));
-            double buff = mWeapon.calcBuff(ActiveCharacter.getInstance().getActiveCharacter().getVocation());
+            double buff = mWeapon.calcBuff(ActiveCharacter.getInstance(getContext()).getActiveCharacter().getVocation());
             mBuff.setText((buff > 0.0 ? "+" : "") + buff + "%");
-            mQuantity.setText("x" + ActiveCharacter.getInstance().getWeaponQuantity(mWeapon));
+            mQuantity.setText("x" + ActiveCharacter.getInstance(getContext()).getWeaponQuantity(mWeapon));
 
-            if(mWeapon.getId() == ActiveCharacter.getInstance().getEquippedWeapon().getId()){
+            if(mWeapon.getId() == ActiveCharacter.getInstance(getContext()).getEquippedWeapon().getId()){
                 mView.findViewById(R.id.layout_weapon_background).setBackgroundColor(Color.rgb(255,215,0)); //should probably make this color a resource
             }
         }

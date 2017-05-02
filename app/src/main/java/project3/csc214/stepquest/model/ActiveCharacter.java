@@ -1,12 +1,22 @@
 package project3.csc214.stepquest.model;
 
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.TreeMap;
+
+import project3.csc214.stepquest.data.QuestCursorWrapper;
+import project3.csc214.stepquest.data.QuestDatabaseHelper;
+import project3.csc214.stepquest.data.QuestDbSchema;
+import project3.csc214.stepquest.data.WeaponList;
 
 /**
  * Created by mdelsord on 4/17/17.
@@ -20,9 +30,15 @@ public class ActiveCharacter{
     private Character mCharacter;
     private TreeMap<Weapon, Integer> mWeaponSet;
     private Weapon mEquippedWeapon;
+    private Context mAppContext;
+    private final SQLiteDatabase mDatabase;
 
-    private ActiveCharacter(){
+    private ActiveCharacter(Context appContext){
+        mAppContext = appContext.getApplicationContext();
         mWeaponSet = new TreeMap<>(new Weapon.WeaponComparator());
+        mDatabase = new QuestDatabaseHelper(mAppContext).getWritableDatabase();
+
+        load();
     }
 
     public void setActiveCharacter(Character c){
@@ -33,8 +49,8 @@ public class ActiveCharacter{
         return mCharacter;
     }
 
-    public static ActiveCharacter getInstance(){
-        if(sActiveCharacter == null) sActiveCharacter = new ActiveCharacter();
+    public static synchronized ActiveCharacter getInstance(Context appContext){
+        if(sActiveCharacter == null) sActiveCharacter = new ActiveCharacter(appContext);
         return sActiveCharacter;
     }
 
@@ -128,5 +144,106 @@ public class ActiveCharacter{
     public LevelUpListener mLevelUpListener;
     public void bindLevelUpListener(LevelUpListener lul){mLevelUpListener = lul;}
     public void unbindLevelUpListener(){mLevelUpListener = null;}
+
+
+    /** methods to load and save the active character **/
+    private QuestCursorWrapper queryCharacters(String where, String args[]){
+        Cursor cursor = mDatabase.query(
+                QuestDbSchema.CharacterTable.NAME,
+                null,
+                where,
+                args,
+                null,
+                null,
+                null
+        );
+        return new QuestCursorWrapper(cursor);
+    }
+
+    private QuestCursorWrapper queryInventory(String where, String args[]){
+        Cursor cursor = mDatabase.query(
+                QuestDbSchema.InventoryTable.NAME,
+                null,
+                where,
+                args,
+                null,
+                null,
+                null
+        );
+        return new QuestCursorWrapper(cursor);
+    }
+
+    //loads the active character and the inventory
+    public void load(){
+        mWeaponSet.clear();
+
+        //get character and weapon
+        QuestCursorWrapper charWrapper = queryCharacters(null, null);
+        try{
+            charWrapper.moveToFirst();
+            QuestCursorWrapper.CharacterBundle bundle = charWrapper.getCharacter();
+            setActiveCharacter(bundle.mCharacter);
+            setEquippedWeapon(WeaponList.getInstance(mAppContext).getWeaponById(bundle.mWeaponId));
+        }finally{
+            charWrapper.close();
+        }
+
+        //get inventory
+        QuestCursorWrapper invWrapper = queryInventory(null, null);
+        try{
+            invWrapper.moveToFirst();
+            while(invWrapper.isAfterLast() == false){
+                QuestCursorWrapper.WeaponBundle bundle = invWrapper.getWeapon();
+                Weapon w = WeaponList.getInstance(mAppContext).getWeaponById(bundle.weapon_id);
+                mWeaponSet.put(w, bundle.quantity);
+
+                invWrapper.moveToNext();
+            }
+        }finally{
+            invWrapper.close();
+        }
+    }
+
+    private ContentValues getCharacterContentValues(){
+        ContentValues values = new ContentValues();
+        values.put(QuestDbSchema.CharacterTable.Params.NAME, getActiveCharacter().getName());
+        values.put(QuestDbSchema.CharacterTable.Params.RACE, getActiveCharacter().getRace().getId());
+        values.put(QuestDbSchema.CharacterTable.Params.VOCATION, getActiveCharacter().getVocation().getId());
+        values.put(QuestDbSchema.CharacterTable.Params.LEVEL, getActiveCharacter().getLevel());
+
+        //stats
+        values.put(QuestDbSchema.CharacterTable.Params.STR, getActiveCharacter().getStat(Stats.STR));
+        values.put(QuestDbSchema.CharacterTable.Params.DEX, getActiveCharacter().getStat(Stats.DEX));
+        values.put(QuestDbSchema.CharacterTable.Params.CON, getActiveCharacter().getStat(Stats.CON));
+        values.put(QuestDbSchema.CharacterTable.Params.INT, getActiveCharacter().getStat(Stats.INT));
+        values.put(QuestDbSchema.CharacterTable.Params.WIS, getActiveCharacter().getStat(Stats.WIS));
+        values.put(QuestDbSchema.CharacterTable.Params.CHR, getActiveCharacter().getStat(Stats.CHR));
+
+        values.put(QuestDbSchema.CharacterTable.Params.GOLD, getActiveCharacter().getFunds());
+        values.put(QuestDbSchema.CharacterTable.Params.EXP, getActiveCharacter().getExp());
+        values.put(QuestDbSchema.CharacterTable.Params.LVL_TOKENS, getActiveCharacter().getLvlUpTokenAmnt());
+        values.put(QuestDbSchema.CharacterTable.Params.WEAPON_ID, mEquippedWeapon.getId());
+
+        return values;
+    }
+
+    private ContentValues getWeaponContentValues(Map.Entry<Weapon, Integer> entry){
+        ContentValues values = new ContentValues();
+        values.put(QuestDbSchema.InventoryTable.Params.WEAPON_ID, entry.getKey().getId());
+        values.put(QuestDbSchema.InventoryTable.Params.QUANTITY, entry.getValue());
+        return values;
+    }
+
+    //save all the stuff from this class at once
+    //TODO: if this takes too long put it in an asynctask idk
+    public void save(){
+        mDatabase.delete(QuestDbSchema.CharacterTable.NAME, null, null);
+        mDatabase.insert(QuestDbSchema.CharacterTable.NAME, null, getCharacterContentValues());
+
+        mDatabase.delete(QuestDbSchema.InventoryTable.NAME, null, null);
+        for(Map.Entry<Weapon, Integer> entry : mWeaponSet.entrySet()){
+            mDatabase.insert(QuestDbSchema.InventoryTable.NAME, null, getWeaponContentValues(entry));
+        }
+    }
 }
 

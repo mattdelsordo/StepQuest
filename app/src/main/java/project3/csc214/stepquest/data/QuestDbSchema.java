@@ -47,7 +47,7 @@ public class QuestDbSchema {
         public static final String NAME = "event_queue";
 
         public static final class Params{
-            public static final String ORDER = "order";
+            public static final String ORDER = "ordering";
             public static final String DESCRIPTION = "description";
             public static final String DURATION = "duration";
             public static final String GOLD = "gold";

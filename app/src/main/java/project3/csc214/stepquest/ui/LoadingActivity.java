@@ -25,8 +25,9 @@ public class LoadingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading);
 
-        //TODO: load all information from database, if it isn't there, make a new game
-        Character activeCharacter = ActiveCharacter.getInstance().getActiveCharacter();
+        //load all information from database, if it isn't there, make a new game
+        Character activeCharacter = ActiveCharacter.getInstance(this).getActiveCharacter();
+
         if(activeCharacter == null){
             Log.i(TAG, "No character found, creating new one.");
             startActivityForResult(CharacterCreationActivity.newInstance(this), CharacterCreationActivity.REQUEST_CHARACTER_INFO);
@@ -47,9 +48,13 @@ public class LoadingActivity extends AppCompatActivity {
             Vocation bigVocation = Vocation.newVocation(vocation);
 
             Character newGuy = new Character(name, bigVocation, bigRace, stats);
-            ActiveCharacter.getInstance().setActiveCharacter(newGuy);
+            ActiveCharacter.getInstance(this).setActiveCharacter(newGuy);
 
             EventQueue.getInstance(this).addEvents(Dungeon.generateBackstory(this));
+
+            //save everything
+            ActiveCharacter.getInstance(this).save();
+            EventQueue.getInstance(this).save();
 
             //start main activity
             startActivityForResult(new Intent(this, MainActivity.class), MainActivity.RC);

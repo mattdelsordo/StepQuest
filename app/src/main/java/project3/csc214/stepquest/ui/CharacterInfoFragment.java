@@ -53,7 +53,7 @@ public class CharacterInfoFragment extends Fragment implements ActiveCharacter.E
         mClassImage = (ImageView)view.findViewById(R.id.imageview_character_class);
         mExpProgress = (ProgressBar)view.findViewById(R.id.progressbar_character_exp);
 
-        Character active = ActiveCharacter.getInstance().getActiveCharacter();
+        Character active = ActiveCharacter.getInstance(getContext()).getActiveCharacter();
         if(active != null){
             updateUI(active);
             updateExpProgress(active);
@@ -90,13 +90,13 @@ public class CharacterInfoFragment extends Fragment implements ActiveCharacter.E
     @Override
     public void onResume() {
         super.onResume();
-        ActiveCharacter.getInstance().bindExpListener(this);
-        updateUI(ActiveCharacter.getInstance().getActiveCharacter());
+        ActiveCharacter.getInstance(getContext()).bindExpListener(this);
+        updateUI(ActiveCharacter.getInstance(getContext()).getActiveCharacter());
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        ActiveCharacter.getInstance().unbindExpListener();
+        ActiveCharacter.getInstance(getContext()).unbindExpListener();
     }
 }

@@ -41,7 +41,7 @@ public class WeaponList {
     private Context mAppContext;
 
     private WeaponList(Context appContext){
-        mAppContext = appContext;
+        mAppContext = appContext.getApplicationContext();
 
         //create lists
         mWood = new LinkedHashMap<>();

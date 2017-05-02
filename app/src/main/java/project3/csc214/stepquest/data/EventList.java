@@ -30,7 +30,7 @@ public class EventList {
     private Context mAppContext;
 
     private EventList(Context appContext){
-        mAppContext = appContext;
+        mAppContext = appContext.getApplicationContext();
         mMonsters = new ArrayList<>();
         mBosses = new ArrayList<>();
         mEvents = new ArrayList<>();
@@ -76,7 +76,7 @@ public class EventList {
             if(a.length > 3) monster.setItemReward(WeaponList.getInstance(mAppContext).getWeaponById(a[3]));
             else if(assign_drop){
                 int chance = rand.nextInt(10);
-                if(chance == 6) monster.setItemReward(WeaponList.getInstance(mAppContext).getRandomLevelledWeapon(ActiveCharacter.getInstance().getActiveCharacter().getLevel()));
+                if(chance == 6) monster.setItemReward(WeaponList.getInstance(mAppContext).getRandomLevelledWeapon(ActiveCharacter.getInstance(mAppContext).getActiveCharacter().getLevel()));
             }
             list.add(monster);
         }
@@ -98,7 +98,7 @@ public class EventList {
     public Event getChest(){
         Event chest = new Event("Opening a chest...", 50);
         int contentChance = rand.nextInt(100);
-        if(contentChance > 70) chest.setItemReward(WeaponList.getInstance(mAppContext).getRandomLevelledWeapon(ActiveCharacter.getInstance().getActiveCharacter().getLevel() + 1));
+        if(contentChance > 70) chest.setItemReward(WeaponList.getInstance(mAppContext).getRandomLevelledWeapon(ActiveCharacter.getInstance(mAppContext).getActiveCharacter().getLevel() + 1));
         else chest.setGoldReward(rand.nextInt(400));
         return chest;
     }

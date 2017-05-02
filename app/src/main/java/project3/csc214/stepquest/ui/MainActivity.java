@@ -85,17 +85,17 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
     protected void onResume() {
         super.onResume();
         EventQueue.getInstance(getApplicationContext()).bindToastListener(this);
-        ActiveCharacter.getInstance().bindLevelUpListener(this);
+        ActiveCharacter.getInstance(this).bindLevelUpListener(this);
 
         //check whether a level up is possible
-        if(ActiveCharacter.getInstance().getActiveCharacter().getLvlUpTokenAmnt() > 0) doLevelUp();
+        if(ActiveCharacter.getInstance(this).getActiveCharacter().getLvlUpTokenAmnt() > 0) doLevelUp();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         EventQueue.getInstance(getApplicationContext()).unbindToastListener();
-        ActiveCharacter.getInstance().unbindExpListener();
+        ActiveCharacter.getInstance(this).unbindExpListener();
     }
 
     @Override

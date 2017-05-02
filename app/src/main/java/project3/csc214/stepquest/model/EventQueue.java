@@ -1,11 +1,19 @@
 package project3.csc214.stepquest.model;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+
+import project3.csc214.stepquest.data.QuestCursorWrapper;
+import project3.csc214.stepquest.data.QuestDatabaseHelper;
+import project3.csc214.stepquest.data.QuestDbSchema;
+import project3.csc214.stepquest.data.WeaponList;
 
 /**
  * Created by mdelsord on 4/15/17.
@@ -21,6 +29,7 @@ public class EventQueue {
     private ArrayList<Event> mQueue; //queue of events
     private int mProgress;
     private Context mAppContext;
+    private SQLiteDatabase mDatabase;
 
     //listener to allow updating of the gui on progress changes
     public interface EventUpdateListener{
@@ -34,16 +43,15 @@ public class EventQueue {
     private MakeToastListener mToastListener;
 
     private EventQueue(Context context){
-        mAppContext = context;
+        mAppContext = context.getApplicationContext();
         mQueue = new ArrayList<>();
         mProgress = 0;
+        mDatabase = new QuestDatabaseHelper(mAppContext).getWritableDatabase();
 
-        //TODO: would load queue here but otherwise just add a new event
-//        addEvents(Dungeon.newRandomDungeon(mAppContext));
-//        Log.i(TAG, mQueue.get(0).toString());
+        load();
     }
 
-    public static EventQueue getInstance(Context context){
+    public static synchronized EventQueue getInstance(Context context){
         if(sEventQueue == null) sEventQueue = new EventQueue(context);
         return sEventQueue;
     }
@@ -78,13 +86,13 @@ public class EventQueue {
 //            Character active = ActiveCharacter.getInstance().getActiveCharacter();
             //give the player exp
             int expGain = currentEvent.getExp();
-            ActiveCharacter.getInstance().addExp(expGain);
+            ActiveCharacter.getInstance(mAppContext).addExp(expGain);
             //give the player money
             int fundReward = currentEvent.getGoldReward();
-            ActiveCharacter.getInstance().addFunds(fundReward);
+            ActiveCharacter.getInstance(mAppContext).addFunds(fundReward);
             //give the player any weapon
             Weapon weaponReward = currentEvent.getItemReward();
-            if(weaponReward != null) ActiveCharacter.getInstance().addWeaponToInventory(weaponReward);
+            if(weaponReward != null) ActiveCharacter.getInstance(mAppContext).addWeaponToInventory(weaponReward);
 
             //notify player of event completion
             if(mToastListener != null){
@@ -103,13 +111,11 @@ public class EventQueue {
         if(mUpdateListener != null) mUpdateListener.updateEvent(getTopEvent(), mProgress);
         //else make sure to call getTopEvent() anyway so that there is some event in the queue
         else getTopEvent();
-
-
     }
 
     private int oneStepValue(){
         int step = 10;
-        if(ActiveCharacter.getInstance().getExpModifier() > 0) step *= ActiveCharacter.getInstance().getExpModifier();
+        if(ActiveCharacter.getInstance(mAppContext).getExpModifier() > 0) step *= ActiveCharacter.getInstance(mAppContext).getExpModifier();
         return step;
     }
 
@@ -128,4 +134,57 @@ public class EventQueue {
     public void bindToastListener(MakeToastListener tl){mToastListener = tl;}
     public void unbindToastListener(){mToastListener = null;};
 
+    /** Database methods **/
+    private QuestCursorWrapper queryEventQueue(String where, String args[]){
+        Cursor cursor = mDatabase.query(
+                QuestDbSchema.EventQueueTable.NAME,
+                null,
+                where,
+                args,
+                null,
+                null,
+                QuestDbSchema.EventQueueTable.Params.ORDER
+        );
+        return new QuestCursorWrapper(cursor);
+    }
+
+    private void load(){
+        mQueue.clear();
+
+        QuestCursorWrapper wrapper = queryEventQueue(null, null);
+        try{
+            wrapper.moveToFirst();
+            QuestCursorWrapper.EventBundle bundle = wrapper.getEvent();
+            Event e = bundle.event;
+            String weapon = bundle.weapon;
+            if(weapon.length() > 0) e.setItemReward(WeaponList.getInstance(mAppContext).getWeaponById(weapon));
+            mProgress = bundle.progress;
+        }finally {
+            wrapper.close();
+        }
+    }
+
+    private ContentValues getEventContentValues(Event event, int order){
+        ContentValues values = new ContentValues();
+        values.put(QuestDbSchema.EventQueueTable.Params.ORDER, order);
+        values.put(QuestDbSchema.EventQueueTable.Params.DESCRIPTION, event.getDescription());
+        values.put(QuestDbSchema.EventQueueTable.Params.DURATION, event.getDuration());
+        values.put(QuestDbSchema.EventQueueTable.Params.GOLD, event.getGoldReward());
+
+        String id = event.getItemReward().getId();
+        if(id.length() > 0) values.put(QuestDbSchema.EventQueueTable.Params.WEAPON_ID, id);
+        else values.put(QuestDbSchema.EventQueueTable.Params.WEAPON_ID, "");
+
+        values.put(QuestDbSchema.EventQueueTable.Params.PROGRESS, mProgress);
+
+        return values;
+    }
+
+    //TODO: again, might want to put this in an asynctask
+    public void save(){
+        mDatabase.delete(QuestDbSchema.EventQueueTable.NAME, null, null);
+        for(int i = 0; i < mQueue.size(); i++){
+            mDatabase.insert(QuestDbSchema.EventQueueTable.NAME, null, getEventContentValues(mQueue.get(i), i));
+        }
+    }
 }

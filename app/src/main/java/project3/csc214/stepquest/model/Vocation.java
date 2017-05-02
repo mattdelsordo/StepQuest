@@ -74,4 +74,8 @@ public class Vocation {
     public int getBadWeapon() {
         return mBadWeapon;
     }
+
+    public int getId() {
+        return mClass;
+    }
 }

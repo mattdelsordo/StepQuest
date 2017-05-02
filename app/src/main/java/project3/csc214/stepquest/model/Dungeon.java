@@ -20,6 +20,7 @@ public class Dungeon extends ArrayList<Event> {
 
 
     public static Dungeon newRandomDungeon(Context context){
+
         Random rand = new Random();
         int chance = rand.nextInt(100);
 
@@ -32,7 +33,7 @@ public class Dungeon extends ArrayList<Event> {
 
     public static Dungeon singleMonster(Context context){
         Dungeon dungeon = new Dungeon();
-        dungeon.add(EventList.getInstance(context).getLevelledMonster(ActiveCharacter.getInstance().getActiveCharacter().getLevel()));
+        dungeon.add(EventList.getInstance(context).getLevelledMonster(ActiveCharacter.getInstance(context).getActiveCharacter().getLevel()));
         return dungeon;
     }
 
@@ -50,7 +51,7 @@ public class Dungeon extends ArrayList<Event> {
 
         int duration = rand.nextInt(9) + 3;
         for(int i = 0; i < duration; i++){
-            dungeon.add(EventList.getInstance(context).getLevelledMonster(ActiveCharacter.getInstance().getActiveCharacter().getLevel()));
+            dungeon.add(EventList.getInstance(context).getLevelledMonster(ActiveCharacter.getInstance(context).getActiveCharacter().getLevel()));
         }
 
         return dungeon;
@@ -81,7 +82,7 @@ public class Dungeon extends ArrayList<Event> {
         int duration = rand.nextInt(8) + 7;
         for(int i = 0; i < duration; i++){
             int chance = rand.nextInt(3);
-            if(chance > 0)dungeon.add(EventList.getInstance(context).getLevelledMonster(ActiveCharacter.getInstance().getActiveCharacter().getLevel()));
+            if(chance > 0)dungeon.add(EventList.getInstance(context).getLevelledMonster(ActiveCharacter.getInstance(context).getActiveCharacter().getLevel()));
             else dungeon.add(EventList.getInstance(context).getChest());
         }
         dungeon.add(EventList.getInstance(context).getRandomBoss());
@@ -99,13 +100,13 @@ public class Dungeon extends ArrayList<Event> {
         gold.setGoldReward(20);
         backstory.add(gold);
         backstory.add(new Event("You hear a crash from outside...", 6));
-        Event monster = EventList.getInstance(context).getLevelledMonster(ActiveCharacter.getInstance().getActiveCharacter().getLevel());
+        Event monster = EventList.getInstance(context).getLevelledMonster(ActiveCharacter.getInstance(context).getActiveCharacter().getLevel());
         String[] descSplit = monster.getDescription().split(" ");
         String monsterName = descSplit[descSplit.length - 1];
         monsterName = monsterName.substring(0, monsterName.length() -3);
         backstory.add(new Event("You open the door to see what's going on...", 4));
         backstory.add(new Event("There's a " + monsterName.toLowerCase() + " terrorizing your town!", 6)); //TODO: town name generator
-        Weapon weapon = WeaponList.getInstance(context).firstWeapon(ActiveCharacter.getInstance().getActiveCharacter().getVocation());
+        Weapon weapon = WeaponList.getInstance(context).firstWeapon(ActiveCharacter.getInstance(context).getActiveCharacter().getVocation());
         Event getWeapon = new Event("Your father throws you the family's " + weapon.getName().toLowerCase() + "...", 4);
         getWeapon.setItemReward(weapon);
         backstory.add(getWeapon);

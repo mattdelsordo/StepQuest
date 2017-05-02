@@ -61,7 +61,7 @@ public class LevelUpFragment extends Fragment implements StatManipulationFragmen
 
 
         //get info from character
-        Character active = ActiveCharacter.getInstance().getActiveCharacter();
+        Character active = ActiveCharacter.getInstance(getContext()).getActiveCharacter();
         mLevelUpTokenTotal = active.getLvlUpTokenAmnt();
 
         //reload things from state
@@ -115,11 +115,11 @@ public class LevelUpFragment extends Fragment implements StatManipulationFragmen
                 }else{
                     //else, commit the changes and finish
                     for(int i = 0; i < mStatIncrements.length; i++){
-                        ActiveCharacter.getInstance().getActiveCharacter().addToBaseStat(i, mStatIncrements[i]);
+                        ActiveCharacter.getInstance(getContext()).getActiveCharacter().addToBaseStat(i, mStatIncrements[i]);
                     }
 
                     //remove lvl up tokens
-                    ActiveCharacter.getInstance().getActiveCharacter().clearLvlUpTokens();
+                    ActiveCharacter.getInstance(getContext()).getActiveCharacter().clearLvlUpTokens();
 
                     //done
                     mListener.lvlUpDone();

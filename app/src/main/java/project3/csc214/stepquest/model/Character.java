@@ -86,7 +86,6 @@ public class Character {
     public int getFunds() {
         return mFunds;
     }
-
     public void setFunds(int mFunds) {
         this.mFunds = mFunds;
     }
@@ -96,7 +95,14 @@ public class Character {
     public void clearLvlUpTokens(){mLevelUpTokens = 0;}
     public int getLvlUpTokenAmnt(){return mLevelUpTokens;}
 
+    public void setLevelUpTokens(int mLevelUpTokens) {
+        this.mLevelUpTokens = mLevelUpTokens;
+    }
+
     public int getExp(){return mExp;}
+    public void setExp(int exp){
+        mExp = exp;
+    }
 
     //returns true if a level up took place
     public boolean addExp(int exp){
