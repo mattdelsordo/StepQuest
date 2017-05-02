@@ -21,6 +21,7 @@ import java.util.ArrayList;
 
 import project3.csc214.stepquest.R;
 import project3.csc214.stepquest.data.EventList;
+import project3.csc214.stepquest.data.Saver;
 import project3.csc214.stepquest.data.WeaponList;
 import project3.csc214.stepquest.model.*;
 import project3.csc214.stepquest.model.Character;
@@ -94,8 +95,11 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
     @Override
     protected void onPause() {
         super.onPause();
+        //save everything
+        Saver.saveAll(this);
+
         EventQueue.getInstance(getApplicationContext()).unbindToastListener();
-        ActiveCharacter.getInstance(this).unbindExpListener();
+        ActiveCharacter.getInstance(this).unbindLevelUpListener();
     }
 
     @Override

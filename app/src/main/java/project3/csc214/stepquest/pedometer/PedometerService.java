@@ -18,6 +18,8 @@ import android.util.Log;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import project3.csc214.stepquest.data.Saver;
+import project3.csc214.stepquest.model.ActiveCharacter;
 import project3.csc214.stepquest.model.EventQueue;
 
 
@@ -29,10 +31,15 @@ public class PedometerService extends Service implements SensorEventListener{
     private static final String TAG = "PedometerService";
     private static final int RC_REMINDER = 2;
 
+    //interval in between each save
+    private static final int SAVE_INTERVAL = 300000; //five minutes
+
     private SensorManager mManager;
     private Sensor mStepSensor;
-
     private EventQueue mEventQueue;
+
+    private Handler mSaveHandler;
+    private Runnable mSaveTimer;
 
     public class LocalBinder extends Binder{
         public PedometerService getService(){
@@ -59,6 +66,18 @@ public class PedometerService extends Service implements SensorEventListener{
         mManager.registerListener(this, mStepSensor, SensorManager.SENSOR_DELAY_FASTEST);
 
         simulateSteps();
+
+
+        //set up save timer
+        mSaveHandler = new Handler();
+        mSaveTimer = new Runnable() {
+            @Override
+            public void run() {
+                Saver.saveAll(PedometerService.this);
+                mSaveHandler.postDelayed(this, SAVE_INTERVAL);
+            }
+        };
+        mSaveHandler.postDelayed(mSaveTimer, SAVE_INTERVAL);
     }
 
     //recieves interactions from clients
@@ -95,5 +114,12 @@ public class PedometerService extends Service implements SensorEventListener{
             }
         }, delay);
 
+    }
+
+    //make sure to save all
+    @Override
+    public void onDestroy() {
+        Saver.saveAll(this);
+        super.onDestroy();
     }
 }

@@ -100,6 +100,7 @@ public class EventQueue {
                 if(fundReward != 0) mToastListener.makeToast("You recieved " + fundReward + " gold!", Toast.LENGTH_SHORT);
                 if(weaponReward != null) mToastListener.makeToast("You recieved a " + weaponReward.getName() + "!!", Toast.LENGTH_SHORT);
             }
+            Log.i(TAG, "Task complete +" + expGain);
 
             //reset progress
             mProgress -= currentEvent.getDuration();
@@ -114,7 +115,7 @@ public class EventQueue {
     }
 
     private int oneStepValue(){
-        int step = 10;
+        int step = 1;
         if(ActiveCharacter.getInstance(mAppContext).getExpModifier() > 0) step *= ActiveCharacter.getInstance(mAppContext).getExpModifier();
         return step;
     }
@@ -149,16 +150,21 @@ public class EventQueue {
     }
 
     private void load(){
+        Log.i(TAG, "Loading event queue...");
         mQueue.clear();
 
         QuestCursorWrapper wrapper = queryEventQueue(null, null);
         try{
-            wrapper.moveToFirst();
-            QuestCursorWrapper.EventBundle bundle = wrapper.getEvent();
-            Event e = bundle.event;
-            String weapon = bundle.weapon;
-            if(weapon.length() > 0) e.setItemReward(WeaponList.getInstance(mAppContext).getWeaponById(weapon));
-            mProgress = bundle.progress;
+            if(wrapper.getCount() > 0){
+                wrapper.moveToFirst();
+                QuestCursorWrapper.EventBundle bundle = wrapper.getEvent();
+                Event e = bundle.event;
+                String weapon = bundle.weapon;
+                if(weapon.length() > 0) e.setItemReward(WeaponList.getInstance(mAppContext).getWeaponById(weapon));
+                Log.i(TAG, "Loading event " + e.getDescription());
+                mQueue.add(e);
+                mProgress = bundle.progress;
+            }
         }finally {
             wrapper.close();
         }
@@ -171,8 +177,7 @@ public class EventQueue {
         values.put(QuestDbSchema.EventQueueTable.Params.DURATION, event.getDuration());
         values.put(QuestDbSchema.EventQueueTable.Params.GOLD, event.getGoldReward());
 
-        String id = event.getItemReward().getId();
-        if(id.length() > 0) values.put(QuestDbSchema.EventQueueTable.Params.WEAPON_ID, id);
+        if(event.getItemReward() != null) values.put(QuestDbSchema.EventQueueTable.Params.WEAPON_ID, event.getItemReward().getId());
         else values.put(QuestDbSchema.EventQueueTable.Params.WEAPON_ID, "");
 
         values.put(QuestDbSchema.EventQueueTable.Params.PROGRESS, mProgress);
@@ -182,8 +187,11 @@ public class EventQueue {
 
     //TODO: again, might want to put this in an asynctask
     public void save(){
+        Log.i(TAG, "Saving EventQueue");
         mDatabase.delete(QuestDbSchema.EventQueueTable.NAME, null, null);
         for(int i = 0; i < mQueue.size(); i++){
+            Event e = mQueue.get(i);
+            Log.i(TAG, "Saving " + e.getDescription() + " at position " + i);
             mDatabase.insert(QuestDbSchema.EventQueueTable.NAME, null, getEventContentValues(mQueue.get(i), i));
         }
     }

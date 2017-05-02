@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import project3.csc214.stepquest.R;
+import project3.csc214.stepquest.data.Saver;
 import project3.csc214.stepquest.data.WeaponList;
 import project3.csc214.stepquest.model.ActiveCharacter;
 import project3.csc214.stepquest.model.Character;
@@ -53,8 +54,7 @@ public class LoadingActivity extends AppCompatActivity {
             EventQueue.getInstance(this).addEvents(Dungeon.generateBackstory(this));
 
             //save everything
-            ActiveCharacter.getInstance(this).save();
-            EventQueue.getInstance(this).save();
+            Saver.saveAll(this);
 
             //start main activity
             startActivityForResult(new Intent(this, MainActivity.class), MainActivity.RC);

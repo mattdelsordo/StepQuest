@@ -180,10 +180,15 @@ public class ActiveCharacter{
         //get character and weapon
         QuestCursorWrapper charWrapper = queryCharacters(null, null);
         try{
-            charWrapper.moveToFirst();
-            QuestCursorWrapper.CharacterBundle bundle = charWrapper.getCharacter();
-            setActiveCharacter(bundle.mCharacter);
-            setEquippedWeapon(WeaponList.getInstance(mAppContext).getWeaponById(bundle.mWeaponId));
+            if(charWrapper.getCount() == 1){
+                charWrapper.moveToFirst();
+                QuestCursorWrapper.CharacterBundle bundle = charWrapper.getCharacter();
+                setActiveCharacter(bundle.mCharacter);
+                setEquippedWeapon(WeaponList.getInstance(mAppContext).getWeaponById(bundle.mWeaponId));
+            }else if(charWrapper.getCount() > 1){
+                Log.i(TAG, "ERROR: there's two characters in the database??");
+            }
+
         }finally{
             charWrapper.close();
         }
@@ -191,13 +196,15 @@ public class ActiveCharacter{
         //get inventory
         QuestCursorWrapper invWrapper = queryInventory(null, null);
         try{
-            invWrapper.moveToFirst();
-            while(invWrapper.isAfterLast() == false){
-                QuestCursorWrapper.WeaponBundle bundle = invWrapper.getWeapon();
-                Weapon w = WeaponList.getInstance(mAppContext).getWeaponById(bundle.weapon_id);
-                mWeaponSet.put(w, bundle.quantity);
+            if(invWrapper.getCount() > 0){
+                invWrapper.moveToFirst();
+                while(invWrapper.isAfterLast() == false){
+                    QuestCursorWrapper.WeaponBundle bundle = invWrapper.getWeapon();
+                    Weapon w = WeaponList.getInstance(mAppContext).getWeaponById(bundle.weapon_id);
+                    mWeaponSet.put(w, bundle.quantity);
 
-                invWrapper.moveToNext();
+                    invWrapper.moveToNext();
+                }
             }
         }finally{
             invWrapper.close();
@@ -222,7 +229,9 @@ public class ActiveCharacter{
         values.put(QuestDbSchema.CharacterTable.Params.GOLD, getActiveCharacter().getFunds());
         values.put(QuestDbSchema.CharacterTable.Params.EXP, getActiveCharacter().getExp());
         values.put(QuestDbSchema.CharacterTable.Params.LVL_TOKENS, getActiveCharacter().getLvlUpTokenAmnt());
-        values.put(QuestDbSchema.CharacterTable.Params.WEAPON_ID, mEquippedWeapon.getId());
+
+        if(mEquippedWeapon != null) values.put(QuestDbSchema.CharacterTable.Params.WEAPON_ID, mEquippedWeapon.getId());
+        else values.put(QuestDbSchema.CharacterTable.Params.WEAPON_ID, "");
 
         return values;
     }

@@ -156,6 +156,7 @@ public class WeaponList {
     //returns a weapon given an id
     public Weapon getWeaponById(String id){
         Log.i(TAG, "Searching for " + id);
+        if(id.equals("")) return null;
         for(LinkedHashMap<String, Weapon> map : mListList){
             Weapon w = map.get(id);
             if(w != null){
