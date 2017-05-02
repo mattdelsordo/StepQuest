@@ -15,6 +15,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -191,4 +193,34 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
         finish();
     }
 
+    //handle menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        boolean handled;
+        switch(item.getItemId()){
+            case R.id.menu_charinfo: handled = true;
+                Log.i(TAG, "Character");
+                break;
+            case R.id.menu_inventory: handled = true;
+                Log.i(TAG, "Inventory");
+                break;
+            case R.id.menu_save: handled = true;
+                Log.i(TAG, "Save");
+                break;
+            case R.id.menu_settings: handled = true;
+                Log.i(TAG, "Settings");
+                break;
+            case R.id.menu_misc: handled = true;
+                Log.i(TAG, "Misc");
+                break;
+            default: handled = super.onOptionsItemSelected(item);
+        }
+        return handled;
+    }
 }

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_charinfo"
+        android:icon="@drawable/ic_character"
+        app:showAsAction="always|withText"
+        android:title="@string/_character" />
+
+    <item
+        android:id="@+id/menu_inventory"
+        android:icon="@drawable/ic_inventory"
+        app:showAsAction="always|withText"
+        android:title="@string/_inventory" />
+
+    <item
+        android:id="@+id/menu_save"
+        android:icon="@drawable/ic_floppy"
+        app:showAsAction="always|withText"
+        android:title="@string/save" />
+
+    <item
+        android:id="@+id/menu_settings"
+        android:icon="@drawable/ic_settings"
+        app:showAsAction="withText"
+        android:title="@string/settings" />
+
+    <item
+        android:id="@+id/menu_misc"
+        android:icon="@drawable/ic_misc"
+        app:showAsAction="withText"
+        android:title="@string/miscellaneous"/>
+
+</menu>
