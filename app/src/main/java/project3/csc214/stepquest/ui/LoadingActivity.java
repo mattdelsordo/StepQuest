@@ -1,6 +1,8 @@
 package project3.csc214.stepquest.ui;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -46,29 +48,6 @@ public class LoadingActivity extends AppCompatActivity {
 
             Character newGuy = new Character(name, bigVocation, bigRace, stats);
             ActiveCharacter.getInstance().setActiveCharacter(newGuy);
-
-//            Weapon firstWeapon;
-//            switch(newGuy.getVocation().getGoodWeapon()){
-//                case(Weapon.BLADE): firstWeapon = WeaponList.getInstance(getApplicationContext()).getWeaponById("wood_sword");
-//                    break;
-//                case(Weapon.BOW): firstWeapon = WeaponList.getInstance(getApplicationContext()).getWeaponById("wood_bow");
-//                    break;
-//                case(Weapon.STAFF): firstWeapon = WeaponList.getInstance(getApplicationContext()).getWeaponById("wood_staff");
-//                    break;
-//                case(Weapon.BLUNT): firstWeapon = WeaponList.getInstance(getApplicationContext()).getWeaponById("wood_club");
-//                    break;
-//                default: firstWeapon = new Weapon();
-//            }
-//            ActiveCharacter.getInstance().addWeaponToInventory(firstWeapon);
-
-            //TODO: remove this!!
-            //for debugging, populate with tons of weapons
-//            ActiveCharacter a = ActiveCharacter.getInstance();
-//            for(int i = 0; i < 20; i++){
-//                Weapon w = WeaponList.getInstance(this).getRandomLevelledWeapon(a.getActiveCharacter().getLevel());
-//                Log.i(TAG, "Selected " + w);
-//                a.addWeaponToInventory(w);
-//            }
 
             EventQueue.getInstance(this).addEvents(Dungeon.generateBackstory(this));
 
