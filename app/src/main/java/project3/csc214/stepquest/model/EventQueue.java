@@ -157,13 +157,18 @@ public class EventQueue {
         try{
             if(wrapper.getCount() > 0){
                 wrapper.moveToFirst();
-                QuestCursorWrapper.EventBundle bundle = wrapper.getEvent();
-                Event e = bundle.event;
-                String weapon = bundle.weapon;
-                if(weapon.length() > 0) e.setItemReward(WeaponList.getInstance(mAppContext).getWeaponById(weapon));
-                Log.i(TAG, "Loading event " + e.getDescription());
-                mQueue.add(e);
-                mProgress = bundle.progress;
+                while(wrapper.isAfterLast() == false){
+                    QuestCursorWrapper.EventBundle bundle = wrapper.getEvent();
+                    Event e = bundle.event;
+                    String weapon = bundle.weapon;
+                    if(weapon.length() > 0) e.setItemReward(WeaponList.getInstance(mAppContext).getWeaponById(weapon));
+                    Log.i(TAG, "Loading event " + e.getDescription());
+                    mQueue.add(e);
+                    mProgress = bundle.progress;
+
+                    wrapper.moveToNext();
+                }
+
             }
         }finally {
             wrapper.close();
