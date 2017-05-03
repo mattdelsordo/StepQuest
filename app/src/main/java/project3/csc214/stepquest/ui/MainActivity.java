@@ -4,9 +4,11 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.media.MediaPlayer;
 import android.os.IBinder;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -34,16 +36,14 @@ import project3.csc214.stepquest.pedometer.PedometerService;
  * This Activity controls the rest of the app
  */
 
-public class MainActivity extends AppCompatActivity implements EventQueue.MakeToastListener, ActiveCharacter.LevelUpListener{
+public class MainActivity extends AppCompatActivity implements EventQueue.MakeToastListener, ActiveCharacter.LevelUpListener, SettingsFragment.SoundSettingsListener{
     private static final String TAG = "MainActivity";
     public static final int RC = 4;
 
-    private ViewPager mViewPager;
     private ProgressFragment mProgress;
-//    private ScreenPagerAdapter mAdapter;
     private MusicPlayerFragment mMusic;
-
     private EffectPlayer mEffectPlayer;
+    private boolean mPlayMusic, mPlayEffects;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +72,11 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
         if(getSupportFragmentManager().findFragmentById(R.id.frame_main_gamepane) == null){
             getSupportFragmentManager().beginTransaction().add(R.id.frame_main_gamepane, new CharacterInfoFragment()).commit();
         }
+
+        //retrieve sound settings
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        mPlayMusic = prefs.getBoolean(SettingsFragment.PREF_MUSIC, true);
+        mPlayEffects = prefs.getBoolean(SettingsFragment.PREF_EFFECTS, true);
 
         //connect to pedometer service
         doBindService();
@@ -149,14 +154,14 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
 
     @Override
     public void playJingle() {
-        mEffectPlayer.play(EffectPlayer.TASK_DONE);
+        if(mPlayEffects)mEffectPlayer.play(EffectPlayer.TASK_DONE);
     }
 
     @Override
     public void doLevelUp() {
         //do check to avoid popping up tons of things at once
         if(!LevelUpActivity.sIsRunning){
-            mEffectPlayer.play(EffectPlayer.LEVEL_UP);
+            if(mPlayEffects)mEffectPlayer.play(EffectPlayer.LEVEL_UP);
             startActivity(new Intent(MainActivity.this, LevelUpActivity.class));
         }
     }
@@ -199,5 +204,17 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
             default: handled = super.onOptionsItemSelected(item);
         }
         return handled;
+    }
+
+    @Override
+    public void toggleEffects(boolean shouldPlay) {
+        mPlayEffects = shouldPlay;
+    }
+
+    @Override
+    public void toggleMusic(boolean shouldPlay) {
+        mPlayMusic = shouldPlay;
+        if(mPlayMusic) mMusic.playMusic();
+        else mMusic.stopMusic();
     }
 }

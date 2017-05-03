@@ -2,12 +2,14 @@ package project3.csc214.stepquest.ui;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.rtp.AudioStream;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -31,6 +33,7 @@ public class MusicPlayerFragment extends Fragment {
     private MediaPlayer mPlayer;
     private AssetManager mAssets;
     private String mTrackPath;
+    private boolean isPlaying;
 
 
     public MusicPlayerFragment() {
@@ -64,6 +67,9 @@ public class MusicPlayerFragment extends Fragment {
                 mPlayer.setLooping(true); //loop the track
             }
         });
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        isPlaying = prefs.getBoolean(SettingsFragment.PREF_MUSIC, true);
     }
 
     @Override
@@ -106,12 +112,22 @@ public class MusicPlayerFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-        if(mPlayer.isPlaying())mPlayer.stop();
+        if(mPlayer.isPlaying() && isPlaying)mPlayer.stop();
     }
 
     @Override
     public void onResume() {
         super.onResume();
         if(!mPlayer.isPlaying()) play(mTrackPath);
+    }
+
+    public void stopMusic(){
+        isPlaying = false;
+        mPlayer.stop();
+    }
+
+    public void playMusic(){
+        isPlaying = true;
+        play(mTrackPath);
     }
 }

@@ -55,6 +55,11 @@ public class LoadingActivity extends AppCompatActivity {
 
             //save everything
             Saver.saveAll(this);
+            //initialize sound settings
+            //actually I dont think I have to do this cause the default is true
+//            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+//            prefs.edit().putBoolean(SettingsFragment.PREF_MUSIC, true).apply();
+//            prefs.edit().putBoolean(SettingsFragment.PREF_EFFECTS, true).apply();
 
             //start main activity
             startActivityForResult(new Intent(this, MainActivity.class), MainActivity.RC);
