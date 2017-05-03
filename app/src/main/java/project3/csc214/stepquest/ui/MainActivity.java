@@ -5,15 +5,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
-import android.content.res.AssetManager;
-import android.media.MediaPlayer;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,22 +19,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-
 import project3.csc214.stepquest.R;
-import project3.csc214.stepquest.data.EventList;
 import project3.csc214.stepquest.data.Saver;
-import project3.csc214.stepquest.data.WeaponList;
 import project3.csc214.stepquest.model.*;
-import project3.csc214.stepquest.model.Character;
+import project3.csc214.stepquest.pedometer.NoPedometerDialog;
 import project3.csc214.stepquest.pedometer.PedometerService;
 
 /**
  * This Activity controls the rest of the app
  */
 
-public class MainActivity extends AppCompatActivity implements EventQueue.MakeToastListener, ActiveCharacter.LevelUpListener, SettingsFragment.SoundSettingsListener{
+public class MainActivity extends AppCompatActivity implements EventQueue.MakeToastListener, ActiveCharacter.LevelUpListener, SettingsFragment.SettingsListener {
     private static final String TAG = "MainActivity";
+    private static final String PREF_HAS_SENSOR = "pref_has_sensor";
     public static final int RC = 4;
 
     private ProgressFragment mProgress;
@@ -80,6 +74,20 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
 
         //connect to pedometer service
         doBindService();
+
+        //do check for pedometer
+        //SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean hasSensor = prefs.getBoolean(PREF_HAS_SENSOR, false);
+        Log.i(TAG, "hasSensor=" + hasSensor);
+        if(hasSensor == false){
+            SensorManager manager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
+            Sensor pedometer = manager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
+            Log.i(TAG, "pedometer=" + pedometer);
+            if(pedometer == null){
+                prefs.edit().putBoolean(PREF_HAS_SENSOR, false).apply();
+                new NoPedometerDialog().show(getSupportFragmentManager(), NoPedometerDialog.TAG);
+            }
+        }
     }
 
     //replaces the fragment in the main frame with another
@@ -216,5 +224,12 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
         mPlayMusic = shouldPlay;
         if(mPlayMusic) mMusic.playMusic();
         else mMusic.stopMusic();
+    }
+
+    @Override
+    public void quitDelete() {
+        stopService(new Intent(MainActivity.this, PedometerService.class));
+        setResult(RESULT_CANCELED);
+        finish();
     }
 }

@@ -1,8 +1,12 @@
 package project3.csc214.stepquest.ui;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
 import android.preference.PreferenceManager;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,9 +21,11 @@ import project3.csc214.stepquest.model.EventQueue;
 import project3.csc214.stepquest.model.Race;
 import project3.csc214.stepquest.model.Vocation;
 import project3.csc214.stepquest.model.Weapon;
+import project3.csc214.stepquest.pedometer.NoPedometerDialog;
 
 public class LoadingActivity extends AppCompatActivity {
     public static final String TAG = "LoadingActivity";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +70,10 @@ public class LoadingActivity extends AppCompatActivity {
             //start main activity
             startActivityForResult(new Intent(this, MainActivity.class), MainActivity.RC);
 
+        }
+        else if(requestCode == MainActivity.RC && resultCode == RESULT_CANCELED){
+            Saver.deleteAll(this);
+            finish();
         }
         else finish();
     }

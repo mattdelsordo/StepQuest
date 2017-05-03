@@ -120,6 +120,7 @@ public class PedometerService extends Service implements SensorEventListener{
     @Override
     public void onDestroy() {
         Saver.saveAll(this);
+        mSaveHandler.removeCallbacksAndMessages(null);
         super.onDestroy();
     }
 }

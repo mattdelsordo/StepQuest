@@ -28,6 +28,13 @@
             android:thumbTextPadding="10dp"
             android:textSize="16sp"
             android:id="@+id/switch_settings_effects"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/delete_character"
+            android:layout_marginTop="30dp"
+            android:id="@+id/button_settings_deleteCharacter"/>
     </LinearLayout>
 
     <LinearLayout
@@ -78,6 +85,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/zac_wilkins"
                 android:id="@+id/textview_settings_musicattribute"/>
+
+
         </LinearLayout>
 
         <LinearLayout

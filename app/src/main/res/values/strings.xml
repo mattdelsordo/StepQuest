@@ -79,4 +79,11 @@
     <string name="zac_wilkins">Zac Wilkins</string>
     <string name="sound_effects_by">Sound effects by </string>
     <string name="littlerobotsoundfactory">LittleRobotSoundFactory</string>
+    <string name="misc_text">This activity doesn\'t do anything, I just couldn\'t figure out an appropriate place to implement up-navigation so here\'s an activity that has it.</string>
+    <string name="no_pedometer_message">Usually this dialog would inform a user that their phone has no pedometer and therefore this app won\'t work for them. Emulators don\'t have pedometers though, so this will pop up every time. I\'ve set the pedometer service to just \"take a step\" each second in order to fake it, but it should work if there was a pedometer.</string>
+    <string name="delete_character_confirmation">Clicking yes will delete your character data and then close the game. Are you sure?</string>
+    <string name="confirm_delete">Yes, this is what I want</string>
+    <string name="refuse_delete">No way</string>
+    <string name="no_pedometer_confirm">Darn</string>
+    <string name="delete_character">Delete Character</string>
 </resources>
