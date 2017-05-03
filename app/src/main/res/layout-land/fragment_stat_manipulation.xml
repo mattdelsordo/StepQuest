@@ -13,7 +13,7 @@
         android:id="@+id/button_statmanip_decrement"
         android:enabled="false"
         android:layout_weight="1"
-        android:layout_marginStart="10dp"/>
+        android:layout_marginStart="20dp"/>
 
     <TextView
         android:layout_width="0dp"
@@ -30,6 +30,6 @@
         android:text="@string/right"
         android:id="@+id/button_statmanip_increment"
         android:layout_weight="1"
-        android:layout_marginEnd="10dp"/>
+        android:layout_marginEnd="20dp"/>
 
 </LinearLayout>

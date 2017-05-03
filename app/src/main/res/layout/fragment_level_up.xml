@@ -8,13 +8,14 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_weight="4"
+        android:layout_weight="1"
         android:orientation="horizontal"
         android:gravity="center"
         android:layout_gravity="center">
 
         <FrameLayout
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:id="@+id/frame_levelup_character"
             android:layout_margin="4dp">
@@ -38,7 +39,9 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="6dp"
+            android:layout_weight="0"
             android:orientation="vertical"
             android:gravity="center">
 
@@ -67,32 +70,32 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_weight="0"
         android:id="@+id/frame_levelup_str"/>
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_weight="0"
         android:id="@+id/frame_levelup_dex"/>
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_weight="0"
         android:id="@+id/frame_levelup_con"/>
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_weight="0"
         android:id="@+id/frame_levelup_int"/>
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_weight="0"
         android:id="@+id/frame_levelup_wis"/>
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_weight="0"
         android:id="@+id/frame_levelup_chr"/>
 
     <Button
@@ -101,7 +104,8 @@
         android:text="@string/commit"
         android:id="@+id/button_levelup_commit"
         android:layout_weight="0"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:layout_margin="10dp"/>
 
 
 </LinearLayout>
