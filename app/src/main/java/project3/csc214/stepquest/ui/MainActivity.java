@@ -96,6 +96,7 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
     private void swapFragments(Fragment frag){
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         //TODO: add transaction animations with XML animation definitions
+        ft.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right);
         ft.replace(R.id.frame_main_gamepane, frag).commit();
         Log.i(TAG, "Game fragment swapped.");
     }

@@ -59,8 +59,11 @@ public class SettingsFragment extends Fragment {
         musicAttribute.setText(Html.fromHtml("<a href=\"https://www.freesound.org/people/LittleRobotSoundFactory/\">LittleRobotSoundFactory</a>"));
         musicAttribute.setMovementMethod(LinkMovementMethod.getInstance());
 
+        SharedPreferences prefsGet = PreferenceManager.getDefaultSharedPreferences(getContext());
+
         //handle switch behavior
         mMusicSwitch = (Switch)view.findViewById(R.id.switch_settings_music);
+        mMusicSwitch.setChecked(prefsGet.getBoolean(PREF_MUSIC, true));
         mMusicSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -72,6 +75,7 @@ public class SettingsFragment extends Fragment {
         });
 
         mEffectSwitch = (Switch)view.findViewById(R.id.switch_settings_effects);
+        mEffectSwitch.setChecked(prefsGet.getBoolean(PREF_EFFECTS, true));
         mEffectSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {

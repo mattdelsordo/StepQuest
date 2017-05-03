@@ -5,7 +5,11 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/colorSecondaryDark</item>
+        <item name="colorButtonNormal">@color/colorSecondary</item>
+        <item name="colorSwitchThumbNormal">@color/colorSecondaryLight</item>
+        <item name="android:progressBarStyle">@style/ProgressBarStyle</item>
+
     </style>
 
     <style name="TextViewStatDisplay" parent="AppTheme">
@@ -13,7 +17,12 @@
     </style>
     
     <style name="ProgressBarStyle" parent="Widget.AppCompat.ProgressBar.Horizontal">
-        
+        <item name="android:theme">@style/Progress</item>
     </style>
+    <style name="Progress" parent="Theme.AppCompat.Light">
+        <item name="colorAccent">@color/colorSecondary</item>
+        <item name="android:progressBackgroundTint">@color/colorSecondaryLight</item>
+    </style>
+
 
 </resources>

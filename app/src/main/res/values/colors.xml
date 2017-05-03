@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <!-- Theme colors -->
+    <color name="colorPrimary">#607d8c</color>
+    <color name="colorPrimaryDark">#34515f</color>
+    <color name="colorPrimaryLight">#8eacbc</color>
+    <color name="colorSecondary">#f44336</color>
+    <color name="colorSecondaryDark">#ba000d</color>
+    <color name="colorSecondaryLight">#ff7961</color>
+    <color name="colorBackground">#eceff1</color>
 
     <color name="warrior">#990000</color>
     <color name="ranger">#023c19</color>
