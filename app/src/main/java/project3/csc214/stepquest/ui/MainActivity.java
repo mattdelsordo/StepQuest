@@ -44,6 +44,8 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        setTitle(getString(R.string.app_name));
+
         //start up effect player
         mEffectPlayer = new EffectPlayer(this);
 

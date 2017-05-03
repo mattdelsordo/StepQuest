@@ -21,6 +21,8 @@ public class CharacterCreationActivity extends AppCompatActivity implements Char
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_character_creation);
 
+        setTitle(getString(R.string.create_your_hero));
+
         //put fragment in frame
         fragment = (CharacterCreationFragment)getSupportFragmentManager().findFragmentById(R.id.frame_charactercreation);
         if(fragment == null){

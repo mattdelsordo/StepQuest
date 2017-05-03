@@ -86,4 +86,5 @@
     <string name="refuse_delete">No way</string>
     <string name="no_pedometer_confirm">Darn</string>
     <string name="delete_character">Delete Character</string>
+    <string name="you_levelled_up">You levelled up!</string>
 </resources>

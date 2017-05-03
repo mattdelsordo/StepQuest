@@ -14,6 +14,8 @@ public class LevelUpActivity extends AppCompatActivity implements LevelUpFragmen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level_up);
 
+        setTitle(getString(R.string.you_levelled_up_allocate_your_stat_points));
+
         //put fragment in thing
         LevelUpFragment frag = (LevelUpFragment)getSupportFragmentManager().findFragmentById(R.id.frame_levelupfragment);
         if(frag == null){

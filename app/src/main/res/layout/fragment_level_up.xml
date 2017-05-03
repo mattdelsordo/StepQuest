@@ -63,16 +63,6 @@
         </LinearLayout>
     </LinearLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textview_levelup_title"
-        android:text="@string/you_levelled_up_allocate_your_stat_points"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:textSize="19dp"
-        android:textStyle="bold"
-        android:padding="8dp"/>
 
     <FrameLayout
         android:layout_width="match_parent"
