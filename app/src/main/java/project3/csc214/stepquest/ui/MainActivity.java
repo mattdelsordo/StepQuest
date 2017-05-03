@@ -10,6 +10,7 @@ import android.os.IBinder;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -39,23 +40,18 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
 
     private ViewPager mViewPager;
     private ProgressFragment mProgress;
-    private ScreenPagerAdapter mAdapter;
+//    private ScreenPagerAdapter mAdapter;
     private MusicPlayerFragment mMusic;
 
-    //requisite media player components
-    private MediaPlayer mPlayer;
-    private AssetManager mAssets;
+    private EffectPlayer mEffectPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //set adapter to view pager
-        mViewPager = (ViewPager)findViewById(R.id.viewpager_main);
-        mAdapter = new ScreenPagerAdapter(getSupportFragmentManager());
-        //TODO: this keeps causing the program to crash in landscape mode, I might just get rid of the viewpager all together
-        mViewPager.setAdapter(mAdapter);
+        //start up effect player
+        mEffectPlayer = new EffectPlayer(this);
 
         //put progress bar in frame
         mProgress = (ProgressFragment)getSupportFragmentManager().findFragmentById(R.id.frame_main_progress);
@@ -72,16 +68,21 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
             getSupportFragmentManager().beginTransaction().add(R.id.frame_main_musicplayer, mMusic).commit();
         }
 
-        //load list of events
-        //EventList.getInstance(getApplicationContext());
+        //put fragment in main pane
+        if(getSupportFragmentManager().findFragmentById(R.id.frame_main_gamepane) == null){
+            getSupportFragmentManager().beginTransaction().add(R.id.frame_main_gamepane, new CharacterInfoFragment()).commit();
+        }
 
-
-//        /** Do check that there's a character in the database, otherwise, make a new one.*/
-        //This happens in the loading activity now
-//        Character activeCharacter = ActiveCharacter.getInstance().getActiveCharacter();
-//        if(activeCharacter == null) startActivityForResult(CharacterCreationActivity.newInstance(this), CharacterCreationActivity.REQUEST_CHARACTER_INFO);
-//        else doBindService();
+        //connect to pedometer service
         doBindService();
+    }
+
+    //replaces the fragment in the main frame with another
+    private void swapFragments(Fragment frag){
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        //TODO: add transaction animations with XML animation definitions
+        ft.replace(R.id.frame_main_gamepane, frag).commit();
+        Log.i(TAG, "Game fragment swapped.");
     }
 
     @Override
@@ -107,12 +108,7 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
-        //doUnbindService(); //unbind service so it doesnt throw that error
-
-        //this might stop the service when changing orientations but it already crashes during that so thats an issue for another day
-        //actually it might not be an issue cause itll get just started up again if this activity is recreated
-        //stopService(new Intent(this, PedometerService.class));
+        mEffectPlayer.release();
     }
 
     //Starts up pedometer service, somehow. I'm not entirely sure what does what but it seems to work
@@ -152,38 +148,16 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
     }
 
     @Override
-    public void doLevelUp() {
-        //do check to avoid popping up tons of things at once
-        if(!LevelUpActivity.sIsRunning) startActivity(new Intent(MainActivity.this, LevelUpActivity.class));
+    public void playJingle() {
+        mEffectPlayer.play(EffectPlayer.TASK_DONE);
     }
 
-    //adapter for the viewpager
-    //TODO: might get rid of this
-    public class ScreenPagerAdapter extends FragmentPagerAdapter{
-        private ArrayList<Fragment> mFragments;
-
-        public ScreenPagerAdapter(FragmentManager fm) {
-            super(fm);
-            //TODO: the way this is implemented might need heavily changed
-            mFragments = new ArrayList<>();
-            mFragments.add(new CharacterInfoFragment());
-            mFragments.add(new InventoryFragment());
-        }
-
-
-        @Override
-        public Fragment getItem(int position) {
-            return mFragments.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return mFragments.size();
-        }
-
-        public void refreshCharInfo(Character c){
-            CharacterInfoFragment info = (CharacterInfoFragment) mFragments.get(0);
-            info.updateUI(c);
+    @Override
+    public void doLevelUp() {
+        //do check to avoid popping up tons of things at once
+        if(!LevelUpActivity.sIsRunning){
+            mEffectPlayer.play(EffectPlayer.LEVEL_UP);
+            startActivity(new Intent(MainActivity.this, LevelUpActivity.class));
         }
     }
 
@@ -203,21 +177,24 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         boolean handled;
+
+        //get current fragment to check what sort of thing it is
+        Fragment current = getSupportFragmentManager().findFragmentById(R.id.frame_main_gamepane);
         switch(item.getItemId()){
             case R.id.menu_charinfo: handled = true;
-                Log.i(TAG, "Character");
+                if(!(current instanceof CharacterInfoFragment)) swapFragments(new CharacterInfoFragment());
                 break;
             case R.id.menu_inventory: handled = true;
-                Log.i(TAG, "Inventory");
+                if(!(current instanceof InventoryFragment)) swapFragments(new InventoryFragment());
                 break;
             case R.id.menu_save: handled = true;
-                Log.i(TAG, "Save");
+                Saver.saveAll(this);
                 break;
             case R.id.menu_settings: handled = true;
-                Log.i(TAG, "Settings");
+                if(!(current instanceof SettingsFragment)) swapFragments(new SettingsFragment());
                 break;
             case R.id.menu_misc: handled = true;
-                Log.i(TAG, "Misc");
+                startActivity(new Intent(MainActivity.this, MiscActivity.class));
                 break;
             default: handled = super.onOptionsItemSelected(item);
         }

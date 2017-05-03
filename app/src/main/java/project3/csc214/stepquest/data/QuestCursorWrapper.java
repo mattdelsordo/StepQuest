@@ -70,7 +70,7 @@ public class QuestCursorWrapper extends CursorWrapper{
         int duration = getInt(getColumnIndex(QuestDbSchema.EventQueueTable.Params.DURATION));
         int gold = getInt(getColumnIndex(QuestDbSchema.EventQueueTable.Params.GOLD));
         String weapon = getString(getColumnIndex(QuestDbSchema.EventQueueTable.Params.WEAPON_ID));
-        int progress = getInt(getColumnIndex(QuestDbSchema.EventQueueTable.Params.PROGRESS));
+        double progress = getDouble(getColumnIndex(QuestDbSchema.EventQueueTable.Params.PROGRESS));
 
         Event event = new Event(desc, duration);
         if(gold > 0) event.setGoldReward(gold);
@@ -104,9 +104,9 @@ public class QuestCursorWrapper extends CursorWrapper{
         public int order;
         public Event event;
         public String weapon;
-        public int progress;
+        public double progress;
 
-        public EventBundle(int order, Event event, String weapon, int progress) {
+        public EventBundle(int order, Event event, String weapon, double progress) {
             this.order = order;
             this.event = event;
             this.weapon = weapon;

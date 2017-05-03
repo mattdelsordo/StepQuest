@@ -52,7 +52,7 @@ public class ProgressFragment extends Fragment implements EventQueue.EventUpdate
     public void onResume() {
         super.onResume();
         EventQueue queue = EventQueue.getInstance(getContext());
-        updateEvent(queue.getTopEvent(), queue.getProgress());
+        updateEvent(queue.getTopEvent(), (int)queue.getProgress());
     }
 
     //updates progress bar/description based on top event on the event queue

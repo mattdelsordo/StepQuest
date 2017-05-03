@@ -172,4 +172,15 @@ public class Weapon {
         return false;
     }
 
+    //returns the proper kind of drawable for this weapon
+    public int getDrawable(){
+        switch(getType()){
+            case BLADE: return R.drawable.ic_sword;
+            case BOW: return R.drawable.ic_bow;
+            case BLUNT: return R.drawable.ic_blunt;
+            case STAFF: return R.drawable.ic_staff;
+            default: return R.drawable.ic_misc;
+        }
+    }
+
 }

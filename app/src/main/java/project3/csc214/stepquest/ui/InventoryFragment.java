@@ -117,6 +117,7 @@ public class InventoryFragment extends Fragment implements ActiveCharacter.Funds
             double buff = mWeapon.calcBuff(ActiveCharacter.getInstance(getContext()).getActiveCharacter().getVocation());
             mBuff.setText((buff > 0.0 ? "+" : "") + buff + "%");
             mQuantity.setText("x" + ActiveCharacter.getInstance(getContext()).getWeaponQuantity(mWeapon));
+            mIcon.setImageResource(mWeapon.getDrawable());
 
             if(mWeapon.getId() == ActiveCharacter.getInstance(getContext()).getEquippedWeapon().getId()){
                 mView.findViewById(R.id.layout_weapon_background).setBackgroundColor(Color.rgb(255,215,0)); //should probably make this color a resource

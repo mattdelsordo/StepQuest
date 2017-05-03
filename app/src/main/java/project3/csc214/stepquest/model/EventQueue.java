@@ -27,7 +27,7 @@ public class EventQueue {
     public static EventQueue sEventQueue;
 
     private ArrayList<Event> mQueue; //queue of events
-    private int mProgress;
+    private double mProgress;
     private Context mAppContext;
     private SQLiteDatabase mDatabase;
 
@@ -39,6 +39,7 @@ public class EventQueue {
 
     public interface MakeToastListener{
         void makeToast(String text, int duration);
+        void playJingle();
     }
     private MakeToastListener mToastListener;
 
@@ -96,6 +97,7 @@ public class EventQueue {
 
             //notify player of event completion
             if(mToastListener != null){
+                mToastListener.playJingle();
                 mToastListener.makeToast("Task complete! +" + expGain + " exp!", Toast.LENGTH_SHORT);
                 if(fundReward != 0) mToastListener.makeToast("You recieved " + fundReward + " gold!", Toast.LENGTH_SHORT);
                 if(weaponReward != null) mToastListener.makeToast("You recieved a " + weaponReward.getName() + "!!", Toast.LENGTH_SHORT);
@@ -109,18 +111,18 @@ public class EventQueue {
         }
 
         //update the ui if the ui exists
-        if(mUpdateListener != null) mUpdateListener.updateEvent(getTopEvent(), mProgress);
+        if(mUpdateListener != null) mUpdateListener.updateEvent(getTopEvent(), (int)mProgress);
         //else make sure to call getTopEvent() anyway so that there is some event in the queue
         else getTopEvent();
     }
 
-    private int oneStepValue(){
-        int step = 1;
+    private double oneStepValue(){
+        double step = 1.0;
         if(ActiveCharacter.getInstance(mAppContext).getExpModifier() > 0) step *= ActiveCharacter.getInstance(mAppContext).getExpModifier();
         return step;
     }
 
-    public int getProgress() {
+    public double getProgress() {
         return mProgress;
     }
     public void setProgress(int mProgress) {
