@@ -88,4 +88,7 @@
     <string name="delete_character">Delete Character</string>
     <string name="you_levelled_up">You levelled up!</string>
     <string name="equipped_weapon_text">Equipped a weapon!</string>
+    <string name="photo">Take Photo</string>
+    <string name="take_video">Take Video</string>
+    <string name="camera_denied">Camera Permission Denied</string>
 </resources>

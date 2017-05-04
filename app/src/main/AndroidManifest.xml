@@ -2,6 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="project3.csc214.stepquest">
 
+    <uses-permission android:name="android.Manifest.permission.CAMERA" />
+    <uses-permission
+        android:name="android.Manifest.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="18" />
+    <uses-permission android:name="android.Manifest.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAPTURE_VIDEO_OUTPUT" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -25,8 +33,11 @@
             android:stopWithTask="true" />
 
         <activity android:name=".ui.LevelUpActivity" />
-        <activity android:name=".ui.MiscActivity"
-            android:parentActivityName=".ui.MainActivity"></activity>
+        <activity
+            android:name=".ui.MiscActivity"
+            android:parentActivityName=".ui.MainActivity" />
+        <activity android:name=".data.VideoActivity"></activity>
+        <activity android:name=".data.CameraActivity"></activity>
     </application>
 
 </manifest>

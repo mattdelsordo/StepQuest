@@ -6,13 +6,22 @@
     android:layout_height="match_parent"
     tools:context="project3.csc214.stepquest.ui.MiscActivity">
 
-    <TextView
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/misc_text"
-        android:layout_centerInParent="true"
-        android:gravity="center"
-        android:textSize="20sp"
-        android:padding="6dp"/>
+        android:layout_centerInParent="true">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/photo"
+            android:id="@+id/aaah_takePhoto"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/take_video"
+            android:id="@+id/aaah_takeVideo"/>
+    </LinearLayout>
+
 
 </RelativeLayout>

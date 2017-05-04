@@ -181,7 +181,7 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
 
     @Override
     public void onBackPressed() {
-        setResult(RESULT_CANCELED);
+        setResult(RESULT_OK);
         finish();
     }
 
