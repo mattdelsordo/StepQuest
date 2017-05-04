@@ -69,15 +69,15 @@ public class PedometerService extends Service implements SensorEventListener{
 
 
         //set up save timer
-        mSaveHandler = new Handler();
-        mSaveTimer = new Runnable() {
-            @Override
-            public void run() {
-                Saver.saveAll(PedometerService.this);
-                mSaveHandler.postDelayed(this, SAVE_INTERVAL);
-            }
-        };
-        mSaveHandler.postDelayed(mSaveTimer, SAVE_INTERVAL);
+//        mSaveHandler = new Handler();
+//        mSaveTimer = new Runnable() {
+//            @Override
+//            public void run() {
+//                Saver.saveAll(PedometerService.this);
+//                mSaveHandler.postDelayed(this, SAVE_INTERVAL);
+//            }
+//        };
+//        mSaveHandler.postDelayed(mSaveTimer, SAVE_INTERVAL);
     }
 
     //recieves interactions from clients
