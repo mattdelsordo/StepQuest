@@ -22,6 +22,7 @@ import project3.csc214.stepquest.model.Race;
 import project3.csc214.stepquest.model.Vocation;
 import project3.csc214.stepquest.model.Weapon;
 import project3.csc214.stepquest.pedometer.NoPedometerDialog;
+import project3.csc214.stepquest.pedometer.PedometerService;
 
 public class LoadingActivity extends AppCompatActivity {
     public static final String TAG = "LoadingActivity";
@@ -72,8 +73,12 @@ public class LoadingActivity extends AppCompatActivity {
 
         }
         else if(requestCode == MainActivity.RC && resultCode == RESULT_CANCELED){
+            stopService(new Intent(LoadingActivity.this, PedometerService.class));
+            Log.i(TAG, "Deleing data...");
             Saver.deleteAll(this);
-            finish();
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+            prefs.edit().clear().commit();
+            finishAndRemoveTask();
         }
         else finish();
     }

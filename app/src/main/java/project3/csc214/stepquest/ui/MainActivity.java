@@ -32,6 +32,8 @@ import project3.csc214.stepquest.pedometer.PedometerService;
 public class MainActivity extends AppCompatActivity implements EventQueue.MakeToastListener, ActiveCharacter.LevelUpListener, SettingsFragment.SettingsListener {
     private static final String TAG = "MainActivity";
     private static final String PREF_HAS_SENSOR = "pref_has_sensor";
+    private static final String CHECKED_SENSOR_THIS_RUN = "checked sensor this run";
+    private boolean doneSensorCheck;
     public static final int RC = 4;
 
     private ProgressFragment mProgress;
@@ -78,10 +80,10 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
         doBindService();
 
         //do check for pedometer
-        //SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        if(savedInstanceState != null) doneSensorCheck = savedInstanceState.getBoolean(CHECKED_SENSOR_THIS_RUN);
         boolean hasSensor = prefs.getBoolean(PREF_HAS_SENSOR, false);
         Log.i(TAG, "hasSensor=" + hasSensor);
-        if(hasSensor == false){
+        if(hasSensor == false && doneSensorCheck == false){
             SensorManager manager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
             Sensor pedometer = manager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
             Log.i(TAG, "pedometer=" + pedometer);
@@ -89,13 +91,13 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
                 prefs.edit().putBoolean(PREF_HAS_SENSOR, false).apply();
                 new NoPedometerDialog().show(getSupportFragmentManager(), NoPedometerDialog.TAG);
             }
+            doneSensorCheck = true;
         }
     }
 
     //replaces the fragment in the main frame with another
     private void swapFragments(Fragment frag){
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        //TODO: add transaction animations with XML animation definitions
         ft.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right);
         ft.replace(R.id.frame_main_gamepane, frag).commit();
         Log.i(TAG, "Game fragment swapped.");
@@ -231,8 +233,13 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
 
     @Override
     public void quitDelete() {
-        stopService(new Intent(MainActivity.this, PedometerService.class));
         setResult(RESULT_CANCELED);
         finish();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean(CHECKED_SENSOR_THIS_RUN, doneSensorCheck);
     }
 }

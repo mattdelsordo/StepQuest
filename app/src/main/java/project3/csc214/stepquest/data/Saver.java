@@ -40,6 +40,6 @@ public class Saver {
 
     //deletes everything from the sql table
     public static void deleteAll(Context context){
-
+        context.getApplicationContext().deleteDatabase(QuestDbSchema.DATABASE_NAME);
     }
 }

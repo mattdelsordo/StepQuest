@@ -32,14 +32,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/frame_character_character"
-                android:layout_margin="4dp">
+                android:layout_margin="4dp"
+                android:elevation="2dp">
 
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:id="@+id/imageview_character_class"
                     android:background="@color/sorcerer"
-                    android:padding="2dp"/>
+                    android:padding="2dp"
+                    android:elevation="2dp"/>
 
                 <ImageView
                     android:layout_width="match_parent"
@@ -48,7 +50,9 @@
                     android:src="@drawable/pumpkin1"
                     android:scaleType="fitXY"
                     android:adjustViewBounds="true"
-                    android:padding="2dp"/>
+                    android:padding="2dp"
+
+                    android:elevation="2dp"/>
             </FrameLayout>
 
             <TextView

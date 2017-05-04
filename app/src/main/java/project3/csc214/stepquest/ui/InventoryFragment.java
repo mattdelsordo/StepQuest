@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -37,7 +38,7 @@ public class InventoryFragment extends Fragment implements ActiveCharacter.Funds
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_inventory, container, false);
+        View view = inflater.inflate(R.layout.fragment_inventory_md, container, false);
 
         //get goldcount
         mGoldCount = (TextView)view.findViewById(R.id.textview_inventory_goldcount);
@@ -86,7 +87,7 @@ public class InventoryFragment extends Fragment implements ActiveCharacter.Funds
         private Weapon mWeapon;
         private View mView;
         private ImageView mIcon;
-        private TextView mName, mType, mMaterial, mBuff, mQuantity;
+        private TextView mName, mBuff, mQuantity;
 
         public WeaponViewHolder(View itemView) {
             super(itemView);
@@ -94,8 +95,6 @@ public class InventoryFragment extends Fragment implements ActiveCharacter.Funds
 
             mIcon = (ImageView)itemView.findViewById(R.id.imageview_weapon_icon);
             mName = (TextView)itemView.findViewById(R.id.textview_weapon_name);
-            mType = (TextView)itemView.findViewById(R.id.textview_weapon_type);
-            mMaterial = (TextView)itemView.findViewById(R.id.textview_weapon_material);
             mBuff = (TextView)itemView.findViewById(R.id.textview_weapon_buff);
             mQuantity = (TextView)itemView.findViewById(R.id.textview_weapon_quantity);
 
@@ -104,6 +103,12 @@ public class InventoryFragment extends Fragment implements ActiveCharacter.Funds
                 public void onClick(View v) {
                     ActiveCharacter.getInstance(getContext()).setEquippedWeapon(mWeapon);
                     updateUI();
+
+                    if(getActivity().findViewById(R.id.frame_inventory_detail) == null){
+                        Toast.makeText(getContext(), "Equipped the " + mWeapon.getName() + "!", Toast.LENGTH_SHORT).show();
+                    }else{
+                        getChildFragmentManager().beginTransaction().replace(R.id.frame_inventory_detail, InventoryDetailFragment.newInstance(mWeapon)).commit();
+                    }
                 }
             });
         }
@@ -112,8 +117,6 @@ public class InventoryFragment extends Fragment implements ActiveCharacter.Funds
             mWeapon = weapon;
 
             mName.setText(weapon.getName());
-            mType.setText(Weapon.getTypeString(mWeapon.getType()));
-            mMaterial.setText(Weapon.getMaterialString(mWeapon.getMaterial()));
             double buff = mWeapon.calcBuff(ActiveCharacter.getInstance(getContext()).getActiveCharacter().getVocation());
             mBuff.setText((buff > 0.0 ? "+" : "") + buff + "%");
             mQuantity.setText("x" + ActiveCharacter.getInstance(getContext()).getWeaponQuantity(mWeapon));

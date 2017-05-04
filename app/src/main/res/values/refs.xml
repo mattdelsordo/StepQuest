@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="fragment_inventory_md" type="layout">@layout/fragment_inventory</item>
+</resources>

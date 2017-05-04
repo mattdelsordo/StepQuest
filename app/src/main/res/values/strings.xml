@@ -87,4 +87,5 @@
     <string name="no_pedometer_confirm">Darn</string>
     <string name="delete_character">Delete Character</string>
     <string name="you_levelled_up">You levelled up!</string>
+    <string name="equipped_weapon_text">Equipped a weapon!</string>
 </resources>
