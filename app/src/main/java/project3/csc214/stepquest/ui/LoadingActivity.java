@@ -61,7 +61,7 @@ public class LoadingActivity extends AppCompatActivity {
             EventQueue.getInstance(this).addEvents(Dungeon.generateBackstory(this));
 
             //save everything
-            Saver.saveAll(this);
+            Saver.saveAll(this, false);
             //initialize sound settings
             //actually I dont think I have to do this cause the default is true
 //            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -72,7 +72,7 @@ public class LoadingActivity extends AppCompatActivity {
             startActivityForResult(new Intent(this, MainActivity.class), MainActivity.RC);
 
         }
-        else if(requestCode == MainActivity.RC && resultCode == RESULT_CANCELED){
+        else if(requestCode == MainActivity.RC && resultCode == MainActivity.RESULT_DELETE){
             stopService(new Intent(LoadingActivity.this, PedometerService.class));
             Log.i(TAG, "Deleing data...");
             Saver.deleteAll(this);

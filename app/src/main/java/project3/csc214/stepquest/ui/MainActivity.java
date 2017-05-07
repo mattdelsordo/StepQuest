@@ -33,8 +33,10 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
     private static final String TAG = "MainActivity";
     private static final String PREF_HAS_SENSOR = "pref_has_sensor";
     private static final String CHECKED_SENSOR_THIS_RUN = "checked sensor this run";
-    private boolean doneSensorCheck;
+    private static final String ARG_MUSIC_PLAYING = "arg_isplaying";
+    private boolean mDoneSensorCheck;
     public static final int RC = 4;
+    public static final int RESULT_DELETE = 10;
 
     private ProgressFragment mProgress;
     private MusicPlayerFragment mMusic;
@@ -71,6 +73,12 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
             getSupportFragmentManager().beginTransaction().add(R.id.frame_main_gamepane, new CharacterInfoFragment()).commit();
         }
 
+        //get info from saved state
+        if(savedInstanceState != null){
+            mDoneSensorCheck = savedInstanceState.getBoolean(CHECKED_SENSOR_THIS_RUN);
+            mPlayMusic = savedInstanceState.getBoolean(ARG_MUSIC_PLAYING);
+        }
+
         //retrieve sound settings
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         mPlayMusic = prefs.getBoolean(SettingsFragment.PREF_MUSIC, true);
@@ -80,10 +88,9 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
         doBindService();
 
         //do check for pedometer
-        if(savedInstanceState != null) doneSensorCheck = savedInstanceState.getBoolean(CHECKED_SENSOR_THIS_RUN);
         boolean hasSensor = prefs.getBoolean(PREF_HAS_SENSOR, false);
         Log.i(TAG, "hasSensor=" + hasSensor);
-        if(hasSensor == false && doneSensorCheck == false){
+        if(hasSensor == false && mDoneSensorCheck == false){
             SensorManager manager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
             Sensor pedometer = manager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
             Log.i(TAG, "pedometer=" + pedometer);
@@ -91,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
                 prefs.edit().putBoolean(PREF_HAS_SENSOR, false).apply();
                 new NoPedometerDialog().show(getSupportFragmentManager(), NoPedometerDialog.TAG);
             }
-            doneSensorCheck = true;
+            mDoneSensorCheck = true;
         }
     }
 
@@ -106,6 +113,7 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
     @Override
     protected void onResume() {
         super.onResume();
+        if(mPlayMusic)mMusic.playMusic();
         EventQueue.getInstance(getApplicationContext()).bindToastListener(this);
         ActiveCharacter.getInstance(this).bindLevelUpListener(this);
 
@@ -116,8 +124,9 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
     @Override
     protected void onPause() {
         super.onPause();
+        if(mPlayMusic)mMusic.stopMusic();
         //save everything
-        Saver.saveAll(this);
+        Saver.saveAll(this, false);
 
         EventQueue.getInstance(getApplicationContext()).unbindToastListener();
         ActiveCharacter.getInstance(this).unbindLevelUpListener();
@@ -206,7 +215,7 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
                 if(!(current instanceof InventoryFragment)) swapFragments(new InventoryFragment());
                 break;
             case R.id.menu_save: handled = true;
-                Saver.saveAll(this);
+                Saver.saveAll(this, true);
                 break;
             case R.id.menu_settings: handled = true;
                 if(!(current instanceof SettingsFragment)) swapFragments(new SettingsFragment());
@@ -230,13 +239,14 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
 
     @Override
     public void quitDelete() {
-        setResult(RESULT_CANCELED);
+        setResult(RESULT_DELETE);
         finish();
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putBoolean(CHECKED_SENSOR_THIS_RUN, doneSensorCheck);
+        outState.putBoolean(CHECKED_SENSOR_THIS_RUN, mDoneSensorCheck);
+        outState.putBoolean(ARG_MUSIC_PLAYING, mPlayMusic);
     }
 }

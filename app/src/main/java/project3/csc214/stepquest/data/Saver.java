@@ -18,7 +18,7 @@ import project3.csc214.stepquest.model.EventQueue;
 public class Saver {
     private static final String TAG = "Saver";
 
-    public static void saveAll(Context context){
+    public static void saveAll(Context context, boolean displayToast){
         Log.i(TAG, "Saving game...");
         ActiveCharacter.getInstance(context).save();
         EventQueue.getInstance(context).save();

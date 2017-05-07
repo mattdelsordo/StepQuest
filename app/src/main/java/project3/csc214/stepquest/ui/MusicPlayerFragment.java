@@ -67,9 +67,9 @@ public class MusicPlayerFragment extends Fragment {
                 mPlayer.setLooping(true); //loop the track
             }
         });
-
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        isPlaying = prefs.getBoolean(SettingsFragment.PREF_MUSIC, true);
+//
+//        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+//        isPlaying = prefs.getBoolean(SettingsFragment.PREF_MUSIC, true);
     }
 
     @Override
@@ -87,7 +87,7 @@ public class MusicPlayerFragment extends Fragment {
         return view;
     }
 
-    private void play(String track){
+    public void play(String track){
         Log.i(TAG, "Attempting to play track " + track);
         try{
             AssetFileDescriptor afd = getActivity().getAssets().openFd(track);
@@ -112,22 +112,22 @@ public class MusicPlayerFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-        if(mPlayer.isPlaying() && isPlaying)mPlayer.stop();
+        //stopMusic();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        if(!mPlayer.isPlaying()) play(mTrackPath);
+        //playMusic();
     }
 
     public void stopMusic(){
-        isPlaying = false;
-        mPlayer.stop();
+        //isPlaying = false;
+        if(mPlayer.isPlaying()) mPlayer.stop();
     }
 
     public void playMusic(){
-        isPlaying = true;
-        play(mTrackPath);
+        //isPlaying = true;
+        if(!mPlayer.isPlaying()) play(mTrackPath);
     }
 }

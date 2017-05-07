@@ -65,7 +65,7 @@ public class PedometerService extends Service implements SensorEventListener{
         //TODO: this delay may be overkill
         mManager.registerListener(this, mStepSensor, SensorManager.SENSOR_DELAY_FASTEST);
 
-       // simulateSteps();
+       simulateSteps();
 
 
         //set up save timer
@@ -119,7 +119,7 @@ public class PedometerService extends Service implements SensorEventListener{
     //make sure to save all
     @Override
     public void onDestroy() {
-        Saver.saveAll(this);
+        //Saver.saveAll(this);
         mSaveHandler.removeCallbacksAndMessages(null);
         super.onDestroy();
     }

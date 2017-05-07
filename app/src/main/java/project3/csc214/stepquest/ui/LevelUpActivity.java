@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import project3.csc214.stepquest.R;
+import project3.csc214.stepquest.data.Saver;
 
 public class LevelUpActivity extends AppCompatActivity implements LevelUpFragment.LevelUpDoneListener{
 
@@ -26,7 +27,7 @@ public class LevelUpActivity extends AppCompatActivity implements LevelUpFragmen
 
     @Override
     public void lvlUpDone() {
-        //TODO: save character
+        Saver.saveAll(this.getApplicationContext(), true);
         setResult(RESULT_OK);
         finish();
     }

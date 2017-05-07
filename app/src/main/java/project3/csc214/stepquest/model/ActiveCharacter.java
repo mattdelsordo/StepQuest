@@ -219,12 +219,14 @@ public class ActiveCharacter{
         values.put(QuestDbSchema.CharacterTable.Params.LEVEL, getActiveCharacter().getLevel());
 
         //stats
-        values.put(QuestDbSchema.CharacterTable.Params.STR, getActiveCharacter().getStat(Stats.STR));
-        values.put(QuestDbSchema.CharacterTable.Params.DEX, getActiveCharacter().getStat(Stats.DEX));
-        values.put(QuestDbSchema.CharacterTable.Params.CON, getActiveCharacter().getStat(Stats.CON));
-        values.put(QuestDbSchema.CharacterTable.Params.INT, getActiveCharacter().getStat(Stats.INT));
-        values.put(QuestDbSchema.CharacterTable.Params.WIS, getActiveCharacter().getStat(Stats.WIS));
-        values.put(QuestDbSchema.CharacterTable.Params.CHR, getActiveCharacter().getStat(Stats.CHR));
+        //Log.i(TAG, "Saving stats: " + getActiveCharacter().get)
+        int[] stats = getActiveCharacter().getBaseStats();
+        values.put(QuestDbSchema.CharacterTable.Params.STR, stats[Stats.STR]);
+        values.put(QuestDbSchema.CharacterTable.Params.DEX, stats[Stats.DEX]);
+        values.put(QuestDbSchema.CharacterTable.Params.CON, stats[Stats.CON]);
+        values.put(QuestDbSchema.CharacterTable.Params.INT, stats[Stats.INT]);
+        values.put(QuestDbSchema.CharacterTable.Params.WIS, stats[Stats.WIS]);
+        values.put(QuestDbSchema.CharacterTable.Params.CHR, stats[Stats.CHR]);
 
         values.put(QuestDbSchema.CharacterTable.Params.GOLD, getActiveCharacter().getFunds());
         values.put(QuestDbSchema.CharacterTable.Params.EXP, getActiveCharacter().getExp());
