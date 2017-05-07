@@ -33,11 +33,6 @@
             android:stopWithTask="true" />
 
         <activity android:name=".ui.LevelUpActivity" />
-        <activity
-            android:name=".ui.MiscActivity"
-            android:parentActivityName=".ui.MainActivity" />
-        <activity android:name=".data.VideoActivity"></activity>
-        <activity android:name=".data.CameraActivity"></activity>
     </application>
 
 </manifest>

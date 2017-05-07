@@ -211,9 +211,6 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
             case R.id.menu_settings: handled = true;
                 if(!(current instanceof SettingsFragment)) swapFragments(new SettingsFragment());
                 break;
-            case R.id.menu_misc: handled = true;
-                startActivity(new Intent(MainActivity.this, MiscActivity.class));
-                break;
             default: handled = super.onOptionsItemSelected(item);
         }
         return handled;

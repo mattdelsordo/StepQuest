@@ -26,10 +26,5 @@
         app:showAsAction="withText"
         android:title="@string/settings" />
 
-    <item
-        android:id="@+id/menu_misc"
-        android:icon="@drawable/ic_misc"
-        app:showAsAction="withText"
-        android:title="@string/miscellaneous"/>
 
 </menu>
