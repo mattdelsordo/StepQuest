@@ -15,7 +15,6 @@
         <item>@array/chuul</item>
         <item>@array/chimera</item>
         <item>@array/centaur</item>
-        <item>@array/carrion_crawler</item>
         <item>@array/cambion</item>
         <item>@array/bullywug</item>
         <item>@array/bulette</item>
@@ -24,6 +23,166 @@
         <item>@array/behir</item>
         <item>@array/basilisk</item>
         <item>@array/banshee</item>
+        <item>@array/darkmantle</item>
+        <item>@array/death_knight</item>
+        <item>@array/shadow_demon</item>
+        <item>@array/barbed_devil</item>
+        <item>@array/bearded_devil</item>
+        <item>@array/bone_devil</item>
+        <item>@array/chain_devil</item>
+        <item>@array/erinyes</item>
+        <item>@array/horned_devil</item>
+        <item>@array/ice_devil</item>
+        <item>@array/imp</item>
+        <item>@array/lemure</item>
+        <item>@array/pit_fiend</item>
+        <item>@array/spined_devil</item>
+        <item>@array/doppleganger</item>
+        <item>@array/young_black_dragon</item>
+        <item>@array/black_wyrmling</item>
+        <item>@array/young_blue_dragon</item>
+        <item>@array/blue_wyrmling</item>
+        <item>@array/young_green_dragon</item>
+        <item>@array/green_wyrmling</item>
+        <item>@array/young_red_dragon</item>
+        <item>@array/red_wyrmling</item>
+        <item>@array/young_white_dragon</item>
+        <item>@array/white_dragon</item>
+        <item>@array/young_brass_dragon</item>
+        <item>@array/brass_wyrmling</item>
+        <item>@array/young_bronze_dragon</item>
+        <item>@array/bronze_wyrmling</item>
+        <item>@array/young_copper_dragon</item>
+        <item>@array/copper_wyrmling</item>
+        <item>@array/young_gold_dragon</item>
+        <item>@array/gold_wyrmling</item>
+        <item>@array/young_silver_dragon</item>
+        <item>@array/silver_wyrmling</item>
+        <item>@array/dragon_turtle</item>
+        <item>@array/dryad</item>
+        <item>@array/air_elemental</item>
+        <item>@array/earth_elemental</item>
+        <item>@array/fire_elemental</item>
+        <item>@array/water_elemental</item>
+        <item>@array/ettercap</item>
+        <item>@array/ettin</item>
+        <item>@array/fairy_dragon</item>
+        <item>@array/flameskull</item>
+        <item>@array/fomorian</item>
+        <item>@array/agressive_shroom</item>
+        <item>@array/boulderman</item>
+        <item>@array/gargoyle</item>
+        <item>@array/genie</item>
+        <item>@array/ghost</item>
+        <item>@array/ghast</item>
+        <item>@array/ghoul</item>
+        <item>@array/cloud_giant</item>
+        <item>@array/fire_giant</item>
+        <item>@array/frost_giant</item>
+        <item>@array/hill_giant</item>
+        <item>@array/stone_giant</item>
+        <item>@array/storm_giant</item>
+        <item>@array/hyenaman</item>
+        <item>@array/deep_gnome</item>
+        <item>@array/goblin</item>
+        <item>@array/clay_golem</item>
+        <item>@array/flesh_golem</item>
+        <item>@array/iron_golem</item>
+        <item>@array/stone_golem</item>
+        <item>@array/gorgon</item>
+        <item>@array/braintopuss</item>
+        <item>@array/griffon</item>
+        <item>@array/green_hag</item>
+        <item>@array/night_hag</item>
+        <item>@array/sea_hag</item>
+        <item>@array/halfdragon</item>
+        <item>@array/harpy</item>
+        <item>@array/Hellhound</item>
+        <item>@array/hippogriff</item>
+        <item>@array/hobgoblin</item>
+        <item>@array/hobgoblin_captain</item>
+        <item>@array/hobgoblin_warlord</item>
+        <item>@array/homunculus</item>
+        <item>@array/hookbird</item>
+        <item>@array/hydra</item>
+        <item>@array/brainboy</item>
+        <item>@array/stalker</item>
+        <item>@array/werejackal</item>
+        <item>@array/kenku</item>
+        <item>@array/kobold</item>
+        <item>@array/winged_kobold</item>
+        <item>@array/fishperson</item>
+        <item>@array/fishperson_priest</item>
+        <item>@array/fishperson_slavemaster</item>
+        <item>@array/lamia</item>
+        <item>@array/lizardperson</item>
+        <item>@array/werebear</item>
+        <item>@array/wereboar</item>
+        <item>@array/wererat</item>
+        <item>@array/weretiger</item>
+        <item>@array/werewolf</item>
+        <item>@array/magboy</item>
+        <item>@array/manticore</item>
+        <item>@array/mephit</item>
+        <item>@array/merwoman</item>
+        <item>@array/merman</item>
+        <item>@array/mimic</item>
+        <item>@array/brainlord</item>
+        <item>@array/minotaur</item>
+        <itemu>@array/cubefriend</itemu>
+        <item>@array/mummy</item>
+        <item>@array/shroomchild</item>
+        <item>@array/shroomperson</item>
+        <item>@array/bonesnek</item>
+        <item>@array/spiritsnek</item>
+        <item>@array/guardiansnek</item>
+        <item>@array/nightmare</item>
+        <item>@array/ogre</item>
+        <item>@array/half_ogre</item>
+        <item>@array/oni</item>
+        <item>@array/black_sludge</item>
+        <item>@array/gelatin_cube</item>
+        <item>@array/orc</item>
+        <item>@array/orc_chief</item>
+        <item>@array/pegasus</item>
+        <item>@array/peryton</item>
+        <item>@array/jerry</item>
+        <item>@array/pixie</item>
+        <item>@array/pseudodragon</item>
+        <item>@array/mighty_worm</item>
+        <item>@array/rakshasa</item>
+        <item>@array/revenant</item>
+        <item>@array/roc</item>
+        <item>@array/rust_monster</item>
+        <item>@array/salamander</item>
+        <item>@array/firesnek</item>
+        <item>@array/satyr</item>
+        <item>@array/scarecrow</item>
+        <item>@array/shadow</item>
+        <item>@array/shambler</item>
+        <item>@array/shield_guardian</item>
+        <item>@array/skeleton</item>
+        <item>@array/red_froggo</item>
+        <item>@array/tadpole</item>
+        <item>@array/blue_froggo</item>
+        <item>@array/green_froggo</item>
+        <item>@array/gray_froggo</item>
+        <item>@array/death_froggo</item>
+        <item>@array/specter</item>
+        <item>@array/sprite</item>
+        <item>@array/succubus</item>
+        <item>@array/incubus</item>
+        <item>@array/ent</item>
+        <item>@array/troglodite</item>
+        <item>@array/troll</item>
+        <item>@array/wight</item>
+        <item>@array/willowisp</item>
+        <item>@array/wraith</item>
+        <item>@array/wyvern</item>
+        <item>@array/yeti</item>
+        <item>@array/snekperson</item>
+        <item>@array/zombie</item>
+        <item>@array/giant_rat</item>
     </array>
 
     <string-array name="Birdperson_monster">
@@ -89,11 +248,6 @@
     <string-array name="cambion">
         <item name="desc">Fighting a Cambion...</item>
         <item name="exp">1800</item>
-    </string-array>
-
-    <string-array name="carrion_crawler">
-        <item name="desc">Fighting a Carrion Crawler...</item>
-        <item name="exp">450</item>
     </string-array>
 
     <string-array name="centaur">
@@ -194,10 +348,6 @@
         <item name="desc">Fighting an Eggplant Devil...</item>
         <item name="exp">450</item>
     </string-array>
-    <string-array name="displacer_beast">
-        <item name="desc">Fighting a Displacer Beast...</item>
-        <item name="exp">700</item>
-    </string-array>
     <string-array name="doppleganger">
         <item name="desc">Fighting a Doppleganger...</item>
         <item name="exp">700</item>
@@ -262,7 +412,7 @@
         <item name="desc">Fighting a Young Copper Dragon...</item>
         <item name="exp">2900</item>
     </string-array>
-    <string-array name="Ccpper_wyrmling">
+    <string-array name="copper_wyrmling">
         <item name="desc">Fighting a Copper Wyrmling...</item>
         <item name="exp">200</item>
     </string-array>
@@ -321,10 +471,6 @@
     <string-array name="flameskull">
         <item name="desc">Fighting a Flaming Skull...</item>
         <item name="exp">1100</item>
-    </string-array>
-    <string-array name="flumph">
-        <item name="desc">Fighting a Flumph...</item>
-        <item name="exp">25</item>
     </string-array>
     <string-array name="fomorian">
         <item name="desc">Fighting a Fomorian...</item>
@@ -418,14 +564,6 @@
         <item name="desc">Fighting a Braintopuss...</item>
         <item name="exp">700</item>
     </string-array>
-    <string-array name="grick">
-        <item name="desc">Fighting a Grick...</item>
-        <item name="exp">450</item>
-    </string-array>
-    <string-array name="alpha_grick">
-        <item name="desc">Fighting an Alpha Grick...</item>
-        <item name="exp">2900</item>
-    </string-array>
     <string-array name="griffon">
         <item name="desc">Fighting a Griffon...</item>
         <item name="exp">450</item>
@@ -511,7 +649,7 @@
         <item name="exp">50</item>
     </string-array>
     <string-array name="fishperson_priest">
-        <item name="desc">Fighting a Water Elemental...</item>
+        <item name="desc">Fighting a Fishperson Priest...</item>
         <item name="exp">2300</item>
     </string-array>
     <string-array name="fishperson_slavemaster">
@@ -525,14 +663,6 @@
     <string-array name="lizardperson">
         <item name="desc">Fighting a Lizardperson...</item>
         <item name="exp">100</item>
-    </string-array>
-    <string-array name="lizardperson_shaman">
-        <item name="desc">Fighting a Lizardperson Shaman...</item>
-        <item name="exp">450</item>
-    </string-array>
-    <string-array name="lizardperson_mayor">
-        <item name="desc">Fighting a Lizardperson Mayor...</item>
-        <item name="exp">1100</item>
     </string-array>
     <string-array name="werebear">
         <item name="desc">Fighting a Werebear...</item>
@@ -562,29 +692,9 @@
         <item name="desc">Fighting a Manticore...</item>
         <item name="exp">700</item>
     </string-array>
-    <string-array name="dust_mephit">
-        <item name="desc">Fighting a Dust Mephit...</item>
+    <string-array name="mephit">
+        <item name="desc">Fighting a Mephit...</item>
         <item name="exp">100</item>
-    </string-array>
-    <string-array name="ice_mephit">
-        <item name="desc">Fighting a Ice Mephit...</item>
-        <item name="exp">100</item>
-    </string-array>
-    <string-array name="magma_mephit">
-        <item name="desc">Fighting a Magma Mephit...</item>
-        <item name="exp">100</item>
-    </string-array>
-    <string-array name="mud_mephit">
-        <item name="desc">Fighting a Mud Mephit...</item>
-        <item name="exp">50</item>
-    </string-array>
-    <string-array name="smoke_mephit">
-        <item name="desc">Fighting a Smoke Mephit...</item>
-        <item name="exp">50</item>
-    </string-array>
-    <string-array name="steam_mephit">
-        <item name="desc">Fighting a Steam Mephit...</item>
-        <item name="exp">50</item>
     </string-array>
     <string-array name="merwoman">
         <item name="desc">Fighting a Merwoman...</item>
@@ -609,18 +719,6 @@
     <string-array name="cubefriend">
         <item name="desc">Fighting a Cubefriend...</item>
         <item name="exp">200</item>
-    </string-array>
-    <string-array name="pyramidfriend">
-        <item name="desc">Fighting a Pyramidfriend...</item>
-        <item name="exp">100</item>
-    </string-array>
-    <string-array name="sheetfriend">
-        <item name="desc">Fighting a Sheetfriend...</item>
-        <item name="exp">50</item>
-    </string-array>
-    <string-array name="pentafriend">
-        <item name="desc">Fighting a Pentafriend...</item>
-        <item name="exp">450</item>
     </string-array>
     <string-array name="mummy">
         <item name="desc">Fighting a Mummy...</item>
@@ -659,11 +757,11 @@
         <item name="exp">200</item>
     </string-array>
     <string-array name="oni">
-        <item name="desc">Fighting a Mummy...</item>
+        <item name="desc">Fighting an Oni...</item>
         <item name="exp">2900</item>
     </string-array>
     <string-array name="black_sludge">
-        <item name="desc">Fighting Black Sludge...</item>
+        <item name="desc">Fighting a Black Slime...</item>
         <item name="exp">1100</item>
     </string-array>
     <string-array name="gelatin_cube">
@@ -677,10 +775,6 @@
     <string-array name="orc_chief">
         <item name="desc">Fighting an Orc Chief...</item>
         <item name="exp">1100</item>
-    </string-array>
-    <string-array name="owlbear">
-        <item name="desc">Fighting an Owlbear...</item>
-        <item name="exp">700</item>
     </string-array>
     <string-array name="pegasus">
         <item name="desc">Fighting a Pegasus...</item>
@@ -833,6 +927,10 @@
     <string-array name="zombie">
         <item name="desc">Fighting a Zombie...</item>
         <item name="exp">50</item>
+    </string-array>
+    <string-array name="giant_rat">
+        <item name="desc">Fighting a Giant Rat...</item>
+        <item name="exp">30</item>
     </string-array>
 
 </resources>

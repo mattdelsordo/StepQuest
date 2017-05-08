@@ -187,7 +187,7 @@
     <!--Legendaries-->
     <array name="legendary_weapons">
         <item>@array/aboleth_fang</item>
-        <item>@array/eye_of_beholder</item>
+        <item>@array/eye_of_observer</item>
     </array>
     <string-array name="aboleth_fang">
         <item name="id">aboleth_fang</item>
@@ -195,10 +195,16 @@
         <item name = "type">BLADE</item>
         <item name = "material">6.0</item>
     </string-array>
-    <string-array name="eye_of_beholder">
-        <item name="id">eye_of_beholder</item>
-        <item name = "name">Eye of The Beholder</item>
+    <string-array name="eye_of_observer">
+        <item name="id">eye_of_observer</item>
+        <item name = "name">Eye of The Observer</item>
         <item name = "type">STAFF</item>
+        <item name = "material">6.0</item>
+    </string-array>
+    <string-array name="criticism_mace">
+        <item name="id">criticism_mace</item>
+        <item name = "name">Criticism</item>
+        <item name = "type">BLUNT</item>
         <item name = "material">6.0</item>
     </string-array>
 
