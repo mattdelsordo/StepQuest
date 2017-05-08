@@ -39,11 +39,11 @@
     </array>
     
     
-    <string-array name="Aboleth">
-        <item name="desc">In combat with an Aboleth...</item>
+    <string-array name="whale">
+        <item name="desc">In combat with an Eldritch Whale...</item>
         <item name = "exp">5900</item>
         <item name="gold">0</item>
-        <item name="weapon">aboleth_fang</item>
+        <item name="weapon">whale_bow</item>
     </string-array>
 
     <string-array name="observer">
@@ -215,37 +215,37 @@
         <item name="desc">In combat with Doctor Worm...</item>
         <item name="exp">30000</item>
         <item name="gold">0</item>
-        <item name="weapon">criticism</item>
+        <item name="weapon">criticism_mace</item>
     </string-array>
     <string-array name="pharaoh">
         <item name="desc">In combat with a Pharaoh...</item>
         <item name="exp">13000</item>
         <item name="gold">0</item>
-        <item name="weapon">criticism</item>
+        <item name="weapon">criticism_mace</item>
     </string-array>
     <string-array name="sphinx">
         <item name="desc">In combat with a Sphinx...</item>
         <item name="exp">18000</item>
         <item name="gold">0</item>
-        <item name="weapon">criticism</item>
+        <item name="weapon">criticism_mace</item>
     </string-array>
     <string-array name="metabeast">
         <item name="desc">In combat with the Metabeast...</item>
         <item name="exp">155000</item>
         <item name="gold">0</item>
-        <item name="weapon">criticism</item>
+        <item name="weapon">criticism_mace</item>
     </string-array>
     <string-array name="unicorn">
         <item name="desc">In combat with a Unicorn...</item>
         <item name="exp">1800</item>
         <item name="gold">0</item>
-        <item name="weapon">criticism</item>
+        <item name="weapon">criticism_mace</item>
     </string-array>
     <string-array name="vampire">
         <item name="desc">In combat with a Vampire...</item>
         <item name="exp">10000</item>
         <item name="gold">0</item>
-        <item name="weapon">criticism</item>
+        <item name="weapon">criticism_mace</item>
     </string-array>
 
 </resources>

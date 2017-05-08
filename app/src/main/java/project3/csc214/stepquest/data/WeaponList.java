@@ -164,6 +164,7 @@ public class WeaponList {
                 return new Weapon(w);
             }
         }
+        Log.e(TAG, "NO SUCH ELEMENT: " + id);
         throw new NoSuchElementException();
     }
 

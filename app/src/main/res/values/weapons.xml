@@ -186,14 +186,15 @@
 
     <!--Legendaries-->
     <array name="legendary_weapons">
-        <item>@array/aboleth_fang</item>
+        <item>@array/whale_bow</item>
         <item>@array/eye_of_observer</item>
+        <item>@array/criticism_mace</item>
     </array>
-    <string-array name="aboleth_fang">
-        <item name="id">aboleth_fang</item>
-        <item name = "name">Aboleth Fang</item>
-        <item name = "type">BLADE</item>
-        <item name = "material">6.0</item>
+    <string-array name="whale_bow">
+        <item name="id">whale_bow</item>
+        <item name = "name">Whale Sinew Bow</item>
+        <item name = "type">BOW</item>
+        <item name = "material">5.0</item>
     </string-array>
     <string-array name="eye_of_observer">
         <item name="id">eye_of_observer</item>
