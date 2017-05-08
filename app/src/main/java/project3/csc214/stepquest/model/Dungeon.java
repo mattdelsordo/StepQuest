@@ -24,9 +24,9 @@ public class Dungeon extends ArrayList<Event> {
         Random rand = new Random();
         int chance = rand.nextInt(100);
 
-        if(chance < 20) return dungeon(context);
-        else if(chance < 60) return killingField(context);
-        else if(chance < 80) return village(context);
+        if(chance < 10) return dungeon(context);
+        else if(chance < 50) return killingField(context);
+        else if(chance < 70) return village(context);
         else if(chance < 90) return singleEvent(context);
         else return singleMonster(context);
     }
@@ -101,9 +101,7 @@ public class Dungeon extends ArrayList<Event> {
         backstory.add(gold);
         backstory.add(new Event("You hear a crash from outside...", 6));
         Event monster = EventList.getInstance(context).getLevelledMonster(ActiveCharacter.getInstance(context).getActiveCharacter().getLevel());
-        String[] descSplit = monster.getDescription().split(" ");
-        String monsterName = descSplit[descSplit.length - 1];
-        monsterName = monsterName.substring(0, monsterName.length() -3);
+        String monsterName = monster.parseMonsterName();
         backstory.add(new Event("You open the door to see what's going on...", 4));
         backstory.add(new Event("There's a " + monsterName.toLowerCase() + " terrorizing your town!", 6)); //TODO: town name generator
         Weapon weapon = WeaponList.getInstance(context).firstWeapon(ActiveCharacter.getInstance(context).getActiveCharacter().getVocation());

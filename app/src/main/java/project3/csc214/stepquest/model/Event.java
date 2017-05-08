@@ -85,4 +85,14 @@ public class Event {
     public int getExp(){
         return getDuration(); //TODO: I might change this up
     }
+
+    //hackily parses out the last couple words of a monster
+    public String parseMonsterName(){
+        String[] descSplit = getDescription().split(" ");
+        String monsterName = "";
+        for(int i = 2; i < descSplit.length; i++){
+            monsterName += descSplit[i] + " ";
+        }
+        return monsterName.substring(0, monsterName.length() - 4);
+    }
 }

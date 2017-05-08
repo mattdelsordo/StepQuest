@@ -2,7 +2,7 @@
 <resources>
 
     <array name="monsters">
-        <item>@array/Aarakocra</item>
+        <item>@array/Birdperson_monster</item>
         <item>@array/Armor</item>
         <item>@array/Sword</item>
         <item>@array/Ankheg</item>
@@ -26,8 +26,8 @@
         <item>@array/banshee</item>
     </array>
 
-    <string-array name="Aarakocra">
-        <item name = "desc">Fighting an Aarakocra...</item>
+    <string-array name="Birdperson_monster">
+        <item name = "desc">Fighting an Birdperson_monster...</item>
         <item name = "exp">50</item>
     </string-array>
 
@@ -134,6 +134,705 @@
     <string-array name="cyclops">
         <item name="desc">Fighting a Cyclops...</item>
         <item name="exp">2300</item>
+    </string-array>
+
+
+    <string-array name="darkmantle">
+        <item name="desc">Fighting a Darkmantle...</item>
+        <item name="exp">100</item>
+    </string-array>
+
+    <string-array name="death_knight">
+        <item name="desc">Fighting a Death Knight...</item>
+        <item name="exp">18000</item>
+    </string-array>
+    <string-array name="shadow_demon">
+        <item name="desc">Fighting a Shadow Demon...</item>
+        <item name="exp">1100</item>
+    </string-array>
+    <string-array name="barbed_devil">
+        <item name="desc">Fighting an Olive Devil...</item>
+        <item name="exp">1800</item>
+    </string-array>
+    <string-array name="bearded_devil">
+        <item name="desc">Fighting a Grape Devil...</item>
+        <item name="exp">700</item>
+    </string-array>
+    <string-array name="bone_devil">
+        <item name="desc">Fighting a Milk Devil...</item>
+        <item name="exp">5000</item>
+    </string-array>
+    <string-array name="chain_devil">
+        <item name="desc">Fighting a Tomato Devil...</item>
+        <item name="exp">3900</item>
+    </string-array>
+    <string-array name="erinyes">
+        <item name="desc">Fighting an Fury..</item>
+        <item name="exp">8400</item>
+    </string-array>
+    <string-array name="horned_devil">
+        <item name="desc">Fighting a Banana Devil...</item>
+        <item name="exp">7200</item>
+    </string-array>
+    <string-array name="ice_devil">
+        <item name="desc">Fighting an Blueberry Devil...</item>
+        <item name="exp">11500</item>
+    </string-array>
+    <string-array name="imp">
+        <item name="desc">Fighting an Imp...</item>
+        <item name="exp">200</item>
+    </string-array>
+    <string-array name="lemure">
+        <item name="desc">Fighting a Lemure...</item>
+        <item name="exp">10</item>
+    </string-array>
+    <string-array name="pit_fiend">
+        <item name="desc">Fighting a Strawberry Fiend...</item>
+        <item name="exp">25000</item>
+    </string-array>
+    <string-array name="spined_devil">
+        <item name="desc">Fighting an Eggplant Devil...</item>
+        <item name="exp">450</item>
+    </string-array>
+    <string-array name="displacer_beast">
+        <item name="desc">Fighting a Displacer Beast...</item>
+        <item name="exp">700</item>
+    </string-array>
+    <string-array name="doppleganger">
+        <item name="desc">Fighting a Doppleganger...</item>
+        <item name="exp">700</item>
+    </string-array>
+    <string-array name="young_black_dragon">
+        <item name="desc">Fighting a Young Black Dragon...</item>
+        <item name="exp">2900</item>
+    </string-array>
+    <string-array name="black_wyrmling">
+        <item name="desc">Fighting a Black Wyrmling...</item>
+        <item name="exp">450</item>
+    </string-array>
+    <string-array name="young_blue_dragon">
+        <item name="desc">Fighting a Young Blue Dragon...</item>
+        <item name="exp">5000</item>
+    </string-array>
+    <string-array name="blue_wyrmling">
+        <item name="desc">Fighting a Blue Wyrmling...</item>
+        <item name="exp">700</item>
+    </string-array>
+    <string-array name="young_green_dragon">
+        <item name="desc">Fighting a Young Green Dragon...</item>
+        <item name="exp">3900</item>
+    </string-array>
+    <string-array name="green_wyrmling">
+        <item name="desc">Fighting a Green Wyrmling...</item>
+        <item name="exp">450</item>
+    </string-array>
+    <string-array name="young_red_dragon">
+        <item name="desc">Fighting a Young Red Dragon...</item>
+        <item name="exp">5900</item>
+    </string-array>
+    <string-array name="red_wyrmling">
+        <item name="desc">Fighting a Red Wyrmling...</item>
+        <item name="exp">1100</item>
+    </string-array>
+    <string-array name="young_white_dragon">
+        <item name="desc">Fighting a Young White Dragon...</item>
+        <item name="exp">2300</item>
+    </string-array>
+    <string-array name="white_wyrmling">
+        <item name="desc">Fighting a White Wyrmling...</item>
+        <item name="exp">450</item>
+    </string-array>
+    <string-array name="young_brass_dragon">
+        <item name="desc">Fighting a Young Brass Dragon...</item>
+        <item name="exp">2300</item>
+    </string-array>
+    <string-array name="brass_wyrmling">
+        <item name="desc">Fighting a Brass Wyrmling...</item>
+        <item name="exp">200</item>
+    </string-array>
+    <string-array name="young_bronze_dragon">
+        <item name="desc">Fighting a Young Bronze Dragon...</item>
+        <item name="exp">3900</item>
+    </string-array>
+    <string-array name="bronze_wyrmling">
+        <item name="desc">Fighting a Bronze Wyrmling...</item>
+        <item name="exp">450</item>
+    </string-array>
+    <string-array name="young_copper_dragon">
+        <item name="desc">Fighting a Young Copper Dragon...</item>
+        <item name="exp">2900</item>
+    </string-array>
+    <string-array name="Ccpper_wyrmling">
+        <item name="desc">Fighting a Copper Wyrmling...</item>
+        <item name="exp">200</item>
+    </string-array>
+    <string-array name="young_gold_dragon">
+        <item name="desc">Fighting a Young Gold Dragon...</item>
+        <item name="exp">5900</item>
+    </string-array>
+    <string-array name="gold_wyrmling">
+        <item name="desc">Fighting a Gold Wyrmling...</item>
+        <item name="exp">700</item>
+    </string-array>
+    <string-array name="young_silver_dragon">
+        <item name="desc">Fighting a Young Silver Dragon...</item>
+        <item name="exp">5000</item>
+    </string-array>
+    <string-array name="silver_wyrmling">
+        <item name="desc">Fighting a Silver Wyrmling...</item>
+        <item name="exp">450</item>
+    </string-array>
+    <string-array name="dragon_turtle">
+        <item name="desc">Fighting a Dragon Turtle...</item>
+        <item name="exp">18000</item>
+    </string-array>
+    <string-array name="dryad">
+        <item name="desc">Fighting a Dryad...</item>
+        <item name="exp">200</item>
+    </string-array>
+    <string-array name="air_elemental">
+        <item name="desc">Fighting an Air Elemental...</item>
+        <item name="exp">1800</item>
+    </string-array>
+    <string-array name="earth_elemental">
+        <item name="desc">Fighting an Earth Elemental...</item>
+        <item name="exp">1800</item>
+    </string-array>
+    <string-array name="fire_elemental">
+        <item name="desc">Fighting a Fire Elemental...</item>
+        <item name="exp">1800</item>
+    </string-array>
+    <string-array name="water_elemental">
+        <item name="desc">Fighting a Water Elemental...</item>
+        <item name="exp">1800</item>
+    </string-array>
+    <string-array name="ettercap">
+        <item name="desc">Fighting an Ettercap...</item>
+        <item name="exp">450</item>
+    </string-array>
+    <string-array name="ettin">
+        <item name="desc">Fighting an Ettin...</item>
+        <item name="exp">1100</item>
+    </string-array>
+    <string-array name="fairy_dragon">
+        <item name="desc">Fighting a Fairy Dragon...</item>
+        <item name="exp">330</item>
+    </string-array>
+    <string-array name="flameskull">
+        <item name="desc">Fighting a Flaming Skull...</item>
+        <item name="exp">1100</item>
+    </string-array>
+    <string-array name="flumph">
+        <item name="desc">Fighting a Flumph...</item>
+        <item name="exp">25</item>
+    </string-array>
+    <string-array name="fomorian">
+        <item name="desc">Fighting a Fomorian...</item>
+        <item name="exp">3900</item>
+    </string-array>
+    <string-array name="agressive_shroom">
+        <item name="desc">Fighting an Agressive Shroom...</item>
+        <item name="exp">100</item>
+    </string-array>
+    <string-array name="boulderman">
+        <item name="desc">Fighting a Boulderman...</item>
+        <item name="exp">2300</item>
+    </string-array>
+    <string-array name="gargoyle">
+        <item name="desc">Fighting a Gargoyle...</item>
+        <item name="exp">450</item>
+    </string-array>
+    <string-array name="genie">
+        <item name="desc">Fighting a Djinn...</item>
+        <item name="exp">7200</item>
+    </string-array>
+    <string-array name="ghost">
+        <item name="desc">Fighting a Spooky Ghost...</item>
+        <item name="exp">1100</item>
+    </string-array>
+    <string-array name="ghast">
+        <item name="desc">Fighting a Ghast...</item>
+        <item name="exp">450</item>
+    </string-array>
+    <string-array name="ghoul">
+        <item name="desc">Fighting a Water Elemental...</item>
+        <item name="exp">200</item>
+    </string-array>
+    <string-array name="cloud_giant">
+        <item name="desc">Fighting a Could Giant...</item>
+        <item name="exp">5000</item>
+    </string-array>
+    <string-array name="fire_giant">
+        <item name="desc">Fighting a Fire Giant...</item>
+        <item name="exp">5000</item>
+    </string-array>
+    <string-array name="frost_giant">
+        <item name="desc">Fighting a Frost Giant...</item>
+        <item name="exp">3900</item>
+    </string-array>
+    <string-array name="hill_giant">
+        <item name="desc">Fighting a Hill Giant...</item>
+        <item name="exp">1800</item>
+    </string-array>
+    <string-array name="stone_giant">
+        <item name="desc">Fighting a Stone Giant...</item>
+        <item name="exp">2900</item>
+    </string-array>
+    <string-array name="storm_giant">
+        <item name="desc">Fighting a Storm Giant...</item>
+        <item name="exp">10000</item>
+    </string-array>
+    <string-array name="hyenaman">
+        <item name="desc">Fighting a Hyenaman...</item>
+        <item name="exp">100</item>
+    </string-array>
+    <string-array name="deep_gnome">
+        <item name="desc">Fighting a Deep Gnome...</item>
+        <item name="exp">100</item>
+    </string-array>
+    <string-array name="goblin">
+        <item name="desc">Fighting a Goblin...</item>
+        <item name="exp">50</item>
+    </string-array>
+    <string-array name="clay_golem">
+        <item name="desc">Fighting a Clay Golem...</item>
+        <item name="exp">5000</item>
+    </string-array>
+    <string-array name="flesh_golem">
+        <item name="desc">Fighting a Flesh Golem...</item>
+        <item name="exp">1800</item>
+    </string-array>
+    <string-array name="iron_golem">
+        <item name="desc">Fighting a Iron Golem...</item>
+        <item name="exp">15000</item>
+    </string-array>
+    <string-array name="stone_golem">
+        <item name="desc">Fighting a Stone Golem...</item>
+        <item name="exp">5900</item>
+    </string-array>
+    <string-array name="gorgon">
+        <item name="desc">Fighting a Gorgon...</item>
+        <item name="exp">1800</item>
+    </string-array>
+    <string-array name="braintopuss">
+        <item name="desc">Fighting a Braintopuss...</item>
+        <item name="exp">700</item>
+    </string-array>
+    <string-array name="grick">
+        <item name="desc">Fighting a Grick...</item>
+        <item name="exp">450</item>
+    </string-array>
+    <string-array name="alpha_grick">
+        <item name="desc">Fighting an Alpha Grick...</item>
+        <item name="exp">2900</item>
+    </string-array>
+    <string-array name="griffon">
+        <item name="desc">Fighting a Griffon...</item>
+        <item name="exp">450</item>
+    </string-array>
+    <string-array name="green_hag">
+        <item name="desc">Fighting a Green Hag...</item>
+        <item name="exp">700</item>
+    </string-array>
+    <string-array name="night_hag">
+        <item name="desc">Fighting a Night Hag...</item>
+        <item name="exp">1800</item>
+    </string-array>
+    <string-array name="sea_hag">
+        <item name="desc">Fighting a Sea Hag...</item>
+        <item name="exp">450</item>
+    </string-array>
+    <string-array name="halfdragon">
+        <item name="desc">Fighting a Half-dragon...</item>
+        <item name="exp">1800</item>
+    </string-array>
+    <string-array name="harpy">
+        <item name="desc">Fighting a Harpy...</item>
+        <item name="exp">200</item>
+    </string-array>
+    <string-array name="Hellhound">
+        <item name="desc">Fighting a Hellhound...</item>
+        <item name="exp">700</item>
+    </string-array>
+    <string-array name="hippogriff">
+        <item name="desc">Fighting a Hippogriff...</item>
+        <item name="exp">200</item>
+    </string-array>
+    <string-array name="hobgoblin">
+        <item name="desc">Fighting a Hobgoblin...</item>
+        <item name="exp">100</item>
+    </string-array>
+    <string-array name="hobgoblin_warlord">
+        <item name="desc">Fighting a Hobgoblin Warlord...</item>
+        <item name="exp">2300</item>
+    </string-array>
+    <string-array name="hobgoblin_captain">
+        <item name="desc">Fighting a Hobgoblin Captain...</item>
+        <item name="exp">700</item>
+    </string-array>
+    <string-array name="homunculus">
+        <item name="desc">Fighting a Homunculus...</item>
+        <item name="exp">10</item>
+    </string-array>
+    <string-array name="hookbird">
+        <item name="desc">Fighting a Hookbird...</item>
+        <item name="exp">700</item>
+    </string-array>
+    <string-array name="hydra">
+        <item name="desc">Fighting a Hydra...</item>
+        <item name="exp">3900</item>
+    </string-array>
+    <string-array name="brainboy">
+        <item name="desc">Fighting a Brainboy...</item>
+        <item name="exp">450</item>
+    </string-array>
+    <string-array name="stalker">
+        <item name="desc">Fighting a Stalker...</item>
+        <item name="exp">2300</item>
+    </string-array>
+    <string-array name="werejackal">
+        <item name="desc">Fighting a Werejackal...</item>
+        <item name="exp">100</item>
+    </string-array>
+    <string-array name="kenku">
+        <item name="desc">Fighting a Kenku...</item>
+        <item name="exp">50</item>
+    </string-array>
+    <string-array name="kobold">
+        <item name="desc">Fighting a Kobold...</item>
+        <item name="exp">25</item>
+    </string-array>
+    <string-array name="winged_kobold">
+        <item name="desc">Fighting a Winged Kobold...</item>
+        <item name="exp">50</item>
+    </string-array>
+    <string-array name="fishperson">
+        <item name="desc">Fighting a Fish Person...</item>
+        <item name="exp">50</item>
+    </string-array>
+    <string-array name="fishperson_priest">
+        <item name="desc">Fighting a Water Elemental...</item>
+        <item name="exp">2300</item>
+    </string-array>
+    <string-array name="fishperson_slavemaster">
+        <item name="desc">Fighting a Fishperson Slavemaster...</item>
+        <item name="exp">1800</item>
+    </string-array>
+    <string-array name="lamia">
+        <item name="desc">Fighting a Lamia...</item>
+        <item name="exp">1100</item>
+    </string-array>
+    <string-array name="lizardperson">
+        <item name="desc">Fighting a Lizardperson...</item>
+        <item name="exp">100</item>
+    </string-array>
+    <string-array name="lizardperson_shaman">
+        <item name="desc">Fighting a Lizardperson Shaman...</item>
+        <item name="exp">450</item>
+    </string-array>
+    <string-array name="lizardperson_mayor">
+        <item name="desc">Fighting a Lizardperson Mayor...</item>
+        <item name="exp">1100</item>
+    </string-array>
+    <string-array name="werebear">
+        <item name="desc">Fighting a Werebear...</item>
+        <item name="exp">1800</item>
+    </string-array>
+    <string-array name="wereboar">
+        <item name="desc">Fighting a Wereboar...</item>
+        <item name="exp">1100</item>
+    </string-array>
+    <string-array name="wererat">
+        <item name="desc">Fighting a Wererat...</item>
+        <item name="exp">450</item>
+    </string-array>
+    <string-array name="weretiger">
+        <item name="desc">Fighting a Weretiger...</item>
+        <item name="exp">1100</item>
+    </string-array>
+    <string-array name="werewolf">
+        <item name="desc">Fighting a Werewolf...</item>
+        <item name="exp">700</item>
+    </string-array>
+    <string-array name="magboy">
+        <item name="desc">Fighting a Magboy...</item>
+        <item name="exp">100</item>
+    </string-array>
+    <string-array name="manticore">
+        <item name="desc">Fighting a Manticore...</item>
+        <item name="exp">700</item>
+    </string-array>
+    <string-array name="dust_mephit">
+        <item name="desc">Fighting a Dust Mephit...</item>
+        <item name="exp">100</item>
+    </string-array>
+    <string-array name="ice_mephit">
+        <item name="desc">Fighting a Ice Mephit...</item>
+        <item name="exp">100</item>
+    </string-array>
+    <string-array name="magma_mephit">
+        <item name="desc">Fighting a Magma Mephit...</item>
+        <item name="exp">100</item>
+    </string-array>
+    <string-array name="mud_mephit">
+        <item name="desc">Fighting a Mud Mephit...</item>
+        <item name="exp">50</item>
+    </string-array>
+    <string-array name="smoke_mephit">
+        <item name="desc">Fighting a Smoke Mephit...</item>
+        <item name="exp">50</item>
+    </string-array>
+    <string-array name="steam_mephit">
+        <item name="desc">Fighting a Steam Mephit...</item>
+        <item name="exp">50</item>
+    </string-array>
+    <string-array name="merwoman">
+        <item name="desc">Fighting a Merwoman...</item>
+        <item name="exp">25</item>
+    </string-array>
+    <string-array name="merman">
+        <item name="desc">Fighting a Merman...</item>
+        <item name="exp">25</item>
+    </string-array>
+    <string-array name="mimic">
+        <item name="desc">Fighting a Mimic...</item>
+        <item name="exp">450</item>
+    </string-array>
+    <string-array name="brainlord">
+        <item name="desc">Fighting a Brainlord...</item>
+        <item name="exp">2900</item>
+    </string-array>
+    <string-array name="minotaur">
+        <item name="desc">Fighting a Minotaur...</item>
+        <item name="exp">700</item>
+    </string-array>
+    <string-array name="cubefriend">
+        <item name="desc">Fighting a Cubefriend...</item>
+        <item name="exp">200</item>
+    </string-array>
+    <string-array name="pyramidfriend">
+        <item name="desc">Fighting a Pyramidfriend...</item>
+        <item name="exp">100</item>
+    </string-array>
+    <string-array name="sheetfriend">
+        <item name="desc">Fighting a Sheetfriend...</item>
+        <item name="exp">50</item>
+    </string-array>
+    <string-array name="pentafriend">
+        <item name="desc">Fighting a Pentafriend...</item>
+        <item name="exp">450</item>
+    </string-array>
+    <string-array name="mummy">
+        <item name="desc">Fighting a Mummy...</item>
+        <item name="exp">700</item>
+    </string-array>
+    <string-array name="shroomchild">
+        <item name="desc">Fighting a Shroomchild...</item>
+        <item name="exp">10</item>
+    </string-array>
+    <string-array name="shroomperson">
+        <item name="desc">Fighting a Shroomperson...</item>
+        <item name="exp">450</item>
+    </string-array>
+    <string-array name="bonesnek">
+        <item name="desc">Fighting a Bonesnek...</item>
+        <item name="exp">1100</item>
+    </string-array>
+    <string-array name="spiritsnek">
+        <item name="desc">Fighting a Spiritsnek...</item>
+        <item name="exp">3900</item>
+    </string-array>
+    <string-array name="guardiansnek">
+        <item name="desc">Fighting a Guardiansnek...</item>
+        <item name="exp">5900</item>
+    </string-array>
+    <string-array name="nightmare">
+        <item name="desc">Fighting a Nightmare...</item>
+        <item name="exp">700</item>
+    </string-array>
+    <string-array name="ogre">
+        <item name="desc">Fighting a Ogre...</item>
+        <item name="exp">450</item>
+    </string-array>
+    <string-array name="half_ogre">
+        <item name="desc">Fighting a Half-Ogre...</item>
+        <item name="exp">200</item>
+    </string-array>
+    <string-array name="oni">
+        <item name="desc">Fighting a Mummy...</item>
+        <item name="exp">2900</item>
+    </string-array>
+    <string-array name="black_sludge">
+        <item name="desc">Fighting Black Sludge...</item>
+        <item name="exp">1100</item>
+    </string-array>
+    <string-array name="gelatin_cube">
+        <item name="desc">Fighting a Cubular Slime...</item>
+        <item name="exp">450</item>
+    </string-array>
+    <string-array name="orc">
+        <item name="desc">Fighting an Orc...</item>
+        <item name="exp">100</item>
+    </string-array>
+    <string-array name="orc_chief">
+        <item name="desc">Fighting an Orc Chief...</item>
+        <item name="exp">1100</item>
+    </string-array>
+    <string-array name="owlbear">
+        <item name="desc">Fighting an Owlbear...</item>
+        <item name="exp">700</item>
+    </string-array>
+    <string-array name="pegasus">
+        <item name="desc">Fighting a Pegasus...</item>
+        <item name="exp">450</item>
+    </string-array>
+    <string-array name="peryton">
+        <item name="desc">Fighting a Peryton...</item>
+        <item name="exp">450</item>
+    </string-array>
+    <string-array name="jerry">
+        <item name="desc">Fighting a Jerry...</item>
+        <item name="exp">100</item>
+    </string-array>
+    <string-array name="pixie">
+        <item name="desc">Fighting a Pixie...</item>
+        <item name="exp">50</item>
+    </string-array>
+    <string-array name="pseudodragon">
+        <item name="desc">Fighting a Pseudodragon...</item>
+        <item name="exp">50</item>
+    </string-array>
+    <string-array name="mighty_worm">
+        <item name="desc">Fighting a Mighty Worm...</item>
+        <item name="exp">13000</item>
+    </string-array>
+    <string-array name="rakshasa">
+        <item name="desc">Fighting a Rakshasa...</item>
+        <item name="exp">10000</item>
+    </string-array>
+    <string-array name="revenant">
+        <item name="desc">Fighting a Revenant...</item>
+        <item name="exp">18000</item>
+    </string-array>
+    <string-array name="roc">
+        <item name="desc">Fighting a Roc...</item>
+        <item name="exp">7200</item>
+    </string-array>
+    <string-array name="rust_monster">
+        <item name="desc">Fighting a Rust Monster...</item>
+        <item name="exp">100</item>
+    </string-array>
+    <string-array name="salamander">
+        <item name="desc">Fighting a Salamander...</item>
+        <item name="exp">1800</item>
+    </string-array>
+    <string-array name="firesnek">
+        <item name="desc">Fighting a Firesnek...</item>
+        <item name="exp">200</item>
+    </string-array>
+    <string-array name="satyr">
+        <item name="desc">Fighting a Satyr...</item>
+        <item name="exp">100</item>
+    </string-array>
+    <string-array name="scarecrow">
+        <item name="desc">Fighting a Scarecrow...</item>
+        <item name="exp">200</item>
+    </string-array>
+    <string-array name="shadow">
+        <item name="desc">Fighting a Shadow...</item>
+        <item name="exp">100</item>
+    </string-array>
+    <string-array name="shambler">
+        <item name="desc">Fighting a Shambler...</item>
+        <item name="exp">1800</item>
+    </string-array>
+    <string-array name="shield_guardian">
+        <item name="desc">Fighting a Shield Guardian...</item>
+        <item name="exp">2900</item>
+    </string-array>
+    <string-array name="skeleton">
+        <item name="desc">Fighting a Mighty Worm...</item>
+        <item name="exp">50</item>
+    </string-array>
+    <string-array name="red_froggo">
+        <item name="desc">Fighting a Red Froggo...</item>
+        <item name="exp">1800</item>
+    </string-array>
+    <string-array name="tadpole">
+        <item name="desc">Fighting a Tadpole...</item>
+        <item name="exp">25</item>
+    </string-array>
+    <string-array name="blue_froggo">
+        <item name="desc">Fighting a Blue Froggo...</item>
+        <item name="exp">2900</item>
+    </string-array>
+    <string-array name="green_froggo">
+        <item name="desc">Fighting a Green Froggo...</item>
+        <item name="exp">3900</item>
+    </string-array>
+    <string-array name="gray_froggo">
+        <item name="desc">Fighting a Gray Froggo...</item>
+        <item name="exp">5000</item>
+    </string-array>
+    <string-array name="death_froggo">
+        <item name="desc">Fighting a Death Froggo...</item>
+        <item name="exp">5900</item>
+    </string-array>
+    <string-array name="specter">
+        <item name="desc">Fighting a Specter...</item>
+        <item name="exp">200</item>
+    </string-array>
+    <string-array name="sprite">
+        <item name="desc">Fighting a Specter...</item>
+        <item name="exp">50</item>
+    </string-array>
+    <string-array name="succubus">
+        <item name="desc">Fighting a Succubus...</item>
+        <item name="exp">1100</item>
+    </string-array>
+    <string-array name="incubus">
+        <item name="desc">Fighting an Incubus...</item>
+        <item name="exp">1100</item>
+    </string-array>
+    <string-array name="ent">
+        <item name="desc">Fighting an Ent...</item>
+        <item name="exp">5000</item>
+    </string-array>
+    <string-array name="troglodite">
+        <item name="desc">Fighting a Troglodite...</item>
+        <item name="exp">50</item>
+    </string-array>
+    <string-array name="troll">
+        <item name="desc">Fighting a Troll...</item>
+        <item name="exp">1800</item>
+    </string-array>
+    <string-array name="wight">
+        <item name="desc">Fighting a Wight...</item>
+        <item name="exp">700</item>
+    </string-array>
+    <string-array name="willowisp">
+        <item name="desc">Fighting a Will-o\'-Wisp...</item>
+        <item name="exp">450</item>
+    </string-array>
+    <string-array name="wraith">
+        <item name="desc">Fighting a Wraith...</item>
+        <item name="exp">1800</item>
+    </string-array>
+    <string-array name="wyvern">
+        <item name="desc">Fighting a Wyvern...</item>
+        <item name="exp">2300</item>
+    </string-array>
+    <string-array name="yeti">
+        <item name="desc">Fighting a Yeti...</item>
+        <item name="exp">700</item>
+    </string-array>
+    <string-array name="snekperson">
+        <item name="desc">Fighting a Snekperson...</item>
+        <item name="exp">2900</item>
+    </string-array>
+    <string-array name="zombie">
+        <item name="desc">Fighting a Zombie...</item>
+        <item name="exp">50</item>
     </string-array>
 
 </resources>

@@ -9,7 +9,7 @@ import android.util.Log;
 
 public class Character {
 
-    private static final int BASE_LEVELUP_EXP = 200; //How much it takes to go from lvl one to lvl 2, in steps (??)
+    private static final int BASE_LEVELUP_EXP = 300; //How much it takes to go from lvl one to lvl 2, in steps (??)
 
     private static final String TAG = "Character";
 
