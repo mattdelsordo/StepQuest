@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 
+import java.util.Comparator;
+
 import project3.csc214.stepquest.R;
 
 /**
@@ -44,7 +46,7 @@ public class Event {
         this.mDescription = mDescription;
     }
 
-    public int getDuration() {
+    public Integer getDuration() {
         return mDuration;
     }
 
@@ -94,5 +96,14 @@ public class Event {
             monsterName += descSplit[i] + " ";
         }
         return monsterName.substring(0, monsterName.length() - 4);
+    }
+
+    //comparator that sorts events by their duration
+    public static class EventComparator implements Comparator<Event> {
+
+        @Override
+        public int compare(Event o1, Event o2) {
+            return o1.getDuration().compareTo(o2.getDuration());
+        }
     }
 }

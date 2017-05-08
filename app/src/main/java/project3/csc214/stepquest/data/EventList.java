@@ -6,6 +6,8 @@ import android.content.res.TypedArray;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Random;
 
 import project3.csc214.stepquest.R;
@@ -80,6 +82,9 @@ public class EventList {
             }
             list.add(monster);
         }
+
+        //sort list
+        Collections.sort(list, new Event.EventComparator());
     }
 
     //methods to get a random event of a given type
@@ -104,13 +109,40 @@ public class EventList {
     }
 
     //returns a random event of appropriate difficulty for a given character
-    //TODO: this needs refining
     public Event getLevelledMonster(int level){
-        int cap = Character.levelUpFunction(level) /2;
+        int totalMonsters = mMonsters.size();
+        int chunk = totalMonsters / 20;
 
-        Event event = getRandomMonster();
-        while(event.getDuration() > cap) event = getRandomMonster();
+        int ceiling = (chunk * level) + (2 * chunk);
+        int floor = (chunk * level) - (chunk);
 
-        return event;
+        //constrain so you dont go out of bounds
+        if(floor < 0)floor = 0;
+        if(ceiling > totalMonsters) ceiling = totalMonsters;
+
+        int selection = rand.nextInt(ceiling - floor) + floor;
+
+        return mMonsters.get(selection);
+        //int cap = Character.levelUpFunction(level) /2;
+//        Event event = getRandomMonster();
+//        while(event.getDuration() > cap) event = getRandomMonster();
+//        return event;
     }
+
+    public Event getLevelledBoss(int level){
+        int totalMonsters = mBosses.size();
+        int chunk = totalMonsters / 20;
+
+        int ceiling = (chunk * level) + (2 * chunk);
+        int floor = (chunk * level) - (chunk);
+
+        //constrain so you dont go out of bounds
+        if(floor < 0)floor = 0;
+        if(ceiling > totalMonsters) ceiling = totalMonsters;
+
+        int selection = rand.nextInt(ceiling - floor) + floor;
+
+        return mBosses.get(selection);
+    }
+
 }
