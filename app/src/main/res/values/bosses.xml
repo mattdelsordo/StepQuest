@@ -2,7 +2,7 @@
 <resources>
     
     <array name="bosses">
-        <item>@array/Aboleth</item>
+        <item>@array/whale</item>
         <item>@array/observer</item>
         <item>@array/demilich</item>
         <item>@array/dracolich</item>
@@ -53,163 +53,161 @@
         <item name="weapon">eye_of_observer</item>
     </string-array>
 
-
-
     <string-array name="demilich">
         <item name="desc">In combat with a Demilich...</item>
         <item name="exp">20000</item>
         <item name="gold">0</item>
-        <item name="weapon">eye_of_observer</item>
+        <item name="weapon">demi_wand</item>
     </string-array>
     <string-array name="dracolich">
         <item name="desc">In combat with a Dracolich...</item>
         <item name="exp">18000</item>
         <item name="gold">0</item>
-        <item name="weapon">eye_of_observer</item>
+        <item name="weapon">dead_fang</item>
     </string-array>
     <string-array name="shadow_dragon">
         <item name="desc">In combat with a Shadow Dragon...</item>
         <item name="exp">10000</item>
         <item name="gold">0</item>
-        <item name="weapon">eye_of_observer</item>
+        <item name="weapon">ghost_mace</item>
     </string-array>
     <string-array name="ancient_black_dragon">
         <item name="desc">In combat with an Ancient Black Dragon...</item>
         <item name="exp">27500</item>
         <item name="gold">0</item>
-        <item name="weapon">eye_of_observer</item>
+        <item name="weapon">eternal_void_bow</item>
     </string-array>
     <string-array name="black_dragon">
         <item name="desc">In combat with a Black Dragon...</item>
         <item name="exp">11500</item>
         <item name="gold">0</item>
-        <item name="weapon">eye_of_observer</item>
+        <item name="weapon">void_bow</item>
     </string-array>
     <string-array name="ancient_blue_dragon">
         <item name="desc">In combat with an Ancient Blue Dragon...</item>
         <item name="exp">32500</item>
         <item name="gold">0</item>
-        <item name="weapon">eye_of_observer</item>
+        <item name="weapon">eternal_sea_wand</item>
     </string-array>
     <string-array name="blue_dragon">
         <item name="desc">In combat with a Blue Dragon...</item>
         <item name="exp">15000</item>
         <item name="gold">0</item>
-        <item name="weapon">eye_of_observer</item>
+        <item name="weapon">sea_wand</item>
     </string-array>
     <string-array name="ancient_green_dragon">
         <item name="desc">In combat with an Ancient Green Dragon...</item>
         <item name="exp">30000</item>
         <item name="gold">0</item>
-        <item name="weapon">eye_of_observer</item>
+        <item name="weapon">eldritch_vine_bow</item>
     </string-array>
     <string-array name="green_dragon">
         <item name="desc">In combat with a Green Dragon...</item>
         <item name="exp">13000</item>
         <item name="gold">0</item>
-        <item name="weapon">eye_of_observer</item>
+        <item name="weapon">vine_bow</item>
     </string-array>
     <string-array name="ancient_red_dragon">
         <item name="desc">In combat with an Ancient Red Dragon...</item>
         <item name="exp">36500</item>
         <item name="gold">0</item>
-        <item name="weapon">eye_of_observer</item>
+        <item name="weapon">eldritch_magma_staff</item>
     </string-array>
     <string-array name="red_dragon">
         <item name="desc">In combat with a Red Dragon...</item>
         <item name="exp">18000</item>
         <item name="gold">0</item>
-        <item name="weapon">eye_of_observer</item>
+        <item name="weapon">magma_staff</item>
     </string-array>
     <string-array name="ancient_white_dragon">
         <item name="desc">In combat with an Ancient White Dragon...</item>
         <item name="exp">24500</item>
         <item name="gold">0</item>
-        <item name="weapon">eye_of_observer</item>
+        <item name="weapon">eternal_frost_staff</item>
     </string-array>
     <string-array name="white_dragon">
         <item name="desc">In combat with a White Dragon...</item>
         <item name="exp">10000</item>
         <item name="gold">0</item>
-        <item name="weapon">eye_of_observer</item>
+        <item name="weapon">frost_staff</item>
     </string-array>
     <string-array name="ancient_brass_dragon">
         <item name="desc">In combat with an Ancient Brass Dragon...</item>
         <item name="exp">24500</item>
         <item name="gold">0</item>
-        <item name="weapon">eye_of_observer</item>
+        <item name="weapon">eldritch_dust_sword</item>
     </string-array>
     <string-array name="brass_dragon">
         <item name="desc">In combat with a Brass Dragon...</item>
         <item name="exp">10000</item>
         <item name="gold">0</item>
-        <item name="weapon">eye_of_observer</item>
+        <item name="weapon">dust_sword</item>
     </string-array>
     <string-array name="ancient_bronze_dragon">
         <item name="desc">In combat with an Ancient Bronze Dragon...</item>
         <item name="exp">30000</item>
         <item name="gold">0</item>
-        <item name="weapon">eye_of_observer</item>
+        <item name="weapon">eldritch_mistmace</item>
     </string-array>
     <string-array name="bronze_dragon">
         <item name="desc">In combat with a Bronze Dragon...</item>
         <item name="exp">13000</item>
         <item name="gold">0</item>
-        <item name="weapon">eye_of_observer</item>
+        <item name="weapon">mistmace</item>
     </string-array>
     <string-array name="ancient_copper_dragon">
         <item name="desc">In combat with an Ancient Copper Dragon...</item>
         <item name="exp">27500</item>
         <item name="gold">0</item>
-        <item name="weapon">eye_of_observer</item>
+        <item name="weapon">eldritch_granite_maul</item>
     </string-array>
     <string-array name="copper_dragon">
         <item name="desc">In combat with a Copper Dragon...</item>
         <item name="exp">11500</item>
         <item name="gold">0</item>
-        <item name="weapon">eye_of_observer</item>
+        <item name="weapon">granite_maul</item>
     </string-array>
     <string-array name="ancient_gold_dragon">
         <item name="desc">In combat with an Ancient Gold Dragon...</item>
         <item name="exp">36500</item>
         <item name="gold">0</item>
-        <item name="weapon">eye_of_observer</item>
+        <item name="weapon">eldritch_gold_sword</item>
     </string-array>
     <string-array name="gold_dragon">
         <item name="desc">In combat with a Gold Dragon...</item>
         <item name="exp">18000</item>
         <item name="gold">0</item>
-        <item name="weapon">eye_of_observer</item>
+        <item name="weapon">gold_sword</item>
     </string-array>
     <string-array name="ancient_silver_dragon">
         <item name="desc">In combat with an Ancient Silver Dragon...</item>
         <item name="exp">32500</item>
         <item name="gold">0</item>
-        <item name="weapon">eye_of_observer</item>
+        <item name="weapon">eldritch_silver_sword</item>
     </string-array>
     <string-array name="silver_dragon">
         <item name="desc">In combat with a Silver Dragon...</item>
         <item name="exp">15000</item>
         <item name="gold">0</item>
-        <item name="weapon">eye_of_observer</item>
+        <item name="weapon">silver_sword</item>
     </string-array>
     <string-array name="Demigod">
         <item name="desc">In combat with a Demigod...</item>
         <item name="exp">50000</item>
         <item name="gold">0</item>
-        <item name="weapon">eye_of_observer</item>
+        <item name="weapon">cudgel_of_the_gods</item>
     </string-array>
     <string-array name="kraken">
         <item name="desc">In combat with a Kraken...</item>
         <item name="exp">32500</item>
         <item name="gold">0</item>
-        <item name="weapon">eye_of_observer</item>
+        <item name="weapon">tentacle_whip</item>
     </string-array>
     <string-array name="lich">
         <item name="desc">In combat with a Lich...</item>
         <item name="exp">33000</item>
         <item name="gold">0</item>
-        <item name="weapon">eye_of_observer</item>
+        <item name="weapon">staff_of_undeath</item>
     </string-array>
     <string-array name="dr_worm">
         <item name="desc">In combat with Doctor Worm...</item>
@@ -221,31 +219,31 @@
         <item name="desc">In combat with a Pharaoh...</item>
         <item name="exp">13000</item>
         <item name="gold">0</item>
-        <item name="weapon">criticism_mace</item>
+        <item name="weapon">linen_bow</item>
     </string-array>
     <string-array name="sphinx">
         <item name="desc">In combat with a Sphinx...</item>
         <item name="exp">18000</item>
         <item name="gold">0</item>
-        <item name="weapon">criticism_mace</item>
+        <item name="weapon">sphinx_blade</item>
     </string-array>
     <string-array name="metabeast">
         <item name="desc">In combat with the Metabeast...</item>
         <item name="exp">155000</item>
         <item name="gold">0</item>
-        <item name="weapon">criticism_mace</item>
+        <item name="weapon">fang_of_the_metabeast</item>
     </string-array>
     <string-array name="unicorn">
         <item name="desc">In combat with a Unicorn...</item>
         <item name="exp">1800</item>
         <item name="gold">0</item>
-        <item name="weapon">criticism_mace</item>
+        <item name="weapon">unicorn_bow</item>
     </string-array>
     <string-array name="vampire">
         <item name="desc">In combat with a Vampire...</item>
         <item name="exp">10000</item>
         <item name="gold">0</item>
-        <item name="weapon">criticism_mace</item>
+        <item name="weapon">vampire_staff</item>
     </string-array>
 
 </resources>
