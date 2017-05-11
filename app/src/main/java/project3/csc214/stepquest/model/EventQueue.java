@@ -96,7 +96,7 @@ public class EventQueue {
 //            Character active = ActiveCharacter.getInstance().getActiveCharacter();
             //give the player exp
             int expGain = currentEvent.getExp();
-            ActiveCharacter.getInstance(mAppContext).addExp(expGain);
+            ActiveCharacter.getInstance(mAppContext).addExp(expGain, listener);
             //give the player money
             int fundReward = currentEvent.getGoldReward();
             ActiveCharacter.getInstance(mAppContext).addFunds(fundReward);

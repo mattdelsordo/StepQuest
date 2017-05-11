@@ -92,4 +92,5 @@
     <string name="take_video">Take Video</string>
     <string name="camera_denied">Camera Permission Denied</string>
     <string name="hark">Hark!</string>
+    <string name="default_step_cost_indicator">10000</string>
 </resources>

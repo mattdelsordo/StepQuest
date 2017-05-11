@@ -71,12 +71,14 @@ public class ActiveCharacter{
     }
 
     //adds exp to the character
-    public void addExp(int exp){
+    public void addExp(int exp, EventQueue.NotificationListener listener){
         boolean levelledUp = mCharacter.addExp(exp);
         if(mExpListener != null) mExpListener.updateExpProgress(mCharacter);
 
         if(levelledUp){
             if(mLevelUpListener != null) mLevelUpListener.doLevelUp();
+            //else, notify user because this means the activity is dead
+            else if(listener != null) listener.notifyUser(mCharacter.getName() + " grew to level " + mCharacter.getLevel());
         }
     }
 

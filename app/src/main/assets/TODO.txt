@@ -1,0 +1,17 @@
+---- This is used to keep track of as of yet incomplete game functions ----
+
+UX:
+-Update bunt weapon/notification icons
+
+GAMPLAY:
+-Add shop
+--Buy scaled weapons
+--Buy boosts
+
+MECHANICS:
+-Make sure level scaling works as intended
+-Tweak drop rates for normal monsters
+-EITHER:
+--Cap character level at 20 (see how long it would take to get there first)
+--Figure out how to scale monsters infinitely
+-More intelligent monster scaling/step amount calculation

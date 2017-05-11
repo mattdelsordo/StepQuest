@@ -20,6 +20,7 @@ public class ProgressFragment extends Fragment implements EventQueue.EventUpdate
 
     private ProgressBar mProgress;
     private TextView mDesc;
+    private TextView mTotal;
 
     public ProgressFragment() {
         // Required empty public constructor
@@ -35,6 +36,8 @@ public class ProgressFragment extends Fragment implements EventQueue.EventUpdate
         mDesc = (TextView)view.findViewById(R.id.textview_progress_description);
 
         mProgress = (ProgressBar)view.findViewById(R.id.progressbar_progress_THE_BAR);
+
+        mTotal = (TextView)view.findViewById(R.id.textview_progress_total);
 
         //bind to event queue
 //        EventQueue queue = EventQueue.getInstance(getContext());
@@ -69,6 +72,7 @@ public class ProgressFragment extends Fragment implements EventQueue.EventUpdate
         mDesc.setText(e.getDescription());
         mProgress.setMax(e.getDuration());
         mProgress.setProgress(progress);
+        mTotal.setText(e.getDuration());
     }
 
     @Override
