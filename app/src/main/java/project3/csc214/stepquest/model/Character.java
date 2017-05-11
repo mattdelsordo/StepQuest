@@ -106,18 +106,22 @@ public class Character {
 
     //returns true if a level up took place
     public boolean addExp(int exp){
-        mExp += exp;
-        boolean levelledUp = false;
+        //dont add exp if level >= 20
+        if(getLevel() < 20){
+            mExp += exp;
+            boolean levelledUp = false;
 
-        //do check for level up
-        while(canLevelUp(mExp, mLevel)){
-            mLevel++;
-            addLvlUpToken();
-            Log.i(TAG, mName + " level'd up! (" + mLevel + ")");
-            levelledUp = true;
+            //do check for level up
+            while(canLevelUp(mExp, mLevel)){
+                mLevel++;
+                addLvlUpToken();
+                Log.i(TAG, mName + " level'd up! (" + mLevel + ")");
+                levelledUp = true;
+            }
+
+            return levelledUp;
         }
-
-        return levelledUp;
+        return false;
     }
 
 

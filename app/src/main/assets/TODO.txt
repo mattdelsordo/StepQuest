@@ -9,9 +9,12 @@ GAMPLAY:
 --Buy boosts
 
 MECHANICS:
--Make sure level scaling works as intended
 -Tweak drop rates for normal monsters
--EITHER:
---Cap character level at 20 (see how long it would take to get there first)
---Figure out how to scale monsters infinitely
 -More intelligent monster scaling/step amount calculation
+!-Load in single list of all monsters + bosses, sort by steps
+!-Split list into as many sub-lists as there are challenge ratings
+!-Set everything in each list to the newly distributed duration based on the challenge rating
+!-randomize monster from probability distribution around player level, more likely for CR closer
+    to the player's level
+!-generate bosses as a distribution starting at like 3-5 higher than player level
+!-scale village events based on cr for player level minus a couple

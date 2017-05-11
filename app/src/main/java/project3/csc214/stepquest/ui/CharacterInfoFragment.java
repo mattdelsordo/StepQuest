@@ -80,11 +80,18 @@ public class CharacterInfoFragment extends Fragment implements ActiveCharacter.E
     @Override
     public void updateExpProgress(Character c) {
         int level = c.getLevel();
-        int floor = Character.levelUpFunction(level - 1);
-        int ceiling = Character.levelUpFunction(level);
 
-        mExpProgress.setMax(ceiling);
-        mExpProgress.setProgress(c.getExp() - floor);
+        if(level < 20){
+            int floor = Character.levelUpFunction(level - 1);
+            int ceiling = Character.levelUpFunction(level);
+
+            mExpProgress.setMax(ceiling);
+            mExpProgress.setProgress(c.getExp() - floor);
+        }else{
+            mExpProgress.setMax(10);
+            mExpProgress.setProgress(10);
+        }
+
     }
 
     @Override
