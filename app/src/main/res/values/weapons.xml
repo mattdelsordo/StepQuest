@@ -186,14 +186,46 @@
 
     <!--Legendaries-->
     <array name="legendary_weapons">
-        <item>@array/aboleth_fang</item>
+        <item>@array/whale_bow</item>
         <item>@array/eye_of_observer</item>
+        <item>@array/criticism_mace</item>
+        <item>@array/vampire_staff</item>
+        <item>@array/unicorn_bow</item>
+        <item>@array/fang_of_the_metabeast</item>
+        <item>@array/sphinx_blade</item>
+        <item>@array/linen_bow</item>
+        <item>@array/staff_of_undeath</item>
+        <item>@array/tentacle_whip</item>
+        <item>@array/cudgel_of_the_gods</item>
+        <item>@array/silver_sword</item>
+        <item>@array/eldritch_silver_sword</item>
+        <item>@array/gold_sword</item>
+        <item>@array/eldritch_gold_sword</item>
+        <item>@array/granite_maul</item>
+        <item>@array/eldritch_granite_maul</item>
+        <item>@array/mistmace</item>
+        <item>@array/eldritch_mistmace</item>
+        <item>@array/dustsword</item>
+        <item>@array/eldritch_dustsword</item>
+        <item>@array/frost_staff</item>
+        <item>@array/eternal_frost_staff</item>
+        <item>@array/magma_staff</item>
+        <item>@array/eldritch_magma_staff</item>
+        <item>@array/vine_bow</item>
+        <item>@array/eldritch_vine_bow</item>
+        <item>@array/sea_wand</item>
+        <item>@array/eternal_sea_wand</item>
+        <item>@array/void_bow</item>
+        <item>@array/eternal_void_bow</item>
+        <item>@array/ghost_mace</item>
+        <item>@array/dead_fang</item>
+        <item>@array/demi_wand</item>
     </array>
-    <string-array name="aboleth_fang">
-        <item name="id">aboleth_fang</item>
-        <item name = "name">Aboleth Fang</item>
-        <item name = "type">BLADE</item>
-        <item name = "material">6.0</item>
+    <string-array name="whale_bow">
+        <item name="id">whale_bow</item>
+        <item name = "name">Whale Sinew Bow</item>
+        <item name = "type">BOW</item>
+        <item name = "material">5.0</item>
     </string-array>
     <string-array name="eye_of_observer">
         <item name="id">eye_of_observer</item>
@@ -207,5 +239,193 @@
         <item name = "type">BLUNT</item>
         <item name = "material">6.0</item>
     </string-array>
+    <string-array name="demi_wand">
+        <item name="id">demi_wand</item>
+        <item name = "name">Demilich Clavicle</item>
+        <item name = "type">STAFF</item>
+        <item name = "material">6.0</item>
+    </string-array>
+    <string-array name="dead_fang">
+        <item name="id">dead_fang</item>
+        <item name = "name">Phylactery Fang</item>
+        <item name = "type">BLADE</item>
+        <item name = "material">6.0</item>
+    </string-array>
+    <string-array name="ghost_mace">
+        <item name="id">ghost_mace</item>
+        <item name = "name">Vapormace</item>
+        <item name = "type">BLUNT</item>
+        <item name = "material">6.0</item>
+    </string-array>
+    <string-array name="eternal_void_bow">
+        <item name="id">eternal_void_bow</item>
+        <item name = "name">Eternal Miasma Bow</item>
+        <item name = "type">BOW</item>
+        <item name = "material">7.0</item>
+    </string-array>
+    <string-array name="void_bow">
+        <item name="id">void_bow</item>
+        <item name = "name">Miasma</item>
+        <item name = "type">BOW</item>
+        <item name = "material">6.0</item>
+    </string-array>
+    <string-array name="eternal_sea_wand">
+        <item name="id">eternal_sea_wand</item>
+        <item name = "name">Eternal Sandy Staff</item>
+        <item name = "type">STAFF</item>
+        <item name = "material">7.0</item>
+    </string-array>
+    <string-array name="sea_wand">
+        <item name="id">sea_wand</item>
+        <item name = "name">Sandy Staff</item>
+        <item name = "type">STAFF</item>
+        <item name = "material">6.0</item>
+    </string-array>
+    <string-array name="eldritch_vine_bow">
+        <item name="id">eldritch_vine_bow</item>
+        <item name = "name">Eldritch Vine Bow</item>
+        <item name = "type">BOW</item>
+        <item name = "material">7.0</item>
+    </string-array>
+    <string-array name="vine_bow">
+        <item name="id">vine_bow</item>
+        <item name = "name">Vine Bow</item>
+        <item name = "type">BOW</item>
+        <item name = "material">6.0</item>
+    </string-array>
+    <string-array name="eldritch_magma_staff">
+        <item name="id">eldritch_magma_staff</item>
+        <item name = "name">Eldritch Magma Staff</item>
+        <item name = "type">STAFF</item>
+        <item name = "material">7.0</item>
+    </string-array>
+    <string-array name="magma_staff">
+        <item name="id">magma_staff</item>
+        <item name = "name">Magma Staff</item>
+        <item name = "type">STAFF</item>
+        <item name = "material">6.0</item>
+    </string-array>
+    <string-array name="eternal_frost_staff">
+        <item name="id">eternal_frost_staff</item>
+        <item name = "name">Eternal Frost Staff</item>
+        <item name = "type">STAFF</item>
+        <item name = "material">7.0</item>
+    </string-array>
+    <string-array name="frost_staff">
+        <item name="id">frost_staff</item>
+        <item name = "name">Frost Staff</item>
+        <item name = "type">STAFF</item>
+        <item name = "material">6.0</item>
+    </string-array>
+    <string-array name="eldritch_dustsword">
+        <item name="id">eldritch_dustsword</item>
+        <item name = "name">Eldritch Dustsword</item>
+        <item name = "type">BLADE</item>
+        <item name = "material">7.0</item>
+    </string-array>
+    <string-array name="dustsword">
+        <item name="id">dustsword</item>
+        <item name = "name">Dustsword</item>
+        <item name = "type">BLADE</item>
+        <item name = "material">6.0</item>
+    </string-array>
+    <string-array name="eldritch_mistmace">
+        <item name="id">eldritch_mistmace</item>
+        <item name = "name">Eldritch Mistmace</item>
+        <item name = "type">BLUNT</item>
+        <item name = "material">7.0</item>
+    </string-array>
+    <string-array name="mistmace">
+        <item name="id">mistmace</item>
+        <item name = "name">Mistmace</item>
+        <item name = "type">BLUNT</item>
+        <item name = "material">6.0</item>
+    </string-array>
+    <string-array name="eldritch_granite_maul">
+        <item name="id">eldritch_granite_maul</item>
+        <item name = "name">Eldritch Granite Maul</item>
+        <item name = "type">BLUNT</item>
+        <item name = "material">7.0</item>
+    </string-array>
+    <string-array name="granite_maul">
+        <item name="id">granite_maul</item>
+        <item name = "name">Granite Maul</item>
+        <item name = "type">BLUNT</item>
+        <item name = "material">6.0</item>
+    </string-array>
+    <string-array name="eldritch_gold_sword">
+        <item name="id">eldritch_gold_sword</item>
+        <item name = "name">Ancient Gold Sword</item>
+        <item name = "type">BLADE</item>
+        <item name = "material">7.0</item>
+    </string-array>
+    <string-array name="gold_sword">
+        <item name="id">gold_sword</item>
+        <item name = "name">Gold Sword</item>
+        <item name = "type">BLADE</item>
+        <item name = "material">6.0</item>
+    </string-array>
+    <string-array name="eldritch_silver_sword">
+        <item name="id">eldritch_silver_sword</item>
+        <item name = "name">Ancient Silver Sword</item>
+        <item name = "type">BLADE</item>
+        <item name = "material">7.0</item>
+    </string-array>
+    <string-array name="silver_sword">
+        <item name="id">silver_sword</item>
+        <item name = "name">Silver Sword</item>
+        <item name = "type">BLADE</item>
+        <item name = "material">6.0</item>
+    </string-array>
+    <string-array name="cudgel_of_the_gods">
+        <item name="id">cudgel_of_the_gods</item>
+        <item name = "name">Cudgel of the Gods</item>
+        <item name = "type">BLUNT</item>
+        <item name = "material">8.0</item>
+    </string-array>
+    <string-array name="tentacle_whip">
+        <item name="id">tentacle_whip</item>
+        <item name = "name">Tentacle Whip</item>
+        <item name = "type">BLUNT</item>
+        <item name = "material">7.0</item>
+    </string-array>
+    <string-array name="staff_of_undeath">
+        <item name="id">staff_of_undeath</item>
+        <item name = "name">Staff of Undeath</item>
+        <item name = "type">STAFF</item>
+        <item name = "material">7.0</item>
+    </string-array>
+    <string-array name="linen_bow">
+        <item name="id">linen_bow</item>
+        <item name = "name">Linen Bow</item>
+        <item name = "type">BOW</item>
+        <item name = "material">6.0</item>
+    </string-array>
+    <string-array name="sphinx_blade">
+        <item name="id">sphinx_blade</item>
+        <item name = "name">The Riddler</item>
+        <item name = "type">BLADE</item>
+        <item name = "material">6.0</item>
+    </string-array>
+    <string-array name="fang_of_the_metabeast">
+        <item name="id">fang_of_the_metabeast</item>
+        <item name = "name">Fang of the Metabeast</item>
+        <item name = "type">BLADE</item>
+        <item name = "material">10.0</item>
+    </string-array>
+    <string-array name="unicorn_bow">
+        <item name="id">unicorn_bow</item>
+        <item name = "name">Bow of the Wilds</item>
+        <item name = "type">BOW</item>
+        <item name = "material">4.3</item>
+    </string-array>
+    <string-array name="vampire_staff">
+        <item name="id">vampire_staff</item>
+        <item name = "name">Ichorsapper</item>
+        <item name = "type">STAFF</item>
+        <item name = "material">7.0</item>
+    </string-array>
+
+
 
 </resources>
