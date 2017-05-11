@@ -43,6 +43,15 @@ public class EventQueue {
     }
     private MakeToastListener mToastListener;
 
+    public interface NotificationListener{
+        void notifyUser(String message);
+    }
+    private NotificationListener mNotificationListener;
+    public void bindNotificationListener(NotificationListener nl){
+        mNotificationListener = nl;
+    }
+    public void unbindNotificationListener(){mNotificationListener = null;}
+
     private EventQueue(Context context){
         mAppContext = context.getApplicationContext();
         mQueue = new ArrayList<>();
@@ -101,6 +110,9 @@ public class EventQueue {
                 mToastListener.makeToast("Task complete! +" + expGain + " exp!", Toast.LENGTH_SHORT);
                 if(fundReward != 0) mToastListener.makeToast("You recieved " + fundReward + " gold!", Toast.LENGTH_SHORT);
                 if(weaponReward != null) mToastListener.makeToast("You recieved a " + weaponReward.getName() + "!!", Toast.LENGTH_SHORT);
+            }else{
+                //activity is null so notify user
+                mNotificationListener.notifyUser("You did a thing!");
             }
             Log.i(TAG, "Task complete +" + expGain);
 

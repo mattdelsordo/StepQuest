@@ -27,6 +27,10 @@ import project3.csc214.stepquest.pedometer.PedometerService;
 public class LoadingActivity extends AppCompatActivity {
     public static final String TAG = "LoadingActivity";
 
+    public static Intent newInstance(Context c){
+        Intent i = new Intent(c, LoadingActivity.class);
+        return i;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -43,6 +43,12 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
     private EffectPlayer mEffectPlayer;
     private boolean mPlayMusic, mPlayEffects;
 
+    public static Intent newInstance(Context c){
+        Intent intent = new Intent(c, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        return intent;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

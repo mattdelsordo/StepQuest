@@ -1,6 +1,7 @@
 package project3.csc214.stepquest.pedometer;
 
 import android.app.IntentService;
+import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
@@ -13,21 +14,25 @@ import android.os.Binder;
 import android.os.Handler;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
+import project3.csc214.stepquest.R;
 import project3.csc214.stepquest.data.Saver;
 import project3.csc214.stepquest.model.ActiveCharacter;
 import project3.csc214.stepquest.model.EventQueue;
+import project3.csc214.stepquest.ui.LoadingActivity;
 
 
 /**
  * This service handles the pedometer, updating the step count in the event queue
  * on every step.
  */
-public class PedometerService extends Service implements SensorEventListener{
+public class PedometerService extends Service implements SensorEventListener, EventQueue.NotificationListener{
     private static final String TAG = "PedometerService";
     private static final int RC_REMINDER = 2;
 
@@ -60,12 +65,13 @@ public class PedometerService extends Service implements SensorEventListener{
         mManager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
         mStepSensor = mManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
         mEventQueue  = EventQueue.getInstance(getApplicationContext());
+        mEventQueue.bindNotificationListener(this);
 
         //register step counter, is this the right place?
         //TODO: this delay may be overkill
         mManager.registerListener(this, mStepSensor, SensorManager.SENSOR_DELAY_FASTEST);
 
-       simulateSteps();
+        simulateSteps();
 
 
         //set up save timer
@@ -122,5 +128,30 @@ public class PedometerService extends Service implements SensorEventListener{
         //Saver.saveAll(this);
         mSaveHandler.removeCallbacksAndMessages(null);
         super.onDestroy();
+    }
+
+    @Override
+    public void notifyUser(String message){
+        Log.i(TAG, "Notifying user: " + message);
+
+        Intent main = LoadingActivity.newInstance(this);
+        PendingIntent pi = PendingIntent.getActivity(
+                this,
+                0,
+                main,
+                0
+        );
+
+        Notification notification = new NotificationCompat.Builder(this)
+                .setTicker(message)
+                .setSmallIcon(R.drawable.ic_misc)
+                .setContentTitle(getString(R.string.hark))
+                .setContentText(message)
+                .setContentIntent(pi)
+                .setAutoCancel(true)
+                .build();
+
+        NotificationManagerCompat m = NotificationManagerCompat.from(this);
+        m.notify(0, notification);
     }
 }

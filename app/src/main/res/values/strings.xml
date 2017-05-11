@@ -91,4 +91,5 @@
     <string name="photo">Take Photo</string>
     <string name="take_video">Take Video</string>
     <string name="camera_denied">Camera Permission Denied</string>
+    <string name="hark">Hark!</string>
 </resources>
