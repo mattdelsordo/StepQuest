@@ -97,7 +97,7 @@ public class PedometerService extends Service implements SensorEventListener, Ev
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        if(event.sensor.getType() == Sensor.TYPE_STEP_DETECTOR) mEventQueue.incrementProgress();
+        if(event.sensor.getType() == Sensor.TYPE_STEP_DETECTOR) mEventQueue.incrementProgress(this);
 //        Log.i(TAG, "Step taken!");
     }
 
@@ -115,7 +115,7 @@ public class PedometerService extends Service implements SensorEventListener, Ev
         h.postDelayed(new Runnable() {
             @Override
             public void run() {
-                mEventQueue.incrementProgress();
+                mEventQueue.incrementProgress(PedometerService.this);
                 h.postDelayed(this, delay);
             }
         }, delay);
@@ -144,7 +144,7 @@ public class PedometerService extends Service implements SensorEventListener, Ev
 
         Notification notification = new NotificationCompat.Builder(this)
                 .setTicker(message)
-                .setSmallIcon(R.drawable.ic_misc)
+                .setSmallIcon(R.drawable.ic_notification_icon)
                 .setContentTitle(getString(R.string.hark))
                 .setContentText(message)
                 .setContentIntent(pi)

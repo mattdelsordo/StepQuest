@@ -21,6 +21,8 @@ public class Event {
     private int mGoldReward;
     //private int mExpReward; might just have exp scale with duration??
     private Weapon mItemReward;
+    private boolean mDoNotify;
+    private String mNotificationText;
 
     public Event(String desc, int duration){
         mDescription = desc;
@@ -76,6 +78,17 @@ public class Event {
 
     public void setItemReward(Weapon mItemReward) {
         this.mItemReward = mItemReward;
+    }
+
+    public void setDoNotify(String notificationText){
+        mDoNotify = true;
+        mNotificationText = notificationText;
+    }
+
+    public boolean doNotify(){return mDoNotify;}
+
+    public String getNotificationText(){
+        return mNotificationText;
     }
 
     @Override

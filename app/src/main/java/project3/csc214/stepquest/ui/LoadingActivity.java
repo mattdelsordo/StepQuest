@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
+import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
@@ -85,5 +86,24 @@ public class LoadingActivity extends AppCompatActivity {
             finishAndRemoveTask();
         }
         else finish();
+    }
+
+    private void doesCharacterExistCheck(Character c){
+
+    }
+
+
+    //load everything in an async task to cut down on this lag
+    private class LoadDataTask extends AsyncTask<Void, Void, Character>{
+
+        @Override
+        protected Character doInBackground(Void... params) {
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Character character) {
+            super.onPostExecute(character);
+        }
     }
 }

@@ -85,7 +85,7 @@ public class EventQueue {
     }
 
     //handles incrementing the step on a detected step
-    public void incrementProgress(){
+    public void incrementProgress(NotificationListener listener){
         //Log.i(TAG, "Step taken (" + mProgress + ")");
 
         mProgress += oneStepValue();
@@ -110,9 +110,16 @@ public class EventQueue {
                 mToastListener.makeToast("Task complete! +" + expGain + " exp!", Toast.LENGTH_SHORT);
                 if(fundReward != 0) mToastListener.makeToast("You recieved " + fundReward + " gold!", Toast.LENGTH_SHORT);
                 if(weaponReward != null) mToastListener.makeToast("You recieved a " + weaponReward.getName() + "!!", Toast.LENGTH_SHORT);
-            }else{
-                //activity is null so notify user
-                mNotificationListener.notifyUser("You did a thing!");
+            }else if(listener != null){
+                //check whether this event was important enough to notify about
+                if(currentEvent.doNotify()){
+                    listener.notifyUser(currentEvent.getNotificationText());
+                }
+                else if(weaponReward != null){
+                    //else notify if the player found a weapon
+                    listener.notifyUser(ActiveCharacter.getInstance(mAppContext).getActiveCharacter().getName() + " found a " + weaponReward.getName() + "!");
+                }
+
             }
             Log.i(TAG, "Task complete +" + expGain);
 

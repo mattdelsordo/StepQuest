@@ -135,13 +135,13 @@
         <item name="desc">In combat with an Ancient Brass Dragon...</item>
         <item name="exp">24500</item>
         <item name="gold">0</item>
-        <item name="weapon">eldritch_dust_sword</item>
+        <item name="weapon">eldritch_dustsword</item>
     </string-array>
     <string-array name="brass_dragon">
         <item name="desc">In combat with a Brass Dragon...</item>
         <item name="exp">10000</item>
         <item name="gold">0</item>
-        <item name="weapon">dust_sword</item>
+        <item name="weapon">dustsword</item>
     </string-array>
     <string-array name="ancient_bronze_dragon">
         <item name="desc">In combat with an Ancient Bronze Dragon...</item>

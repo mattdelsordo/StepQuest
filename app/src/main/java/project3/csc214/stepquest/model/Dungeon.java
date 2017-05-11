@@ -85,7 +85,9 @@ public class Dungeon extends ArrayList<Event> {
             if(chance > 0)dungeon.add(EventList.getInstance(context).getLevelledMonster(ActiveCharacter.getInstance(context).getActiveCharacter().getLevel()));
             else dungeon.add(EventList.getInstance(context).getChest());
         }
-        dungeon.add(EventList.getInstance(context).getLevelledBoss(ActiveCharacter.getInstance(context).getActiveCharacter().getLevel()));
+        Event boss = EventList.getInstance(context).getLevelledBoss(ActiveCharacter.getInstance(context).getActiveCharacter().getLevel());
+        boss.setDoNotify(ActiveCharacter.getInstance(context).getActiveCharacter().getName() + " slew a " + boss.parseMonsterName() + "!");
+        dungeon.add(boss);
 
         return dungeon;
     }
