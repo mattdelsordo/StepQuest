@@ -7,6 +7,7 @@ import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
+import android.os.AsyncTask;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
@@ -255,4 +256,5 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
         outState.putBoolean(CHECKED_SENSOR_THIS_RUN, mDoneSensorCheck);
         outState.putBoolean(ARG_MUSIC_PLAYING, mPlayMusic);
     }
+
 }

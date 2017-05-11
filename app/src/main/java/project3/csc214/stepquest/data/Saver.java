@@ -1,6 +1,7 @@
 package project3.csc214.stepquest.data;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -20,8 +21,9 @@ public class Saver {
 
     public static void saveAll(Context context, boolean displayToast){
         Log.i(TAG, "Saving game...");
-        ActiveCharacter.getInstance(context).save();
-        EventQueue.getInstance(context).save();
+//        ActiveCharacter.getInstance(context).save();
+//        EventQueue.getInstance(context).save();
+        new SaveTask().execute(context);
 
         try{
             TypedValue tv = new TypedValue();
@@ -41,5 +43,15 @@ public class Saver {
     //deletes everything from the sql table
     public static void deleteAll(Context context){
         context.getApplicationContext().deleteDatabase(QuestDbSchema.DATABASE_NAME);
+    }
+
+    private static class SaveTask extends AsyncTask<Context, Void, Void>{
+
+        @Override
+        protected Void doInBackground(Context... params) {
+            ActiveCharacter.getInstance(params[0]).save();
+            EventQueue.getInstance(params[0]).save();
+            return null;
+        }
     }
 }

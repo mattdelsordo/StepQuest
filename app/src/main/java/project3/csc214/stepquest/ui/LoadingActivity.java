@@ -39,13 +39,15 @@ public class LoadingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_loading);
 
         //load all information from database, if it isn't there, make a new game
-        Character activeCharacter = ActiveCharacter.getInstance(this).getActiveCharacter();
+        //Character activeCharacter = ActiveCharacter.getInstance(this).getActiveCharacter();
 
-        if(activeCharacter == null){
-            Log.i(TAG, "No character found, creating new one.");
-            startActivityForResult(CharacterCreationActivity.newInstance(this), CharacterCreationActivity.REQUEST_CHARACTER_INFO);
-        }
-        else startActivityForResult(new Intent(this, MainActivity.class), MainActivity.RC);
+//        if(activeCharacter == null){
+//            Log.i(TAG, "No character found, creating new one.");
+//            startActivityForResult(CharacterCreationActivity.newInstance(this), CharacterCreationActivity.REQUEST_CHARACTER_INFO);
+//        }
+//        else startActivityForResult(new Intent(this, MainActivity.class), MainActivity.RC);
+
+        new LoadDataTask().execute();
     }
 
     @Override
@@ -67,11 +69,6 @@ public class LoadingActivity extends AppCompatActivity {
 
             //save everything
             Saver.saveAll(this, false);
-            //initialize sound settings
-            //actually I dont think I have to do this cause the default is true
-//            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-//            prefs.edit().putBoolean(SettingsFragment.PREF_MUSIC, true).apply();
-//            prefs.edit().putBoolean(SettingsFragment.PREF_EFFECTS, true).apply();
 
             //start main activity
             startActivityForResult(new Intent(this, MainActivity.class), MainActivity.RC);
@@ -89,7 +86,11 @@ public class LoadingActivity extends AppCompatActivity {
     }
 
     private void doesCharacterExistCheck(Character c){
-
+        if(c == null){
+            Log.i(TAG, "No character found, creating new one.");
+            startActivityForResult(CharacterCreationActivity.newInstance(this), CharacterCreationActivity.REQUEST_CHARACTER_INFO);
+        }
+        else startActivityForResult(MainActivity.newInstance(this), MainActivity.RC);
     }
 
 
@@ -98,12 +99,12 @@ public class LoadingActivity extends AppCompatActivity {
 
         @Override
         protected Character doInBackground(Void... params) {
-            return null;
+            return ActiveCharacter.getInstance(LoadingActivity.this).getActiveCharacter();
         }
 
         @Override
         protected void onPostExecute(Character character) {
-            super.onPostExecute(character);
+            doesCharacterExistCheck(character);
         }
     }
 }
