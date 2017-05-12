@@ -7,6 +7,7 @@ GAMPLAY:
 -Add shop
 --Buy scaled weapons
 --Buy boosts
+-Adventure Log
 
 MECHANICS:
 -Tweak drop rates for normal monsters
