@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Theme colors -->
-    <color name="colorPrimary">#607d8c</color>
-    <color name="colorPrimaryDark">#34515f</color>
-    <color name="colorPrimaryLight">#8eacbc</color>
+
     <color name="colorSecondary">#f44336</color>
-    <color name="colorSecondaryDark">#ba000d</color>
+    <color name="accent_dark">#ba000d</color>
     <color name="colorSecondaryLight">#ff7961</color>
-    <color name="colorBackground">#eceff1</color>
+
+    <color name="primary">#607D8B</color>
+    <color name="primary_dark">#455A64</color>
+    <color name="primary_light">#CFD8DC</color>
+    <color name="accent">#FF5252</color>
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#757575</color>
+    <color name="icons">#FFFFFF</color>
+    <color name="divider">#BDBDBD</color>
 
     <color name="warrior">#990000</color>
     <color name="ranger">#023c19</color>

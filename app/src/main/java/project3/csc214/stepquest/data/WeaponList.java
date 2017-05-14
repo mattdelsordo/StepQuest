@@ -6,6 +6,7 @@ import android.content.res.TypedArray;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -208,5 +209,10 @@ public class WeaponList {
             case(Weapon.BLUNT): return new Weapon(WeaponList.getInstance(mAppContext).getWeaponById("wood_club"));
             default: return new Weapon();
         }
+    }
+
+    //TODO: get rid of this its only for testing for now
+    public Collection<Weapon> getWood(){
+        return mWood.values();
     }
 }

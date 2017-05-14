@@ -27,7 +27,7 @@ public class LevelUpActivity extends AppCompatActivity implements LevelUpFragmen
 
     @Override
     public void lvlUpDone() {
-        Saver.saveAll(this.getApplicationContext(), true);
+        Saver.saveAll(this.getApplicationContext(), false);
         setResult(RESULT_OK);
         finish();
     }

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/m_shop_weapons"
+        android:title="@string/weapons"
+        app:showAsAction="always"
+        android:enabled="true"
+        android:icon="@drawable/ic_weapons"/>
+
+    <item
+        android:id="@+id/m_shop_boosts"
+        android:title="@string/boosts"
+        app:showAsAction="always"
+        android:enabled="true"
+        android:icon="@drawable/ic_boost"/>
+
+</menu>

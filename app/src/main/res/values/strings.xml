@@ -93,4 +93,10 @@
     <string name="camera_denied">Camera Permission Denied</string>
     <string name="hark">Hark!</string>
     <string name="default_step_cost_indicator">10000</string>
+    <string name="weapon_value">Weapon Value</string>
+    <string name="default_weapon_price">1000000</string>
+    <string name="shop">Shop</string>
+    <string name="weapons">Weapons</string>
+    <string name="boosts">Boosts</string>
+    <string name="blacksmith">Blacksmith</string>
 </resources>

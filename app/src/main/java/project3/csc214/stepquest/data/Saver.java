@@ -25,19 +25,20 @@ public class Saver {
 //        EventQueue.getInstance(context).save();
         new SaveTask().execute(context);
 
-        try{
-            TypedValue tv = new TypedValue();
-            int height = 400;
-            if(context.getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true)){
-                height = TypedValue.complexToDimensionPixelSize(tv.data, context.getResources().getDisplayMetrics());
+        if(displayToast){
+            try{
+                TypedValue tv = new TypedValue();
+                int height = 400;
+                if(context.getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true)){
+                    height = TypedValue.complexToDimensionPixelSize(tv.data, context.getResources().getDisplayMetrics());
+                }
+                Toast toast = Toast.makeText(context, context.getString(R.string.game_saved), Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.TOP|Gravity.RIGHT, 10, height + 10);
+                toast.show();
+            }catch(Exception e){
+                Log.e(TAG, "Saver hit exception displaying toast.", e);
             }
-            Toast toast = Toast.makeText(context, context.getString(R.string.game_saved), Toast.LENGTH_SHORT);
-            toast.setGravity(Gravity.TOP|Gravity.RIGHT, 10, height + 10);
-            toast.show();
-        }catch(Exception e){
-            Log.e(TAG, "Saver hit exception displaying toast.", e);
         }
-
     }
 
     //deletes everything from the sql table

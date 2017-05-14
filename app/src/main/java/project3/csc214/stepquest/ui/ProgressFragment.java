@@ -72,7 +72,7 @@ public class ProgressFragment extends Fragment implements EventQueue.EventUpdate
         mDesc.setText(e.getDescription());
         mProgress.setMax(e.getDuration());
         mProgress.setProgress(progress);
-        mTotal.setText(e.getDuration());
+        mTotal.setText(e.getDuration().toString());
     }
 
     @Override

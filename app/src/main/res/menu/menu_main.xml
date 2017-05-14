@@ -15,6 +15,12 @@
         android:title="@string/_inventory" />
 
     <item
+        android:id="@+id/menu_shop"
+        android:icon="@drawable/ic_shop"
+        app:showAsAction="always|withText"
+        android:title="@string/blacksmith" />
+
+    <item
         android:id="@+id/menu_save"
         android:icon="@drawable/ic_floppy"
         app:showAsAction="always|withText"

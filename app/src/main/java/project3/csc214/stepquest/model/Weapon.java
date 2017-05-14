@@ -183,4 +183,10 @@ public class Weapon {
         }
     }
 
+    //returns the weapon's price
+    //TODO: put actual thought into this
+    public int getPrice(){
+        return (int)(mMaterial * 100);
+    }
+
 }
