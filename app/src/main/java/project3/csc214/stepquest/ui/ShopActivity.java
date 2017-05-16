@@ -35,9 +35,10 @@ public class ShopActivity extends AppCompatActivity implements UpdateShopGoldLis
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch(item.getItemId()){
                     case R.id.m_shop_weapons:
-                        swapFragmnent(new ShopWeaponFragment());
+                        swapFragment(new ShopWeaponFragment());
                         return true;
                     case R.id.m_shop_boosts:
+                        swapFragment(new ShopBoostFragment());
                         return true;
                     default: return false;
                 }
@@ -54,7 +55,7 @@ public class ShopActivity extends AppCompatActivity implements UpdateShopGoldLis
     }
 
     //swaps fragments in the main frame
-    public void swapFragmnent(Fragment fragment){
+    public void swapFragment(Fragment fragment){
         getSupportFragmentManager().beginTransaction().replace(R.id.fl_shop_mainframe, fragment).commit();
     }
 

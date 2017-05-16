@@ -163,8 +163,4 @@ public class ShopWeaponFragment extends Fragment {
             return mWeapons.size();
         }
     }
-
-
-
-
 }

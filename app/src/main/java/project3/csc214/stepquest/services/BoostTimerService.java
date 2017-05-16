@@ -1,6 +1,5 @@
 package project3.csc214.stepquest.services;
 
-import android.app.IntentService;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -8,9 +7,10 @@ import android.content.SharedPreferences;
 import android.os.CountDownTimer;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
-import android.support.annotation.IntDef;
 import android.support.annotation.Nullable;
 import android.util.Log;
+
+import project3.csc214.stepquest.model.ActiveCharacter;
 
 
 /**
@@ -24,7 +24,7 @@ public class BoostTimerService extends Service {
 
     public static final String TIMER_BROADCAST = "timer broadcast";
     public static final String TIMER_DONE = "timer done";
-    public static final String ARG_SECONDS_ELAPSED = "seconds elapsed";
+    public static final String ARG_SECONDS_LEFT = "seconds left";
     Intent broadcast = new Intent(TIMER_BROADCAST);
 
     private static final int SECOND = 1000;
@@ -38,15 +38,12 @@ public class BoostTimerService extends Service {
         return intent;
     }
 
+
+
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         mDuration = intent.getLongExtra(ARG_DURATION, 0);
-        return super.onStartCommand(intent, flags, startId);
-    }
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
 
         Log.i(TAG, "Starting boost timer for " + mDuration + " seconds...");
 
@@ -54,7 +51,7 @@ public class BoostTimerService extends Service {
 
             @Override
             public void onTick(long millisUntilFinished) {
-                broadcast.putExtra(ARG_SECONDS_ELAPSED, millisUntilFinished);
+                broadcast.putExtra(ARG_SECONDS_LEFT, millisUntilFinished);
                 sendBroadcast(broadcast);
             }
 
@@ -63,7 +60,11 @@ public class BoostTimerService extends Service {
                 Log.i(TAG, "Timer finished.");
                 SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(BoostTimerService.this);
                 prefs.edit().putBoolean(PREF_BOOST_ACTIVE, false).apply();
-                sendBroadcast(new Intent(TIMER_DONE));
+                ActiveCharacter.getInstance(BoostTimerService.this).removeBoost();
+
+                //stop everything
+                sendBroadcast(new Intent(TIMER_BROADCAST));
+                BoostTimerService.this.stopSelf(); //stop service
             }
         };
 
@@ -71,6 +72,15 @@ public class BoostTimerService extends Service {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(BoostTimerService.this);
         prefs.edit().putBoolean(PREF_BOOST_ACTIVE, true).apply();
         mCDT.start();
+
+        return super.onStartCommand(intent, flags, startId);
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+
+
     }
 
     @Override

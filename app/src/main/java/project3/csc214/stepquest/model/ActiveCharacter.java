@@ -17,6 +17,7 @@ import project3.csc214.stepquest.data.QuestCursorWrapper;
 import project3.csc214.stepquest.data.QuestDatabaseHelper;
 import project3.csc214.stepquest.data.QuestDbSchema;
 import project3.csc214.stepquest.data.WeaponList;
+import project3.csc214.stepquest.util.BoostOverListener;
 
 /**
  * Created by mdelsord on 4/17/17.
@@ -115,7 +116,10 @@ public class ActiveCharacter{
 
     //boost methods
     public void setBoost(Boost b){mActiveBoost = b.getStepMultiplier();}
-    public void removeBoost(){mActiveBoost = null;}
+    public void removeBoost(){
+        mActiveBoost = null;
+        if(mBoostOver != null)mBoostOver.boostOver();
+    }
     public double getBoostMultiplier(){
         if(mActiveBoost != null) return mActiveBoost;
         else return 1.0;
@@ -155,6 +159,10 @@ public class ActiveCharacter{
     public LevelUpListener mLevelUpListener;
     public void bindLevelUpListener(LevelUpListener lul){mLevelUpListener = lul;}
     public void unbindLevelUpListener(){mLevelUpListener = null;}
+
+    private BoostOverListener mBoostOver;
+    public void bindBoostOverListener(BoostOverListener bol){mBoostOver = bol;}
+    public void unbindBoostOVerListener(){mBoostOver = null;}
 
 
     /** methods to load and save the active character **/
