@@ -25,15 +25,9 @@ public class CenteredItemDecoration extends RecyclerView.ItemDecoration {
         int position = parent.getChildAdapterPosition(view);
         int column = position % mSpanCount;
 
-        int parentWidth = parent.getWidth();
-        int viewWidth = parent.getChildViewHolder(view).itemView.getMeasuredWidth(); //TODO: this is super broken
-        int space = ((parentWidth/mSpanCount) - viewWidth)/2;
-        Log.i(TAG, "Parent width: " + parentWidth);
-        Log.i(TAG, "View width: " + viewWidth);
-        Log.i(TAG, "Space: " + space);
 
-        outRect.left = space;
-        outRect.right = space;
+        outRect.left = mSpacing - column * mSpacing / mSpanCount;
+        outRect.right = (column + 1) * mSpacing / mSpanCount;
 
         if(position < mSpanCount){
             outRect.top = mSpacing;

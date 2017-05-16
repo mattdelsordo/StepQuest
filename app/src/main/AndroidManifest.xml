@@ -30,13 +30,18 @@
         <activity android:name=".ui.CharacterCreationActivity" />
 
         <service
-            android:name=".pedometer.PedometerService"
+            android:name=".services.PedometerService"
             android:exported="false"
             android:stopWithTask="true" />
 
         <activity android:name=".ui.LevelUpActivity" />
-        <activity android:name=".ui.ShopActivity"
-            android:parentActivityName=".ui.MainActivity"></activity>
+        <activity
+            android:name=".ui.ShopActivity"
+            android:parentActivityName=".ui.MainActivity" />
+
+        <service
+            android:name=".services.BoostTimerService"
+            android:exported="false"></service>
     </application>
 
 </manifest>

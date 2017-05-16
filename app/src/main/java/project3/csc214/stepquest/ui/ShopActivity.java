@@ -6,11 +6,10 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.TextView;
 
 import project3.csc214.stepquest.R;
-import project3.csc214.stepquest.listeners.UpdateShopGoldListener;
+import project3.csc214.stepquest.util.UpdateShopGoldListener;
 import project3.csc214.stepquest.model.ActiveCharacter;
 
 /**

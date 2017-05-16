@@ -23,10 +23,10 @@ import java.util.Collections;
 
 import project3.csc214.stepquest.R;
 import project3.csc214.stepquest.data.WeaponList;
-import project3.csc214.stepquest.listeners.UpdateShopGoldListener;
+import project3.csc214.stepquest.util.CenteredItemDecoration;
+import project3.csc214.stepquest.util.UpdateShopGoldListener;
 import project3.csc214.stepquest.model.ActiveCharacter;
 import project3.csc214.stepquest.model.Weapon;
-import project3.csc214.stepquest.util.CenteredItemDecoration;
 import project3.csc214.stepquest.util.PurchaseDialog;
 
 /**
@@ -39,7 +39,7 @@ public class ShopWeaponFragment extends Fragment {
         // Required empty public constructor
     }
 
-    private static final int COLUMN_COUNT = 2, COLUMN_SPACING = 50;
+    private static final int COLUMN_COUNT = 2, COLUMN_SPACING = 30;
     private RecyclerView mRecycler;
     private UpdateShopGoldListener mGoldListener;
     private Weapon mQueuedWeapon;
@@ -54,7 +54,7 @@ public class ShopWeaponFragment extends Fragment {
         //GridLayoutManager layout = new GridLayoutManager(getActivity(), COLUMN_COUNT);
         mRecycler.setLayoutManager(new GridLayoutManager(getActivity(), COLUMN_COUNT));
 
-        //mRecycler.addItemDecoration(new CenteredItemDecoration(COLUMN_COUNT, COLUMN_SPACING));
+        mRecycler.addItemDecoration(new CenteredItemDecoration(COLUMN_COUNT, COLUMN_SPACING));
         refreshList();
 
         return view;

@@ -1,6 +1,5 @@
-package project3.csc214.stepquest.pedometer;
+package project3.csc214.stepquest.services;
 
-import android.app.IntentService;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -18,12 +17,7 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 import project3.csc214.stepquest.R;
-import project3.csc214.stepquest.data.Saver;
-import project3.csc214.stepquest.model.ActiveCharacter;
 import project3.csc214.stepquest.model.EventQueue;
 import project3.csc214.stepquest.ui.LoadingActivity;
 

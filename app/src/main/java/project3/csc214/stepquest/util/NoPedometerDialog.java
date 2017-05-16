@@ -1,4 +1,4 @@
-package project3.csc214.stepquest.pedometer;
+package project3.csc214.stepquest.util;
 
 import android.app.AlertDialog;
 import android.app.Dialog;

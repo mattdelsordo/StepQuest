@@ -135,9 +135,11 @@ public class EventQueue {
         else getTopEvent();
     }
 
+    //handles calculating the current value of one step
     private double oneStepValue(){
         double step = 1.0;
-        if(ActiveCharacter.getInstance(mAppContext).getExpModifier() > 0) step *= ActiveCharacter.getInstance(mAppContext).getExpModifier();
+        ActiveCharacter active = ActiveCharacter.getInstance(mAppContext);
+        if(active.getExpModifier() > 0) step = step * active.getExpModifier() * active.getBoostMultiplier();
         return step;
     }
 

@@ -30,6 +30,7 @@ public class ActiveCharacter{
     private Character mCharacter;
     private TreeMap<Weapon, Integer> mWeaponSet;
     private Weapon mEquippedWeapon;
+    private Double mActiveBoost;
     private Context mAppContext;
     private final SQLiteDatabase mDatabase;
 
@@ -110,6 +111,14 @@ public class ActiveCharacter{
     public void addFunds(int funds){
         mCharacter.setFunds(mCharacter.getFunds() + funds);
         if(mFundsUpdateListener != null) mFundsUpdateListener.updateFunds(mCharacter.getFunds());
+    }
+
+    //boost methods
+    public void setBoost(Boost b){mActiveBoost = b.getStepMultiplier();}
+    public void removeBoost(){mActiveBoost = null;}
+    public double getBoostMultiplier(){
+        if(mActiveBoost != null) return mActiveBoost;
+        else return 1.0;
     }
 
     /** WELCOME TO THE INTERFACE ZONE **/

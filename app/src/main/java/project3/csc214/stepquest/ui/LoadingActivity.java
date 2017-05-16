@@ -3,27 +3,21 @@ package project3.csc214.stepquest.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.hardware.Sensor;
-import android.hardware.SensorManager;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
-import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
 import project3.csc214.stepquest.R;
 import project3.csc214.stepquest.data.Saver;
-import project3.csc214.stepquest.data.WeaponList;
 import project3.csc214.stepquest.model.ActiveCharacter;
 import project3.csc214.stepquest.model.Character;
 import project3.csc214.stepquest.model.Dungeon;
 import project3.csc214.stepquest.model.EventQueue;
 import project3.csc214.stepquest.model.Race;
 import project3.csc214.stepquest.model.Vocation;
-import project3.csc214.stepquest.model.Weapon;
-import project3.csc214.stepquest.pedometer.NoPedometerDialog;
-import project3.csc214.stepquest.pedometer.PedometerService;
+import project3.csc214.stepquest.services.PedometerService;
 
 public class LoadingActivity extends AppCompatActivity {
     public static final String TAG = "LoadingActivity";

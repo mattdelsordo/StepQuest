@@ -21,8 +21,9 @@ import android.widget.Toast;
 import project3.csc214.stepquest.R;
 import project3.csc214.stepquest.data.Saver;
 import project3.csc214.stepquest.model.*;
-import project3.csc214.stepquest.pedometer.NoPedometerDialog;
-import project3.csc214.stepquest.pedometer.PedometerService;
+import project3.csc214.stepquest.services.BoostTimerService;
+import project3.csc214.stepquest.util.NoPedometerDialog;
+import project3.csc214.stepquest.services.PedometerService;
 
 /**
  * This Activity controls the rest of the app
@@ -103,6 +104,9 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
             }
             prefs.edit().putBoolean(PREF_DONE_SENSOR_CHECK, true).apply();
         }
+
+        //check whether the current boost should continue
+        if(prefs.getBoolean(BoostTimerService.PREF_BOOST_ACTIVE, false)) ActiveCharacter.getInstance(this).removeBoost();
     }
 
     //replaces the fragment in the main frame with another
