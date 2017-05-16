@@ -7,6 +7,7 @@ import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -171,33 +172,9 @@ public class WeaponList {
 
     //returns a random weapon based on the character's level
     public Weapon getRandomLevelledWeapon(int charLevel){
-        //turn user level into some threshold to determine what weapons are available
-        int threshold;
-        if(charLevel < 3) threshold = 0;
-        else if(charLevel < 6) threshold = 1;
-        else if(charLevel < 9) threshold = 2;
-        else if(charLevel < 12) threshold = 3;
-        else if(charLevel < 15) threshold = 4;
-        else if(charLevel < 18) threshold = 5;
-        else threshold = 6;
-
         Random rand = new Random();
-        List<Weapon> sampleSpace;
-        int listPick = 0;
-        if(listPick > 0) listPick = rand.nextInt(threshold);
-        if(listPick < 1) sampleSpace = new ArrayList<>(mWood.values());
-        else if(listPick < 2) sampleSpace = new ArrayList<>(mBronze.values());
-        else if(listPick < 3) sampleSpace = new ArrayList<>(mIron.values());
-        else if(listPick < 4) sampleSpace = new ArrayList<>(mSteel.values());
-        else if(listPick < 5) sampleSpace = new ArrayList<>(mObsidian.values());
-        else if(listPick < 6) sampleSpace = new ArrayList<>(mMithril.values());
-        else throw new IndexOutOfBoundsException(); //I have no idea what kind of exception this should be
-
-        //return random element of sample space
-        //Log.i(TAG, "Sample space size: " + sampleSpace.size());
-        Weapon selected = sampleSpace.get(rand.nextInt(sampleSpace.size()));
-        //Log.i(TAG, "Selected: " + selected.getId());
-        return new Weapon(selected);
+        ArrayList<Weapon> list = getLevelledWeaponList(charLevel);
+        return list.get(rand.nextInt(list.size()));
     }
 
 
@@ -211,8 +188,19 @@ public class WeaponList {
         }
     }
 
-    //TODO: get rid of this its only for testing for now
-    public Collection<Weapon> getWood(){
-        return mWood.values();
+    //returns the collection of all weapons the player is allowed to obtain
+    //TODO: maybe encode these level caps for weapons somewhere
+    public ArrayList<Weapon> getLevelledWeaponList(int charLevel){
+        ArrayList levelledWeapons = new ArrayList<>();
+        levelledWeapons.addAll(mWood.values());
+        if(charLevel >= 2) levelledWeapons.addAll(mBronze.values());
+        if(charLevel >= 5) levelledWeapons.addAll(mIron.values());
+        if(charLevel >= 8) levelledWeapons.addAll(mSteel.values());
+        if(charLevel >= 11) levelledWeapons.addAll(mObsidian.values());
+        if(charLevel >= 15) levelledWeapons.addAll(mMithril.values());
+
+        Collections.sort(levelledWeapons, new Weapon.WeaponComparator());
+
+        return levelledWeapons;
     }
 }

@@ -14,7 +14,7 @@ import project3.csc214.stepquest.data.WeaponList;
  * Each weapon has a type and a modifier that changes based on the class.
  */
 
-public class Weapon {
+public class Weapon{
     public static final String TAG = "Weapon";
 
     public static final int BLADE = 0, BOW = 1, STAFF = 2, BLUNT = 3; //weapon classes

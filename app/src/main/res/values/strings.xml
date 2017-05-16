@@ -99,4 +99,7 @@
     <string name="weapons">Weapons</string>
     <string name="boosts">Boosts</string>
     <string name="blacksmith">Blacksmith</string>
+    <string name="purchase">Purchase</string>
+    <string name="no_thanks">No thanks!</string>
+    <string name="yes_please">Yes please!</string>
 </resources>

@@ -5,9 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
-import android.hardware.Sensor;
-import android.hardware.SensorManager;
-import android.os.AsyncTask;
+import android.content.pm.PackageManager;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
@@ -32,7 +30,7 @@ import project3.csc214.stepquest.pedometer.PedometerService;
 
 public class MainActivity extends AppCompatActivity implements EventQueue.MakeToastListener, ActiveCharacter.LevelUpListener, SettingsFragment.SettingsListener {
     private static final String TAG = "MainActivity";
-    private static final String PREF_HAS_SENSOR = "pref_has_sensor";
+    private static final String PREF_DONE_SENSOR_CHECK = "pref_has_sensor";
     private static final String CHECKED_SENSOR_THIS_RUN = "checked sensor this run";
     private static final String ARG_MUSIC_PLAYING = "arg_isplaying";
     private boolean mDoneSensorCheck;
@@ -95,17 +93,15 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
         doBindService();
 
         //do check for pedometer
-        boolean hasSensor = prefs.getBoolean(PREF_HAS_SENSOR, false);
-        Log.i(TAG, "hasSensor=" + hasSensor);
-        if(hasSensor == false && mDoneSensorCheck == false){
-            SensorManager manager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
-            Sensor pedometer = manager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
-            Log.i(TAG, "pedometer=" + pedometer);
-            if(pedometer == null){
-                prefs.edit().putBoolean(PREF_HAS_SENSOR, false).apply();
+        boolean doneCheck = prefs.getBoolean(PREF_DONE_SENSOR_CHECK, false);
+        Log.i(TAG, "hasSensor=" + doneCheck);
+        if(!doneCheck){
+            boolean hasPedometer = getPackageManager().hasSystemFeature(PackageManager.FEATURE_SENSOR_STEP_DETECTOR);
+            Log.i(TAG, "pedometer=" + hasPedometer);
+            if(hasPedometer == false){
                 new NoPedometerDialog().show(getSupportFragmentManager(), NoPedometerDialog.TAG);
             }
-            mDoneSensorCheck = true;
+            prefs.edit().putBoolean(PREF_DONE_SENSOR_CHECK, true).apply();
         }
     }
 

@@ -6,21 +6,28 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.TextView;
 
 import project3.csc214.stepquest.R;
+import project3.csc214.stepquest.listeners.UpdateShopGoldListener;
+import project3.csc214.stepquest.model.ActiveCharacter;
 
 /**
  * This activity handles functionality for the shop. User can buy/sell
  * items and buy boosts.
  */
-public class ShopActivity extends AppCompatActivity {
+public class ShopActivity extends AppCompatActivity implements UpdateShopGoldListener {
 
     private BottomNavigationView mBottomNav;
+    private TextView mGoldTotal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop);
+
+        mGoldTotal = (TextView)findViewById(R.id.tv_shop_goldtotal);
 
         //handle menu navigation
         mBottomNav = (BottomNavigationView)findViewById(R.id.bnv_shop);
@@ -42,10 +49,19 @@ public class ShopActivity extends AppCompatActivity {
             mBottomNav.setSelectedItemId(R.id.m_shop_weapons);
         }
 
+        //update to current gold total
+        updateGoldTotal(ActiveCharacter.getInstance(this).getActiveCharacter().getFunds());
+
     }
 
     //swaps fragments in the main frame
     public void swapFragmnent(Fragment fragment){
         getSupportFragmentManager().beginTransaction().replace(R.id.fl_shop_mainframe, fragment).commit();
     }
+
+    @Override
+    public void updateGoldTotal(int goldTotal) {
+        mGoldTotal.setText(Integer.toString(goldTotal));
+    }
+
 }

@@ -1,4 +1,4 @@
-package project3.csc214.stepquest.data;
+package project3.csc214.stepquest.util;
 
 import android.app.Activity;
 import android.app.AlertDialog;

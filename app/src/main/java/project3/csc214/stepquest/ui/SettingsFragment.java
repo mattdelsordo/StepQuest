@@ -22,8 +22,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import project3.csc214.stepquest.R;
-import project3.csc214.stepquest.data.Saver;
-import project3.csc214.stepquest.data.SureYouWantToDeleteDialog;
+import project3.csc214.stepquest.util.SureYouWantToDeleteDialog;
 
 /**
  * A simple {@link Fragment} subclass.

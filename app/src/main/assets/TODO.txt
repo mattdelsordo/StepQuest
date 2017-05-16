@@ -1,13 +1,22 @@
 ---- This is used to keep track of as of yet incomplete game functions ----
 
 UX:
--Update bunt weapon/notification icons
+-Update blunt weapon/notification icons
+-Sound effects for menu buttons and fragment sliding
+-less unsatisfying fragment transition animation
+-persist sound throughout all activities/get new loop for each activity
+-Make inventory item selection more intuitive
+-Figure out some rational pricing for weapons
+-Evenly space out items in the shop
+!!!!!!-Figure out how services work and make sure this one is killed with the process
 
 GAMPLAY:
+-Implement system for boosts that can be bought in the shop
 -Add shop
---Buy scaled weapons
 --Buy boosts
 -Adventure Log
+--List of events that have taken place
+--Stats like #monsters killed, #steps walked, etc.
 
 MECHANICS:
 -Tweak drop rates for normal monsters
