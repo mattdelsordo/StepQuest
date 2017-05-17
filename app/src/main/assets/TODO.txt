@@ -2,12 +2,12 @@
 
 UX:
 -Update blunt weapon/notification icons
--Sound effects for menu buttons and fragment sliding
+-Sound effects for menu buttons, fragment sliding, clanging when buying a weapon, bubbling when buying a boost
 -less unsatisfying fragment transition animation
 -persist sound throughout all activities/get new loop for each activity
 -Make inventory item selection more intuitive
 -Figure out some rational pricing for weapons
--Evenly space out items in the shop
+-Make shop items look nicer
 !!!!!!-Figure out how services work and make sure this one is killed with the process
 
 GAMPLAY:
@@ -27,4 +27,12 @@ MECHANICS:
 !-randomize monster from probability distribution around player level, more likely for CR closer
     to the player's level
 !-generate bosses as a distribution starting at like 3-5 higher than player level
-!-scale village events based on cr for player level minus a couple
+!-scale village events based on CR for player level minus a couple
+-Stats actually affect stuff:
+--Str: Blade multiplier
+--Dex: Bow multiplier/available boost speeds
+--Con: Blunt multiplier/available boost times
+--Int: Wand multiplier
+--Wis: Exp multiplier
+--Chr: Lower shop prices
+--Put this information in dialogues that pop up when you click a stat
