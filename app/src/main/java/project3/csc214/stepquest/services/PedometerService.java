@@ -18,6 +18,7 @@ import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
 
 import project3.csc214.stepquest.R;
+import project3.csc214.stepquest.data.Saver;
 import project3.csc214.stepquest.model.EventQueue;
 import project3.csc214.stepquest.ui.LoadingActivity;
 
@@ -119,8 +120,8 @@ public class PedometerService extends Service implements SensorEventListener, Ev
     //make sure to save all
     @Override
     public void onDestroy() {
-        //Saver.saveAll(this);
-        mSaveHandler.removeCallbacksAndMessages(null);
+        Saver.saveAll(getApplicationContext(), false);
+        //mSaveHandler.removeCallbacksAndMessages(null);
         super.onDestroy();
     }
 

@@ -12,8 +12,8 @@ UX:
 
 GAMPLAY:
 -Implement system for boosts that can be bought in the shop
--Add shop
---Buy boosts
+-Give boosts an actual price
+-Come up with some way to display possible boosts/what boosts there are
 -Adventure Log
 --List of events that have taken place
 --Stats like #monsters killed, #steps walked, etc.

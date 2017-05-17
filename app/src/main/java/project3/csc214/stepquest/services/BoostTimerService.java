@@ -42,36 +42,39 @@ public class BoostTimerService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        mDuration = intent.getLongExtra(ARG_DURATION, 0);
+        if(intent != null){
+            mDuration = intent.getLongExtra(ARG_DURATION, 0);
 
 
-        Log.i(TAG, "Starting boost timer for " + mDuration + " seconds...");
+            Log.i(TAG, "Starting boost timer for " + mDuration + " seconds...");
 
-        mCDT = new CountDownTimer(mDuration, SECOND) {
+            mCDT = new CountDownTimer(mDuration, SECOND) {
 
-            @Override
-            public void onTick(long millisUntilFinished) {
-                broadcast.putExtra(ARG_SECONDS_LEFT, millisUntilFinished);
-                sendBroadcast(broadcast);
-            }
+                @Override
+                public void onTick(long millisUntilFinished) {
+                    //Log.i(TAG, millisUntilFinished + " ms until boost finished.");
+                    broadcast.putExtra(ARG_SECONDS_LEFT, millisUntilFinished);
+                    sendBroadcast(broadcast);
+                }
 
-            @Override
-            public void onFinish() {
-                Log.i(TAG, "Timer finished.");
-                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(BoostTimerService.this);
-                prefs.edit().putBoolean(PREF_BOOST_ACTIVE, false).apply();
-                ActiveCharacter.getInstance(BoostTimerService.this).removeBoost();
+                @Override
+                public void onFinish() {
+                    Log.i(TAG, "Timer finished.");
+                    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(BoostTimerService.this);
+                    prefs.edit().putBoolean(PREF_BOOST_ACTIVE, false).apply();
+                    ActiveCharacter.getInstance(BoostTimerService.this).removeBoost();
 
-                //stop everything
-                sendBroadcast(new Intent(TIMER_BROADCAST));
-                BoostTimerService.this.stopSelf(); //stop service
-            }
-        };
+                    //stop everything
+                    sendBroadcast(new Intent(TIMER_BROADCAST));
+                    BoostTimerService.this.stopSelf(); //stop service
+                }
+            };
 
-        //start boost
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(BoostTimerService.this);
-        prefs.edit().putBoolean(PREF_BOOST_ACTIVE, true).apply();
-        mCDT.start();
+            //start boost
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(BoostTimerService.this);
+            prefs.edit().putBoolean(PREF_BOOST_ACTIVE, true).apply();
+            mCDT.start();
+        }
 
         return super.onStartCommand(intent, flags, startId);
     }

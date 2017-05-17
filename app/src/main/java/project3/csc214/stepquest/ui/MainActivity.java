@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
         mPlayEffects = prefs.getBoolean(SettingsFragment.PREF_EFFECTS, true);
 
         //connect to pedometer service
-        doBindService();
+        startService(new Intent(getApplicationContext(), PedometerService.class));
 
         //do check for pedometer
         boolean doneCheck = prefs.getBoolean(PREF_DONE_SENSOR_CHECK, false);
@@ -143,35 +143,6 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
     protected void onDestroy() {
         super.onDestroy();
         mEffectPlayer.release();
-    }
-
-    //Starts up pedometer service, somehow. I'm not entirely sure what does what but it seems to work
-    private PedometerService mService;
-    private boolean mIsBound;
-    private ServiceConnection mConnection = new ServiceConnection(){
-
-        @Override
-        public void onServiceConnected(ComponentName name, IBinder service) {
-            mService = ((PedometerService.LocalBinder)service).getService();
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-            mService = null;
-        }
-    };
-
-    private void doBindService(){
-        //bindService(new Intent(MainActivity.this, PedometerService.class), mConnection, Context.BIND_AUTO_CREATE);
-        getApplicationContext().bindService(new Intent(getApplicationContext(), PedometerService.class), mConnection, Context.BIND_AUTO_CREATE);
-        mIsBound = true;
-    }
-
-    private void doUnbindService(){
-        if(mIsBound){
-            unbindService(mConnection);
-            mIsBound = false;
-        }
     }
 
     @Override

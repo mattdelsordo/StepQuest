@@ -90,7 +90,7 @@ public class EventQueue {
 
         double step = oneStepValue();
         mProgress += step;
-        Log.i(TAG, "Step taken (" + step + ")");
+        //Log.i(TAG, "Step taken (" + step + ")");
         Event currentEvent = getTopEvent();
         if(mProgress >= currentEvent.getDuration()){
             //if the progress threshold has been met:
