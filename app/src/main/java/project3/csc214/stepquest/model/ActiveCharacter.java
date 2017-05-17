@@ -204,6 +204,7 @@ public class ActiveCharacter{
                 QuestCursorWrapper.CharacterBundle bundle = charWrapper.getCharacter();
                 setActiveCharacter(bundle.mCharacter);
                 setEquippedWeapon(WeaponList.getInstance(mAppContext).getWeaponById(bundle.mWeaponId));
+                mActiveBoost = bundle.mBoost;
             }else if(charWrapper.getCount() > 1){
                 Log.i(TAG, "ERROR: there's two characters in the database??");
             }
@@ -250,6 +251,10 @@ public class ActiveCharacter{
         values.put(QuestDbSchema.CharacterTable.Params.GOLD, getActiveCharacter().getFunds());
         values.put(QuestDbSchema.CharacterTable.Params.EXP, getActiveCharacter().getExp());
         values.put(QuestDbSchema.CharacterTable.Params.LVL_TOKENS, getActiveCharacter().getLvlUpTokenAmnt());
+
+        if(mActiveBoost != null)values.put(QuestDbSchema.CharacterTable.Params.BOOST, mActiveBoost);
+        else values.put(QuestDbSchema.CharacterTable.Params.BOOST, 1.0);
+
 
         if(mEquippedWeapon != null) values.put(QuestDbSchema.CharacterTable.Params.WEAPON_ID, mEquippedWeapon.getId());
         else values.put(QuestDbSchema.CharacterTable.Params.WEAPON_ID, "");

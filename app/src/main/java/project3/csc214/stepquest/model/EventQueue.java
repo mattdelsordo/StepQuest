@@ -88,7 +88,9 @@ public class EventQueue {
     public void incrementProgress(NotificationListener listener){
         //Log.i(TAG, "Step taken (" + mProgress + ")");
 
-        mProgress += oneStepValue();
+        double step = oneStepValue();
+        mProgress += step;
+        Log.i(TAG, "Step taken (" + step + ")");
         Event currentEvent = getTopEvent();
         if(mProgress >= currentEvent.getDuration()){
             //if the progress threshold has been met:

@@ -29,6 +29,7 @@ public class QuestDbSchema {
             public static final String EXP = "exp";
             public static final String LVL_TOKENS = "tokens";
             public static final String WEAPON_ID = "weapon_id";
+            public static final String BOOST = "boost";
         }
     }
 

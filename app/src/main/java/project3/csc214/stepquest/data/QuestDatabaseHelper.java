@@ -33,7 +33,8 @@ public class QuestDatabaseHelper extends SQLiteOpenHelper{
                         + QuestDbSchema.CharacterTable.Params.GOLD + ", "
                         + QuestDbSchema.CharacterTable.Params.EXP + ", "
                         + QuestDbSchema.CharacterTable.Params.LVL_TOKENS + ", "
-                        + QuestDbSchema.CharacterTable.Params.WEAPON_ID + ")");
+                        + QuestDbSchema.CharacterTable.Params.WEAPON_ID + ", "
+                        + QuestDbSchema.CharacterTable.Params.BOOST + ")");
 
         //create inventory table
         db.execSQL("create table " + QuestDbSchema.InventoryTable.NAME

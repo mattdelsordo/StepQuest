@@ -38,6 +38,7 @@ public class QuestCursorWrapper extends CursorWrapper{
         int gold = getInt(getColumnIndex(QuestDbSchema.CharacterTable.Params.GOLD));
         int exp = getInt(getColumnIndex(QuestDbSchema.CharacterTable.Params.EXP));
         int tokens = getInt(getColumnIndex(QuestDbSchema.CharacterTable.Params.LVL_TOKENS));
+        double boost = getDouble(getColumnIndex(QuestDbSchema.CharacterTable.Params.BOOST));
         String weapon_id = getString(getColumnIndex(QuestDbSchema.CharacterTable.Params.WEAPON_ID));
 
         int[] stats = new int[Stats.STAT_VOLUME];
@@ -53,7 +54,7 @@ public class QuestCursorWrapper extends CursorWrapper{
         character.setExp(exp);
         character.setLevelUpTokens(tokens);
 
-        return new CharacterBundle(character, weapon_id);
+        return new CharacterBundle(character, weapon_id, boost);
     }
 
     //returns a weapon from the inventory database
@@ -93,10 +94,12 @@ public class QuestCursorWrapper extends CursorWrapper{
     public static class CharacterBundle {
         public Character mCharacter;
         public String mWeaponId;
+        public double mBoost;
 
-        public CharacterBundle(Character c, String wid){
+        public CharacterBundle(Character c, String wid, double boost){
             mCharacter = c;
             mWeaponId = wid;
+            mBoost = boost;
         }
     }
 
