@@ -4,7 +4,7 @@ UX:
 -Update blunt weapon/notification icons
 -Sound effects for menu buttons, fragment sliding, clanging when buying a weapon, bubbling when buying a boost
 -less unsatisfying fragment transition animation
--persist sound throughout all activities/get new loop for each activity
+-Persist sound throughout all activities/get new loop for each activity
 -Make inventory item selection more intuitive
 -Figure out some rational pricing for weapons
 -Make shop items look nicer
@@ -14,6 +14,7 @@ GAMPLAY:
 -Implement system for boosts that can be bought in the shop
 -Give boosts an actual price
 -Come up with some way to display possible boosts/what boosts there are
+-Change starting weapon to a generic stick along with enough money to buy a wooden weapon
 -Adventure Log
 --List of events that have taken place
 --Stats like #monsters killed, #steps walked, etc.

@@ -17,7 +17,10 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:id="@+id/frame_creation_character"
-            android:layout_margin="4dp">
+            android:layout_margin="4dp"
+            android:elevation="3dp"
+            android:outlineProvider="bounds"
+            android:clipToPadding="false">
 
             <ImageView
                 android:layout_width="match_parent"

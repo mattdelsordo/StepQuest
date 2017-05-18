@@ -33,7 +33,9 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/frame_character_character"
                 android:layout_margin="4dp"
-                android:elevation="2dp">
+                android:elevation="3dp"
+                android:outlineProvider="bounds"
+                android:clipToPadding="false">
 
                 <ImageView
                     android:layout_width="match_parent"

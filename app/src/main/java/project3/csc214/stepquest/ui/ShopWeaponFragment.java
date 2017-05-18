@@ -148,6 +148,7 @@ public class ShopWeaponFragment extends Fragment {
         public ShopWeaponViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             LayoutInflater inflater = LayoutInflater.from(parent.getContext());
             View view = inflater.inflate(R.layout.view_shop_weapon, parent, false);
+            //view.setElevation(10);
             ShopWeaponViewHolder holder = new ShopWeaponViewHolder(view);
             return holder;
         }
