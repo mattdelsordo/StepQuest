@@ -223,7 +223,7 @@ public class AdventureLog {
         ArrayDeque<String> logCopy = mEventLog.clone();
         for(int i = 0; !logCopy.isEmpty(); i++){
             //TODO: fairly confident but not certain that this will work
-            mDatabase.insert(QuestDbSchema.JournalQueueTable.NAME, null, getJournalEntryValues(logCopy.getLast(), i));
+            mDatabase.insert(QuestDbSchema.JournalQueueTable.NAME, null, getJournalEntryValues(logCopy.removeFirst(), i));
         }
     }
 }

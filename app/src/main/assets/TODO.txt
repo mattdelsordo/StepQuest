@@ -8,6 +8,7 @@ UX:
 -Make inventory item selection more intuitive
 -Figure out some rational pricing for weapons
 -Make shop items look nicer
+-Add ToastListner to all activities (stop it from sending notifications while the app is still going)
 !!!!!!-Figure out how services work and make sure this one is killed with the process
 
 GAMPLAY:
@@ -15,9 +16,6 @@ GAMPLAY:
 -Give boosts an actual price
 -Come up with some way to display possible boosts/what boosts there are
 -Change starting weapon to a generic stick along with enough money to buy a wooden weapon
--Adventure Log
---List of events that have taken place
---Stats like #monsters killed, #steps walked, etc.
 
 MECHANICS:
 -Tweak drop rates for normal monsters
