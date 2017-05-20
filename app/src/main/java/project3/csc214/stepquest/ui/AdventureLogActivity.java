@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import project3.csc214.stepquest.R;
+import project3.csc214.stepquest.data.Saver;
 
 public class AdventureLogActivity extends AppCompatActivity {
 
@@ -43,5 +44,11 @@ public class AdventureLogActivity extends AppCompatActivity {
     //swaps fragments in the main frame
     public void swapFragment(Fragment fragment){
         getSupportFragmentManager().beginTransaction().replace(R.id.fl_log_mainframe, fragment).commit();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Saver.saveAll(this, false);
     }
 }

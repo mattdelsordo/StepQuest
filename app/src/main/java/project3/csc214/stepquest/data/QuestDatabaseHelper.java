@@ -50,6 +50,19 @@ public class QuestDatabaseHelper extends SQLiteOpenHelper{
                 + QuestDbSchema.EventQueueTable.Params.WEAPON_ID + ", "
                 + QuestDbSchema.EventQueueTable.Params.PROGRESS + ")");
 
+        //create journal table
+        db.execSQL("create table " + QuestDbSchema.JournalQueueTable.NAME
+                + "( " + QuestDbSchema.JournalQueueTable.Params.ORDER + ", "
+                + QuestDbSchema.JournalQueueTable.Params.TEXT + ")");
+
+        //create statistics table
+        db.execSQL("create table " + QuestDbSchema.StatisticsTable.NAME
+        + "( " + QuestDbSchema.StatisticsTable.Params.STEPS + ", "
+                + QuestDbSchema.StatisticsTable.Params.MONSTERS + ", "
+                + QuestDbSchema.StatisticsTable.Params.GOLD + ", "
+                + QuestDbSchema.StatisticsTable.Params.WEAPONS + ", "
+                + QuestDbSchema.StatisticsTable.Params.DUNGEONS + ")");
+
     }
 
     @Override

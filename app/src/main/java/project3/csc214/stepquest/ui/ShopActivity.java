@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import project3.csc214.stepquest.R;
+import project3.csc214.stepquest.data.Saver;
 import project3.csc214.stepquest.util.UpdateShopGoldListener;
 import project3.csc214.stepquest.model.ActiveCharacter;
 
@@ -64,4 +65,9 @@ public class ShopActivity extends AppCompatActivity implements UpdateShopGoldLis
         mGoldTotal.setText(Integer.toString(goldTotal));
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Saver.saveAll(this, false);
+    }
 }

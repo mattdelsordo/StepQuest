@@ -89,6 +89,10 @@ public class Dungeon extends ArrayList<Event> {
         boss.setDoNotify(ActiveCharacter.getInstance(context).getActiveCharacter().getName() + " slew a " + boss.parseMonsterName() + "!");
         dungeon.add(boss);
 
+        Event dungeonTag = new Event(null, 0);
+        dungeonTag.setEventClassTag(Event.DUNGEON_CLEAR);
+        dungeon.add(dungeonTag);
+
         return dungeon;
     }
 

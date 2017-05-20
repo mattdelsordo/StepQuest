@@ -56,4 +56,26 @@ public class QuestDbSchema {
             public static final String PROGRESS = "progress";
         }
     }
+
+    /** Schema for Adventure Log **/
+    public static final class JournalQueueTable{
+        public static final String NAME = "journal_table";
+
+        public static final class Params{
+            public static final String ORDER = "ordering";
+            public static final String TEXT = "text";
+        }
+    }
+
+    public static final class StatisticsTable{
+        public static final String NAME = "statistics_table";
+
+        public static final class Params{
+            public static final String STEPS = "total_steps";
+            public static final String MONSTERS = "monsters_slain";
+            public static final String GOLD = "total_gold";
+            public static final String WEAPONS = "total_weapons";
+            public static final String DUNGEONS = "total_dungeons";
+        }
+    }
 }

@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import project3.csc214.stepquest.R;
 import project3.csc214.stepquest.model.ActiveCharacter;
+import project3.csc214.stepquest.model.AdventureLog;
 import project3.csc214.stepquest.model.EventQueue;
 
 /**
@@ -52,6 +53,7 @@ public class Saver {
         protected Void doInBackground(Context... params) {
             ActiveCharacter.getInstance(params[0]).save();
             EventQueue.getInstance(params[0]).save();
+            AdventureLog.getInstance(params[0]).save();
             return null;
         }
     }

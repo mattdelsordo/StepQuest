@@ -209,7 +209,7 @@ public class ActiveCharacter{
                 setEquippedWeapon(WeaponList.getInstance(mAppContext).getWeaponById(bundle.mWeaponId));
                 mActiveBoost = bundle.mBoost;
             }else if(charWrapper.getCount() > 1){
-                Log.i(TAG, "ERROR: there's two characters in the database??");
+                Log.e(TAG, "ERROR: there's two characters in the database??");
             }
 
         }finally{

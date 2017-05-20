@@ -1,9 +1,17 @@
 package project3.csc214.stepquest.model;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+
+import project3.csc214.stepquest.data.QuestCursorWrapper;
+import project3.csc214.stepquest.data.QuestDatabaseHelper;
+import project3.csc214.stepquest.data.QuestDbSchema;
 
 /**
  * Created by mdelsord on 5/19/17.
@@ -15,6 +23,7 @@ public class AdventureLog {
 
     private static AdventureLog sLog;
     private Context mAppContext;
+    private final SQLiteDatabase mDatabase;
 
     public static final int LOG_SIZE = 50;
     private ArrayDeque<String> mEventLog; //stores strings corresponding to completed events
@@ -28,25 +37,28 @@ public class AdventureLog {
     private int mTotalWeaponsAcquired;
     private int mTotalDungeonsCleared;
 
-    private AdventureLog(Context context){
+    private AdventureLog(Context context) {
         mAppContext = context.getApplicationContext();
         mEventLog = new ArrayDeque<>(LOG_SIZE);
+        mDatabase = new QuestDatabaseHelper(mAppContext).getWritableDatabase();
+
+        load();
     }
 
-    public static synchronized AdventureLog getInstance(Context context){
-        if(sLog == null) sLog = new AdventureLog(context);
+    public static synchronized AdventureLog getInstance(Context context) {
+        if (sLog == null) sLog = new AdventureLog(context);
         return sLog;
     }
 
     //adds a description to the list and then removes the last one if the cap is hit
-    public void addEventToLog(String eventDescription){
+    public void addEventToLog(String eventDescription) {
         mEventLog.addFirst(eventDescription);
-        if(mEventLog.size() > LOG_SIZE) mEventLog.removeLast();
-        if(mListener!=null)mListener.updateJournal(mEventLog);
+        if (mEventLog.size() > LOG_SIZE) mEventLog.removeLast();
+        if (mListener != null) mListener.updateJournal(mEventLog);
     }
 
     //returns the list of events
-    public ArrayDeque<String> getEventLog(){
+    public ArrayDeque<String> getEventLog() {
         return mEventLog;
     }
 
@@ -57,12 +69,13 @@ public class AdventureLog {
     public void addStep() {
         mTotalSteps++;
         //TODO: this isnt executing correctly?
-        if(mListener != null)mListener.updateStats(getTotalSteps(), getApproxDistanceWalkedMiles(), getTotalMonstersSlain(), getTotalGoldAcquired(), getTotalWeaponsAcquired(), getTotalDungeonsCleared());
+        if (mListener != null)
+            mListener.updateStats(getTotalSteps(), getApproxDistanceWalkedMiles(), getTotalMonstersSlain(), getTotalGoldAcquired(), getTotalWeaponsAcquired(), getTotalDungeonsCleared());
     }
 
     //returns the approximate distance the user has walked, in MILES
     public double getApproxDistanceWalkedMiles() {
-        return mTotalSteps * AVG_STEP_LENGTH_IN * (1/INCHES_PER_MILE);
+        return mTotalSteps * AVG_STEP_LENGTH_IN * (1 / INCHES_PER_MILE);
     }
 
     public int getTotalMonstersSlain() {
@@ -97,13 +110,120 @@ public class AdventureLog {
         mTotalDungeonsCleared++;
     }
 
-    public interface LogUpdateListener{
+    public interface LogUpdateListener {
         void updateStats(int steps, double distance, int monsters, int gold, int weapons, int dungeons);
+
         void updateJournal(ArrayDeque<String> list);
     }
+
     private LogUpdateListener mListener;
-    public void bindLogUpdateListener(LogUpdateListener lul){mListener = lul;}
-    public void unbindLogUpdateListener(){
+
+    public void bindLogUpdateListener(LogUpdateListener lul) {
+        mListener = lul;
+    }
+
+    public void unbindLogUpdateListener() {
         mListener = null;
+    }
+
+
+    /**
+     * Database loading/saving methods
+     **/
+    private QuestCursorWrapper queryJournal(String where, String args[]) {
+        Cursor cursor = mDatabase.query(
+                QuestDbSchema.JournalQueueTable.NAME,
+                null,
+                where,
+                args,
+                null,
+                null,
+                QuestDbSchema.JournalQueueTable.Params.ORDER
+        );
+        return new QuestCursorWrapper(cursor);
+    }
+
+
+    private QuestCursorWrapper queryStatistics(String where, String args[]){
+        Cursor cursor = mDatabase.query(
+                QuestDbSchema.StatisticsTable.NAME,
+                null,
+                where,
+                args,
+                null,
+                null,
+                null
+        );
+        return new QuestCursorWrapper(cursor);
+    }
+
+    //loads stats from database
+    public void load(){
+        mEventLog.clear();
+
+        //get individual stats
+        QuestCursorWrapper statWrapper = queryStatistics(null, null);
+        try{
+            if(statWrapper.getCount() == 1){
+                statWrapper.moveToFirst();
+                QuestCursorWrapper.StatisticsBundle bundle = statWrapper.getStatistics();
+                mTotalSteps = bundle.steps;
+                mTotalGoldAcquired = bundle.gold;
+                mTotalDungeonsCleared = bundle.dungeons;
+                mTotalWeaponsAcquired = bundle.weapons;
+                mTotalMonstersSlain = bundle.monsters;
+            }else{
+                Log.e(TAG, "Too may sets of statistics in database!");
+            }
+        }finally {
+            statWrapper.close();
+        }
+
+        //get journal log
+        QuestCursorWrapper logWrapper = queryJournal(null, null);
+        try{
+            if(logWrapper.getCount() > 0){
+                logWrapper.moveToFirst();
+                while(logWrapper.isAfterLast() == false){
+                    String event = logWrapper.getJournalEntry();
+                    mEventLog.add(event);
+                    logWrapper.moveToNext();
+                }
+            }
+        }finally {
+            logWrapper.close();
+        }
+    }
+
+    private ContentValues getJournalEntryValues(String text, int order){
+        ContentValues values = new ContentValues();
+        values.put(QuestDbSchema.JournalQueueTable.Params.ORDER, order);
+        values.put(QuestDbSchema.JournalQueueTable.Params.TEXT, text);
+        return values;
+    }
+
+    private ContentValues getStatContentValues(int steps, int gold, int dungeons, int weapons, int monsters){
+        ContentValues values = new ContentValues();
+        values.put(QuestDbSchema.StatisticsTable.Params.DUNGEONS, dungeons);
+        values.put(QuestDbSchema.StatisticsTable.Params.STEPS, steps);
+        values.put(QuestDbSchema.StatisticsTable.Params.GOLD, gold);
+        values.put(QuestDbSchema.StatisticsTable.Params.WEAPONS, weapons);
+        values.put(QuestDbSchema.StatisticsTable.Params.MONSTERS, monsters);
+        return values;
+    }
+
+    public void save(){
+        Log.i(TAG, "Saving statistics.");
+        mDatabase.delete(QuestDbSchema.StatisticsTable.NAME, null, null);
+        mDatabase.insert(QuestDbSchema.StatisticsTable.NAME, null, getStatContentValues(mTotalSteps, mTotalGoldAcquired, mTotalDungeonsCleared, mTotalWeaponsAcquired, mTotalMonstersSlain));
+
+
+        Log.i(TAG, "Saving journal.");
+        mDatabase.delete(QuestDbSchema.JournalQueueTable.NAME, null, null);
+        ArrayDeque<String> logCopy = mEventLog.clone();
+        for(int i = 0; !logCopy.isEmpty(); i++){
+            //TODO: fairly confident but not certain that this will work
+            mDatabase.insert(QuestDbSchema.JournalQueueTable.NAME, null, getJournalEntryValues(logCopy.getLast(), i));
+        }
     }
 }

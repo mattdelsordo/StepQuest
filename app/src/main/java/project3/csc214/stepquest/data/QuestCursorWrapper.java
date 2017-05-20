@@ -79,9 +79,31 @@ public class QuestCursorWrapper extends CursorWrapper{
         return new EventBundle(order, event, weapon, progress);
     }
 
-    //returns an event from the event queue
+    //returns a string from the adventure log table
+    public String getJournalEntry(){
+        return getString(getColumnIndex(QuestDbSchema.JournalQueueTable.Params.TEXT));
+    }
+
+    //get list of statistics
+    public StatisticsBundle getStatistics(){
+        StatisticsBundle out = new StatisticsBundle();
+        out.steps = getInt(getColumnIndex(QuestDbSchema.StatisticsTable.Params.STEPS));
+        out.monsters = getInt(getColumnIndex(QuestDbSchema.StatisticsTable.Params.MONSTERS));
+        out.gold = getInt(getColumnIndex(QuestDbSchema.StatisticsTable.Params.GOLD));
+        out.weapons = getInt(getColumnIndex(QuestDbSchema.StatisticsTable.Params.WEAPONS));
+        out.dungeons = getInt(getColumnIndex(QuestDbSchema.StatisticsTable.Params.DUNGEONS));
+        return out;
+    }
 
     /** Bundles to help move around information **/
+    public static class StatisticsBundle{
+        public int steps;
+        public int monsters;
+        public int gold;
+        public int weapons;
+        public int dungeons;
+    }
+
     public static class WeaponBundle{
         public String weapon_id;
         public int quantity;
