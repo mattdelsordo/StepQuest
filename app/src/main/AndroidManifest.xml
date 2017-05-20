@@ -17,7 +17,8 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.LoadingActivity">
+        <activity android:name=".ui.LoadingActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,25 +27,30 @@
         </activity>
         <activity
             android:name=".ui.MainActivity"
-            android:launchMode="singleTop" />
-        <activity android:name=".ui.CharacterCreationActivity" />
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.CharacterCreationActivity"
+            android:screenOrientation="portrait"/>
 
         <service
             android:name=".services.PedometerService"
             android:exported="false"
             android:stopWithTask="true" />
 
-        <activity android:name=".ui.LevelUpActivity" />
+        <activity android:name=".ui.LevelUpActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ui.ShopActivity"
-            android:parentActivityName=".ui.MainActivity" />
+            android:parentActivityName=".ui.MainActivity"
+            android:screenOrientation="portrait"/>
 
         <service
             android:name=".services.BoostTimerService"
             android:exported="false" />
 
         <activity android:name=".ui.AdventureLogActivity"
-            android:parentActivityName=".ui.MainActivity"></activity>
+            android:parentActivityName=".ui.MainActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

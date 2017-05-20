@@ -4,12 +4,13 @@ UX:
 -Update blunt weapon/notification icons
 -Sound effects for menu buttons, fragment sliding, clanging when buying a weapon, bubbling when buying a boost
 -less unsatisfying fragment transition animation
+-fix adventure log fragments not updating properly from the callbacks
+-animation for updating journal entries
 -Persist sound throughout all activities/get new loop for each activity
--Make inventory item selection more intuitive
--Figure out some rational pricing for weapons
--Make shop items look nicer
+-Make inventory item selection more intuitive -> whip up a dialogue
 -Add ToastListner to all activities (stop it from sending notifications while the app is still going)
-!!!!!!-Figure out how services work and make sure this one is killed with the process
+-add dates/times to journal
+!!!!!!-Figure out how services work and make sure these are killed with the process
 
 GAMPLAY:
 -Implement system for boosts that can be bought in the shop
@@ -18,6 +19,7 @@ GAMPLAY:
 -Change starting weapon to a generic stick along with enough money to buy a wooden weapon
 
 MECHANICS:
+-Figure out some rational pricing for weapons
 -Tweak drop rates for normal monsters
 -More intelligent monster scaling/step amount calculation
 !-Load in single list of all monsters + bosses, sort by steps
