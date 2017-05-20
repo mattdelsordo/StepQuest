@@ -6,14 +6,12 @@ import android.content.res.TypedArray;
 import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Random;
 
 import project3.csc214.stepquest.R;
 import project3.csc214.stepquest.model.ActiveCharacter;
 import project3.csc214.stepquest.model.Event;
-import project3.csc214.stepquest.model.Character;
 
 /**
  * Created by mdelsord on 4/16/17.
@@ -38,9 +36,9 @@ public class EventList {
         mBosses = new ArrayList<>();
         mEvents = new ArrayList<>();
         rand = new Random();
-        loadEventList(mMonsters, R.array.monsters, true, true);
-        loadEventList(mBosses, R.array.bosses, true, false);
-        loadEventList(mEvents, R.array.events, false, false);
+        loadEventList(mMonsters, R.array.monsters, true, true, Event.MONSTER);
+        loadEventList(mBosses, R.array.bosses, true, false, Event.MONSTER);
+        loadEventList(mEvents, R.array.events, false, false, 0);
 
 //        for(Event e : mMonsters){
 //            Log.i(TAG, e.getDescription());
@@ -54,7 +52,7 @@ public class EventList {
     }
 
     //loads list of monsters from the xml file
-    private void loadEventList(ArrayList<Event> list, int arrayId, boolean assign_gold, boolean assign_drop){
+    private void loadEventList(ArrayList<Event> list, int arrayId, boolean assign_gold, boolean assign_drop, int tag){
         //load monsters from xml as strings
         Log.i(TAG, "Loading monster list.");
         Resources res = mAppContext.getResources();
@@ -81,6 +79,7 @@ public class EventList {
                 int chance = rand.nextInt(10);
                 if(chance == 6) monster.setItemReward(WeaponList.getInstance(mAppContext).getRandomLevelledWeapon(ActiveCharacter.getInstance(mAppContext).getActiveCharacter().getLevel()));
             }
+            monster.setEventClassTag(tag);
             list.add(monster);
         }
 

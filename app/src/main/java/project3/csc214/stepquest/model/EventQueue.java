@@ -70,6 +70,13 @@ public class EventQueue {
     public Event getTopEvent(){
         if(mQueue.isEmpty()) addEvents(Dungeon.newRandomDungeon(mAppContext));
         Event e = mQueue.get(0);
+
+        //check whether this event has a notification tag of some kind and should be skipped
+        while(e.getEventClassTag() == Event.DUNGEON_CLEAR){
+            AdventureLog.getInstance(mAppContext).addTotalDungeonsCleared();
+            mQueue.remove(0);
+            e = getTopEvent();
+        }
         return e;
     }
 
@@ -90,6 +97,7 @@ public class EventQueue {
 
         double step = oneStepValue();
         mProgress += step;
+        AdventureLog.getInstance(mAppContext).addStep(); //log one step
         //Log.i(TAG, "Step taken (" + step + ")");
         Event currentEvent = getTopEvent();
         if(mProgress >= currentEvent.getDuration()){
@@ -105,6 +113,8 @@ public class EventQueue {
             //give the player any weapon
             Weapon weaponReward = currentEvent.getItemReward();
             if(weaponReward != null) ActiveCharacter.getInstance(mAppContext).addWeaponToInventory(weaponReward);
+            //increment the number of monsters slain if its a monster
+            if(currentEvent.getEventClassTag() == Event.MONSTER) AdventureLog.getInstance(mAppContext).addMonsterSlain();
 
             //notify player of event completion
             if(mToastListener != null){

@@ -57,6 +57,10 @@ public class Event {
     private boolean mDoNotify;
     private String mNotificationText;
 
+    //designates what kind of event this is
+    public static final int DUNGEON_CLEAR = -1, MONSTER = 1;
+    private int mEventClassTag;
+
     public Event(String desc, int duration){
         mDescription = desc;
         mDuration = duration;
@@ -111,6 +115,14 @@ public class Event {
 
     public void setItemReward(Weapon mItemReward) {
         this.mItemReward = mItemReward;
+    }
+
+    public int getEventClassTag() {
+        return mEventClassTag;
+    }
+
+    public void setEventClassTag(int mEventClassTag) {
+        this.mEventClassTag = mEventClassTag;
     }
 
     public void setDoNotify(String notificationText){

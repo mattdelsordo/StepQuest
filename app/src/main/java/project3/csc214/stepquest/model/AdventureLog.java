@@ -52,8 +52,8 @@ public class AdventureLog {
         return mTotalSteps;
     }
 
-    public void setTotalSteps(int mTotalSteps) {
-        this.mTotalSteps = mTotalSteps;
+    public void addStep() {
+        mTotalSteps++;
     }
 
     //returns the approximate distance the user has walked, in MILES
@@ -65,31 +65,31 @@ public class AdventureLog {
         return mTotalMonstersSlain;
     }
 
-    public void setTotalMonstersSlain(int mTotalMonstersSlain) {
-        this.mTotalMonstersSlain = mTotalMonstersSlain;
+    public void addMonsterSlain() {
+        mTotalMonstersSlain++;
     }
 
     public int getTotalGoldAcquired() {
         return mTotalGoldAcquired;
     }
 
-    public void setTotalGoldAcquired(int mTotalGoldAcquired) {
-        this.mTotalGoldAcquired = mTotalGoldAcquired;
+    public void addTotalGoldAcquired(int gold) {
+        mTotalGoldAcquired += gold;
     }
 
     public int getTotalWeaponsAcquired() {
         return mTotalWeaponsAcquired;
     }
 
-    public void setTotalWeaponsAcquired(int mTotalWeaponsAcquired) {
-        this.mTotalWeaponsAcquired = mTotalWeaponsAcquired;
+    public void addTotalWeaponsAcquired() {
+        mTotalWeaponsAcquired++;
     }
 
     public int getTotalDungeonsCleared() {
         return mTotalDungeonsCleared;
     }
 
-    public void setTotalDungeonsCleared(int mTotalDungeonsCleared) {
-        this.mTotalDungeonsCleared = mTotalDungeonsCleared;
+    public void addTotalDungeonsCleared() {
+        mTotalDungeonsCleared++;
     }
 }

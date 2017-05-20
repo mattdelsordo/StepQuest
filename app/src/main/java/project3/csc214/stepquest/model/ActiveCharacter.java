@@ -58,7 +58,6 @@ public class ActiveCharacter{
 
     //adds a weapon to the inventory
     public void addWeaponToInventory(Weapon w){
-        //TODO: error that this process is happening very wrong
         //Log.i(TAG, "Adding " + w);
         Integer i = mWeaponSet.get(w);
         //Log.i(TAG, "There are " + i);
@@ -70,6 +69,9 @@ public class ActiveCharacter{
         if(mEquippedWeapon == null) mEquippedWeapon = w;
 
         if(mWeaponListener != null) mWeaponListener.updateList();
+
+        //increment number of weapons acquired ever
+        AdventureLog.getInstance(mAppContext).addTotalWeaponsAcquired();
     }
 
     //adds exp to the character
@@ -112,6 +114,7 @@ public class ActiveCharacter{
     public void addFunds(int funds){
         mCharacter.setFunds(mCharacter.getFunds() + funds);
         if(mFundsUpdateListener != null) mFundsUpdateListener.updateFunds(mCharacter.getFunds());
+        AdventureLog.getInstance(mAppContext).addTotalGoldAcquired(funds);
     }
 
     //boost methods
