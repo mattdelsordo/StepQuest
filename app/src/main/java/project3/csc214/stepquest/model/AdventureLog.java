@@ -2,6 +2,7 @@ package project3.csc214.stepquest.model;
 
 import android.content.Context;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 
 /**
@@ -16,11 +17,11 @@ public class AdventureLog {
     private Context mAppContext;
 
     public static final int LOG_SIZE = 50;
-    private ArrayList<String> mEventLog; //stores strings corresponding to completed events
+    private ArrayDeque<String> mEventLog; //stores strings corresponding to completed events
 
     //values representing various statistics
     private static final int AVG_STEP_LENGTH_IN = 31;
-    private static final int INCHES_PER_MILE = 63360;
+    private static final double INCHES_PER_MILE = 63360.0;
     private int mTotalSteps;
     private int mTotalMonstersSlain;
     private int mTotalGoldAcquired;
@@ -29,7 +30,7 @@ public class AdventureLog {
 
     private AdventureLog(Context context){
         mAppContext = context.getApplicationContext();
-        mEventLog = new ArrayList<>(50);
+        mEventLog = new ArrayDeque<>(LOG_SIZE);
     }
 
     public static synchronized AdventureLog getInstance(Context context){
@@ -39,12 +40,13 @@ public class AdventureLog {
 
     //adds a description to the list and then removes the last one if the cap is hit
     public void addEventToLog(String eventDescription){
-        mEventLog.add(0, eventDescription);
-        if(mEventLog.size() > LOG_SIZE) mEventLog.remove(mEventLog.size() - 1);
+        mEventLog.addFirst(eventDescription);
+        if(mEventLog.size() > LOG_SIZE) mEventLog.removeLast();
+        if(mListener!=null)mListener.updateJournal(mEventLog);
     }
 
     //returns the list of events
-    public ArrayList<String> getEventLog(){
+    public ArrayDeque<String> getEventLog(){
         return mEventLog;
     }
 
@@ -54,6 +56,8 @@ public class AdventureLog {
 
     public void addStep() {
         mTotalSteps++;
+        //TODO: this isnt executing correctly?
+        if(mListener != null)mListener.updateStats(getTotalSteps(), getApproxDistanceWalkedMiles(), getTotalMonstersSlain(), getTotalGoldAcquired(), getTotalWeaponsAcquired(), getTotalDungeonsCleared());
     }
 
     //returns the approximate distance the user has walked, in MILES
@@ -91,5 +95,15 @@ public class AdventureLog {
 
     public void addTotalDungeonsCleared() {
         mTotalDungeonsCleared++;
+    }
+
+    public interface LogUpdateListener{
+        void updateStats(int steps, double distance, int monsters, int gold, int weapons, int dungeons);
+        void updateJournal(ArrayDeque<String> list);
+    }
+    private LogUpdateListener mListener;
+    public void bindLogUpdateListener(LogUpdateListener lul){mListener = lul;}
+    public void unbindLogUpdateListener(){
+        mListener = null;
     }
 }

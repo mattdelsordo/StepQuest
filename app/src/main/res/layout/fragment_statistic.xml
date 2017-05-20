@@ -1,0 +1,78 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="project3.csc214.stepquest.ui.StatisticFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/statistics"
+        android:gravity="center"
+        android:textSize="24sp"
+        android:textStyle="bold"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_centerInParent="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/steps_taken_000"
+                android:id="@+id/tv_statistics_stepstaken"
+                android:textSize="18sp"
+                android:layout_margin="2dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/approx_distance_travelled_000_miles"
+                android:id="@+id/tv_statistics_distance"
+                android:textSize="18sp"
+                android:layout_margin="2dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/total_monsters_defeated_000"
+                android:id="@+id/tv_statistics_monstertotal"
+                android:textSize="18sp"
+                android:layout_margin="2dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lifetime_gold_acquired_000g"
+                android:id="@+id/tv_statistics_goldtotal"
+                android:textSize="18sp"
+                android:layout_margin="2dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lifetime_weapons_acquired_000"
+                android:id="@+id/tv_statistics_weapontotal"
+                android:textSize="18sp"
+                android:layout_margin="2dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/total_dungeons_cleared_000"
+                android:id="@+id/tv_statistics_dungeonscleared"
+                android:textSize="18sp"
+                android:layout_margin="2dp"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

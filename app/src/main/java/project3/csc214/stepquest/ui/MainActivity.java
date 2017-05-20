@@ -202,6 +202,10 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
                 handled = true;
                 startActivity(new Intent(this, ShopActivity.class));
                 break;
+            case R.id.menu_advlog:
+                handled = true;
+                startActivity(new Intent(this, AdventureLogActivity.class));
+                break;
             default: handled = super.onOptionsItemSelected(item);
         }
         return handled;

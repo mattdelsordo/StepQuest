@@ -52,6 +52,8 @@ public class EventQueue {
     }
     public void unbindNotificationListener(){mNotificationListener = null;}
 
+
+
     private EventQueue(Context context){
         mAppContext = context.getApplicationContext();
         mQueue = new ArrayList<>();
@@ -101,6 +103,9 @@ public class EventQueue {
         //Log.i(TAG, "Step taken (" + step + ")");
         Event currentEvent = getTopEvent();
         if(mProgress >= currentEvent.getDuration()){
+            //log the comepleted event
+            AdventureLog.getInstance(mAppContext).addEventToLog(currentEvent.getDescription());
+
             //if the progress threshold has been met:
             //get active character
 //            Character active = ActiveCharacter.getInstance().getActiveCharacter();
@@ -109,12 +114,20 @@ public class EventQueue {
             ActiveCharacter.getInstance(mAppContext).addExp(expGain, listener);
             //give the player money
             int fundReward = currentEvent.getGoldReward();
-            ActiveCharacter.getInstance(mAppContext).addFunds(fundReward);
+            if(fundReward > 0){
+                ActiveCharacter.getInstance(mAppContext).addFunds(fundReward);
+                AdventureLog.getInstance(mAppContext).addEventToLog("Found " + fundReward +" pieces of gold.");
+            }
             //give the player any weapon
             Weapon weaponReward = currentEvent.getItemReward();
-            if(weaponReward != null) ActiveCharacter.getInstance(mAppContext).addWeaponToInventory(weaponReward);
+            if(weaponReward != null){
+                ActiveCharacter.getInstance(mAppContext).addWeaponToInventory(weaponReward);
+                AdventureLog.getInstance(mAppContext).addEventToLog("Found a " + weaponReward.getName() + ".");
+            }
             //increment the number of monsters slain if its a monster
             if(currentEvent.getEventClassTag() == Event.MONSTER) AdventureLog.getInstance(mAppContext).addMonsterSlain();
+
+
 
             //notify player of event completion
             if(mToastListener != null){
@@ -122,12 +135,11 @@ public class EventQueue {
                 mToastListener.makeToast("Task complete! +" + expGain + " exp!", Toast.LENGTH_SHORT);
                 if(fundReward != 0) mToastListener.makeToast("You recieved " + fundReward + " gold!", Toast.LENGTH_SHORT);
                 if(weaponReward != null) mToastListener.makeToast("You recieved a " + weaponReward.getName() + "!!", Toast.LENGTH_SHORT);
-            }else if(listener != null){
+            }else if(listener != null) {
                 //check whether this event was important enough to notify about
-                if(currentEvent.doNotify()){
+                if (currentEvent.doNotify()) {
                     listener.notifyUser(currentEvent.getNotificationText());
-                }
-                else if(weaponReward != null){
+                } else if (weaponReward != null) {
                     //else notify if the player found a weapon
                     listener.notifyUser(ActiveCharacter.getInstance(mAppContext).getActiveCharacter().getName() + " found a " + weaponReward.getName() + "!");
                 }
@@ -142,7 +154,7 @@ public class EventQueue {
         }
 
         //update the ui if the ui exists
-        if(mUpdateListener != null) mUpdateListener.updateEvent(getTopEvent(), (int)mProgress);
+        if(mUpdateListener != null)mUpdateListener.updateEvent(getTopEvent(), (int)mProgress);
         //else make sure to call getTopEvent() anyway so that there is some event in the queue
         else getTopEvent();
     }

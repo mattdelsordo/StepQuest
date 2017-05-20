@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/m_log_journal"
+        android:title="@string/journal"
+        app:showAsAction="always"
+        android:enabled="true"
+        android:icon="@drawable/ic_book_open"/>
+
+    <item
+        android:id="@+id/m_log_statistics"
+        android:title="@string/statistics"
+        app:showAsAction="always"
+        android:enabled="true"
+        android:icon="@drawable/ic_statistics"/>
+
+</menu>
