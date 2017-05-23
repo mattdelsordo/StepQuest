@@ -57,7 +57,7 @@ public class ShopBoostFragment extends Fragment implements BoostOverListener{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_shop_boost, container, false);
-        mBoosts = Boost.generatePossibleBoostList();
+        mBoosts = Boost.generatePossibleBoostList(ActiveCharacter.getInstance(getContext()).getActiveCharacter());
 
         mRecycler = (RecyclerView)view.findViewById(R.id.rv_shop_boosts);
         //GridLayoutManager layout = new GridLayoutManager(getActivity(), COLUMN_COUNT);

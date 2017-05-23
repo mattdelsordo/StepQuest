@@ -17,7 +17,7 @@ import project3.csc214.stepquest.data.WeaponList;
 public class Weapon{
     public static final String TAG = "Weapon";
 
-    public static final int BLADE = 0, BOW = 1, STAFF = 2, BLUNT = 3; //weapon classes
+    public static final int DEFAULT = -1, BLADE = 0, BOW = 1, STAFF = 2, BLUNT = 3; //weapon classes
     public static final Double WOOD = 1.0, BRONZE = 1.5, IRON = 2.0, STEEL = 2.5, OBSIDIAN = 3.0, MITHRIL = 4.0;//material bonuses
 
 
@@ -33,7 +33,7 @@ public class Weapon{
     public Weapon() {
         mId = "stick";
         mName = "Stick";
-        mType = BLUNT;
+        mType = DEFAULT;
         //mModifier = 1;
         mMaterial = WOOD;
     }
@@ -105,6 +105,7 @@ public class Weapon{
     //This should get string resources from
     public static int getTypeString(int type){
         switch (type){
+            case DEFAULT: return R.string.blank_string;
             case BLADE: return R.string.blade;
             case BOW: return R.string.bow;
             case STAFF: return R.string.staff;
@@ -175,6 +176,7 @@ public class Weapon{
     //returns the proper kind of drawable for this weapon
     public int getDrawable(){
         switch(getType()){
+            case DEFAULT: return R.drawable.ic_misc_weapon;
             case BLADE: return R.drawable.ic_sword;
             case BOW: return R.drawable.ic_bow;
             case BLUNT: return R.drawable.ic_blunt;
@@ -186,7 +188,7 @@ public class Weapon{
     //returns the weapon's price
     //TODO: put actual thought into this
     public int getPrice(){
-        return (int)(mMaterial * 100);
+        return (int)(mMaterial * 1337 * 0.1);
     }
 
 }

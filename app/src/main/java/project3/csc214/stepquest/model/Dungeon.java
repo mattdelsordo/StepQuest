@@ -110,9 +110,10 @@ public class Dungeon extends ArrayList<Event> {
         String monsterName = monster.parseMonsterName();
         backstory.add(new Event("You open the door to see what's going on...", 4));
         backstory.add(new Event("There's a " + monsterName.toLowerCase() + " terrorizing your town!", 6)); //TODO: town name generator
-        Weapon weapon = WeaponList.getInstance(context).firstWeapon(ActiveCharacter.getInstance(context).getActiveCharacter().getVocation());
-        Event getWeapon = new Event("Your father throws you the family's " + weapon.getName().toLowerCase() + "...", 4);
-        getWeapon.setItemReward(weapon);
+        //Weapon weapon = WeaponList.getInstance(context).firstWeapon(ActiveCharacter.getInstance(context).getActiveCharacter().getVocation());
+        //Event getWeapon = new Event("Your father throws you the family's " + weapon.getName().toLowerCase() + "...", 4);
+        Event getWeapon = new Event("Your father throws you a sharpened stick!", 4);
+        getWeapon.setItemReward(new Weapon());
         backstory.add(getWeapon);
         backstory.add(monster);
         backstory.add(new Event("Your family is very proud...", 4));
