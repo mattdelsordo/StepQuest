@@ -56,7 +56,7 @@ public class AdventureLog {
         JournalEntry newEntry = new JournalEntry(eventDescription, Calendar.getInstance());
         mEventLog.addFirst(newEntry);
         if (mEventLog.size() > LOG_SIZE) mEventLog.removeLast();
-        if (mListener != null) mListener.updateJournal(mEventLog);
+        if (mListener != null) mListener.updateJournal(newEntry);
         Log.i(TAG, "Added " + newEntry + " to adventure log");
     }
 
@@ -119,7 +119,7 @@ public class AdventureLog {
     public interface LogUpdateListener {
         void updateStats(int steps, double distance, int monsters, int gold, int weapons, int dungeons);
 
-        void updateJournal(ArrayDeque<JournalEntry> list);
+        void updateJournal(JournalEntry entry);
     }
 
     private LogUpdateListener mListener;

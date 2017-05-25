@@ -61,9 +61,7 @@ public class StatisticFragment extends Fragment implements AdventureLog.LogUpdat
     }
 
     @Override
-    public void updateJournal(ArrayDeque<JournalEntry> list) {
-
-    }
+    public void updateJournal(JournalEntry entry) { }
 
     @Override
     public void onPause() {

@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import java.util.ArrayDeque;
@@ -30,6 +32,7 @@ public class JournalFragment extends Fragment implements AdventureLog.LogUpdateL
     }
 
     private RecyclerView mRecycler;
+    private JournalEntryAdapter mAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,18 +42,30 @@ public class JournalFragment extends Fragment implements AdventureLog.LogUpdateL
 
         mRecycler = (RecyclerView)view.findViewById(R.id.rv_journal);
         mRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
-        updateJournal(AdventureLog.getInstance(getContext()).getEventLog());
+        //updateJournal(AdventureLog.getInstance(getContext()).getEventLog());
+
+        ArrayDeque<JournalEntry> list = AdventureLog.getInstance(getContext()).getEventLog();
+        JournalEntry[] listArray = list.toArray(new JournalEntry[]{});
+        ArrayList<JournalEntry> eventList = new ArrayList<>(Arrays.asList(listArray));
+        mAdapter = new JournalEntryAdapter(eventList);
+        mRecycler.setAdapter(mAdapter);
 
         return view;
     }
 
     @Override
-    public void updateJournal(ArrayDeque<JournalEntry> list){
-        JournalEntry[] listArray = list.toArray(new JournalEntry[]{});
-        ArrayList<JournalEntry> eventList = new ArrayList<>(Arrays.asList(listArray));
-        JournalEntryAdapter refresh = new JournalEntryAdapter(eventList);
-        mRecycler.setAdapter(refresh);
+    public void updateJournal(JournalEntry newEntry){
+        mAdapter.mEventList.add(0, newEntry);
+        mAdapter.notifyItemInserted(0);
     }
+
+//    @Override
+//    public void updateJournal(ArrayDeque<JournalEntry> list){
+//        JournalEntry[] listArray = list.toArray(new JournalEntry[]{});
+//        ArrayList<JournalEntry> eventList = new ArrayList<>(Arrays.asList(listArray));
+//        JournalEntryAdapter refresh = new JournalEntryAdapter(eventList);
+//        mRecycler.setAdapter(refresh);
+//    }
 
     @Override
     public void onPause() {
@@ -89,7 +104,8 @@ public class JournalFragment extends Fragment implements AdventureLog.LogUpdateL
     }
 
     private class JournalEntryAdapter extends RecyclerView.Adapter<JournalEntryViewHolder>{
-        private ArrayList<JournalEntry> mEventList;
+        public ArrayList<JournalEntry> mEventList;
+        private int lastPosition = -1;
 
         public JournalEntryAdapter(ArrayList<JournalEntry> list){
             mEventList = list;
@@ -108,6 +124,15 @@ public class JournalFragment extends Fragment implements AdventureLog.LogUpdateL
         public void onBindViewHolder(JournalEntryViewHolder holder, int position) {
             JournalEntry event = mEventList.get(position);
             holder.bindEntry(event);
+            //setAnimation(holder.itemView, position);
+        }
+
+        private void setAnimation(View viewToAnimate, int position){
+            if(position == 0){
+                Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.enter_from_top);
+                viewToAnimate.startAnimation(animation);
+                lastPosition = position;
+            }
         }
 
         @Override
