@@ -2,7 +2,6 @@
 
 UX:
 -Update notification icon
--animation for updating journal entries
 -Persist sound throughout all activities/get new loop for each activity
 -Make inventory item selection more intuitive -> whip up a dialogue
 -Add ToastListner to all activities (stop it from sending notifications while the app is still going)

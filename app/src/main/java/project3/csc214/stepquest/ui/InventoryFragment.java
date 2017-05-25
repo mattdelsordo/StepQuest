@@ -10,6 +10,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -165,6 +167,7 @@ public class InventoryFragment extends Fragment implements ActiveCharacter.Funds
     //adapter for the list of weapons
     public class WeaponAdapter extends RecyclerView.Adapter<WeaponViewHolder>{
         private ArrayList<Weapon> mWeapons;
+        private int lastPosition = -1;
 
         public WeaponAdapter(Collection<Weapon> weapons){
             mWeapons = new ArrayList<>(weapons);
@@ -183,6 +186,15 @@ public class InventoryFragment extends Fragment implements ActiveCharacter.Funds
         public void onBindViewHolder(WeaponViewHolder holder, int position) {
             Weapon w = mWeapons.get(position);
             holder.bindWeapon(w);
+            setAnimation(holder.itemView, position);
+        }
+
+        private void setAnimation(View viewToAnimate, int position){
+            if(position > lastPosition){
+                Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.enter_from_top);
+                viewToAnimate.startAnimation(animation);
+                lastPosition = position;
+            }
         }
 
         @Override

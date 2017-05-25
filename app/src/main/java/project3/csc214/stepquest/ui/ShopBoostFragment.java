@@ -14,6 +14,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -169,6 +171,7 @@ public class ShopBoostFragment extends Fragment implements BoostOverListener{
     //adapter for list of weapons
     private class ShopBoostAdapter extends RecyclerView.Adapter<ShopBoostViewHolder>{
         private ArrayList<Boost> mBoostList;
+        private int lastPosition = -1;
 
         public ShopBoostAdapter(ArrayList<Boost> boosts){
             mBoostList = boosts;
@@ -186,6 +189,15 @@ public class ShopBoostFragment extends Fragment implements BoostOverListener{
         public void onBindViewHolder(ShopBoostViewHolder holder, int position) {
             Boost b = mBoostList.get(position);
             holder.bindBoost(b);
+            setAnimation(holder.itemView, position);
+        }
+
+        private void setAnimation(View viewToAnimate, int position){
+            if(position > lastPosition){
+                Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.enter_from_top);
+                viewToAnimate.startAnimation(animation);
+                lastPosition = position;
+            }
         }
 
         @Override
