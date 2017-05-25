@@ -14,6 +14,7 @@ import android.widget.TextView;
 import project3.csc214.stepquest.R;
 import project3.csc214.stepquest.data.Saver;
 import project3.csc214.stepquest.model.EffectPlayer;
+import project3.csc214.stepquest.model.EventQueue;
 import project3.csc214.stepquest.util.FragmentTransitionBuilder;
 import project3.csc214.stepquest.util.ShopFragmentListener;
 import project3.csc214.stepquest.model.ActiveCharacter;
@@ -22,7 +23,7 @@ import project3.csc214.stepquest.model.ActiveCharacter;
  * This activity handles functionality for the shop. User can buy/sell
  * items and buy boosts.
  */
-public class ShopActivity extends AppCompatActivity implements ShopFragmentListener {
+public class ShopActivity extends AppCompatActivity implements ShopFragmentListener, EventQueue.MakeToastListener {
 
     private BottomNavigationView mBottomNav;
     private TextView mGoldTotal;
@@ -89,14 +90,31 @@ public class ShopActivity extends AppCompatActivity implements ShopFragmentListe
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        EventQueue.getInstance(this).bindToastListener(this);
+    }
+
+    @Override
     protected void onPause() {
         super.onPause();
         Saver.saveAll(this, false);
+        EventQueue.getInstance(this).unbindUpdateListener();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         mEffectPlayer.release();
+    }
+
+    @Override
+    public void makeToast(String text, int duration) {
+
+    }
+
+    @Override
+    public void playJingle() {
+
     }
 }

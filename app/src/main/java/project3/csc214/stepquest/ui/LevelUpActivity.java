@@ -5,8 +5,9 @@ import android.os.Bundle;
 
 import project3.csc214.stepquest.R;
 import project3.csc214.stepquest.data.Saver;
+import project3.csc214.stepquest.model.EventQueue;
 
-public class LevelUpActivity extends AppCompatActivity implements LevelUpFragment.LevelUpDoneListener{
+public class LevelUpActivity extends AppCompatActivity implements LevelUpFragment.LevelUpDoneListener, EventQueue.MakeToastListener{
 
     public static boolean sIsRunning = false;
 
@@ -42,5 +43,27 @@ public class LevelUpActivity extends AppCompatActivity implements LevelUpFragmen
     protected void onStop() {
         super.onStop();
         sIsRunning = false;
+    }
+
+    @Override
+    public void makeToast(String text, int duration) {
+
+    }
+
+    @Override
+    public void playJingle() {
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        EventQueue.getInstance(this).bindToastListener(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        EventQueue.getInstance(this).unbindToastListener();
     }
 }

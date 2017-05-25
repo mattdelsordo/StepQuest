@@ -14,9 +14,10 @@ import project3.csc214.stepquest.R;
 import project3.csc214.stepquest.data.Saver;
 import project3.csc214.stepquest.model.AdventureLog;
 import project3.csc214.stepquest.model.EffectPlayer;
+import project3.csc214.stepquest.model.EventQueue;
 import project3.csc214.stepquest.util.FragmentTransitionBuilder;
 
-public class AdventureLogActivity extends AppCompatActivity {
+public class AdventureLogActivity extends AppCompatActivity implements EventQueue.MakeToastListener{
 
     private BottomNavigationView mBottomNav;
 
@@ -67,14 +68,31 @@ public class AdventureLogActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        EventQueue.getInstance(this).bindToastListener(this);
+    }
+
+    @Override
     protected void onPause() {
         super.onPause();
         Saver.saveAll(this, false);
+        EventQueue.getInstance(this).unbindToastListener();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         mEffectPlayer.release();
+    }
+
+    @Override
+    public void makeToast(String text, int duration) {
+
+    }
+
+    @Override
+    public void playJingle() {
+
     }
 }
