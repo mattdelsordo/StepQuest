@@ -29,6 +29,14 @@ public class EffectPlayer {
     //possible sound effects
     public static final String LEVEL_UP = TRACKS_FOLDER + "/level_up.wav";
     public static final String TASK_DONE = TRACKS_FOLDER + "/task_done.wav";
+    public static final String FRAGMENT_SWAP = TRACKS_FOLDER + "/fragmentSwap.wav";
+    public static final String CLICK = TRACKS_FOLDER + "/click.wav";
+    public static final String ANVIL = TRACKS_FOLDER + "/anvil.wav";
+    public static final String BOOST = TRACKS_FOLDER + "/boost.wav";
+    public static final String SWORD = TRACKS_FOLDER + "/sword.wav";
+    public static final String BOW = TRACKS_FOLDER + "/bow.wav";
+    public static final String BLUNT = TRACKS_FOLDER + "/blunt.wav";
+    public static final String WAND = TRACKS_FOLDER + "/wand.wav";
 
     public EffectPlayer(Context context){
         mAssets = context.getAssets();

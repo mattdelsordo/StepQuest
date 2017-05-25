@@ -19,19 +19,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 
 import project3.csc214.stepquest.R;
-import project3.csc214.stepquest.data.WeaponList;
 import project3.csc214.stepquest.model.ActiveCharacter;
 import project3.csc214.stepquest.model.Boost;
-import project3.csc214.stepquest.model.Weapon;
+import project3.csc214.stepquest.model.EffectPlayer;
 import project3.csc214.stepquest.services.BoostTimerService;
 import project3.csc214.stepquest.util.BoostOverListener;
 import project3.csc214.stepquest.util.CenteredItemDecoration;
 import project3.csc214.stepquest.util.PurchaseDialog;
-import project3.csc214.stepquest.util.UpdateShopGoldListener;
+import project3.csc214.stepquest.util.ShopFragmentListener;
 
 /**
  * Shop panel that handles boost sales
@@ -46,7 +43,7 @@ public class ShopBoostFragment extends Fragment implements BoostOverListener{
 
     private static final int COLUMN_COUNT = 2, COLUMN_SPACING = 30;
     private RecyclerView mRecycler;
-    private UpdateShopGoldListener mGoldListener;
+    private ShopFragmentListener mGoldListener;
     private Boost mQueuedBoost;
     private ArrayList<Boost> mBoosts;
 
@@ -77,13 +74,14 @@ public class ShopBoostFragment extends Fragment implements BoostOverListener{
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        mGoldListener = (UpdateShopGoldListener)context;
+        mGoldListener = (ShopFragmentListener)context;
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == PurchaseDialog.REQUEST_CODE){
             if(resultCode == Activity.RESULT_OK){
+                mGoldListener.playEffect(EffectPlayer.BOOST);
 
                 //make boost happen
                 //add weapon to player inventory

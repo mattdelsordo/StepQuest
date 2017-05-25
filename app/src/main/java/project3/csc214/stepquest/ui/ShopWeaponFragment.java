@@ -23,8 +23,9 @@ import java.util.Collections;
 
 import project3.csc214.stepquest.R;
 import project3.csc214.stepquest.data.WeaponList;
+import project3.csc214.stepquest.model.EffectPlayer;
 import project3.csc214.stepquest.util.CenteredItemDecoration;
-import project3.csc214.stepquest.util.UpdateShopGoldListener;
+import project3.csc214.stepquest.util.ShopFragmentListener;
 import project3.csc214.stepquest.model.ActiveCharacter;
 import project3.csc214.stepquest.model.Weapon;
 import project3.csc214.stepquest.util.PurchaseDialog;
@@ -41,7 +42,7 @@ public class ShopWeaponFragment extends Fragment {
 
     private static final int COLUMN_COUNT = 2, COLUMN_SPACING = 30;
     private RecyclerView mRecycler;
-    private UpdateShopGoldListener mGoldListener;
+    private ShopFragmentListener mGoldListener;
     private Weapon mQueuedWeapon;
 
     @Override
@@ -68,13 +69,15 @@ public class ShopWeaponFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        mGoldListener = (UpdateShopGoldListener)context;
+        mGoldListener = (ShopFragmentListener)context;
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == PurchaseDialog.REQUEST_CODE){
             if(resultCode == Activity.RESULT_OK){
+                mGoldListener.playEffect(EffectPlayer.ANVIL);
+
                 //add weapon to player inventory
                 ActiveCharacter active = ActiveCharacter.getInstance(getContext());
                 active.addWeaponToInventory(new Weapon(mQueuedWeapon));

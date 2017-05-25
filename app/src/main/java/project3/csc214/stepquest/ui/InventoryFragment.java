@@ -1,6 +1,7 @@
 package project3.csc214.stepquest.ui;
 
 
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -19,7 +20,9 @@ import java.util.Collections;
 
 import project3.csc214.stepquest.R;
 import project3.csc214.stepquest.model.ActiveCharacter;
+import project3.csc214.stepquest.model.EffectPlayer;
 import project3.csc214.stepquest.model.Weapon;
+import project3.csc214.stepquest.util.InventorySoundListener;
 
 /**
  * Maintains a recyclerview that handles the inventory
@@ -28,6 +31,7 @@ public class InventoryFragment extends Fragment implements ActiveCharacter.Funds
 
     private RecyclerView mRecycler;
     private TextView mGoldCount;
+    private InventorySoundListener mSoundListener;
 
     public InventoryFragment() {
         // Required empty public constructor
@@ -72,6 +76,18 @@ public class InventoryFragment extends Fragment implements ActiveCharacter.Funds
     }
 
     @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mSoundListener = (InventorySoundListener)context;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mSoundListener = null;
+    }
+
+    @Override
     public void updateFunds(int totalFunds) {
         mGoldCount.setText("Gold: " + totalFunds);
     }
@@ -101,6 +117,24 @@ public class InventoryFragment extends Fragment implements ActiveCharacter.Funds
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    //play accompanying sound effect
+                    switch(mWeapon.getType()){
+                        case Weapon.BLADE:
+                            mSoundListener.playEffect(EffectPlayer.SWORD);
+                            break;
+                        case Weapon.BOW:
+                            mSoundListener.playEffect(EffectPlayer.BOW);
+                            break;
+                        case Weapon.BLUNT:
+                            mSoundListener.playEffect(EffectPlayer.BLUNT);
+                            break;
+                        case Weapon.STAFF:
+                            mSoundListener.playEffect(EffectPlayer.WAND);
+                            break;
+                        default:
+                            break;
+                    }
+
                     ActiveCharacter.getInstance(getContext()).setEquippedWeapon(mWeapon);
                     updateUI();
 

@@ -22,6 +22,8 @@ import project3.csc214.stepquest.R;
 import project3.csc214.stepquest.data.Saver;
 import project3.csc214.stepquest.model.*;
 import project3.csc214.stepquest.services.BoostTimerService;
+import project3.csc214.stepquest.util.FragmentTransitionBuilder;
+import project3.csc214.stepquest.util.InventorySoundListener;
 import project3.csc214.stepquest.util.NoPedometerDialog;
 import project3.csc214.stepquest.services.PedometerService;
 
@@ -29,7 +31,7 @@ import project3.csc214.stepquest.services.PedometerService;
  * This Activity controls the rest of the app
  */
 
-public class MainActivity extends AppCompatActivity implements EventQueue.MakeToastListener, ActiveCharacter.LevelUpListener, SettingsFragment.SettingsListener {
+public class MainActivity extends AppCompatActivity implements EventQueue.MakeToastListener, ActiveCharacter.LevelUpListener, SettingsFragment.SettingsListener, InventorySoundListener {
     private static final String TAG = "MainActivity";
     private static final String PREF_DONE_SENSOR_CHECK = "pref_has_sensor";
     private static final String CHECKED_SENSOR_THIS_RUN = "checked sensor this run";
@@ -110,10 +112,9 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
     }
 
     //replaces the fragment in the main frame with another
-    private void swapFragments(Fragment frag){
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right);
+    private void swapFragments(Fragment frag, FragmentTransaction ft){
         ft.replace(R.id.frame_main_gamepane, frag).commit();
+        if(mPlayEffects)mEffectPlayer.play(EffectPlayer.FRAGMENT_SWAP);
         Log.i(TAG, "Game fragment swapped.");
     }
 
@@ -187,22 +188,28 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
         Fragment current = getSupportFragmentManager().findFragmentById(R.id.frame_main_gamepane);
         switch(item.getItemId()){
             case R.id.menu_charinfo: handled = true;
-                if(!(current instanceof CharacterInfoFragment)) swapFragments(new CharacterInfoFragment());
+                if(mPlayEffects)mEffectPlayer.play(EffectPlayer.CLICK);
+                if(!(current instanceof CharacterInfoFragment)) swapFragments(new CharacterInfoFragment(), FragmentTransitionBuilder.leftToRight(this));
                 break;
             case R.id.menu_inventory: handled = true;
-                if(!(current instanceof InventoryFragment)) swapFragments(new InventoryFragment());
+                if(mPlayEffects)mEffectPlayer.play(EffectPlayer.CLICK);
+                if(!(current instanceof InventoryFragment)) swapFragments(new InventoryFragment(), FragmentTransitionBuilder.rightToLeft(this));
                 break;
             case R.id.menu_save: handled = true;
+                if(mPlayEffects)mEffectPlayer.play(EffectPlayer.CLICK);
                 Saver.saveAll(this, true);
                 break;
             case R.id.menu_settings: handled = true;
-                if(!(current instanceof SettingsFragment)) swapFragments(new SettingsFragment());
+                if(mPlayEffects)mEffectPlayer.play(EffectPlayer.CLICK);
+                if(!(current instanceof SettingsFragment)) swapFragments(new SettingsFragment(), FragmentTransitionBuilder.rightToLeft(this));
                 break;
             case R.id.menu_shop:
+                if(mPlayEffects)mEffectPlayer.play(EffectPlayer.CLICK);
                 handled = true;
                 startActivity(new Intent(this, ShopActivity.class));
                 break;
             case R.id.menu_advlog:
+                if(mPlayEffects)mEffectPlayer.play(EffectPlayer.CLICK);
                 handled = true;
                 startActivity(new Intent(this, AdventureLogActivity.class));
                 break;
@@ -236,4 +243,8 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
         outState.putBoolean(ARG_MUSIC_PLAYING, mPlayMusic);
     }
 
+    @Override
+    public void playEffect(String effectPath) {
+        if(mPlayEffects)mEffectPlayer.play(effectPath);
+    }
 }

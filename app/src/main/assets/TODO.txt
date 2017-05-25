@@ -2,18 +2,15 @@
 
 UX:
 -Update notification icon
--Sound effects for menu buttons, fragment sliding, clanging when buying a weapon, bubbling when buying a boost
--less unsatisfying fragment transition animation
 -fix adventure log fragments not updating properly from the callbacks
+-add dates/times to journal
 -animation for updating journal entries
 -Persist sound throughout all activities/get new loop for each activity
 -Make inventory item selection more intuitive -> whip up a dialogue
 -Add ToastListner to all activities (stop it from sending notifications while the app is still going)
--add dates/times to journal
 !!!!!!-Figure out how services work and make sure these are killed with the process
 
 GAMPLAY:
--Give boosts an actual price
 
 MECHANICS:
 -Figure out some rational pricing for weapons
