@@ -64,6 +64,7 @@ public class QuestDbSchema {
         public static final class Params{
             public static final String ORDER = "ordering";
             public static final String TEXT = "text";
+            public static final String DATE = "date";
         }
     }
 

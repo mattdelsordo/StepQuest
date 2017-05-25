@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="2dp"
+    android:outlineProvider="bounds"
+    android:clipToPadding="false"
+    android:background="@color/background_holo_light"
+    android:layout_marginTop="6dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/simple_list_text"
+        android:id="@+id/tv_Jentry_text"
+        android:textSize="20sp"
+        android:layout_centerInParent="true"
+        android:layout_margin="4dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:text="3/5/2"
+        android:textSize="16sp"
+        android:id="@+id/tv_Jentry_date"/>
+
+</LinearLayout>

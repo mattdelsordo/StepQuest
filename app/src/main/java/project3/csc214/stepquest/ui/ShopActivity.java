@@ -93,4 +93,10 @@ public class ShopActivity extends AppCompatActivity implements ShopFragmentListe
         super.onPause();
         Saver.saveAll(this, false);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mEffectPlayer.release();
+    }
 }

@@ -31,6 +31,7 @@ public class WeaponList {
     private static WeaponList sWeaponList;
 
     //lists that contain the weapons
+    private LinkedHashMap<String, Weapon> mMisc;
     private LinkedHashMap<String, Weapon> mWood;
     private LinkedHashMap<String, Weapon> mBronze;
     private LinkedHashMap<String, Weapon> mIron;
@@ -53,7 +54,11 @@ public class WeaponList {
         mObsidian = new LinkedHashMap<>();
         mMithril = new LinkedHashMap<>();
         mLegendary = new LinkedHashMap<>();
+        mMisc = new LinkedHashMap<>();
 
+        //put misc weapons in misc
+        Weapon stick = new Weapon();
+        mMisc.put(stick.getId(), stick);
         //fill lists
         fillGenericWeaponList(mWood, R.array.wood);
         fillGenericWeaponList(mBronze, R.array.bronze);
@@ -66,6 +71,7 @@ public class WeaponList {
 
         //make list of lists to search through
         mListList = new ArrayList<>();
+        mListList.add(mMisc);
         mListList.add(mWood);
         mListList.add(mBronze);
         mListList.add(mIron);

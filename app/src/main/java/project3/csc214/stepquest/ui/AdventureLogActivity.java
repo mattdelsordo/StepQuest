@@ -71,4 +71,10 @@ public class AdventureLogActivity extends AppCompatActivity {
         super.onPause();
         Saver.saveAll(this, false);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mEffectPlayer.release();
+    }
 }

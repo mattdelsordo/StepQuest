@@ -208,7 +208,9 @@ public class EventQueue {
                     QuestCursorWrapper.EventBundle bundle = wrapper.getEvent();
                     Event e = bundle.event;
                     String weapon = bundle.weapon;
-                    if(weapon.length() > 0) e.setItemReward(WeaponList.getInstance(mAppContext).getWeaponById(weapon));
+                    if(weapon.length() > 0){
+                        e.setItemReward(WeaponList.getInstance(mAppContext).getWeaponById(weapon));
+                    }
                     Log.i(TAG, "Loading event " + e.getDescription());
                     mQueue.add(e);
                     mProgress = bundle.progress;

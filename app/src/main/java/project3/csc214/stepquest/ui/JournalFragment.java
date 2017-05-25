@@ -1,11 +1,11 @@
 package project3.csc214.stepquest.ui;
 
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,16 +14,16 @@ import android.widget.TextView;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 
 import project3.csc214.stepquest.R;
 import project3.csc214.stepquest.model.AdventureLog;
-import project3.csc214.stepquest.model.EventQueue;
+import project3.csc214.stepquest.model.JournalEntry;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class JournalFragment extends Fragment implements AdventureLog.LogUpdateListener{
+    private static final String TAG = "JournalFragment";
 
     public JournalFragment() {
         // Required empty public constructor
@@ -45,10 +45,10 @@ public class JournalFragment extends Fragment implements AdventureLog.LogUpdateL
     }
 
     @Override
-    public void updateJournal(ArrayDeque<String> list){
-        String[] listArray = list.toArray(new String[]{});
-        ArrayList<String> eventList = new ArrayList<>(Arrays.asList(listArray));
-        StringAdapter refresh = new StringAdapter(eventList);
+    public void updateJournal(ArrayDeque<JournalEntry> list){
+        JournalEntry[] listArray = list.toArray(new JournalEntry[]{});
+        ArrayList<JournalEntry> eventList = new ArrayList<>(Arrays.asList(listArray));
+        JournalEntryAdapter refresh = new JournalEntryAdapter(eventList);
         mRecycler.setAdapter(refresh);
     }
 
@@ -70,42 +70,44 @@ public class JournalFragment extends Fragment implements AdventureLog.LogUpdateL
     }
 
 
-    private class StringViewHolder extends RecyclerView.ViewHolder{
-        private String mText;
-        private TextView mTextView;
+    private class JournalEntryViewHolder extends RecyclerView.ViewHolder{
+        private JournalEntry mEntry;
+        private TextView mText, mDate;
 
-        public StringViewHolder(View itemView) {
+        public JournalEntryViewHolder(View itemView) {
             super(itemView);
 
-            mTextView = (TextView)itemView.findViewById(R.id.tv_simpleList);
+            mText = (TextView)itemView.findViewById(R.id.tv_Jentry_text);
+            mDate = (TextView)itemView.findViewById(R.id.tv_Jentry_date);
         }
 
-        public void bindString(String text){
-            mText = text;
-            mTextView.setText(mText);
+        public void bindEntry(JournalEntry entry){
+            mEntry = entry;
+            mText.setText(mEntry.getEntryText());
+            mDate.setText(mEntry.getEntryDate());
         }
     }
 
-    private class StringAdapter extends RecyclerView.Adapter<StringViewHolder>{
-        private ArrayList<String> mEventList;
+    private class JournalEntryAdapter extends RecyclerView.Adapter<JournalEntryViewHolder>{
+        private ArrayList<JournalEntry> mEventList;
 
-        public StringAdapter(ArrayList<String> list){
+        public JournalEntryAdapter(ArrayList<JournalEntry> list){
             mEventList = list;
         }
 
         @Override
-        public StringViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        public JournalEntryViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-            View view = inflater.inflate(R.layout.view_simple_list_text, parent, false);
+            View view = inflater.inflate(R.layout.view_journal_entry, parent, false);
             view.setElevation(2);
-            StringViewHolder holder = new StringViewHolder(view);
+            JournalEntryViewHolder holder = new JournalEntryViewHolder(view);
             return holder;
         }
 
         @Override
-        public void onBindViewHolder(StringViewHolder holder, int position) {
-            String event = mEventList.get(position);
-            holder.bindString(event);
+        public void onBindViewHolder(JournalEntryViewHolder holder, int position) {
+            JournalEntry event = mEventList.get(position);
+            holder.bindEntry(event);
         }
 
         @Override

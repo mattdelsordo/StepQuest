@@ -8,6 +8,7 @@ import android.util.Log;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import project3.csc214.stepquest.data.QuestCursorWrapper;
 import project3.csc214.stepquest.data.QuestDatabaseHelper;
@@ -26,7 +27,7 @@ public class AdventureLog {
     private final SQLiteDatabase mDatabase;
 
     public static final int LOG_SIZE = 50;
-    private ArrayDeque<String> mEventLog; //stores strings corresponding to completed events
+    private ArrayDeque<JournalEntry> mEventLog; //stores strings corresponding to completed events
 
     //values representing various statistics
     private static final int AVG_STEP_LENGTH_IN = 31;
@@ -52,13 +53,15 @@ public class AdventureLog {
 
     //adds a description to the list and then removes the last one if the cap is hit
     public void addEventToLog(String eventDescription) {
-        mEventLog.addFirst(eventDescription);
+        JournalEntry newEntry = new JournalEntry(eventDescription, Calendar.getInstance());
+        mEventLog.addFirst(newEntry);
         if (mEventLog.size() > LOG_SIZE) mEventLog.removeLast();
         if (mListener != null) mListener.updateJournal(mEventLog);
+        Log.i(TAG, "Added " + newEntry + " to adventure log");
     }
 
     //returns the list of events
-    public ArrayDeque<String> getEventLog() {
+    public ArrayDeque<JournalEntry> getEventLog() {
         return mEventLog;
     }
 
@@ -70,10 +73,10 @@ public class AdventureLog {
         mTotalSteps++;
         //TODO: this isnt executing correctly?
         if (mListener != null){
-            Log.i(TAG, "AdventureLog listener is NOT null.");
+            //Log.i(TAG, "AdventureLog listener is NOT null.");
             mListener.updateStats(getTotalSteps(), getApproxDistanceWalkedMiles(), getTotalMonstersSlain(), getTotalGoldAcquired(), getTotalWeaponsAcquired(), getTotalDungeonsCleared());
         }
-        else Log.i(TAG, "AdventureLog listener is null.");
+        //else Log.i(TAG, "AdventureLog listener is null.");
     }
 
     //returns the approximate distance the user has walked, in MILES
@@ -116,7 +119,7 @@ public class AdventureLog {
     public interface LogUpdateListener {
         void updateStats(int steps, double distance, int monsters, int gold, int weapons, int dungeons);
 
-        void updateJournal(ArrayDeque<String> list);
+        void updateJournal(ArrayDeque<JournalEntry> list);
     }
 
     private LogUpdateListener mListener;
@@ -188,8 +191,8 @@ public class AdventureLog {
             if(logWrapper.getCount() > 0){
                 logWrapper.moveToFirst();
                 while(logWrapper.isAfterLast() == false){
-                    String event = logWrapper.getJournalEntry();
-                    mEventLog.add(event);
+                    JournalEntry entry = logWrapper.getJournalEntry();
+                    mEventLog.add(entry);
                     logWrapper.moveToNext();
                 }
             }
@@ -198,10 +201,11 @@ public class AdventureLog {
         }
     }
 
-    private ContentValues getJournalEntryValues(String text, int order){
+    private ContentValues getJournalEntryValues(JournalEntry entry, int order){
         ContentValues values = new ContentValues();
         values.put(QuestDbSchema.JournalQueueTable.Params.ORDER, order);
-        values.put(QuestDbSchema.JournalQueueTable.Params.TEXT, text);
+        values.put(QuestDbSchema.JournalQueueTable.Params.TEXT, entry.getEntryText());
+        values.put(QuestDbSchema.JournalQueueTable.Params.DATE, entry.getEntryDate());
         return values;
     }
 
@@ -223,7 +227,7 @@ public class AdventureLog {
 
         Log.i(TAG, "Saving journal.");
         mDatabase.delete(QuestDbSchema.JournalQueueTable.NAME, null, null);
-        ArrayDeque<String> logCopy = mEventLog.clone();
+        ArrayDeque<JournalEntry> logCopy = mEventLog.clone();
         for(int i = 0; !logCopy.isEmpty(); i++){
             //TODO: fairly confident but not certain that this will work
             mDatabase.insert(QuestDbSchema.JournalQueueTable.NAME, null, getJournalEntryValues(logCopy.removeFirst(), i));

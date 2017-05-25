@@ -4,6 +4,7 @@ import android.database.Cursor;
 import android.database.CursorWrapper;
 
 import project3.csc214.stepquest.model.Event;
+import project3.csc214.stepquest.model.JournalEntry;
 import project3.csc214.stepquest.model.Race;
 import project3.csc214.stepquest.model.Stats;
 import project3.csc214.stepquest.model.Character;
@@ -80,8 +81,10 @@ public class QuestCursorWrapper extends CursorWrapper{
     }
 
     //returns a string from the adventure log table
-    public String getJournalEntry(){
-        return getString(getColumnIndex(QuestDbSchema.JournalQueueTable.Params.TEXT));
+    public JournalEntry getJournalEntry(){
+        String text = getString(getColumnIndex(QuestDbSchema.JournalQueueTable.Params.TEXT));
+        String date = getString(getColumnIndex(QuestDbSchema.JournalQueueTable.Params.DATE));
+        return new JournalEntry(text, date);
     }
 
     //get list of statistics

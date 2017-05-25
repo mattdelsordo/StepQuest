@@ -53,7 +53,8 @@ public class QuestDatabaseHelper extends SQLiteOpenHelper{
         //create journal table
         db.execSQL("create table " + QuestDbSchema.JournalQueueTable.NAME
                 + "( " + QuestDbSchema.JournalQueueTable.Params.ORDER + ", "
-                + QuestDbSchema.JournalQueueTable.Params.TEXT + ")");
+                + QuestDbSchema.JournalQueueTable.Params.TEXT + ", "
+                + QuestDbSchema.JournalQueueTable.Params.DATE + ")");
 
         //create statistics table
         db.execSQL("create table " + QuestDbSchema.StatisticsTable.NAME

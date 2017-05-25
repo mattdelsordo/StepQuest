@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 import project3.csc214.stepquest.R;
 import project3.csc214.stepquest.model.AdventureLog;
+import project3.csc214.stepquest.model.JournalEntry;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -60,7 +61,7 @@ public class StatisticFragment extends Fragment implements AdventureLog.LogUpdat
     }
 
     @Override
-    public void updateJournal(ArrayDeque<String> list) {
+    public void updateJournal(ArrayDeque<JournalEntry> list) {
 
     }
 
