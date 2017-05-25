@@ -52,7 +52,7 @@ public class StatisticFragment extends Fragment implements AdventureLog.LogUpdat
     @Override
     public void updateStats(int steps, double distance, int monsters, int gold, int weapons, int dungeons){
         mSteps.setText(getString(R.string.steps_taken_000) + " " + steps);
-        mDistance.setText(getString(R.string.approx_distance_travelled_000_miles) + " " + String.format("%.3f",distance));
+        mDistance.setText(getString(R.string.approx_distance_travelled_000_miles) + " " + String.format("%.2f",distance));
         mMonsters.setText(getString(R.string.total_monsters_defeated_000) + " " + monsters);
         mGold.setText(getString(R.string.lifetime_gold_acquired_000g) + " " + gold);
         mWeapons.setText(getString(R.string.lifetime_weapons_acquired_000) + " " + weapons);
@@ -64,16 +64,15 @@ public class StatisticFragment extends Fragment implements AdventureLog.LogUpdat
 
     }
 
-
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        AdventureLog.getInstance(getContext()).bindLogUpdateListener(this);
+    public void onPause() {
+        super.onPause();
+        AdventureLog.getInstance(getContext()).unbindLogUpdateListener();
     }
 
     @Override
-    public void onDetach() {
-        super.onDetach();
-        AdventureLog.getInstance(getContext()).unbindLogUpdateListener();
+    public void onResume() {
+        super.onResume();
+        AdventureLog.getInstance(getContext()).bindLogUpdateListener(this);
     }
 }

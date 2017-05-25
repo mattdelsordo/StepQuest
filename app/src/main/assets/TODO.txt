@@ -2,7 +2,6 @@
 
 UX:
 -Update notification icon
--fix adventure log fragments not updating properly from the callbacks
 -add dates/times to journal
 -animation for updating journal entries
 -Persist sound throughout all activities/get new loop for each activity

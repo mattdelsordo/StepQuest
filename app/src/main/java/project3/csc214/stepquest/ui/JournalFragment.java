@@ -52,17 +52,16 @@ public class JournalFragment extends Fragment implements AdventureLog.LogUpdateL
         mRecycler.setAdapter(refresh);
     }
 
-
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        AdventureLog.getInstance(getContext()).bindLogUpdateListener(this);
+    public void onPause() {
+        super.onPause();
+        AdventureLog.getInstance(getContext()).unbindLogUpdateListener();
     }
 
     @Override
-    public void onDetach() {
-        super.onDetach();
-        AdventureLog.getInstance(getContext()).unbindLogUpdateListener();
+    public void onResume() {
+        super.onResume();
+        AdventureLog.getInstance(getContext()).bindLogUpdateListener(this);
     }
 
     @Override

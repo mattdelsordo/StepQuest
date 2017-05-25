@@ -69,8 +69,11 @@ public class AdventureLog {
     public void addStep() {
         mTotalSteps++;
         //TODO: this isnt executing correctly?
-        if (mListener != null)
+        if (mListener != null){
+            Log.i(TAG, "AdventureLog listener is NOT null.");
             mListener.updateStats(getTotalSteps(), getApproxDistanceWalkedMiles(), getTotalMonstersSlain(), getTotalGoldAcquired(), getTotalWeaponsAcquired(), getTotalDungeonsCleared());
+        }
+        else Log.i(TAG, "AdventureLog listener is null.");
     }
 
     //returns the approximate distance the user has walked, in MILES
