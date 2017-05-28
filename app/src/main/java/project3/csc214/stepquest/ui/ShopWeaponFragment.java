@@ -123,6 +123,7 @@ public class ShopWeaponFragment extends Fragment {
                     PurchaseDialog dialog = PurchaseDialog.newInstance(mQueuedWeapon.getName(), mQueuedWeapon.getPrice());
                     dialog.setTargetFragment(ShopWeaponFragment.this, PurchaseDialog.REQUEST_CODE);
                     dialog.show(manager, "DialogPurchase");
+                    mGoldListener.playEffect(EffectPlayer.DIALOG);
                 }
             });
         }

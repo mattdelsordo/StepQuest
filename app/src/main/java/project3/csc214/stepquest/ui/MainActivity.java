@@ -69,14 +69,6 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
             getSupportFragmentManager().beginTransaction().add(R.id.frame_main_progress, mProgress).commit();
         }
 
-        //put music in frame/play it?
-//        mMusic = (MusicPlayerFragment)getSupportFragmentManager().findFragmentById(R.id.frame_main_musicplayer);
-//        if(mMusic == null){
-//            Log.i(TAG, "Creating music player");
-//            mMusic = MusicPlayerFragment.newInstance("main_track_zacwilkins_loopermandotcom.wav");
-//            getSupportFragmentManager().beginTransaction().add(R.id.frame_main_musicplayer, mMusic).commit();
-//        }
-
         //put fragment in main pane
         if(getSupportFragmentManager().findFragmentById(R.id.frame_main_gamepane) == null){
             getSupportFragmentManager().beginTransaction().add(R.id.frame_main_gamepane, new CharacterInfoFragment()).commit();
@@ -104,6 +96,7 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
             Log.i(TAG, "pedometer=" + hasPedometer);
             if(hasPedometer == false){
                 new NoPedometerDialog().show(getSupportFragmentManager(), NoPedometerDialog.TAG);
+                if(mPlayEffects)mEffectPlayer.play(EffectPlayer.DIALOG);
             }
             prefs.edit().putBoolean(PREF_DONE_SENSOR_CHECK, true).apply();
         }
@@ -128,6 +121,7 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
 
         //check whether a level up is possible
         if(ActiveCharacter.getInstance(this).getActiveCharacter().getLvlUpTokenAmnt() > 0) doLevelUp();
+
     }
 
     @Override
@@ -163,7 +157,7 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
     public void doLevelUp() {
         //do check to avoid popping up tons of things at once
         if(!LevelUpActivity.sIsRunning){
-            if(mPlayEffects)mEffectPlayer.play(EffectPlayer.LEVEL_UP);
+//            if(mPlayEffects)mEffectPlayer.play(EffectPlayer.LEVEL_UP);
             startActivity(new Intent(MainActivity.this, LevelUpActivity.class));
         }
     }
@@ -227,8 +221,9 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
     @Override
     public void toggleMusic(boolean shouldPlay) {
         mPlayMusic = shouldPlay;
-//        if(mPlayMusic) mMusic.playMusic();
-//        else mMusic.stopMusic();
+        //do check for music playing
+        if(mPlayMusic&&!mMusicPlayer.isPlaying())mMusicPlayer.play(MusicManagerService.MAIN_JINGLE);
+        else mMusicPlayer.stopMusic();
     }
 
     @Override
@@ -260,6 +255,9 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
             MusicManagerService.MusicBinder binder = (MusicManagerService.MusicBinder)service;
             mMusicPlayer = binder.getService();
             mIsBound = true;
+
+            //do check for music playing
+            if(mPlayMusic&&!mMusicPlayer.isPlaying())mMusicPlayer.play(MusicManagerService.MAIN_JINGLE);
         }
 
         @Override

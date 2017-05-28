@@ -103,7 +103,7 @@ public class Dungeon extends ArrayList<Event> {
         backstory.add(new Event("Waking up on your " + (rand.nextInt(10) + 16) + "th birthday...", 6));
         backstory.add(new Event("Greeting your family on this beautiful morning...", 6));
         Event gold = new Event("They give you a small bag of gold as a gift!", 4);
-        gold.setGoldReward(20);
+        gold.setGoldReward(133);
         backstory.add(gold);
         backstory.add(new Event("You hear a crash from outside...", 6));
         Event monster = EventList.getInstance(context).getLevelledMonster(ActiveCharacter.getInstance(context).getActiveCharacter().getLevel());

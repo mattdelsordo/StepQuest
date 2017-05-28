@@ -190,4 +190,6 @@ public class LevelUpFragment extends Fragment implements StatManipulationFragmen
         outState.putInt(ARG_TOKENS, mLevelUpTokenTotal);
         outState.putIntArray(ARG_INCREMENTS, mStatIncrements);
     }
+
+
 }

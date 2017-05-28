@@ -1,6 +1,10 @@
 package project3.csc214.stepquest.ui;
 
+import android.content.ComponentName;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.SharedPreferences;
+import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -8,6 +12,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
 
@@ -15,6 +20,7 @@ import project3.csc214.stepquest.R;
 import project3.csc214.stepquest.data.Saver;
 import project3.csc214.stepquest.model.EffectPlayer;
 import project3.csc214.stepquest.model.EventQueue;
+import project3.csc214.stepquest.services.MusicManagerService;
 import project3.csc214.stepquest.util.FragmentTransitionBuilder;
 import project3.csc214.stepquest.util.ShopFragmentListener;
 import project3.csc214.stepquest.model.ActiveCharacter;
@@ -24,13 +30,15 @@ import project3.csc214.stepquest.model.ActiveCharacter;
  * items and buy boosts.
  */
 public class ShopActivity extends AppCompatActivity implements ShopFragmentListener, EventQueue.MakeToastListener {
+    private static final String TAG = "ShopActivity";
+
 
     private BottomNavigationView mBottomNav;
     private TextView mGoldTotal;
 
     //music player handlers
     private EffectPlayer mEffectPlayer;
-    private boolean mPlayEffects;
+    private boolean mPlayEffects, mPlayMusic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +49,7 @@ public class ShopActivity extends AppCompatActivity implements ShopFragmentListe
         mEffectPlayer = new EffectPlayer(this);
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         mPlayEffects = prefs.getBoolean(SettingsFragment.PREF_EFFECTS, true);
+        mPlayMusic = prefs.getBoolean(SettingsFragment.PREF_MUSIC, true);
 
         mGoldTotal = (TextView)findViewById(R.id.tv_shop_goldtotal);
 
@@ -116,5 +125,43 @@ public class ShopActivity extends AppCompatActivity implements ShopFragmentListe
     @Override
     public void playJingle() {
 
+    }
+
+
+    //Bind activity to music player service
+    private boolean mIsBound = false;
+    private MusicManagerService mMusicPlayer;
+    private ServiceConnection mSCon = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            Log.i(TAG, "Music service connected.");
+            MusicManagerService.MusicBinder binder = (MusicManagerService.MusicBinder)service;
+            mMusicPlayer = binder.getService();
+            mIsBound = true;
+
+            if(mPlayMusic&&!mMusicPlayer.isPlaying())mMusicPlayer.play(MusicManagerService.MAIN_JINGLE);
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            Log.i(TAG, "Music service disconnected");
+            mIsBound = false;
+        }
+    };
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Intent intent = new Intent(this, MusicManagerService.class);
+        bindService(intent, mSCon, BIND_AUTO_CREATE);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if(mIsBound){
+            unbindService(mSCon);
+            mIsBound = false;
+        }
     }
 }

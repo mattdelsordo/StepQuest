@@ -2,14 +2,13 @@
 
 UX:
 -Update notification icon
--Persist sound throughout all activities/get new loop for each activity
+-make progress text have a static height so it doesnt move the bar around
 -Make inventory item selection more intuitive -> whip up a dialogue
 !!!!!!-Figure out how services work and make sure these are killed with the process
 
 GAMPLAY:
 
 MECHANICS:
--Figure out some rational pricing for weapons
 -Tweak drop rates for normal monsters
 -More intelligent monster scaling/step amount calculation
 !-Load in single list of all monsters + bosses, sort by steps

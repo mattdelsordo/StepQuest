@@ -2,6 +2,7 @@ package project3.csc214.stepquest.services;
 
 import android.app.Service;
 import android.content.Intent;
+import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -13,6 +14,8 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.io.IOException;
+
 import project3.csc214.stepquest.R;
 
 /**
@@ -23,7 +26,11 @@ import project3.csc214.stepquest.R;
 public class MusicManagerService extends Service implements MediaPlayer.OnErrorListener{
     private static final String TAG = "MusicManagerService";
 
+    //list of tracks
+    private static final String DIR_MUSIC = "music/";
+    public static final String MAIN_JINGLE = "main_track_zacwilkins_loopermandotcom.wav";
 
+    private AssetManager mAssets;
     private final IBinder mBinder = new MusicBinder();
     private MediaPlayer mPlayer;
     private int position = 0;
@@ -42,10 +49,18 @@ public class MusicManagerService extends Service implements MediaPlayer.OnErrorL
     }
 
     @Override
+    public boolean onUnbind(Intent intent) {
+        Log.i(TAG, "Unbinding music service...");
+        return super.onUnbind(intent);
+    }
+
+    @Override
     public void onCreate() {
         super.onCreate();
 
-        mPlayer = MediaPlayer.create(this, R.raw.main_jingle);
+        mAssets = getAssets();
+        mPlayer = new MediaPlayer();
+        mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         mPlayer.setOnErrorListener(this);
 
         if(mPlayer != null){
@@ -65,6 +80,7 @@ public class MusicManagerService extends Service implements MediaPlayer.OnErrorL
             @Override
             public void onPrepared(MediaPlayer mp) {
                 Log.i(TAG, "Music player is prepared.");
+                mPlayer.start();
             }
         });
 
@@ -73,14 +89,39 @@ public class MusicManagerService extends Service implements MediaPlayer.OnErrorL
 
     @Override
     public int onStartCommand(Intent intent,  int flags, int startId) {
-        mPlayer.start();
+        //Log.i(TAG, "Starting music...");
+        //mPlayer.prepareAsync();
         return START_STICKY;
+    }
+
+    //plays a track based on a path
+    public void play(String musicPath){
+        String fullPath = DIR_MUSIC + musicPath;
+        Log.i(TAG, "Attempting to play track " + fullPath);
+        try{
+            AssetFileDescriptor afd = mAssets.openFd(fullPath);
+
+            mPlayer.reset();
+            mPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
+            afd.close();
+            mPlayer.setLooping(true);
+            mPlayer.prepareAsync();
+
+        }catch(IOException ioe){
+            Log.e(TAG, "Failed to play " + fullPath);
+        }
     }
 
     public void pauseMusic(){
         if(mPlayer.isPlaying()){
             mPlayer.pause();
             position = mPlayer.getCurrentPosition();
+        }
+    }
+
+    public void startMusic(){
+        if(!mPlayer.isPlaying()){
+            mPlayer.prepareAsync();
         }
     }
 
@@ -93,12 +134,13 @@ public class MusicManagerService extends Service implements MediaPlayer.OnErrorL
 
     public void stopMusic(){
         mPlayer.stop();
-        mPlayer.release();
-        mPlayer = null;
+//        mPlayer.release();
+//        mPlayer = null;
     }
 
     @Override
     public void onDestroy() {
+        Log.i(TAG, "onDestroy called.");
         super.onDestroy();
         if(mPlayer!=null){
             try{
@@ -122,5 +164,9 @@ public class MusicManagerService extends Service implements MediaPlayer.OnErrorL
             }
         }
         return false;
+    }
+
+    public boolean isPlaying(){
+        return mPlayer.isPlaying();
     }
 }

@@ -37,6 +37,7 @@ public class EffectPlayer {
     public static final String BOW = TRACKS_FOLDER + "/bow.wav";
     public static final String BLUNT = TRACKS_FOLDER + "/blunt.wav";
     public static final String WAND = TRACKS_FOLDER + "/wand.wav";
+    public static final String DIALOG = TRACKS_FOLDER + "/dialogOpen.wav";
 
     public EffectPlayer(Context context){
         mAssets = context.getAssets();
