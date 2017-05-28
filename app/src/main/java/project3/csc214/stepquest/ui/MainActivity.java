@@ -22,6 +22,7 @@ import project3.csc214.stepquest.R;
 import project3.csc214.stepquest.data.Saver;
 import project3.csc214.stepquest.model.*;
 import project3.csc214.stepquest.services.BoostTimerService;
+import project3.csc214.stepquest.services.MusicManagerService;
 import project3.csc214.stepquest.util.FragmentTransitionBuilder;
 import project3.csc214.stepquest.util.InventorySoundListener;
 import project3.csc214.stepquest.util.NoPedometerDialog;
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
     public static final int RESULT_DELETE = 10;
 
     private ProgressFragment mProgress;
-    private MusicPlayerFragment mMusic;
+    //private MusicPlayerFragment mMusic;
     private EffectPlayer mEffectPlayer;
     private boolean mPlayMusic, mPlayEffects;
 
@@ -69,12 +70,12 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
         }
 
         //put music in frame/play it?
-        mMusic = (MusicPlayerFragment)getSupportFragmentManager().findFragmentById(R.id.frame_main_musicplayer);
-        if(mMusic == null){
-            Log.i(TAG, "Creating music player");
-            mMusic = MusicPlayerFragment.newInstance("main_track_zacwilkins_loopermandotcom.wav");
-            getSupportFragmentManager().beginTransaction().add(R.id.frame_main_musicplayer, mMusic).commit();
-        }
+//        mMusic = (MusicPlayerFragment)getSupportFragmentManager().findFragmentById(R.id.frame_main_musicplayer);
+//        if(mMusic == null){
+//            Log.i(TAG, "Creating music player");
+//            mMusic = MusicPlayerFragment.newInstance("main_track_zacwilkins_loopermandotcom.wav");
+//            getSupportFragmentManager().beginTransaction().add(R.id.frame_main_musicplayer, mMusic).commit();
+//        }
 
         //put fragment in main pane
         if(getSupportFragmentManager().findFragmentById(R.id.frame_main_gamepane) == null){
@@ -121,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
     @Override
     protected void onResume() {
         super.onResume();
-        if(mPlayMusic)mMusic.playMusic();
+        //if(mPlayMusic) mMusicPlayer.resumeMusic();
         EventQueue.getInstance(getApplicationContext()).bindToastListener(this);
         ActiveCharacter.getInstance(this).bindLevelUpListener(this);
 
@@ -132,7 +133,7 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
     @Override
     protected void onPause() {
         super.onPause();
-        if(mPlayMusic)mMusic.stopMusic();
+        //if(mPlayMusic)mMusicPlayer.pauseMusic();
         //save everything
         Saver.saveAll(this, false);
 
@@ -226,8 +227,8 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
     @Override
     public void toggleMusic(boolean shouldPlay) {
         mPlayMusic = shouldPlay;
-        if(mPlayMusic) mMusic.playMusic();
-        else mMusic.stopMusic();
+//        if(mPlayMusic) mMusic.playMusic();
+//        else mMusic.stopMusic();
     }
 
     @Override
@@ -246,5 +247,41 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
     @Override
     public void playEffect(String effectPath) {
         if(mPlayEffects)mEffectPlayer.play(effectPath);
+    }
+
+
+    //Bind activity to music player service
+    private boolean mIsBound = false;
+    private MusicManagerService mMusicPlayer;
+    private ServiceConnection mSCon = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            Log.i(TAG, "Music service connected.");
+            MusicManagerService.MusicBinder binder = (MusicManagerService.MusicBinder)service;
+            mMusicPlayer = binder.getService();
+            mIsBound = true;
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            Log.i(TAG, "Music service disconnected");
+            mIsBound = false;
+        }
+    };
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Intent intent = new Intent(this, MusicManagerService.class);
+        bindService(intent, mSCon, BIND_AUTO_CREATE);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if(mIsBound){
+            unbindService(mSCon);
+            mIsBound = false;
+        }
     }
 }

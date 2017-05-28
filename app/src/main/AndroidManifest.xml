@@ -48,6 +48,9 @@
             android:name=".services.BoostTimerService"
             android:exported="false" />
 
+        <service android:name=".services.MusicManagerService"
+            android:stopWithTask="true"/>
+
         <activity android:name=".ui.AdventureLogActivity"
             android:parentActivityName=".ui.MainActivity"
             android:screenOrientation="portrait"></activity>
