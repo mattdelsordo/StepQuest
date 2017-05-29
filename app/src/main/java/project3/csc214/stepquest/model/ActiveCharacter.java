@@ -74,6 +74,25 @@ public class ActiveCharacter{
         AdventureLog.getInstance(mAppContext).addTotalWeaponsAcquired();
     }
 
+    //returns true if removal is successful
+    public boolean removeWeaponFromInventory(Weapon weapon){
+        //do check to determine if weapon removal is possible
+        Integer i = mWeaponSet.get(weapon);
+        if(i == null) return false;
+        else if(i < 1) return false;
+        else if(i == 1){
+            if(weapon.equals(getEquippedWeapon())) return false;
+            else{
+                mWeaponSet.remove(weapon);
+                return true;
+            }
+        }
+        else{
+            mWeaponSet.put(weapon, i - 1);
+            return true;
+        }
+    }
+
     //adds exp to the character
     public void addExp(int exp, EventQueue.NotificationListener listener){
         boolean levelledUp = mCharacter.addExp(exp);
@@ -283,5 +302,7 @@ public class ActiveCharacter{
             mDatabase.insert(QuestDbSchema.InventoryTable.NAME, null, getWeaponContentValues(entry));
         }
     }
+
+
 }
 

@@ -2,7 +2,6 @@
 
 UX:
 -Make inventory item selection more intuitive -> whip up a dialogue
--Modify activity transitions
 -Make dialogs explaining stat effects
 !!!!!!-Figure out how services work and make sure these are killed with the process
 -Update notification icon

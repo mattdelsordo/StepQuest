@@ -88,7 +88,10 @@ public class LoadingActivity extends AppCompatActivity {
             Log.i(TAG, "No character found, creating new one.");
             startActivityForResult(CharacterCreationActivity.newInstance(this), CharacterCreationActivity.REQUEST_CHARACTER_INFO);
         }
-        else startActivityForResult(MainActivity.newInstance(this), MainActivity.RC);
+        else{
+            startActivityForResult(MainActivity.newInstance(this), MainActivity.RC);
+//            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+        }
     }
 
 

@@ -1,5 +1,7 @@
 package project3.csc214.stepquest.model;
 
+import java.io.Serializable;
+
 import project3.csc214.stepquest.R;
 
 /**
@@ -7,7 +9,7 @@ import project3.csc214.stepquest.R;
  * Models a race
  */
 
-public class Vocation {
+public class Vocation implements Serializable{
 
     public static final int FIGHTER = 0, RANGER = 1, WIZARD = 2, CLERIC = 3;
     private final String mName;

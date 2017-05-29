@@ -115,4 +115,15 @@
     <string name="lifetime_weapons_acquired_000">Lifetime Weapons Acquired: </string>
     <string name="total_dungeons_cleared_000">Total Dungeons Cleared: </string>
     <string name="simple_list_text">Simple List Text</string>
+    <string name="default_info_type_text">Type: Sword (x0.0)</string>
+    <string name="default_info_material_text">Material: Wood (x0.0)</string>
+    <string name="bracket">}</string>
+    <string name="default_info_modifier_text">Total Modifier: x1.0</string>
+    <string name="default_info_sale_price">Sale price: 133g</string>
+    <string name="back">Back</string>
+    <string name="equip_weapon">Equip weapon</string>
+    <string name="sell_one_weapon">Sell 1</string>
+    <string name="junk">Junk</string>
+    <string name="make_the_sale">Make the sale</string>
+    <string name="ok">OK</string>
 </resources>

@@ -41,6 +41,7 @@ public class CharacterCreationActivity extends AppCompatActivity implements Char
     public void creationComplete(Intent intent) {
         setResult(RESULT_OK, intent);
         finish();
+//        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 
     //Bind activity to music player service

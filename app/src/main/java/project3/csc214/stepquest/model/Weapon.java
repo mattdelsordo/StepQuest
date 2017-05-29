@@ -3,6 +3,7 @@ package project3.csc214.stepquest.model;
 import android.util.Log;
 import android.util.NoSuchPropertyException;
 
+import java.io.Serializable;
 import java.util.Comparator;
 import java.util.NoSuchElementException;
 
@@ -14,7 +15,7 @@ import project3.csc214.stepquest.data.WeaponList;
  * Each weapon has a type and a modifier that changes based on the class.
  */
 
-public class Weapon{
+public class Weapon implements Serializable{
     public static final String TAG = "Weapon";
 
     public static final int DEFAULT = -1, BLADE = 0, BOW = 1, STAFF = 2, BLUNT = 3; //weapon classes
@@ -65,6 +66,17 @@ public class Weapon{
         }
     }
 
+    public double getProficiencyModifier(Vocation vocation){
+        if (mType == vocation.getGoodWeapon()) {
+            return GOOD;
+        } else if (mType == vocation.getBadWeapon()) {
+            //Log.i(TAG, "Bad=" + BAD);
+            return BAD;
+        } else {
+            return 1.0;
+        }
+    }
+
     //converts string classifications to the double format
     public static double parseMaterial(String material) {
         switch (material) {
@@ -105,13 +117,17 @@ public class Weapon{
     //This should get string resources from
     public static int getTypeString(int type){
         switch (type){
-            case DEFAULT: return R.string.blank_string;
+            case DEFAULT: return R.string.junk;
             case BLADE: return R.string.blade;
             case BOW: return R.string.bow;
             case STAFF: return R.string.staff;
             case BLUNT: return R.string.blunt;
             default: return R.string.unknown_parameter;
         }
+    }
+
+    public int getTypeString(){
+        return getTypeString(mType);
     }
 
     public static int getMaterialString(double material){
@@ -122,6 +138,10 @@ public class Weapon{
         else if(material == OBSIDIAN) return R.string.obsidian;
         else if(material == MITHRIL) return R.string.mithril;
         else return R.string.unknown_parameter;
+    }
+
+    public int getMaterialString(){
+        return getMaterialString(mMaterial);
     }
 
     @Override
@@ -188,7 +208,13 @@ public class Weapon{
     //returns the weapon's price
     //TODO: put actual thought into this
     public int getPrice(){
+        if(mType == DEFAULT) return 10;
         return (int)(mMaterial * 1337 * 0.1);
+    }
+
+    //price when the user sells a weapon back to the store
+    public int getSalePrice(){
+        return (int)(0.85 * getPrice());
     }
 
 }
