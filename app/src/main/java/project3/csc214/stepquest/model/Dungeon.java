@@ -38,8 +38,9 @@ public class Dungeon extends ArrayList<Event> {
     }
 
     public static Dungeon singleEvent(Context context){
+        int activeCharacterLevel = ActiveCharacter.getInstance(context).getActiveCharacter().getLevel();
         Dungeon dungeon = new Dungeon();
-        dungeon.add(EventList.getInstance(context).getRandomEvent());
+        dungeon.add(EventList.getInstance(context).getRandomEvent(activeCharacterLevel));
         return dungeon;
     }
 
@@ -58,6 +59,7 @@ public class Dungeon extends ArrayList<Event> {
     }
 
     public static Dungeon village(Context context){
+        int activeCharacterLevel = ActiveCharacter.getInstance(context).getActiveCharacter().getLevel();
         Random rand = new Random();
         Dungeon dungeon = new Dungeon();
 
@@ -66,13 +68,14 @@ public class Dungeon extends ArrayList<Event> {
 
         int duration = rand.nextInt(7) + 5;
         for(int i = 0; i < duration; i++){
-            dungeon.add(EventList.getInstance(context).getRandomEvent());
+            dungeon.add(EventList.getInstance(context).getRandomEvent(activeCharacterLevel));
         }
 
         return dungeon;
     }
 
     public static Dungeon dungeon(Context context){
+        int ActiveCharLevel = ActiveCharacter.getInstance(context).getActiveCharacter().getLevel();
         Random rand = new Random();
         Dungeon dungeon = new Dungeon();
 
@@ -82,10 +85,10 @@ public class Dungeon extends ArrayList<Event> {
         int duration = rand.nextInt(8) + 7;
         for(int i = 0; i < duration; i++){
             int chance = rand.nextInt(3);
-            if(chance > 0)dungeon.add(EventList.getInstance(context).getLevelledMonster(ActiveCharacter.getInstance(context).getActiveCharacter().getLevel()));
-            else dungeon.add(EventList.getInstance(context).getChest());
+            if(chance > 0)dungeon.add(EventList.getInstance(context).getLevelledMonster(ActiveCharLevel));
+            else dungeon.add(EventList.getInstance(context).getChest(ActiveCharLevel));
         }
-        Event boss = EventList.getInstance(context).getLevelledBoss(ActiveCharacter.getInstance(context).getActiveCharacter().getLevel());
+        Event boss = EventList.getInstance(context).getLevelledBoss(ActiveCharLevel);
         boss.setDoNotify(ActiveCharacter.getInstance(context).getActiveCharacter().getName() + " slew a " + boss.parseMonsterName() + "!");
         dungeon.add(boss);
 

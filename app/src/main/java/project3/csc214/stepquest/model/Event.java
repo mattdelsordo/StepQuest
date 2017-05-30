@@ -3,6 +3,7 @@ package project3.csc214.stepquest.model;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.util.Log;
 
 import java.util.Comparator;
 
@@ -15,39 +16,50 @@ import project3.csc214.stepquest.R;
  */
 
 public class Event {
+    private static final String TAG = "Event";
 
     //array of challenge ratings
-    public static final int[] CHALLENGE_RATING = new int[]{
-            10,
-            25,
-            50,
-            100,
-            200,
-            450,
-            700,
-            1100,
+    private static final int[] CHALLENGE_RATING = new int[]{
+            10, //-3
+            25, //-2
+            50, //-1
+            100, //0
+            200, //1
+            450, //2
+            700, //3
+            1100, //4
             1800,
             2300,
             2900,
             3900,
             5000,
-            5900,
-            7200,
+            6900,
             8400,
             10000,
-            11500,
             13000,
-            15000,
-            18000,
-            20000,
+            16000,
+            19000,
             22000,
             25000,
-            33000,
-            41000,
-            50000,
-            62000,
+            28000,
+            36000,
+            43000,
+            53000,
+            65000,
             155000
     };
+    public static final int RATING_FLOOR = -3;
+
+    //accepts a CR number and returns the value
+    public static int getChallengeRating(int rating){
+        int paddedRating = rating +3;
+        Log.i(TAG, "Got rating " + rating + ", selecting from " + paddedRating);
+        return CHALLENGE_RATING[paddedRating];
+    }
+
+    public static int amountOfCRs(){
+        return CHALLENGE_RATING.length;
+    }
 
     private String mDescription;
     private int mDuration;

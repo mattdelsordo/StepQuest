@@ -9,13 +9,7 @@ GAMPLAY:
 MECHANICS:
 -Tweak drop rates for normal monsters
 -More intelligent monster scaling/step amount calculation
-!-Load in single list of all monsters + bosses, sort by steps
-!-Split list into as many sub-lists as there are challenge ratings
-!-Set everything in each list to the newly distributed duration based on the challenge rating
-!-randomize monster from probability distribution around player level, more likely for CR closer
-    to the player's level
-!-generate bosses as a distribution starting at like 3-5 higher than player level
-!-scale village events based on CR for player level minus a couple
+
 -Stats actually affect stuff:
 --Str: Blade multiplier
 --Dex: Bow multiplier/available boost speeds
