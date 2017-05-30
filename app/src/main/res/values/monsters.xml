@@ -186,7 +186,7 @@
     </array>
 
     <string-array name="Birdperson_monster">
-        <item name = "desc">Fighting an Birdperson_monster...</item>
+        <item name = "desc">Fighting an Birdperson...</item>
         <item name = "exp">50</item>
     </string-array>
 

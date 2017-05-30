@@ -35,7 +35,6 @@ public class EventList {
     private Random rand;
     private Context mAppContext;
 
-    //TODO: reconfigure how monsters are randomized
     private EventList(Context appContext){
         mAppContext = appContext.getApplicationContext();
         //mMonsters = new ArrayList<>();
