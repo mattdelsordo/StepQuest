@@ -1,11 +1,8 @@
 ---- This is used to keep track of as of yet incomplete game functions ----
 
 UX:
--Make inventory item selection more intuitive -> whip up a dialogue
--Make dialogs explaining stat effects
-!!!!!!-Figure out how services work and make sure these are killed with the process
+-Make sure Services are getting killed at the proper times/not persisting forever
 -Update notification icon
-
 
 GAMPLAY:
 

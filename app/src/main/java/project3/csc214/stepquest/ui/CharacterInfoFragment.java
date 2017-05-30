@@ -1,6 +1,7 @@
 package project3.csc214.stepquest.ui;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
@@ -15,7 +16,10 @@ import project3.csc214.stepquest.model.ActiveCharacter;
 import project3.csc214.stepquest.model.Character;
 
 import project3.csc214.stepquest.R;
+import project3.csc214.stepquest.model.EffectPlayer;
 import project3.csc214.stepquest.model.Stats;
+import project3.csc214.stepquest.util.BasicOKDialog;
+import project3.csc214.stepquest.util.InventorySoundListener;
 
 
 /**
@@ -26,7 +30,7 @@ public class CharacterInfoFragment extends Fragment implements ActiveCharacter.E
     private TextView mName, mRaceClass, mLevel, mSTR, mDEX, mCON, mINT, mWIS, mCHR;
     private ImageView mRaceImage, mClassImage;
     private ProgressBar mExpProgress;
-
+    private InventorySoundListener mSoundListener;
 
     public CharacterInfoFragment() {
         // Required empty public constructor
@@ -52,6 +56,55 @@ public class CharacterInfoFragment extends Fragment implements ActiveCharacter.E
         mRaceImage = (ImageView)view.findViewById(R.id.imageview_character_race);
         mClassImage = (ImageView)view.findViewById(R.id.imageview_character_class);
         mExpProgress = (ProgressBar)view.findViewById(R.id.progressbar_character_exp);
+
+        //on click listeners to provide information to the player
+        mSTR.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new BasicOKDialog().newInstance(getString(R.string.explainSTR)).show(getActivity().getSupportFragmentManager(), "Explaination");
+                mSoundListener.playEffect(EffectPlayer.DIALOG);
+            }
+        });
+        mDEX.setOnClickListener(new View.OnClickListener() {
+            @Override
+
+            public void onClick(View v) {
+                new BasicOKDialog().newInstance(getString(R.string.explainDEX)).show(getActivity().getSupportFragmentManager(), "Explaination");
+                mSoundListener.playEffect(EffectPlayer.DIALOG);
+            }
+        });
+        mCON.setOnClickListener(new View.OnClickListener() {
+            @Override
+
+            public void onClick(View v) {
+                new BasicOKDialog().newInstance(getString(R.string.explainCON)).show(getActivity().getSupportFragmentManager(), "Explaination");
+                mSoundListener.playEffect(EffectPlayer.DIALOG);
+            }
+        });
+        mINT.setOnClickListener(new View.OnClickListener() {
+            @Override
+
+            public void onClick(View v) {
+                new BasicOKDialog().newInstance(getString(R.string.explainINT)).show(getActivity().getSupportFragmentManager(), "Explaination");
+                mSoundListener.playEffect(EffectPlayer.DIALOG);
+            }
+        });
+        mWIS.setOnClickListener(new View.OnClickListener() {
+            @Override
+
+            public void onClick(View v) {
+                new BasicOKDialog().newInstance(getString(R.string.explainWIS)).show(getActivity().getSupportFragmentManager(), "Explaination");
+                mSoundListener.playEffect(EffectPlayer.DIALOG);
+            }
+        });
+        mCHR.setOnClickListener(new View.OnClickListener() {
+            @Override
+
+            public void onClick(View v) {
+                new BasicOKDialog().newInstance(getString(R.string.explainCHR)).show(getActivity().getSupportFragmentManager(), "Explaination");
+                mSoundListener.playEffect(EffectPlayer.DIALOG);
+            }
+        });
 
         Character active = ActiveCharacter.getInstance(getContext()).getActiveCharacter();
         if(active != null){
@@ -105,5 +158,17 @@ public class CharacterInfoFragment extends Fragment implements ActiveCharacter.E
     public void onPause() {
         super.onPause();
         ActiveCharacter.getInstance(getContext()).unbindExpListener();
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mSoundListener = (InventorySoundListener)context;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mSoundListener = null;
     }
 }
