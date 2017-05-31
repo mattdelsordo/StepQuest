@@ -54,6 +54,8 @@ public class Event {
     public static int getChallengeRating(int rating){
         int paddedRating = rating +3;
         Log.i(TAG, "Got rating " + rating + ", selecting from " + paddedRating);
+        if(paddedRating < 0) paddedRating = 0;
+        if(paddedRating > CHALLENGE_RATING.length - 1) paddedRating = CHALLENGE_RATING.length - 1;
         return CHALLENGE_RATING[paddedRating];
     }
 

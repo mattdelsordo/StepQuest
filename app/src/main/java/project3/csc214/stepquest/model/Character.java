@@ -9,7 +9,7 @@ import android.util.Log;
 
 public class Character {
 
-    private static final int BASE_LEVELUP_EXP = 300; //How much it takes to go from lvl one to lvl 2, in steps (??)
+    private static final int BASE_LEVELUP_EXP = 200; //How much it takes to go from lvl one to lvl 2, in steps (??)
 
     private static final String TAG = "Character";
 
@@ -134,6 +134,6 @@ public class Character {
     public static int levelUpFunction(int level){
         if(level == 0) return 0;
         else if(level == 1) return BASE_LEVELUP_EXP;
-        else return levelUpFunction(level - 1) + (int)(levelUpFunction(level - 1) * 1.1);
+        else return levelUpFunction(level - 1) + (int)(levelUpFunction(level - 1) * 1.85);
     }
 }

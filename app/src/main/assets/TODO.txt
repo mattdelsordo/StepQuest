@@ -8,7 +8,6 @@ GAMPLAY:
 
 MECHANICS:
 -Tweak drop rates for normal monsters -> Its in the loadEventList method, not super necessary actually its fine
--More intelligent monster scaling/step amount calculation
 
 -Stats actually affect stuff:
 --Str: Blade multiplier

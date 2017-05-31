@@ -179,6 +179,7 @@ public class EventList {
 //
 //        return mMonsters.get(selection);
         int selection = selectLevelFromThree(level);
+        if(selection > 23) selection = 23;
         ArrayList<Event> selectedBucket = mClassifiedEventMap.get(selection);
         int sampleSpace = selectedBucket.size();
         Event selectedEvent = selectedBucket.get(rand.nextInt(sampleSpace));
@@ -203,6 +204,7 @@ public class EventList {
 //        return mBosses.get(selection);
 
         int selection = selectLevelFromThree(level + 4);
+        if(selection > 23) selection = 23;
         ArrayList<Event> selectedBucket = mClassifiedEventMap.get(selection);
         int sampleSpace = selectedBucket.size();
         Event selectedEvent = selectedBucket.get(rand.nextInt(sampleSpace));
