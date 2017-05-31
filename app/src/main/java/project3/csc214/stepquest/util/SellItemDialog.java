@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import project3.csc214.stepquest.R;
+import project3.csc214.stepquest.model.Character;
 import project3.csc214.stepquest.model.Weapon;
 
 /**
@@ -22,10 +23,10 @@ import project3.csc214.stepquest.model.Weapon;
 public class SellItemDialog extends DialogFragment{
     public static final int REQUEST_CODE = 16;
     public static final String ARG_NAME = "arg_name", ARG_PRICE = "arg_priece";
-    public static SellItemDialog newInstance(Weapon weapon){
+    public static SellItemDialog newInstance(Weapon weapon, Character character){
         Bundle args = new Bundle();
         args.putString(ARG_NAME, weapon.getName());
-        args.putInt(ARG_PRICE, weapon.getSalePrice());
+        args.putInt(ARG_PRICE, weapon.getSalePrice(character));
         SellItemDialog dialog = new SellItemDialog();
         dialog.setArguments(args);
         return dialog;

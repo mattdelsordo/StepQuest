@@ -26,6 +26,7 @@ import java.util.Collections;
 
 import project3.csc214.stepquest.R;
 import project3.csc214.stepquest.model.ActiveCharacter;
+import project3.csc214.stepquest.model.Character;
 import project3.csc214.stepquest.model.EffectPlayer;
 import project3.csc214.stepquest.model.Vocation;
 import project3.csc214.stepquest.model.Weapon;
@@ -43,7 +44,7 @@ public class InventoryFragment extends Fragment implements ActiveCharacter.Funds
     private TextView mGoldCount;
     private InventorySoundListener mSoundListener;
     private Weapon mQueuedWeapon;
-    private Vocation mCharVocation;
+    //private Vocation mCharVocation;
 
     public InventoryFragment() {
         // Required empty public constructor
@@ -56,7 +57,7 @@ public class InventoryFragment extends Fragment implements ActiveCharacter.Funds
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_inventory_md, container, false);
 
-        mCharVocation = ActiveCharacter.getInstance(getContext()).getActiveCharacter().getVocation();
+        //mCharVocation = ActiveCharacter.getInstance(getContext()).getActiveCharacter().getVocation();
 
         //get goldcount
         mGoldCount = (TextView)view.findViewById(R.id.textview_inventory_goldcount);
@@ -142,7 +143,7 @@ public class InventoryFragment extends Fragment implements ActiveCharacter.Funds
                 //Show another dialog to confirm weapon sale
                 AppCompatActivity parent = (AppCompatActivity)getContext();
                 FragmentManager manager = parent.getSupportFragmentManager();
-                SellItemDialog dialog = SellItemDialog.newInstance(mQueuedWeapon);
+                SellItemDialog dialog = SellItemDialog.newInstance(mQueuedWeapon, ActiveCharacter.getInstance(getContext()).getActiveCharacter());
                 dialog.setTargetFragment(InventoryFragment.this, SellItemDialog.REQUEST_CODE);
                 dialog.show(manager, "SellItem");
                 mSoundListener.playEffect(EffectPlayer.DIALOG);
@@ -159,8 +160,9 @@ public class InventoryFragment extends Fragment implements ActiveCharacter.Funds
                 boolean success = ActiveCharacter.getInstance(getContext()).removeWeaponFromInventory(mQueuedWeapon);
 
                 if(success){
-                    ActiveCharacter.getInstance(getContext()).addFunds(mQueuedWeapon.getSalePrice());
-                    String text = "Sold " + mQueuedWeapon.getName() + " for " + mQueuedWeapon.getSalePrice() + "g.";
+                    Character c = ActiveCharacter.getInstance(getContext()).getActiveCharacter();
+                    ActiveCharacter.getInstance(getContext()).addFunds(mQueuedWeapon.getSalePrice(c));
+                    String text = "Sold " + mQueuedWeapon.getName() + " for " + mQueuedWeapon.getSalePrice(c) + "g.";
                     BasicOKDialog.newInstance(text).show(manager,"SellSuccess");
                     mSoundListener.playEffect(EffectPlayer.DIALOG);
                     updateUI();
@@ -189,10 +191,12 @@ public class InventoryFragment extends Fragment implements ActiveCharacter.Funds
         private View mView;
         private ImageView mIcon;
         private TextView mName, mBuff, mQuantity;
+        private Character mActive;
 
         public WeaponViewHolder(View itemView) {
             super(itemView);
             mView = itemView;
+            mActive = ActiveCharacter.getInstance(getContext()).getActiveCharacter();
 
             mIcon = (ImageView)itemView.findViewById(R.id.imageview_weapon_icon);
             mName = (TextView)itemView.findViewById(R.id.textview_weapon_name);
@@ -205,7 +209,7 @@ public class InventoryFragment extends Fragment implements ActiveCharacter.Funds
                     mQueuedWeapon = mWeapon;
                     AppCompatActivity parent = (AppCompatActivity)v.getContext();
                     FragmentManager manager = parent.getSupportFragmentManager();
-                    WeaponInfoDialog dialog = WeaponInfoDialog.newInstance(mWeapon, mCharVocation, mAmnt);
+                    WeaponInfoDialog dialog = WeaponInfoDialog.newInstance(mWeapon, mActive, mAmnt);
                     dialog.setTargetFragment(InventoryFragment.this, WeaponInfoDialog.REQUEST_CODE);
                     dialog.show(manager, "WeaponInfo");
                     mSoundListener.playEffect(EffectPlayer.DIALOG);
@@ -220,7 +224,7 @@ public class InventoryFragment extends Fragment implements ActiveCharacter.Funds
             mAmnt = ActiveCharacter.getInstance(getContext()).getWeaponQuantity(mWeapon);
 
             mName.setText(weapon.getName());
-            double buff = mWeapon.calcBuff(mCharVocation);
+            double buff = mWeapon.calcBuff(mActive);
             mBuff.setText((buff > 0.0 ? "+" : "") + buff + "%");
             mQuantity.setText("x" + mAmnt);
             mIcon.setImageResource(mWeapon.getDrawable());

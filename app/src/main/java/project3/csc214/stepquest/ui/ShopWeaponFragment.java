@@ -25,6 +25,7 @@ import java.util.Collections;
 
 import project3.csc214.stepquest.R;
 import project3.csc214.stepquest.data.WeaponList;
+import project3.csc214.stepquest.model.Character;
 import project3.csc214.stepquest.model.EffectPlayer;
 import project3.csc214.stepquest.util.CenteredItemDecoration;
 import project3.csc214.stepquest.util.ShopFragmentListener;
@@ -84,7 +85,7 @@ public class ShopWeaponFragment extends Fragment {
                 ActiveCharacter active = ActiveCharacter.getInstance(getContext());
                 active.addWeaponToInventory(new Weapon(mQueuedWeapon));
                 //subtract gold
-                int newGoldAmnt = active.getActiveCharacter().getFunds() - mQueuedWeapon.getPrice();
+                int newGoldAmnt = active.getActiveCharacter().getFunds() - mQueuedWeapon.getPrice(active.getActiveCharacter());
                 active.getActiveCharacter().setFunds(newGoldAmnt);
                 mGoldListener.updateGoldTotal(newGoldAmnt);
                 refreshList();
@@ -103,6 +104,7 @@ public class ShopWeaponFragment extends Fragment {
         private TextView mName, mPrice, mBuff;
         private Button mPurchase;
         public View mView;
+        private Character mActive;
 
         public ShopWeaponViewHolder(View itemView) {
             super(itemView);
@@ -113,14 +115,16 @@ public class ShopWeaponFragment extends Fragment {
             mPrice = (TextView)itemView.findViewById(R.id.tv_shop_weaponprice);
             mBuff = (TextView)itemView.findViewById(R.id.tv_shop_weaponbuff);
             mPurchase = (Button)itemView.findViewById(R.id.b_shop_purchase);
+            mActive = ActiveCharacter.getInstance(getContext()).getActiveCharacter();
 
             mPurchase.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     mQueuedWeapon = mWeapon;
+
                     AppCompatActivity parent = (AppCompatActivity)v.getContext();
                     FragmentManager manager = parent.getSupportFragmentManager();
-                    PurchaseDialog dialog = PurchaseDialog.newInstance(mQueuedWeapon.getName(), mQueuedWeapon.getPrice());
+                    PurchaseDialog dialog = PurchaseDialog.newInstance(mQueuedWeapon.getName(), mQueuedWeapon.getPrice(mActive));
                     dialog.setTargetFragment(ShopWeaponFragment.this, PurchaseDialog.REQUEST_CODE);
                     dialog.show(manager, "DialogPurchase");
                     mGoldListener.playEffect(EffectPlayer.DIALOG);
@@ -131,13 +135,13 @@ public class ShopWeaponFragment extends Fragment {
         public void bindWeapon(Weapon weapon){
             mWeapon = weapon;
             mName.setText(weapon.getName());
-            double buff = mWeapon.calcBuff(ActiveCharacter.getInstance(getContext()).getActiveCharacter().getVocation());
+            double buff = mWeapon.calcBuff(ActiveCharacter.getInstance(getContext()).getActiveCharacter());
             mBuff.setText((buff > 0.0 ? "+" : "") + buff + "%");
             mWeaponIcon.setImageResource(mWeapon.getDrawable());
-            mPrice.setText(Integer.toString(mWeapon.getPrice()));
+            mPrice.setText(Integer.toString(mWeapon.getPrice(mActive)));
 
             //disable button if there isn't enough money
-            if(ActiveCharacter.getInstance(getContext()).getActiveCharacter().getFunds() < mWeapon.getPrice()) mPurchase.setEnabled(false);
+            if(ActiveCharacter.getInstance(getContext()).getActiveCharacter().getFunds() < mWeapon.getPrice(mActive)) mPurchase.setEnabled(false);
         }
     }
 

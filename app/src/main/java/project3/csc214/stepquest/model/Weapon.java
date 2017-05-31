@@ -20,7 +20,7 @@ public class Weapon implements Serializable{
 
     public static final int DEFAULT = -1, BLADE = 0, BOW = 1, STAFF = 2, BLUNT = 3; //weapon classes
     public static final Double WOOD = 1.0, BRONZE = 1.5, IRON = 2.0, STEEL = 2.5, OBSIDIAN = 3.0, MITHRIL = 4.0;//material bonuses
-
+    public static final double STAT_BOOST_COEFFICIENT = 0.25;
 
     public static final double GOOD = 1.5, BAD = 0.6666; //multipliers for experience gain for weapons
 
@@ -55,14 +55,16 @@ public class Weapon implements Serializable{
         mMaterial = w.getMaterial();
     }
 
-    public double getModifier(Vocation vocation) {
-        if (mType == vocation.getGoodWeapon()) {
-            return mMaterial * GOOD;
-        } else if (mType == vocation.getBadWeapon()) {
+    //modifier factors in the material, the type, and the relevant stat
+    public double getModifier(Character character) {
+        double base = mMaterial* getStatModifier(character);
+        if (mType == character.getVocation().getGoodWeapon()) {
+            return base * GOOD;
+        } else if (mType == character.getVocation().getBadWeapon()) {
             //Log.i(TAG, "Bad=" + BAD);
-            return mMaterial * BAD;
+            return base * BAD;
         } else {
-            return mMaterial;
+            return base;
         }
     }
 
@@ -75,6 +77,22 @@ public class Weapon implements Serializable{
         } else {
             return 1.0;
         }
+    }
+
+    public double getStatModifier(Character character){
+        double modifier = 0;
+        if(mType == BLADE){
+            modifier = character.getStat(Stats.STR) * STAT_BOOST_COEFFICIENT;
+        }else if(mType == BOW){
+            modifier = character.getStat(Stats.DEX)* STAT_BOOST_COEFFICIENT;
+        }else if(mType == STAFF){
+            modifier = character.getStat(Stats.INT)* STAT_BOOST_COEFFICIENT;
+        }else if(mType == BLUNT){
+            modifier = character.getStat(Stats.CON)* STAT_BOOST_COEFFICIENT;
+        }
+
+        if(modifier < 1) modifier = 0;
+        return modifier;
     }
 
     //converts string classifications to the double format
@@ -178,8 +196,8 @@ public class Weapon implements Serializable{
     }
 
     //returns the percent buff for a given character
-    public double calcBuff(Vocation v){
-        double modifier = getModifier(v) * 100;
+    public double calcBuff(Character c){
+        double modifier = getModifier(c) * 100;
         Log.i(TAG, "Modifier: " + modifier);
         return Math.round(modifier - 100.0);
     }
@@ -207,14 +225,22 @@ public class Weapon implements Serializable{
 
     //returns the weapon's price
     //TODO: put actual thought into this
-    public int getPrice(){
-        if(mType == DEFAULT) return 10;
-        return (int)(mMaterial * 1337 * 0.1);
+    public int getPrice(Character c){
+        int base = (int)(mMaterial * 1337 * 0.1);
+        if(mType == DEFAULT) base = 10;
+        return base - (int)(base * calcDiscount(c));
+
     }
 
     //price when the user sells a weapon back to the store
-    public int getSalePrice(){
-        return (int)(0.85 * getPrice());
+    public int getSalePrice(Character c){
+        return (int)(0.85 * getPrice(c));
+    }
+
+    //calculates % off a price given a character's charisma
+    public double calcDiscount(Character c){
+        int charisma = c.getStat(Stats.CHR);
+        return (double)charisma * 1.25;
     }
 
 }

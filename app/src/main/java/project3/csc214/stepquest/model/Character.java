@@ -2,12 +2,14 @@ package project3.csc214.stepquest.model;
 
 import android.util.Log;
 
+import java.io.Serializable;
+
 /**
  * Created by mdelsord on 4/13/17.
  * Models a character with a bunch of stats
  */
 
-public class Character {
+public class Character implements Serializable{
 
     private static final int BASE_LEVELUP_EXP = 200; //How much it takes to go from lvl one to lvl 2, in steps (??)
 
@@ -102,6 +104,10 @@ public class Character {
     public int getExp(){return mExp;}
     public void setExp(int exp){
         mExp = exp;
+    }
+
+    public double getCharismaExp(){
+        return getStat(Stats.CHR) * 0.0125;
     }
 
     //returns true if a level up took place

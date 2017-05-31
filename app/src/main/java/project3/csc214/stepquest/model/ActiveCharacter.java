@@ -123,7 +123,7 @@ public class ActiveCharacter{
     public double getExpModifier()
     {
         if(mEquippedWeapon == null) return 1.0;
-        else return mEquippedWeapon.getModifier(mCharacter.getVocation());
+        else return mEquippedWeapon.getModifier(mCharacter) + mCharacter.getCharismaExp();
     }
 
     public int getWeaponQuantity(Weapon weapon){

@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import project3.csc214.stepquest.R;
+import project3.csc214.stepquest.model.Character;
 import project3.csc214.stepquest.model.Vocation;
 import project3.csc214.stepquest.model.Weapon;
 
@@ -35,13 +36,13 @@ public class WeaponInfoDialog extends DialogFragment {
      * Buttons to: close, equip, and buy (for x amount of money)
      */
 
-    private static final String ARG_WEAPON = "arg_weapon", ARG_QUANTITY = "arg_quantity", ARG_VOCATION = "arg_vocation";
+    private static final String ARG_WEAPON = "arg_weapon", ARG_QUANTITY = "arg_quantity", ARG_CHARACTER = "arg_character";
 
-    public static WeaponInfoDialog newInstance(Weapon w, Vocation v, int quantity){
+    public static WeaponInfoDialog newInstance(Weapon w, Character c, int quantity){
         Bundle args = new Bundle();
         args.putSerializable(ARG_WEAPON, w);
         args.putInt(ARG_QUANTITY, quantity);
-        args.putSerializable(ARG_VOCATION, v);
+        args.putSerializable(ARG_CHARACTER, c);
 
         WeaponInfoDialog dialog = new WeaponInfoDialog();
         dialog.setArguments(args);
@@ -53,17 +54,17 @@ public class WeaponInfoDialog extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         Bundle args = getArguments();
         Weapon weapon = (Weapon)args.getSerializable(ARG_WEAPON);
-        Vocation vocation = (Vocation)args.getSerializable(ARG_VOCATION);
+        Character character = (Character)args.getSerializable(ARG_CHARACTER);
         int quantity = args.getInt(ARG_QUANTITY);
 
         View view = LayoutInflater.from(getActivity()).inflate(R.layout.view_weapon_info, null);
         //TODO: populate view
         String wName = weapon.getName();
         String wQuantity = " x" + quantity;
-        String wPrice = "Sale price: " + weapon.getSalePrice() + "g";
-        String wType = "Type: " + getString(weapon.getTypeString()) + " (x" + weapon.getProficiencyModifier(vocation)+")";
+        String wPrice = "Sale price: " + weapon.getSalePrice(character) + "g";
+        String wType = "Type: " + getString(weapon.getTypeString()) + " (x" + weapon.getProficiencyModifier(character.getVocation())+")";
         String wMaterial = "Material: " + getString(weapon.getMaterialString()) + " (x"+weapon.getMaterial() + ")";
-        String wTotalMod = "Total Modifier: x" + weapon.getModifier(vocation);
+        String wTotalMod = "Total Modifier: x" + weapon.getModifier(character);
 
         ImageView vIcon = (ImageView)view.findViewById(R.id.iv_weaponinfo_icon);
         vIcon.setImageResource(weapon.getDrawable());
