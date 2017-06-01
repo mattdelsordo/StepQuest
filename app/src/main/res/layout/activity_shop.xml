@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="project3.csc214.stepquest.ui.ShopActivity">
+    tools:context="com.mdelsordo.stepquest.ui.ShopActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
