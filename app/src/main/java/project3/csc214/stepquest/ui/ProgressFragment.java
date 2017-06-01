@@ -61,10 +61,6 @@ public class ProgressFragment extends Fragment implements EventQueue.EventUpdate
         mBoost = (TextView)view.findViewById(R.id.tv_progress_boosttime);
         mBoostImage = (ImageView) view.findViewById(R.id.iv_progress_boostimage);
 
-        //connect progress bar to listener
-        EventQueue.getInstance(getContext()).bindUpdateListener(this);
-
-
         return view;
 
     }
@@ -75,6 +71,9 @@ public class ProgressFragment extends Fragment implements EventQueue.EventUpdate
         EventQueue queue = EventQueue.getInstance(getContext());
         updateEvent(queue.getTopEvent(), (int)queue.getProgress());
 
+        //connect progress bar to listener
+        EventQueue.getInstance(getContext()).bindUpdateListener(this);
+
         //register broadcast reciever
         getContext().registerReceiver(receiver, new IntentFilter(BoostTimerService.TIMER_BROADCAST));
         Log.i(TAG, "Registered boost receiver.");
@@ -83,6 +82,7 @@ public class ProgressFragment extends Fragment implements EventQueue.EventUpdate
     @Override
     public void onPause() {
         super.onPause();
+        EventQueue.getInstance(getContext()).unbindUpdateListener();
         getContext().unregisterReceiver(receiver);
         Log.i(TAG, "Unregistered boost receiver.");
     }
