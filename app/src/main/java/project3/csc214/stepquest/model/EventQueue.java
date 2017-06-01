@@ -4,7 +4,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -110,8 +109,9 @@ public class EventQueue {
             //get active character
 //            Character active = ActiveCharacter.getInstance().getActiveCharacter();
             //give the player exp
-            int expGain = currentEvent.getExp();
+            int expGain = (int)(currentEvent.getExp() * ActiveCharacter.getInstance(mAppContext).getActiveCharacter().getWisdomExp());
             ActiveCharacter.getInstance(mAppContext).addExp(expGain, listener);
+            Log.i(TAG, "Gained " + expGain + " exp.");
             //give the player money
             int fundReward = currentEvent.getGoldReward();
             if(fundReward > 0){
@@ -163,7 +163,8 @@ public class EventQueue {
     private double oneStepValue(){
         double step = 1.0;
         ActiveCharacter active = ActiveCharacter.getInstance(mAppContext);
-        if(active.getExpModifier() > 0) step = step * active.getExpModifier() * active.getBoostMultiplier();
+        if(active.getDistanceModifier() > 0) step = step * active.getDistanceModifier() * active.getBoostMultiplier();
+        //Log.i(TAG, "Step = " + step);
         return step;
     }
 

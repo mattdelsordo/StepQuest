@@ -6,10 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -120,10 +117,10 @@ public class ActiveCharacter{
         return mWeaponSet.keySet();
     }
 
-    public double getExpModifier()
+    public double getDistanceModifier()
     {
-        if(mEquippedWeapon == null) return 1.0;
-        else return mEquippedWeapon.getModifier(mCharacter) + mCharacter.getCharismaExp();
+        if(mEquippedWeapon == null) return 0.9;
+        else return mEquippedWeapon.getModifier(mCharacter);
     }
 
     public int getWeaponQuantity(Weapon weapon){

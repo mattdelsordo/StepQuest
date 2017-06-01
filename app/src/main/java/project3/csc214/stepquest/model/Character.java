@@ -15,6 +15,8 @@ public class Character implements Serializable{
 
     private static final String TAG = "Character";
 
+    private static final double INT_EXP_COEFFICIENT = 0.02;
+
     private final String mName;
     private final Vocation mVocation;
     private final Race mRace;
@@ -106,8 +108,8 @@ public class Character implements Serializable{
         mExp = exp;
     }
 
-    public double getCharismaExp(){
-        return getStat(Stats.CHR) * 0.0125;
+    public double getWisdomExp(){
+        return 1+ (getStat(Stats.WIS) * INT_EXP_COEFFICIENT);
     }
 
     //returns true if a level up took place
