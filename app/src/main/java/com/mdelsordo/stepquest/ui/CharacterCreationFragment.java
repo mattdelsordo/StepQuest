@@ -93,7 +93,7 @@ public class CharacterCreationFragment extends Fragment {
                     mClass = Vocation.CLERIC;
                     mClassImage.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.cleric));
                 }
-                else Log.e(TAG, "Incorrect class designation: " + vocation);
+                //else Log.e(TAG, "Incorrect class designation: " + vocation);
             }
 
             @Override
@@ -126,7 +126,7 @@ public class CharacterCreationFragment extends Fragment {
                     mRace = Race.ELF;
                     mRaceImage.setImageResource(R.drawable.elf1white);
                 }
-                else Log.e(TAG, "Incorrect race designation: " + race);
+                //else Log.e(TAG, "Incorrect race designation: " + race);
 
                 updateAllStatViews();
             }

@@ -55,7 +55,7 @@ public class PedometerService extends Service implements SensorEventListener, Ev
     public void onCreate() {
         super.onCreate();
 
-        Log.i(TAG, "service oncreate called");
+        //Log.i(TAG, "service oncreate called");
 
         mManager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
         mStepSensor = mManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
@@ -127,7 +127,7 @@ public class PedometerService extends Service implements SensorEventListener, Ev
 
     @Override
     public void notifyUser(String message){
-        Log.i(TAG, "Notifying user: " + message);
+        //Log.i(TAG, "Notifying user: " + message);
 
         Intent main = LoadingActivity.newInstance(this);
         PendingIntent pi = PendingIntent.getActivity(

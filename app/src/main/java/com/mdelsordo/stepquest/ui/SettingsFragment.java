@@ -69,7 +69,7 @@ public class SettingsFragment extends Fragment {
                 SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
                 prefs.edit().putBoolean(PREF_MUSIC, isChecked).apply();
                 mListener.toggleMusic(isChecked);
-                Log.i(TAG, "Toggled music to " + isChecked);
+                //Log.i(TAG, "Toggled music to " + isChecked);
             }
         });
 
@@ -81,7 +81,7 @@ public class SettingsFragment extends Fragment {
                 SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
                 prefs.edit().putBoolean(PREF_EFFECTS, isChecked).apply();
                 mListener.toggleEffects(isChecked);
-                Log.i(TAG, "Toggled effects to " + isChecked);
+                //Log.i(TAG, "Toggled effects to " + isChecked);
             }
         });
 

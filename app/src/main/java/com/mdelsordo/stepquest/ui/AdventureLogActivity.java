@@ -110,7 +110,7 @@ public class AdventureLogActivity extends AppCompatActivity implements EventQueu
     private ServiceConnection mSCon = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-            Log.i(TAG, "Music service connected.");
+            //Log.i(TAG, "Music service connected.");
             MusicManagerService.MusicBinder binder = (MusicManagerService.MusicBinder)service;
             mMusicPlayer = binder.getService();
             mIsBound = true;
@@ -120,7 +120,7 @@ public class AdventureLogActivity extends AppCompatActivity implements EventQueu
 
         @Override
         public void onServiceDisconnected(ComponentName name) {
-            Log.i(TAG, "Music service disconnected");
+            //Log.i(TAG, "Music service disconnected");
             mIsBound = false;
         }
     };

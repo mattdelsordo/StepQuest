@@ -66,11 +66,11 @@ public class EventList {
         Collections.sort(allMonsters, new Event.EventComparator());
 
         //separate list into chunks
-        Log.i(TAG, "Amount of CRs: " + Event.amountOfCRs());
+        //Log.i(TAG, "Amount of CRs: " + Event.amountOfCRs());
         int chunksize = allMonsters.size() / Event.amountOfCRs();
         int noOfStragglers = allMonsters.size() % Event.amountOfCRs();
-        Log.i(TAG, "Chunk size: " + chunksize);
-        Log.i(TAG, "Stragglers: " + noOfStragglers);
+        //Log.i(TAG, "Chunk size: " + chunksize);
+        //Log.i(TAG, "Stragglers: " + noOfStragglers);
 
         //initialize hashmap
         mClassifiedEventMap = new HashMap<>();
@@ -89,7 +89,7 @@ public class EventList {
 
                     Event monsterToAdd = allMonsters.remove(0);
                     eventSublist.add(monsterToAdd);
-                    Log.i(TAG, "Added " + monsterToAdd.getDescription() + " to bucket " + placement);
+                    //Log.i(TAG, "Added " + monsterToAdd.getDescription() + " to bucket " + placement);
                 }
 
             }
@@ -101,7 +101,7 @@ public class EventList {
     //loads list of monsters from the xml file
     private void loadEventList(ArrayList<Event> list, int arrayId, boolean assign_gold, boolean assign_drop, int tag){
         //load monsters from xml as strings
-        Log.i(TAG, "Loading monster list.");
+        //Log.i(TAG, "Loading monster list.");
         Resources res = mAppContext.getResources();
         TypedArray ta = res.obtainTypedArray(arrayId);
         int taLength = ta.length();
@@ -111,7 +111,7 @@ public class EventList {
             if(id > 0){
                 array[i] = res.getStringArray(id);
             }else{
-                Log.e(TAG, "id " + id + "==0?");
+                //Log.e(TAG, "id " + id + "==0?");
             }
         }
         ta.recycle();
@@ -183,7 +183,7 @@ public class EventList {
         int sampleSpace = selectedBucket.size();
         Event selectedEvent = selectedBucket.get(rand.nextInt(sampleSpace));
         selectedEvent.setDuration(Event.getChallengeRating(selection));
-        Log.i(TAG, "Selected monster " + selectedEvent.getDescription() + " with CR " + selection + " and duration "+ selectedEvent.getDuration());
+        //Log.i(TAG, "Selected monster " + selectedEvent.getDescription() + " with CR " + selection + " and duration "+ selectedEvent.getDuration());
         return selectedEvent;
     }
 
@@ -208,7 +208,7 @@ public class EventList {
         int sampleSpace = selectedBucket.size();
         Event selectedEvent = selectedBucket.get(rand.nextInt(sampleSpace));
         selectedEvent.setDuration(Event.getChallengeRating(selection));
-        Log.i(TAG, "Selected boss " + selectedEvent.getDescription() + " with CR " + selection + " and duration "+ selectedEvent.getDuration());
+        //Log.i(TAG, "Selected boss " + selectedEvent.getDescription() + " with CR " + selection + " and duration "+ selectedEvent.getDuration());
         return selectedEvent;
     }
 
@@ -219,7 +219,7 @@ public class EventList {
         for(int i = 0; i < fiveDistribution.length; i++){
             selectionSpace += fiveDistribution[i];
             if(selectionSpace < selection){
-                Log.i(TAG, "Leveller selected " + i);
+                //Log.i(TAG, "Leveller selected " + i);
                 return centerLevel - 2 + i;
             }
         }
@@ -232,7 +232,7 @@ public class EventList {
         for(int i = 0; i < threeDistribution.length; i++){
             selectionSpace += threeDistribution[i];
             if(selectionSpace < selection){
-                Log.i(TAG, "Leveller selected " + i);
+                //Log.i(TAG, "Leveller selected " + i);
                 return centerLevel - 1 + i;
             }
         }

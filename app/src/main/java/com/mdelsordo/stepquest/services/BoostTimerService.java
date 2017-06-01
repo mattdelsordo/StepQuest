@@ -46,7 +46,7 @@ public class BoostTimerService extends Service {
             mDuration = intent.getLongExtra(ARG_DURATION, 0);
 
 
-            Log.i(TAG, "Starting boost timer for " + mDuration + " seconds...");
+            //Log.i(TAG, "Starting boost timer for " + mDuration + " seconds...");
 
             mCDT = new CountDownTimer(mDuration, SECOND) {
 
@@ -59,7 +59,7 @@ public class BoostTimerService extends Service {
 
                 @Override
                 public void onFinish() {
-                    Log.i(TAG, "Timer finished.");
+                    //Log.i(TAG, "Timer finished.");
                     SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(BoostTimerService.this);
                     prefs.edit().putBoolean(PREF_BOOST_ACTIVE, false).apply();
                     ActiveCharacter.getInstance(BoostTimerService.this).removeBoost();
@@ -89,8 +89,8 @@ public class BoostTimerService extends Service {
     @Override
     public void onDestroy() {
         mCDT.cancel();
-        Log.i(TAG, "Timer cancelled.");
-        Log.i(TAG, "Timer service destroyed.");
+        //Log.i(TAG, "Timer cancelled.");
+        //Log.i(TAG, "Timer service destroyed.");
         super.onDestroy();
     }
 

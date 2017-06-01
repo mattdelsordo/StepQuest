@@ -73,7 +73,7 @@ public class ProgressFragment extends Fragment implements EventQueue.EventUpdate
 
         //register broadcast reciever
         getContext().registerReceiver(receiver, new IntentFilter(BoostTimerService.TIMER_BROADCAST));
-        Log.i(TAG, "Registered boost receiver.");
+        //Log.i(TAG, "Registered boost receiver.");
     }
 
     @Override
@@ -81,7 +81,7 @@ public class ProgressFragment extends Fragment implements EventQueue.EventUpdate
         super.onPause();
         EventQueue.getInstance(getContext()).unbindUpdateListener();
         getContext().unregisterReceiver(receiver);
-        Log.i(TAG, "Unregistered boost receiver.");
+        //Log.i(TAG, "Unregistered boost receiver.");
     }
 
     //updates the event, called by the event queue when updates happen

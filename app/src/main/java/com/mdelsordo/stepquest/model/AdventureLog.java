@@ -56,7 +56,7 @@ public class AdventureLog {
         mEventLog.addFirst(newEntry);
         if (mEventLog.size() > LOG_SIZE) mEventLog.removeLast();
         if (mListener != null) mListener.updateJournal(newEntry);
-        Log.i(TAG, "Added " + newEntry + " to adventure log");
+        //Log.i(TAG, "Added " + newEntry + " to adventure log");
     }
 
     //returns the list of events
@@ -178,7 +178,7 @@ public class AdventureLog {
                 mTotalWeaponsAcquired = bundle.weapons;
                 mTotalMonstersSlain = bundle.monsters;
             }else{
-                Log.e(TAG, "Too may sets of statistics in database!");
+                //Log.e(TAG, "Too may sets of statistics in database!");
             }
         }finally {
             statWrapper.close();
@@ -219,12 +219,12 @@ public class AdventureLog {
     }
 
     public void save(){
-        Log.i(TAG, "Saving statistics.");
+        //Log.i(TAG, "Saving statistics.");
         mDatabase.delete(QuestDbSchema.StatisticsTable.NAME, null, null);
         mDatabase.insert(QuestDbSchema.StatisticsTable.NAME, null, getStatContentValues(mTotalSteps, mTotalGoldAcquired, mTotalDungeonsCleared, mTotalWeaponsAcquired, mTotalMonstersSlain));
 
 
-        Log.i(TAG, "Saving journal.");
+        //Log.i(TAG, "Saving journal.");
         mDatabase.delete(QuestDbSchema.JournalQueueTable.NAME, null, null);
         ArrayDeque<JournalEntry> logCopy = mEventLog.clone();
         for(int i = 0; !logCopy.isEmpty(); i++){

@@ -90,10 +90,10 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
 
         //do check for pedometer
         boolean doneCheck = prefs.getBoolean(PREF_DONE_SENSOR_CHECK, false);
-        Log.i(TAG, "hasSensor=" + doneCheck);
+        //Log.i(TAG, "hasSensor=" + doneCheck);
         if(!doneCheck){
             boolean hasPedometer = getPackageManager().hasSystemFeature(PackageManager.FEATURE_SENSOR_STEP_DETECTOR);
-            Log.i(TAG, "pedometer=" + hasPedometer);
+            //Log.i(TAG, "pedometer=" + hasPedometer);
             if(hasPedometer == false){
                 new NoPedometerDialog().show(getSupportFragmentManager(), NoPedometerDialog.TAG);
                 if(mPlayEffects)mEffectPlayer.play(EffectPlayer.DIALOG);
@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
     private void swapFragments(Fragment frag, FragmentTransaction ft){
         ft.replace(R.id.frame_main_gamepane, frag).commit();
         if(mPlayEffects)mEffectPlayer.play(EffectPlayer.FRAGMENT_SWAP);
-        Log.i(TAG, "Game fragment swapped.");
+        //Log.i(TAG, "Game fragment swapped.");
     }
 
     @Override
@@ -251,7 +251,7 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
     private ServiceConnection mSCon = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-            Log.i(TAG, "Music service connected.");
+            //Log.i(TAG, "Music service connected.");
             MusicManagerService.MusicBinder binder = (MusicManagerService.MusicBinder)service;
             mMusicPlayer = binder.getService();
             mIsBound = true;
@@ -262,7 +262,7 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
 
         @Override
         public void onServiceDisconnected(ComponentName name) {
-            Log.i(TAG, "Music service disconnected");
+            //Log.i(TAG, "Music service disconnected");
             mIsBound = false;
         }
     };

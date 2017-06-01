@@ -21,7 +21,7 @@ public class Saver {
     private static final String TAG = "Saver";
 
     public static void saveAll(Context context, boolean displayToast){
-        Log.i(TAG, "Saving game...");
+        //Log.i(TAG, "Saving game...");
 //        ActiveCharacter.getInstance(context).save();
 //        EventQueue.getInstance(context).save();
         new SaveTask().execute(context);
@@ -37,7 +37,7 @@ public class Saver {
                 toast.setGravity(Gravity.TOP|Gravity.RIGHT, 10, height + 10);
                 toast.show();
             }catch(Exception e){
-                Log.e(TAG, "Saver hit exception displaying toast.", e);
+                //Log.e(TAG, "Saver hit exception displaying toast.", e);
             }
         }
     }

@@ -123,7 +123,7 @@ public class Character implements Serializable{
             while(canLevelUp(mExp, mLevel)){
                 mLevel++;
                 addLvlUpToken();
-                Log.i(TAG, mName + " level'd up! (" + mLevel + ")");
+                //Log.i(TAG, mName + " level'd up! (" + mLevel + ")");
                 levelledUp = true;
             }
 

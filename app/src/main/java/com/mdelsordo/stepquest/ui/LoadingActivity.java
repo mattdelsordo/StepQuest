@@ -74,7 +74,7 @@ public class LoadingActivity extends AppCompatActivity {
         }
         else if(requestCode == MainActivity.RC && resultCode == MainActivity.RESULT_DELETE){
             stopService(new Intent(LoadingActivity.this, PedometerService.class));
-            Log.i(TAG, "Deleing data...");
+            //Log.i(TAG, "Deleing data...");
             Saver.deleteAll(this);
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
             prefs.edit().clear().commit();
@@ -85,7 +85,7 @@ public class LoadingActivity extends AppCompatActivity {
 
     private void doesCharacterExistCheck(Character c){
         if(c == null){
-            Log.i(TAG, "No character found, creating new one.");
+            //Log.i(TAG, "No character found, creating new one.");
             startActivityForResult(CharacterCreationActivity.newInstance(this), CharacterCreationActivity.REQUEST_CHARACTER_INFO);
         }
         else{
@@ -115,7 +115,7 @@ public class LoadingActivity extends AppCompatActivity {
     private ServiceConnection mSCon = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-            Log.i(TAG, "Music service connected.");
+            //Log.i(TAG, "Music service connected.");
             MusicManagerService.MusicBinder binder = (MusicManagerService.MusicBinder)service;
             mMusicPlayer = binder.getService();
             mIsBound = true;
@@ -125,7 +125,7 @@ public class LoadingActivity extends AppCompatActivity {
 
         @Override
         public void onServiceDisconnected(ComponentName name) {
-            Log.i(TAG, "Music service disconnected");
+            //Log.i(TAG, "Music service disconnected");
             mIsBound = false;
         }
     };

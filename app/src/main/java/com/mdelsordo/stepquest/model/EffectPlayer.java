@@ -56,14 +56,14 @@ public class EffectPlayer {
                     int soundId = mSoundPool.load(afd, 1);
                     track.id = soundId;
                 }catch(IOException e){
-                    Log.e(TAG, "Could not load sound from " + track.mPath, e);
+                    //Log.e(TAG, "Could not load sound from " + track.mPath, e);
                 }
 
                 mTrackList.put(track.mPath, track);
-                Log.i(TAG, "Loaded track " + track.mPath);
+                //Log.i(TAG, "Loaded track " + track.mPath);
             }
         }catch(IOException e){
-            Log.e(TAG, "Could not load sound files.", e);
+            //Log.e(TAG, "Could not load sound files.", e);
         }
     }
 

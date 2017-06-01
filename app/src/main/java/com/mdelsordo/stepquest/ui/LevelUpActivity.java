@@ -111,7 +111,7 @@ public class LevelUpActivity extends AppCompatActivity implements LevelUpFragmen
 
         @Override
         public void onServiceDisconnected(ComponentName name) {
-            Log.i(TAG, "Music service disconnected");
+            //Log.i(TAG, "Music service disconnected");
             mIsBound = false;
         }
     };

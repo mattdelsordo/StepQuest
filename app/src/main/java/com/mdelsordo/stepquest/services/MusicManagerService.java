@@ -40,13 +40,13 @@ public class MusicManagerService extends Service implements MediaPlayer.OnErrorL
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
-        Log.i(TAG, "Returned binder.");
+        //Log.i(TAG, "Returned binder.");
         return mBinder;
     }
 
     @Override
     public boolean onUnbind(Intent intent) {
-        Log.i(TAG, "Unbinding music service...");
+        //Log.i(TAG, "Unbinding music service...");
         return super.onUnbind(intent);
     }
 
@@ -75,12 +75,12 @@ public class MusicManagerService extends Service implements MediaPlayer.OnErrorL
         mPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mp) {
-                Log.i(TAG, "Music player is prepared.");
+                //Log.i(TAG, "Music player is prepared.");
                 mPlayer.start();
             }
         });
 
-        Log.i(TAG, "Music manager created.");
+        //Log.i(TAG, "Music manager created.");
     }
 
     @Override
@@ -93,7 +93,7 @@ public class MusicManagerService extends Service implements MediaPlayer.OnErrorL
     //plays a track based on a path
     public void play(String musicPath){
         String fullPath = DIR_MUSIC + musicPath;
-        Log.i(TAG, "Attempting to play track " + fullPath);
+        //Log.i(TAG, "Attempting to play track " + fullPath);
         try{
             AssetFileDescriptor afd = mAssets.openFd(fullPath);
 
@@ -104,7 +104,7 @@ public class MusicManagerService extends Service implements MediaPlayer.OnErrorL
             mPlayer.prepareAsync();
 
         }catch(IOException ioe){
-            Log.e(TAG, "Failed to play " + fullPath);
+            //Log.e(TAG, "Failed to play " + fullPath);
         }
     }
 
@@ -136,7 +136,7 @@ public class MusicManagerService extends Service implements MediaPlayer.OnErrorL
 
     @Override
     public void onDestroy() {
-        Log.i(TAG, "onDestroy called.");
+        //Log.i(TAG, "onDestroy called.");
         super.onDestroy();
         if(mPlayer!=null){
             try{

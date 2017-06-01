@@ -50,7 +50,7 @@ public class CharacterCreationActivity extends AppCompatActivity implements Char
     private ServiceConnection mSCon = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-            Log.i(TAG, "Music service connected.");
+            //Log.i(TAG, "Music service connected.");
             MusicManagerService.MusicBinder binder = (MusicManagerService.MusicBinder)service;
             mMusicPlayer = binder.getService();
             mIsBound = true;
@@ -60,7 +60,7 @@ public class CharacterCreationActivity extends AppCompatActivity implements Char
 
         @Override
         public void onServiceDisconnected(ComponentName name) {
-            Log.i(TAG, "Music service disconnected");
+            //Log.i(TAG, "Music service disconnected");
             mIsBound = false;
         }
     };

@@ -88,7 +88,7 @@ public class StatManipulationFragment extends Fragment {
 
     //updates the buttons based on some parameters
     public void updateButtons(int increments, int pointsLeft){
-        Log.i(TAG, Stats.statToText(mStat) + ": " + increments + " " + pointsLeft);
+        //Log.i(TAG, Stats.statToText(mStat) + ": " + increments + " " + pointsLeft);
         if(increments > 0) mDecrement.setEnabled(true);
         else mDecrement.setEnabled(false);
 

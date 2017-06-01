@@ -111,7 +111,7 @@ public class EventQueue {
             //give the player exp
             int expGain = (int)(currentEvent.getExp() * ActiveCharacter.getInstance(mAppContext).getActiveCharacter().getWisdomExp());
             ActiveCharacter.getInstance(mAppContext).addExp(expGain, listener);
-            Log.i(TAG, "Gained " + expGain + " exp.");
+            //Log.i(TAG, "Gained " + expGain + " exp.");
             //give the player money
             int fundReward = currentEvent.getGoldReward();
             if(fundReward > 0){
@@ -145,7 +145,7 @@ public class EventQueue {
                 }
 
             }
-            Log.i(TAG, "Task complete +" + expGain);
+            //Log.i(TAG, "Task complete +" + expGain);
 
             //reset progress
             mProgress -= currentEvent.getDuration();
@@ -198,7 +198,7 @@ public class EventQueue {
     }
 
     private void load(){
-        Log.i(TAG, "Loading event queue...");
+        //Log.i(TAG, "Loading event queue...");
         mQueue.clear();
 
         QuestCursorWrapper wrapper = queryEventQueue(null, null);
@@ -212,7 +212,7 @@ public class EventQueue {
                     if(weapon.length() > 0){
                         e.setItemReward(WeaponList.getInstance(mAppContext).getWeaponById(weapon));
                     }
-                    Log.i(TAG, "Loading event " + e.getDescription());
+                    //Log.i(TAG, "Loading event " + e.getDescription());
                     mQueue.add(e);
                     mProgress = bundle.progress;
 
@@ -242,11 +242,11 @@ public class EventQueue {
 
     //TODO: again, might want to put this in an asynctask
     public void save(){
-        Log.i(TAG, "Saving EventQueue");
+        //Log.i(TAG, "Saving EventQueue");
         mDatabase.delete(QuestDbSchema.EventQueueTable.NAME, null, null);
         for(int i = 0; i < mQueue.size(); i++){
             Event e = mQueue.get(i);
-            Log.i(TAG, "Saving " + e.getDescription() + " at position " + i);
+            //Log.i(TAG, "Saving " + e.getDescription() + " at position " + i);
             mDatabase.insert(QuestDbSchema.EventQueueTable.NAME, null, getEventContentValues(mQueue.get(i), i));
         }
     }

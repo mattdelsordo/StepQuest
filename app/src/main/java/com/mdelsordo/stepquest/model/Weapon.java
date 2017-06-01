@@ -230,7 +230,7 @@ public class Weapon implements Serializable{
         int base = (int)(mMaterial * 1337 * 0.1);
         if(mType == DEFAULT) base = 10;
         int price = base - (int)(base * calcDiscount(c));
-        Log.i(TAG, mName + " base price: " + base);
+        //Log.i(TAG, mName + " base price: " + base);
         return price;
     }
 

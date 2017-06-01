@@ -50,11 +50,11 @@ public class Boost {
     }
 
     public int getPrice(){
-        Log.i(TAG, "Base Price: " + BASE_PRICE);
+        //Log.i(TAG, "Base Price: " + BASE_PRICE);
         double timePrice = (PRICE_PER_TIME_INCREMENT * mDuration / LIST_GEN_TIME_INCREMENT);
-        Log.i(TAG, "Time Price: " + timePrice);
+        //Log.i(TAG, "Time Price: " + timePrice);
         double multPrice = (PRICE_PER_PERCENT_INCREMENT * mStepMultiplier / LIST_GEN_MULT_INCREMENT) - 500;
-        Log.i(TAG, "Mult Price: " + multPrice);
+        //Log.i(TAG, "Mult Price: " + multPrice);
         return (int) (BASE_PRICE + timePrice + multPrice);
     }
 
@@ -108,7 +108,7 @@ public class Boost {
     //calculates the maximum boost time for a constitution level
     public static int maxBoostTimeMillis(int constitution){
         int maxBoostTime = (int)(Math.pow(constitution, 2) - (4 * constitution));
-        Log.i(TAG, "Max boost time (min): " + maxBoostTime);
+        //Log.i(TAG, "Max boost time (min): " + maxBoostTime);
         int maxBoostTimeMillis = maxBoostTime * MINUTE;
         return maxBoostTimeMillis;
     }
@@ -116,7 +116,7 @@ public class Boost {
     //calculates the maximum available boost speed based off dexterity
     public static double maxBoostSpeed(int dexterity){
         double maxBoostAmnt = (0.004167 * Math.pow(dexterity, 2)) + (0.058 * dexterity) + 1;
-        Log.i(TAG, "Max boost speed multiplier: " + maxBoostAmnt);
+        //Log.i(TAG, "Max boost speed multiplier: " + maxBoostAmnt);
         return maxBoostAmnt;
     }
 }

@@ -89,7 +89,7 @@ public class ShopBoostFragment extends Fragment implements BoostOverListener{
                 //add weapon to player inventory
                 ActiveCharacter active = ActiveCharacter.getInstance(getContext());
                 active.setBoost(mQueuedBoost);
-                Log.i(TAG, "Duration = " + mQueuedBoost.getDuration());
+                //Log.i(TAG, "Duration = " + mQueuedBoost.getDuration());
                 getContext().startService(BoostTimerService.newInstance(getContext(), mQueuedBoost.getDuration()));
 
                 //subtract gold

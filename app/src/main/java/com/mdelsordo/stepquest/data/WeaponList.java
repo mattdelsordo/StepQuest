@@ -87,7 +87,7 @@ public class WeaponList {
     //fills a given list with a given list from xml
     private void fillGenericWeaponList(LinkedHashMap<String, Weapon> list, int arrayId){
         //load weapons from xml as strings
-        Log.i(TAG, "Loading weapon list...");
+        //Log.i(TAG, "Loading weapon list...");
         Resources res = mAppContext.getResources();
         TypedArray ta = res.obtainTypedArray(arrayId);
         int arrayLength = ta.length();
@@ -119,13 +119,13 @@ public class WeaponList {
 
         //testing
         for(Weapon w : list.values()){
-            Log.i(TAG, w.toString());
+            //Log.i(TAG, w.toString());
         }
     }
 
     private void fillLegendaryWeaponList(HashMap<String, Weapon> list, int arrayId){
         //load weapons from xml as strings
-        Log.i(TAG, "Loading legendary weapon list...");
+        //Log.i(TAG, "Loading legendary weapon list...");
         Resources res = mAppContext.getResources();
         TypedArray ta = res.obtainTypedArray(arrayId);
         int arrayLength = ta.length();
@@ -155,22 +155,22 @@ public class WeaponList {
 
         //testing
         for(Weapon w : list.values()){
-            Log.i(TAG, w.toString());
+            //Log.i(TAG, w.toString());
         }
     }
 
     //returns a weapon given an id
     public Weapon getWeaponById(String id){
-        Log.i(TAG, "Searching for " + id);
+        //Log.i(TAG, "Searching for " + id);
         if(id.equals("")) return null;
         for(LinkedHashMap<String, Weapon> map : mListList){
             Weapon w = map.get(id);
             if(w != null){
-                Log.i(TAG, "got " + w.toString());
+                //Log.i(TAG, "got " + w.toString());
                 return new Weapon(w);
             }
         }
-        Log.e(TAG, "NO SUCH ELEMENT: " + id);
+        //Log.e(TAG, "NO SUCH ELEMENT: " + id);
         throw new NoSuchElementException();
     }
 
