@@ -2,6 +2,7 @@
 <resources>
     <!-- Theme colors -->
 
+
     <color name="colorSecondary">#f44336</color>
     <color name="accent_dark">#ba000d</color>
     <color name="colorSecondaryLight">#ff7961</color>
@@ -30,4 +31,11 @@
     <color name="bad">#ca3333</color>
     <color name="neutral">#fad201</color>
     <color name="good">#33a532</color>
+
+
+    <!--<color name="primary">#4CAF50</color>
+    <color name="primary_dark">#388E3C</color>
+    <color name="primary_light">#C8E6C9</color>
+    <color name="accent">#FFC107</color>
+    <color name="accent_light">#fff350</color>-->
 </resources>

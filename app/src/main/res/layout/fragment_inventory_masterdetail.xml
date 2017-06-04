@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="project3.csc214.stepquest.ui.InventoryFragment">
+    tools:context="com.mdelsordo.stepquest.ui.InventoryFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

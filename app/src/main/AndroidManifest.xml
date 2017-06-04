@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="project3.csc214.stepquest">
+    package="com.mdelsordo.stepquest">
 
     <uses-permission android:name="android.Manifest.permission.CAMERA" />
     <uses-permission
@@ -17,7 +17,7 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.LoadingActivity"
+        <activity android:name="com.mdelsordo.stepquest.ui.LoadingActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,33 +26,33 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.MainActivity"
+            android:name="com.mdelsordo.stepquest.ui.MainActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"/>
-        <activity android:name=".ui.CharacterCreationActivity"
+        <activity android:name="com.mdelsordo.stepquest.ui.CharacterCreationActivity"
             android:screenOrientation="portrait"/>
 
         <service
-            android:name=".services.PedometerService"
+            android:name="com.mdelsordo.stepquest.services.PedometerService"
             android:exported="false"
             android:stopWithTask="true" />
 
-        <activity android:name=".ui.LevelUpActivity"
+        <activity android:name="com.mdelsordo.stepquest.ui.LevelUpActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".ui.ShopActivity"
-            android:parentActivityName=".ui.MainActivity"
+            android:name="com.mdelsordo.stepquest.ui.ShopActivity"
+            android:parentActivityName="com.mdelsordo.stepquest.ui.MainActivity"
             android:screenOrientation="portrait"/>
 
         <service
-            android:name=".services.BoostTimerService"
+            android:name="com.mdelsordo.stepquest.services.BoostTimerService"
             android:exported="false" />
 
-        <service android:name=".services.MusicManagerService"
+        <service android:name="com.mdelsordo.stepquest.services.MusicManagerService"
             android:stopWithTask="true"/>
 
-        <activity android:name=".ui.AdventureLogActivity"
-            android:parentActivityName=".ui.MainActivity"
+        <activity android:name="com.mdelsordo.stepquest.ui.AdventureLogActivity"
+            android:parentActivityName="com.mdelsordo.stepquest.ui.MainActivity"
             android:screenOrientation="portrait"></activity>
     </application>
 

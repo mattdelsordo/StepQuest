@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    tools:context="project3.csc214.stepquest.ui.StatManipulationFragment"
+    tools:context="com.mdelsordo.stepquest.ui.StatManipulationFragment"
     android:gravity="center">
 
     <Button
