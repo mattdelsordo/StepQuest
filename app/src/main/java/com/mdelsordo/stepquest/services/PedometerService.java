@@ -66,6 +66,7 @@ public class PedometerService extends Service implements SensorEventListener, Ev
         //TODO: this delay may be overkill
         mManager.registerListener(this, mStepSensor, SensorManager.SENSOR_DELAY_FASTEST);
 
+        /** THIS MUST BE COMMENTED OUT IN PRODUCTION **/
         //simulateSteps();
 
 
