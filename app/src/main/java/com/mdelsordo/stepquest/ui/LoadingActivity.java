@@ -18,6 +18,7 @@ import com.mdelsordo.stepquest.model.ActiveCharacter;
 import com.mdelsordo.stepquest.model.Character;
 import com.mdelsordo.stepquest.model.Dungeon;
 import com.mdelsordo.stepquest.model.EventQueue;
+import com.mdelsordo.stepquest.model.PlotQueue;
 import com.mdelsordo.stepquest.model.Race;
 import com.mdelsordo.stepquest.model.Vocation;
 import com.mdelsordo.stepquest.services.MusicManagerService;
@@ -100,6 +101,7 @@ public class LoadingActivity extends AppCompatActivity {
 
         @Override
         protected Character doInBackground(Void... params) {
+            PlotQueue.getInstance(LoadingActivity.this);
             return ActiveCharacter.getInstance(LoadingActivity.this).getActiveCharacter();
         }
 

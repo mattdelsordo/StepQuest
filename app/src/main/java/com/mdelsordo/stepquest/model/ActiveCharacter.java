@@ -4,7 +4,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import java.util.Collection;
 import java.util.Map;
@@ -96,6 +95,7 @@ public class ActiveCharacter{
         if(mExpListener != null) mExpListener.updateExpProgress(mCharacter);
 
         if(levelledUp){
+            PlotQueue.getInstance(mAppContext).advancePlot();
             if(mLevelUpListener != null) mLevelUpListener.doLevelUp();
             //else, notify user because this means the activity is dead
             else if(listener != null) listener.notifyUser(mCharacter.getName() + " grew to level " + mCharacter.getLevel());

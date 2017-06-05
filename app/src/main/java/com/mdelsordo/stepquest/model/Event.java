@@ -64,6 +64,7 @@ public class Event {
     //private int mExpReward; might just have exp scale with duration??
     private Weapon mItemReward;
     private boolean mDoNotify;
+    private boolean mAdvancePlot;
     private String mNotificationText;
 
     //designates what kind of event this is
@@ -132,6 +133,14 @@ public class Event {
 
     public void setEventClassTag(int mEventClassTag) {
         this.mEventClassTag = mEventClassTag;
+    }
+
+    public boolean doAdvancePlot() {
+        return mAdvancePlot;
+    }
+
+    public void setAdvancePlot(boolean mAdvancePlot) {
+        this.mAdvancePlot = mAdvancePlot;
     }
 
     public void setDoNotify(String notificationText){

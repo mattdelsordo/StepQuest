@@ -11,6 +11,7 @@ import com.mdelsordo.stepquest.R;
 import com.mdelsordo.stepquest.model.ActiveCharacter;
 import com.mdelsordo.stepquest.model.AdventureLog;
 import com.mdelsordo.stepquest.model.EventQueue;
+import com.mdelsordo.stepquest.model.PlotQueue;
 
 /**
  * Created by mdelsord on 5/2/17.
@@ -54,6 +55,7 @@ public class Saver {
             ActiveCharacter.getInstance(params[0]).save();
             EventQueue.getInstance(params[0]).save();
             AdventureLog.getInstance(params[0]).save();
+            PlotQueue.getInstance(params[0]).save();
             return null;
         }
     }

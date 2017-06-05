@@ -67,7 +67,7 @@ public class PedometerService extends Service implements SensorEventListener, Ev
         mManager.registerListener(this, mStepSensor, SensorManager.SENSOR_DELAY_FASTEST);
 
         /** THIS MUST BE COMMENTED OUT IN PRODUCTION **/
-        //simulateSteps();
+        simulateSteps();
 
 
         //set up save timer

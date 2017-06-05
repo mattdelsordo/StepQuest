@@ -4,7 +4,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -126,6 +125,7 @@ public class EventQueue {
             }
             //increment the number of monsters slain if its a monster
             if(currentEvent.getEventClassTag() == Event.MONSTER) AdventureLog.getInstance(mAppContext).addMonsterSlain();
+            if(currentEvent.doAdvancePlot()) PlotQueue.getInstance(mAppContext).advancePlot();
 
 
 
@@ -236,6 +236,19 @@ public class EventQueue {
         else values.put(QuestDbSchema.EventQueueTable.Params.WEAPON_ID, "");
 
         values.put(QuestDbSchema.EventQueueTable.Params.PROGRESS, mProgress);
+
+        if(event.doNotify()){
+            values.put(QuestDbSchema.EventQueueTable.Params.NOTIFY, 1);
+            values.put(QuestDbSchema.EventQueueTable.Params.NOTIFICATION_TEXT, event.getNotificationText());
+        }else{
+            values.put(QuestDbSchema.EventQueueTable.Params.NOTIFY, 0);
+            values.put(QuestDbSchema.EventQueueTable.Params.NOTIFICATION_TEXT, "");
+        }
+
+        if(event.doAdvancePlot()) values.put(QuestDbSchema.EventQueueTable.Params.ADVANCE_PLOT, 1);
+        else values.put(QuestDbSchema.EventQueueTable.Params.ADVANCE_PLOT, 0);
+
+        values.put(QuestDbSchema.EventQueueTable.Params.CLASS_TAG, event.getEventClassTag());
 
         return values;
     }

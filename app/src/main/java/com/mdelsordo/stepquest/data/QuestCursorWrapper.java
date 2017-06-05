@@ -72,8 +72,18 @@ public class QuestCursorWrapper extends CursorWrapper{
         String weapon = getString(getColumnIndex(QuestDbSchema.EventQueueTable.Params.WEAPON_ID));
         double progress = getDouble(getColumnIndex(QuestDbSchema.EventQueueTable.Params.PROGRESS));
 
+        int notifyInt = getInt(getColumnIndex(QuestDbSchema.EventQueueTable.Params.NOTIFY));
+        boolean notify = (notifyInt == 1) ? true : false;
+        String notification = getString(getColumnIndex(QuestDbSchema.EventQueueTable.Params.NOTIFICATION_TEXT));
+        int advanceInt = getInt(getColumnIndex(QuestDbSchema.EventQueueTable.Params.ADVANCE_PLOT));
+        boolean advance = (advanceInt == 1) ? true : false;
+        int classTag = getInt(getColumnIndex(QuestDbSchema.EventQueueTable.Params.CLASS_TAG));
+
         Event event = new Event(desc, duration);
         if(gold > 0) event.setGoldReward(gold);
+        event.setEventClassTag(classTag);
+        event.setAdvancePlot(advance);
+        if(notify){event.setDoNotify(notification);}
 
         return new EventBundle(order, event, weapon, progress);
     }
@@ -94,6 +104,11 @@ public class QuestCursorWrapper extends CursorWrapper{
         out.weapons = getInt(getColumnIndex(QuestDbSchema.StatisticsTable.Params.WEAPONS));
         out.dungeons = getInt(getColumnIndex(QuestDbSchema.StatisticsTable.Params.DUNGEONS));
         return out;
+    }
+
+    //get entry for plot queue
+    public String getPlotEntry(){
+        return getString(getColumnIndex(QuestDbSchema.PlotQueueTable.Params.TEXT));
     }
 
     /** Bundles to help move around information **/

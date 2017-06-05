@@ -53,6 +53,10 @@ public class QuestDbSchema {
             public static final String DURATION = "duration";
             public static final String GOLD = "gold";
             public static final String WEAPON_ID = "weapon_id";
+            public static final String NOTIFY = "do_notify";
+            public static final String NOTIFICATION_TEXT = "notification";
+            public static final String ADVANCE_PLOT = "advance";
+            public static final String CLASS_TAG = "class";
             public static final String PROGRESS = "progress";
         }
     }
@@ -77,6 +81,15 @@ public class QuestDbSchema {
             public static final String GOLD = "total_gold";
             public static final String WEAPONS = "total_weapons";
             public static final String DUNGEONS = "total_dungeons";
+        }
+    }
+
+    /** Schema for plot queue **/
+    public static final class PlotQueueTable{
+        public static final String NAME = "plot_queue_table";
+        public static final class Params{
+            public static final String ORDER = "ordering";
+            public static final String TEXT = "text";
         }
     }
 }

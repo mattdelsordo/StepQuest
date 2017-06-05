@@ -23,6 +23,7 @@ import com.mdelsordo.stepquest.data.Saver;
 import com.mdelsordo.stepquest.model.*;
 import com.mdelsordo.stepquest.services.BoostTimerService;
 import com.mdelsordo.stepquest.services.MusicManagerService;
+import com.mdelsordo.stepquest.util.BasicOKDialog;
 import com.mdelsordo.stepquest.util.FragmentTransitionBuilder;
 import com.mdelsordo.stepquest.util.InventorySoundListener;
 import com.mdelsordo.stepquest.util.NoPedometerDialog;
@@ -32,7 +33,7 @@ import com.mdelsordo.stepquest.services.PedometerService;
  * This Activity controls the rest of the app
  */
 
-public class MainActivity extends AppCompatActivity implements EventQueue.MakeToastListener, ActiveCharacter.LevelUpListener, SettingsFragment.SettingsListener, InventorySoundListener {
+public class MainActivity extends AppCompatActivity implements EventQueue.MakeToastListener, ActiveCharacter.LevelUpListener, SettingsFragment.SettingsListener, InventorySoundListener, PlotQueue.PlotAdvancedListener {
     private static final String TAG = "MainActivity";
     private static final String PREF_DONE_SENSOR_CHECK = "pref_has_sensor";
     private static final String CHECKED_SENSOR_THIS_RUN = "checked sensor this run";
@@ -118,10 +119,13 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
         //if(mPlayMusic) mMusicPlayer.resumeMusic();
         EventQueue.getInstance(getApplicationContext()).bindToastListener(this);
         ActiveCharacter.getInstance(this).bindLevelUpListener(this);
+        PlotQueue.getInstance(this).bindPlotListener(this);
 
         //check whether a level up is possible
         if(ActiveCharacter.getInstance(this).getActiveCharacter().getLvlUpTokenAmnt() > 0) doLevelUp();
-
+        else{
+            checkPlotAdvanced();
+        }
     }
 
     @Override
@@ -133,6 +137,7 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
 
         EventQueue.getInstance(getApplicationContext()).unbindToastListener();
         ActiveCharacter.getInstance(this).unbindLevelUpListener();
+        PlotQueue.getInstance(this).bindPlotListener(this);
     }
 
     @Override
@@ -281,5 +286,15 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
             unbindService(mSCon);
             mIsBound = false;
         }
+    }
+
+    @Override
+    public void popDialog() {
+        checkPlotAdvanced();
+    }
+
+    private void checkPlotAdvanced(){
+        String plotText = PlotQueue.getInstance(this).plotAvailable();
+        if(plotText != null) BasicOKDialog.newInstance(plotText).show(getSupportFragmentManager(), "Plot");
     }
 }

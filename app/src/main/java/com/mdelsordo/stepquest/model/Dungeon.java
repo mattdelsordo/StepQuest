@@ -119,7 +119,9 @@ public class Dungeon extends ArrayList<Event> {
         backstory.add(getWeapon);
         backstory.add(monster);
         backstory.add(new Event("Your family is very proud...", 4));
-        backstory.add(new Event("You decide to set out on your own to find the source of the monster...", 10));
+        Event leaveTown = new Event("You decide to set out on your own to find the source of the monster...", 10);
+        leaveTown.setAdvancePlot(true);
+        backstory.add(leaveTown);
         backstory.add(new Event("Leaving town...", 20));
 
         return backstory;

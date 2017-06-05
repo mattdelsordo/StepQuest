@@ -3,6 +3,9 @@ package com.mdelsordo.stepquest.data;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
+import com.mdelsordo.stepquest.util.Logger;
 
 /**
  * Created by mdelsord on 5/1/17.
@@ -10,6 +13,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 
 public class QuestDatabaseHelper extends SQLiteOpenHelper{
+    private static final String TAG = "DBHelper";
 
     public QuestDatabaseHelper(Context context){
         super(context, QuestDbSchema.DATABASE_NAME, null, QuestDbSchema.VERSION);
@@ -48,6 +52,10 @@ public class QuestDatabaseHelper extends SQLiteOpenHelper{
                 + QuestDbSchema.EventQueueTable.Params.DURATION + ", "
                 + QuestDbSchema.EventQueueTable.Params.GOLD + ", "
                 + QuestDbSchema.EventQueueTable.Params.WEAPON_ID + ", "
+                + QuestDbSchema.EventQueueTable.Params.NOTIFY + ", "
+                + QuestDbSchema.EventQueueTable.Params.NOTIFICATION_TEXT + ", "
+                + QuestDbSchema.EventQueueTable.Params.ADVANCE_PLOT + ", "
+                + QuestDbSchema.EventQueueTable.Params.CLASS_TAG+ ", "
                 + QuestDbSchema.EventQueueTable.Params.PROGRESS + ")");
 
         //create journal table
@@ -63,6 +71,11 @@ public class QuestDatabaseHelper extends SQLiteOpenHelper{
                 + QuestDbSchema.StatisticsTable.Params.GOLD + ", "
                 + QuestDbSchema.StatisticsTable.Params.WEAPONS + ", "
                 + QuestDbSchema.StatisticsTable.Params.DUNGEONS + ")");
+
+        db.execSQL("create table " + QuestDbSchema.PlotQueueTable.NAME
+            + "( " + QuestDbSchema.PlotQueueTable.Params.ORDER + " PRIMARY KEY, "
+            + QuestDbSchema.PlotQueueTable.Params.TEXT + ")");
+        //Log.i(TAG, "Tables created");
 
     }
 
