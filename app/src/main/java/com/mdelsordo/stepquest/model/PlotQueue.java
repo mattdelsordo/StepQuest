@@ -48,10 +48,12 @@ public class PlotQueue {
 
     public void advancePlot(){
         mQuestStage++;
-        String plotToAdd = mPlotPoints[mQuestStage];
-        Logger.i(TAG, "added" + plotToAdd);
-        mPlotQueue.addLast(plotToAdd);
-        if(mPlotListener != null)mPlotListener.popDialog();
+        if(mQuestStage < mPlotPoints.length){
+            String plotToAdd = mPlotPoints[mQuestStage];
+            //Logger.i(TAG, "added" + plotToAdd);
+            mPlotQueue.addLast(plotToAdd);
+            if(mPlotListener != null)mPlotListener.popDialog();
+        }
     }
 
     public String plotAvailable(){
