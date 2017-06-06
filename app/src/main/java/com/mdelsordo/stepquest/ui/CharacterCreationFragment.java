@@ -21,9 +21,11 @@ import android.widget.Toast;
 
 import com.mdelsordo.stepquest.R;
 import com.mdelsordo.stepquest.model.Die;
+import com.mdelsordo.stepquest.model.EffectPlayer;
 import com.mdelsordo.stepquest.model.Race;
 import com.mdelsordo.stepquest.model.Stats;
 import com.mdelsordo.stepquest.model.Vocation;
+import com.mdelsordo.stepquest.util.BasicOKDialog;
 
 /**
  * This fragment handles creating a new character
@@ -175,6 +177,50 @@ public class CharacterCreationFragment extends Fragment {
             mStats = savedInstanceState.getIntArray(ARG_STATS);
             updateAllStatViews();
         }
+
+        //handle stat information buttons
+        Button strInfo = (Button)view.findViewById(R.id.b_create_strinfo);
+        strInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new BasicOKDialog().newInstance(getString(R.string.explainSTR)).show(getActivity().getSupportFragmentManager(), "Explaination");
+            }
+        });
+        Button dexInfo = (Button)view.findViewById(R.id.b_create_dexinfo);
+        dexInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new BasicOKDialog().newInstance(getString(R.string.explainDEX)).show(getActivity().getSupportFragmentManager(), "Explaination");
+            }
+        });
+        Button conInfo = (Button)view.findViewById(R.id.b_create_coninfo);
+        conInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new BasicOKDialog().newInstance(getString(R.string.explainCON)).show(getActivity().getSupportFragmentManager(), "Explaination");
+            }
+        });
+        Button intInfo = (Button)view.findViewById(R.id.b_create_intinfo);
+        intInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new BasicOKDialog().newInstance(getString(R.string.explainINT)).show(getActivity().getSupportFragmentManager(), "Explaination");
+            }
+        });
+        Button wisInfo = (Button)view.findViewById(R.id.b_create_wisinfo);
+        wisInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new BasicOKDialog().newInstance(getString(R.string.explainWIS)).show(getActivity().getSupportFragmentManager(), "Explaination");
+            }
+        });
+        Button chrInfo = (Button)view.findViewById(R.id.b_create_chrinfo);
+        chrInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new BasicOKDialog().newInstance(getString(R.string.explainCHR)).show(getActivity().getSupportFragmentManager(), "Explaination");
+            }
+        });
 
         return view;
     }

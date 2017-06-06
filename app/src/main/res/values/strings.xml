@@ -21,12 +21,12 @@
     <string name="chr">CHR:</string>
     <string name="error_name_required">You gotta name your dude!</string>
 
-    <string name="explainSTR">Strength (STR) affects your progress when wielding blades!</string>
-    <string name="explainDEX">Dexterity (DEX) affects your progress when wielding bows and influences the strength of the boosts you can activate!</string>
-    <string name="explainCON">Constitution (CON) affects your progress when wielding blunt weapons and influences the duration of the boosts you can activate!</string>
-    <string name="explainINT">Intelligence (INT) affects your progress when wielding wands and staffs!</string>
-    <string name="explainWIS">Wisdom (WIS) influences how much experience you gain when completing a task!</string>
-    <string name="explainCHR">Charisma (CHR) influences the prices of items in the shop!</string>
+    <string name="explainSTR">Strength (STR) is a measure of your muscular and athletic prowess, and affects your skill with blade-based weapons.</string>
+    <string name="explainDEX">Dexterity (DEX) is a measure of your speed and reflexes, and affects your skill with bows and influences the strength of available boosts.</string>
+    <string name="explainCON">Constitution (CON) measures your overall physical health, and affects your skill with blunt weapons and the duration of available boosts.</string>
+    <string name="explainINT">Intelligence (INT) is your mental and analytical skill, and affects your skill wands and staffs.</string>
+    <string name="explainWIS">Wisdom (WIS) represents your reasoning ability and perception, and influences how much experience you gain when completing a task.</string>
+    <string name="explainCHR">Charisma (CHR) is a measure of your likability and confidence, and influences the prices of items in the shop.</string>
 
     <string-array name="class_choices">
         <item>Warrior</item>

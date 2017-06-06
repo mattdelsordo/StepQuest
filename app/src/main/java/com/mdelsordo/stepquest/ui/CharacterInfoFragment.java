@@ -62,7 +62,6 @@ public class CharacterInfoFragment extends Fragment implements ActiveCharacter.E
             @Override
             public void onClick(View v) {
                 new BasicOKDialog().newInstance(getString(R.string.explainSTR)).show(getActivity().getSupportFragmentManager(), "Explaination");
-                mSoundListener.playEffect(EffectPlayer.DIALOG);
             }
         });
         mDEX.setOnClickListener(new View.OnClickListener() {
@@ -70,7 +69,6 @@ public class CharacterInfoFragment extends Fragment implements ActiveCharacter.E
 
             public void onClick(View v) {
                 new BasicOKDialog().newInstance(getString(R.string.explainDEX)).show(getActivity().getSupportFragmentManager(), "Explaination");
-                mSoundListener.playEffect(EffectPlayer.DIALOG);
             }
         });
         mCON.setOnClickListener(new View.OnClickListener() {
@@ -78,7 +76,6 @@ public class CharacterInfoFragment extends Fragment implements ActiveCharacter.E
 
             public void onClick(View v) {
                 new BasicOKDialog().newInstance(getString(R.string.explainCON)).show(getActivity().getSupportFragmentManager(), "Explaination");
-                mSoundListener.playEffect(EffectPlayer.DIALOG);
             }
         });
         mINT.setOnClickListener(new View.OnClickListener() {
@@ -86,7 +83,6 @@ public class CharacterInfoFragment extends Fragment implements ActiveCharacter.E
 
             public void onClick(View v) {
                 new BasicOKDialog().newInstance(getString(R.string.explainINT)).show(getActivity().getSupportFragmentManager(), "Explaination");
-                mSoundListener.playEffect(EffectPlayer.DIALOG);
             }
         });
         mWIS.setOnClickListener(new View.OnClickListener() {
@@ -94,7 +90,6 @@ public class CharacterInfoFragment extends Fragment implements ActiveCharacter.E
 
             public void onClick(View v) {
                 new BasicOKDialog().newInstance(getString(R.string.explainWIS)).show(getActivity().getSupportFragmentManager(), "Explaination");
-                mSoundListener.playEffect(EffectPlayer.DIALOG);
             }
         });
         mCHR.setOnClickListener(new View.OnClickListener() {
@@ -102,7 +97,6 @@ public class CharacterInfoFragment extends Fragment implements ActiveCharacter.E
 
             public void onClick(View v) {
                 new BasicOKDialog().newInstance(getString(R.string.explainCHR)).show(getActivity().getSupportFragmentManager(), "Explaination");
-                mSoundListener.playEffect(EffectPlayer.DIALOG);
             }
         });
 
