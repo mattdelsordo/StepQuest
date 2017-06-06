@@ -2,17 +2,21 @@ package com.mdelsordo.stepquest.ui;
 
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.mdelsordo.stepquest.R;
 import com.mdelsordo.stepquest.model.Stats;
+import com.mdelsordo.stepquest.util.BasicOKDialog;
 
 /**
  * Handles the increment/decrement buttons for each individual stat
@@ -38,7 +42,8 @@ public class StatManipulationFragment extends Fragment {
     }
 
     private TextView mStatIndicator;
-    private Button mIncrement, mDecrement;
+    private ImageButton mIncrement, mDecrement;
+    private Button mStatInfo;
     private int mStat, mOriginal;
 
     @Override
@@ -50,10 +55,13 @@ public class StatManipulationFragment extends Fragment {
         mStat = getArguments().getInt(ARG_STAT);
         mOriginal = getArguments().getInt(ARG_ORIGINAL);
 
+        mStatInfo = (Button)view.findViewById(R.id.b_statmanip_statinfo);
+        initializeStatInfo();
+
         mStatIndicator = (TextView)view.findViewById(R.id.textview_statmanip_text);
         updateStatIndicator();
 
-        mDecrement = (Button)view.findViewById(R.id.button_statmanip_decrement);
+        mDecrement = (ImageButton)view.findViewById(R.id.button_statmanip_decrement);
         mDecrement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,7 +73,7 @@ public class StatManipulationFragment extends Fragment {
             }
         });
 
-        mIncrement = (Button)view.findViewById(R.id.button_statmanip_increment);
+        mIncrement = (ImageButton)view.findViewById(R.id.button_statmanip_increment);
         mIncrement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,7 +105,62 @@ public class StatManipulationFragment extends Fragment {
     }
 
     public void updateStatIndicator(){
-        mStatIndicator.setText(Stats.statToText(mStat) + ": " + mOriginal);
+        mStatIndicator.setText(mOriginal);
+        if(mOriginal < 7) mStatIndicator.setTextColor(ContextCompat.getColor(getContext(), R.color.bad));
+        else if(mOriginal > 13) mStatIndicator.setTextColor(ContextCompat.getColor(getContext(), R.color.good));
+        else mStatIndicator.setTextColor(ContextCompat.getColor(getContext(), R.color.neutral));
+    }
+
+    public void initializeStatInfo(){
+        Drawable draw;
+        String text;
+        final String infoText;
+        switch(mStat){
+            case Stats.STR:
+                text = getString(R.string.str);
+                draw = getResources().getDrawable(R.drawable.ic_strength);
+                infoText = getString(R.string.explainSTR);
+                break;
+            case Stats.DEX:
+                text = getString(R.string.dex);
+                draw = getResources().getDrawable(R.drawable.ic_dexterity);
+                infoText = getString(R.string.explainDEX);
+                break;
+            case Stats.CON:
+                text = getString(R.string.con);
+                draw = getResources().getDrawable(R.drawable.ic_constitution);
+                infoText = getString(R.string.explainCON);
+                break;
+            case Stats.INT:
+                text = getString(R.string.intelligence_abbrev);
+                draw = getResources().getDrawable(R.drawable.ic_intelligence);
+                infoText = getString(R.string.explainINT);
+                break;
+            case Stats.WIS:
+                text = getString(R.string.wis);
+                draw = getResources().getDrawable(R.drawable.ic_wisdom);
+                infoText = getString(R.string.explainWIS);
+                break;
+            case Stats.CHR:
+                text = getString(R.string.chr);
+                draw = getResources().getDrawable(R.drawable.ic_charisma);
+                infoText = getString(R.string.explainCHR);
+                break;
+            default:
+                text = getString(R.string.unknown_parameter);
+                draw = getResources().getDrawable(R.drawable.ic_misc);
+                infoText = getString(R.string.unknown_parameter);
+                break;
+        }
+
+        mStatInfo.setText(text);
+        mStatInfo.setCompoundDrawablesWithIntrinsicBounds(draw, null, null, null);
+        mStatInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new BasicOKDialog().newInstance(infoText).show(getActivity().getSupportFragmentManager(), "Explaination");
+            }
+        });
     }
 
     public interface StatManipListener{

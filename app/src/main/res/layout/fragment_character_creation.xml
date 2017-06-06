@@ -1,7 +1,8 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.mdelsordo.stepquest.ui.CharacterCreationFragment">
 
 
@@ -9,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:id="@+id/layout_creation_top">
 
         <FrameLayout
@@ -76,7 +77,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_below="@+id/layout_creation_top"
         android:gravity="center">
 
         <LinearLayout
@@ -93,19 +93,20 @@
                 android:layout_height="wrap_content"
                 android:gravity="center">
 
-                <TextView
+                <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/str"
                     android:textSize="26sp"
-                    android:paddingEnd="2dp"/>
+                    android:drawableStart="@drawable/ic_strength"
+                    android:id="@+id/b_create_strinfo"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/default_stat_value"
                     android:textSize="26sp"
-                    android:paddingStart="2dp"
+                    android:paddingStart="4dp"
                     android:id="@+id/textview_create_strval"
                     android:textStyle="bold"/>
 
@@ -117,19 +118,20 @@
                 android:layout_height="wrap_content"
                 android:gravity="center">
 
-                <TextView
+                <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/dex"
                     android:textSize="26sp"
-                    android:paddingEnd="2dp"/>
+                    android:drawableStart="@drawable/ic_dexterity"
+                    android:id="@+id/b_create_dexinfo"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/default_stat_value"
                     android:textSize="26sp"
-                    android:paddingStart="2dp"
+                    android:paddingStart="4dp"
                     android:id="@+id/textview_create_dexval"
                     android:textStyle="bold"/>
 
@@ -150,19 +152,20 @@
                 android:layout_height="wrap_content"
                 android:gravity="center">
 
-                <TextView
+                <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/con"
                     android:textSize="26sp"
-                    android:paddingEnd="2dp"/>
+                    android:drawableStart="@drawable/ic_constitution"
+                    android:id="@+id/b_create_coninfo"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/default_stat_value"
                     android:textSize="26sp"
-                    android:paddingStart="2dp"
+                    android:paddingStart="4dp"
                     android:id="@+id/textview_create_conval"
                     android:textStyle="bold"/>
 
@@ -174,19 +177,20 @@
                 android:layout_height="wrap_content"
                 android:gravity="center">
 
-                <TextView
+                <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/intelligence_abbrev"
                     android:textSize="26sp"
-                    android:paddingEnd="2dp" />
+                    android:drawableStart="@drawable/ic_intelligence"
+                    android:id="@+id/b_create_intinfo"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/default_stat_value"
                     android:textSize="26sp"
-                    android:paddingStart="2dp"
+                    android:paddingStart="4dp"
                     android:id="@+id/textview_create_intval"
                     android:textStyle="bold"/>
 
@@ -207,19 +211,20 @@
                 android:layout_height="wrap_content"
                 android:gravity="center">
 
-                <TextView
+                <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/wis"
                     android:textSize="26sp"
-                    android:paddingEnd="2dp"/>
+                    android:drawableStart="@drawable/ic_wisdom"
+                    android:id="@+id/b_create_wisinfo"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/default_stat_value"
                     android:textSize="26sp"
-                    android:paddingStart="2dp"
+                    android:paddingStart="4dp"
                     android:id="@+id/textview_create_wisval"
                     android:textStyle="bold"/>
 
@@ -231,19 +236,20 @@
                 android:layout_height="wrap_content"
                 android:gravity="center">
 
-                <TextView
+                <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/chr"
                     android:textSize="26sp"
-                    android:paddingEnd="2dp"/>
+                    android:drawableStart="@drawable/ic_charisma"
+                    android:id="@+id/b_create_chrinfo"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/default_stat_value"
                     android:textSize="26sp"
-                    android:paddingStart="2dp"
+                    android:paddingStart="4dp"
                     android:id="@+id/textview_create_chrval"
                     android:textStyle="bold"/>
 
@@ -254,17 +260,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/roll"
-            android:id="@+id/button_create_generateStats"/>
+            android:id="@+id/button_create_generateStats"
+            android:drawableStart="@drawable/ic_dice"
+            android:drawableEnd="@drawable/ic_dice"/>
     </LinearLayout>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
         android:text="@string/create"
         android:id="@+id/button_create_create"/>
 
-</RelativeLayout>
+</LinearLayout>

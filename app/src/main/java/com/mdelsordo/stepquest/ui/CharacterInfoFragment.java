@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -58,51 +59,51 @@ public class CharacterInfoFragment extends Fragment implements ActiveCharacter.E
         mExpProgress = (ProgressBar)view.findViewById(R.id.progressbar_character_exp);
 
         //on click listeners to provide information to the player
-        mSTR.setOnClickListener(new View.OnClickListener() {
+        LinearLayout lstr = (LinearLayout)view.findViewById(R.id.ll_character_str);
+        lstr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 new BasicOKDialog().newInstance(getString(R.string.explainSTR)).show(getActivity().getSupportFragmentManager(), "Explaination");
-                mSoundListener.playEffect(EffectPlayer.DIALOG);
             }
         });
-        mDEX.setOnClickListener(new View.OnClickListener() {
+        LinearLayout ldex = (LinearLayout)view.findViewById(R.id.ll_character_dex);
+        ldex.setOnClickListener(new View.OnClickListener() {
             @Override
 
             public void onClick(View v) {
                 new BasicOKDialog().newInstance(getString(R.string.explainDEX)).show(getActivity().getSupportFragmentManager(), "Explaination");
-                mSoundListener.playEffect(EffectPlayer.DIALOG);
             }
         });
-        mCON.setOnClickListener(new View.OnClickListener() {
+        LinearLayout lcon = (LinearLayout)view.findViewById(R.id.ll_character_con);
+        lcon.setOnClickListener(new View.OnClickListener() {
             @Override
 
             public void onClick(View v) {
                 new BasicOKDialog().newInstance(getString(R.string.explainCON)).show(getActivity().getSupportFragmentManager(), "Explaination");
-                mSoundListener.playEffect(EffectPlayer.DIALOG);
             }
         });
-        mINT.setOnClickListener(new View.OnClickListener() {
+        LinearLayout lint = (LinearLayout)view.findViewById(R.id.ll_character_int);
+        lint.setOnClickListener(new View.OnClickListener() {
             @Override
 
             public void onClick(View v) {
                 new BasicOKDialog().newInstance(getString(R.string.explainINT)).show(getActivity().getSupportFragmentManager(), "Explaination");
-                mSoundListener.playEffect(EffectPlayer.DIALOG);
             }
         });
-        mWIS.setOnClickListener(new View.OnClickListener() {
+        LinearLayout lwis = (LinearLayout)view.findViewById(R.id.ll_character_wis);
+        lwis.setOnClickListener(new View.OnClickListener() {
             @Override
 
             public void onClick(View v) {
                 new BasicOKDialog().newInstance(getString(R.string.explainWIS)).show(getActivity().getSupportFragmentManager(), "Explaination");
-                mSoundListener.playEffect(EffectPlayer.DIALOG);
             }
         });
-        mCHR.setOnClickListener(new View.OnClickListener() {
+        LinearLayout lchr = (LinearLayout)view.findViewById(R.id.ll_character_chr);
+        lchr.setOnClickListener(new View.OnClickListener() {
             @Override
 
             public void onClick(View v) {
                 new BasicOKDialog().newInstance(getString(R.string.explainCHR)).show(getActivity().getSupportFragmentManager(), "Explaination");
-                mSoundListener.playEffect(EffectPlayer.DIALOG);
             }
         });
 
