@@ -137,7 +137,7 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
 
         EventQueue.getInstance(getApplicationContext()).unbindToastListener();
         ActiveCharacter.getInstance(this).unbindLevelUpListener();
-        PlotQueue.getInstance(this).bindPlotListener(this);
+        PlotQueue.getInstance(this).unbindPlotListener();
     }
 
     @Override

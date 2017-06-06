@@ -80,7 +80,7 @@ public class StatManipulationFragment extends Fragment {
                 mOriginal++;
                 updateStatIndicator();
                 mListener.statIncremented(mStat);
-//                if(pointsLeft == 0) mIncrement.setEnabled(false);
+//   tri             if(pointsLeft == 0) mIncrement.setEnabled(false);
 //                mDecrement.setEnabled(true);
             }
         });
@@ -97,15 +97,25 @@ public class StatManipulationFragment extends Fragment {
     //updates the buttons based on some parameters
     public void updateButtons(int increments, int pointsLeft){
         //Log.i(TAG, Stats.statToText(mStat) + ": " + increments + " " + pointsLeft);
-        if(increments > 0) mDecrement.setEnabled(true);
-        else mDecrement.setEnabled(false);
+        if(increments > 0){
+            showButton(mDecrement, true);
+        }
+        else{
+            showButton(mDecrement, false);
+        }
 
-        if(pointsLeft > 0) mIncrement.setEnabled(true);
-        else mIncrement.setEnabled(false);
+        if(pointsLeft > 0) showButton(mIncrement, true);
+        else showButton(mIncrement, false);
+    }
+
+    private void showButton(ImageButton button, boolean visibility){
+        button.setEnabled(visibility);
+        if(visibility)button.setVisibility(View.VISIBLE);
+        else button.setVisibility(View.INVISIBLE);
     }
 
     public void updateStatIndicator(){
-        mStatIndicator.setText(mOriginal);
+        mStatIndicator.setText(Integer.toString(mOriginal));
         if(mOriginal < 7) mStatIndicator.setTextColor(ContextCompat.getColor(getContext(), R.color.bad));
         else if(mOriginal > 13) mStatIndicator.setTextColor(ContextCompat.getColor(getContext(), R.color.good));
         else mStatIndicator.setTextColor(ContextCompat.getColor(getContext(), R.color.neutral));

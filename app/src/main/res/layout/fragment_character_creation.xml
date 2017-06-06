@@ -90,46 +90,50 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:gravity="center">
+                android:layout_height="wrap_content">
 
                 <Button
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/str"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="2"
                     android:textSize="26sp"
                     android:drawableStart="@drawable/ic_strength"
-                    android:id="@+id/b_create_strinfo"/>
+                    android:id="@+id/b_create_strinfo" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/default_stat_value"
+                    android:layout_weight="1"
                     android:textSize="26sp"
                     android:paddingStart="4dp"
                     android:id="@+id/textview_create_strval"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:gravity="center">
+                android:layout_height="wrap_content">
 
                 <Button
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/dex"
+                    android:layout_marginStart="10dp"
                     android:textSize="26sp"
                     android:drawableStart="@drawable/ic_dexterity"
-                    android:id="@+id/b_create_dexinfo"/>
+                    android:id="@+id/b_create_dexinfo"
+                    android:layout_weight="2"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/default_stat_value"
+                    android:layout_weight="1"
                     android:textSize="26sp"
                     android:paddingStart="4dp"
                     android:id="@+id/textview_create_dexval"
@@ -149,20 +153,22 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:gravity="center">
+                android:layout_height="wrap_content">
 
                 <Button
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
                     android:text="@string/con"
+                    android:layout_weight="2"
                     android:textSize="26sp"
                     android:drawableStart="@drawable/ic_constitution"
                     android:id="@+id/b_create_coninfo"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="@string/default_stat_value"
                     android:textSize="26sp"
                     android:paddingStart="4dp"
@@ -174,20 +180,22 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:gravity="center">
+                android:layout_height="wrap_content">
 
                 <Button
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:layout_marginStart="10dp"
                     android:text="@string/intelligence_abbrev"
                     android:textSize="26sp"
                     android:drawableStart="@drawable/ic_intelligence"
                     android:id="@+id/b_create_intinfo"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="@string/default_stat_value"
                     android:textSize="26sp"
                     android:paddingStart="4dp"
@@ -208,20 +216,22 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:gravity="center">
+                android:layout_height="wrap_content">
 
                 <Button
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:layout_marginStart="10dp"
                     android:text="@string/wis"
                     android:textSize="26sp"
                     android:drawableStart="@drawable/ic_wisdom"
                     android:id="@+id/b_create_wisinfo"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="@string/default_stat_value"
                     android:textSize="26sp"
                     android:paddingStart="4dp"
@@ -233,20 +243,22 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:gravity="center">
+                android:layout_height="wrap_content">
 
                 <Button
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:layout_marginStart="10dp"
                     android:text="@string/chr"
                     android:textSize="26sp"
                     android:drawableStart="@drawable/ic_charisma"
                     android:id="@+id/b_create_chrinfo"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="@string/default_stat_value"
                     android:textSize="26sp"
                     android:paddingStart="4dp"
