@@ -17,6 +17,7 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
 
+import com.mdelsordo.stepquest.BuildConfig;
 import com.mdelsordo.stepquest.R;
 import com.mdelsordo.stepquest.data.Saver;
 import com.mdelsordo.stepquest.model.EventQueue;
@@ -67,7 +68,7 @@ public class PedometerService extends Service implements SensorEventListener, Ev
         mManager.registerListener(this, mStepSensor, SensorManager.SENSOR_DELAY_FASTEST);
 
         /** THIS MUST BE COMMENTED OUT IN PRODUCTION **/
-        simulateSteps();
+        if(BuildConfig.DEBUG)simulateSteps();
 
 
         //set up save timer
