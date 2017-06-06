@@ -90,48 +90,130 @@
                 style="@style/ProgressBarStyle"
                 android:id="@+id/progressbar_character_exp"/>
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/default_str_display"
-                android:textSize="20sp"
-                android:id="@+id/textview_character_str"
-                android:padding="2dp"/>
+                android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/default_dex_display"
-                android:textSize="20sp"
-                android:id="@+id/textview_character_dex"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:id="@+id/ll_character_str">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/default_con_display"
-                android:textSize="20sp"
-                android:id="@+id/textview_character_con"/>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_strength"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/default_int_display"
-                android:textSize="20sp"
-                android:id="@+id/textview_character_int"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/default_str_display"
+                        android:textSize="20sp"
+                        android:id="@+id/textview_character_str"
+                        android:padding="2dp"
+                        android:layout_gravity="start"/>
+                </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/default_wis_display"
-                android:textSize="20sp"
-                android:id="@+id/textview_character_wis"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/default_chr_display"
-                android:textSize="20sp"
-                android:id="@+id/textview_character_chr"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:id="@+id/ll_character_dex">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_dexterity"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/default_dex_display"
+                        android:textSize="20sp"
+                        android:id="@+id/textview_character_dex"/>
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:id="@+id/ll_character_con">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_constitution"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/default_con_display"
+                        android:textSize="20sp"
+                        android:id="@+id/textview_character_con"/>
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:id="@+id/ll_character_int">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_intelligence"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/default_int_display"
+                        android:textSize="20sp"
+                        android:id="@+id/textview_character_int"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:id="@+id/ll_character_wis">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_wisdom"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/default_wis_display"
+                        android:textSize="20sp"
+                        android:id="@+id/textview_character_wis"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:id="@+id/ll_character_chr">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_charisma"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/default_chr_display"
+                        android:textSize="20sp"
+                        android:id="@+id/textview_character_chr" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+
 
         </LinearLayout>
     </LinearLayout>

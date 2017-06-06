@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -58,41 +59,47 @@ public class CharacterInfoFragment extends Fragment implements ActiveCharacter.E
         mExpProgress = (ProgressBar)view.findViewById(R.id.progressbar_character_exp);
 
         //on click listeners to provide information to the player
-        mSTR.setOnClickListener(new View.OnClickListener() {
+        LinearLayout lstr = (LinearLayout)view.findViewById(R.id.ll_character_str);
+        lstr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 new BasicOKDialog().newInstance(getString(R.string.explainSTR)).show(getActivity().getSupportFragmentManager(), "Explaination");
             }
         });
-        mDEX.setOnClickListener(new View.OnClickListener() {
+        LinearLayout ldex = (LinearLayout)view.findViewById(R.id.ll_character_dex);
+        ldex.setOnClickListener(new View.OnClickListener() {
             @Override
 
             public void onClick(View v) {
                 new BasicOKDialog().newInstance(getString(R.string.explainDEX)).show(getActivity().getSupportFragmentManager(), "Explaination");
             }
         });
-        mCON.setOnClickListener(new View.OnClickListener() {
+        LinearLayout lcon = (LinearLayout)view.findViewById(R.id.ll_character_con);
+        lcon.setOnClickListener(new View.OnClickListener() {
             @Override
 
             public void onClick(View v) {
                 new BasicOKDialog().newInstance(getString(R.string.explainCON)).show(getActivity().getSupportFragmentManager(), "Explaination");
             }
         });
-        mINT.setOnClickListener(new View.OnClickListener() {
+        LinearLayout lint = (LinearLayout)view.findViewById(R.id.ll_character_int);
+        lint.setOnClickListener(new View.OnClickListener() {
             @Override
 
             public void onClick(View v) {
                 new BasicOKDialog().newInstance(getString(R.string.explainINT)).show(getActivity().getSupportFragmentManager(), "Explaination");
             }
         });
-        mWIS.setOnClickListener(new View.OnClickListener() {
+        LinearLayout lwis = (LinearLayout)view.findViewById(R.id.ll_character_wis);
+        lwis.setOnClickListener(new View.OnClickListener() {
             @Override
 
             public void onClick(View v) {
                 new BasicOKDialog().newInstance(getString(R.string.explainWIS)).show(getActivity().getSupportFragmentManager(), "Explaination");
             }
         });
-        mCHR.setOnClickListener(new View.OnClickListener() {
+        LinearLayout lchr = (LinearLayout)view.findViewById(R.id.ll_character_chr);
+        lchr.setOnClickListener(new View.OnClickListener() {
             @Override
 
             public void onClick(View v) {
