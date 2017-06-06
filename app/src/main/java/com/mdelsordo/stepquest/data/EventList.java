@@ -120,10 +120,10 @@ public class EventList {
         for(String[] a : array){
             Event monster = new Event(a[0], Integer.parseInt(a[1]));
             if(a.length > 2) monster.setGoldReward(Integer.parseInt(a[2]));
-            if(assign_gold) monster.setGoldReward((int)(monster.getDuration() * 0.05) + rand.nextInt(100));
+            if(assign_gold) monster.setGoldReward((int)(monster.getDuration() * 0.05) + rand.nextInt(10));
             if(a.length > 3) monster.setItemReward(WeaponList.getInstance(mAppContext).getWeaponById(a[3]));
             else if(assign_drop){
-                int chance = rand.nextInt(10);
+                int chance = rand.nextInt(20);
                 if(chance == 6) monster.setItemReward(WeaponList.getInstance(mAppContext).getRandomLevelledWeapon(ActiveCharacter.getInstance(mAppContext).getActiveCharacter().getLevel()));
             }
             monster.setEventClassTag(tag);
