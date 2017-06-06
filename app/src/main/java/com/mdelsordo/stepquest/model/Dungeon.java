@@ -126,4 +126,19 @@ public class Dungeon extends ArrayList<Event> {
 
         return backstory;
     }
+
+    public static Dungeon finalBoss(Context context){
+        Dungeon finalBoss = new Dungeon();
+
+        Event approach = new Event("Cresting the mountain...", 100);
+        approach.setAdvancePlot(true);
+        finalBoss.add(approach);
+
+        Event boss = new Event("In combat with the Eagle God...", Event.getChallengeRating(Event.amountOfCRs() - 1) + 10000);
+        boss.setAdvancePlot(true);
+        boss.setDoNotify(ActiveCharacter.getInstance(context).getActiveCharacter().getName() + " slew the Eagle God!");
+
+        finalBoss.add(boss);
+        return finalBoss;
+    }
 }

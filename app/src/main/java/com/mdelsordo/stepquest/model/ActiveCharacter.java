@@ -99,6 +99,9 @@ public class ActiveCharacter{
             if(mLevelUpListener != null) mLevelUpListener.doLevelUp();
             //else, notify user because this means the activity is dead
             else if(listener != null) listener.notifyUser(mCharacter.getName() + " grew to level " + mCharacter.getLevel());
+            if(mCharacter.getLevel() == Character.LEVEL_CAP){
+                EventQueue.getInstance(mAppContext).addEvents(Dungeon.finalBoss(mAppContext));
+            }
         }
     }
 

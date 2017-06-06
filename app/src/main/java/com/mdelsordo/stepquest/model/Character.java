@@ -12,6 +12,7 @@ import java.io.Serializable;
 public class Character implements Serializable{
 
     private static final int BASE_LEVELUP_EXP = 200; //How much it takes to go from lvl one to lvl 2, in steps (??)
+    public static final int LEVEL_CAP = 20;
 
     private static final String TAG = "Character";
 
@@ -115,7 +116,7 @@ public class Character implements Serializable{
     //returns true if a level up took place
     public boolean addExp(int exp){
         //dont add exp if level >= 20
-        if(getLevel() < 20){
+        if(getLevel() < LEVEL_CAP){
             mExp += exp;
             boolean levelledUp = false;
 
