@@ -77,11 +77,8 @@ public class ActiveCharacter{
         if(i == null) return false;
         else if(i < 1) return false;
         else if(i == 1){
-            if(weapon.equals(getEquippedWeapon())) return false;
-            else{
-                mWeaponSet.remove(weapon);
-                return true;
-            }
+            mWeaponSet.remove(weapon);
+            return true;
         }
         else{
             mWeaponSet.put(weapon, i - 1);
