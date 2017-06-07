@@ -133,4 +133,7 @@
     <string name="junk">Junk</string>
     <string name="make_the_sale">Make the sale</string>
     <string name="ok">OK</string>
+    <string name="price_0g">Price: 0</string>
+    <string name="duration_mins">Duration</string>
+    <string name="bonus">Bonus</string>
 </resources>

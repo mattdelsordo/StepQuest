@@ -66,7 +66,7 @@ public class ShopActivity extends AppCompatActivity implements ShopFragmentListe
                         return true;
                     case R.id.m_shop_boosts:
                         if(mPlayEffects)mEffectPlayer.play(EffectPlayer.CLICK);
-                        if(!(current instanceof ShopBoostFragment))swapFragment(new ShopBoostFragment(), FragmentTransitionBuilder.rightToLeft(ShopActivity.this));
+                        swapFragment(new ShopBoostFragment(), FragmentTransitionBuilder.rightToLeft(ShopActivity.this));
                         return true;
                     default: return false;
                 }

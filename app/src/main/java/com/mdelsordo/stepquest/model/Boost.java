@@ -4,6 +4,7 @@ import android.util.Log;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -14,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 public class Boost {
     private static final String TAG = "Boost";
     private static final int HOUR = 3600000;
-    private static final int MINUTE = 60000;
+    public static final int MINUTE = 60000;
     private static final int LIST_GEN_TIME_INCREMENT = MINUTE * 10;
     private static final double LIST_GEN_MULT_INCREMENT = 0.1;
 
@@ -118,5 +119,23 @@ public class Boost {
         double maxBoostAmnt = (0.004167 * Math.pow(dexterity, 2)) + (0.058 * dexterity) + 1;
         //Log.i(TAG, "Max boost speed multiplier: " + maxBoostAmnt);
         return maxBoostAmnt;
+    }
+
+    public static String[] getStringListOfTimes(int constitution){
+        ArrayList<String> times = new ArrayList<>();
+        int maxBoostTime = maxBoostTimeMillis(constitution);
+        for(int i = LIST_GEN_TIME_INCREMENT; i <= maxBoostTime; i+= LIST_GEN_TIME_INCREMENT){
+            times.add(Integer.toString(i / MINUTE) + " mins");
+        }
+        return times.toArray(new String[times.size()]);
+    }
+
+    public static String[] getStringListofSpeeds(int dexterity){
+        ArrayList<String> speeds = new ArrayList<>();
+        double maxBoostAmnt = maxBoostSpeed(dexterity);
+        for(double j = 1.0 + LIST_GEN_MULT_INCREMENT; j <= maxBoostAmnt; j+= LIST_GEN_MULT_INCREMENT){
+            speeds.add("x" + String.format("%.2f", j));
+        }
+        return speeds.toArray(new String[speeds.size()]);
     }
 }
