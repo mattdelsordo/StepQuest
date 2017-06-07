@@ -22,36 +22,41 @@ import com.mdelsordo.stepquest.util.Logger;
 
 public class Saver {
     private static final String TAG = "Saver";
+    private static boolean dontSave;
 
     public static void saveAll(Context context, boolean displayToast){
-        Logger.i(TAG, "Saving game...");
-//        ActiveCharacter.getInstance(context).save();
-//        EventQueue.getInstance(context).save();
-        new SaveTask().execute(context);
+        if(!dontSave){
+            new SaveTask().execute(context);
 
-        if(displayToast){
-            try{
-                TypedValue tv = new TypedValue();
-                int height = 400;
-                if(context.getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true)){
-                    height = TypedValue.complexToDimensionPixelSize(tv.data, context.getResources().getDisplayMetrics());
+            if(displayToast){
+                try{
+                    TypedValue tv = new TypedValue();
+                    int height = 400;
+                    if(context.getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true)){
+                        height = TypedValue.complexToDimensionPixelSize(tv.data, context.getResources().getDisplayMetrics());
+                    }
+                    Toast toast = Toast.makeText(context, context.getString(R.string.game_saved), Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.TOP|Gravity.RIGHT, 10, height + 10);
+                    toast.show();
+                }catch(Exception e){
+                    //Log.e(TAG, "Saver hit exception displaying toast.", e);
                 }
-                Toast toast = Toast.makeText(context, context.getString(R.string.game_saved), Toast.LENGTH_SHORT);
-                toast.setGravity(Gravity.TOP|Gravity.RIGHT, 10, height + 10);
-                toast.show();
-            }catch(Exception e){
-                //Log.e(TAG, "Saver hit exception displaying toast.", e);
             }
         }
     }
 
     //deletes everything from the sql table/sharedPreferences
     public static void deleteAll(Context context){
-        context.getApplicationContext().deleteDatabase(QuestDbSchema.DATABASE_NAME);
-        PreferenceManager.getDefaultSharedPreferences(context).edit().clear().apply();
+        new DeleteTask().execute(context);
     }
 
     private static class SaveTask extends AsyncTask<Context, Void, Void>{
+
+        @Override
+        protected void onPreExecute() {
+            Logger.i(TAG, "Saving game...");
+            super.onPreExecute();
+        }
 
         @Override
         protected Void doInBackground(Context... params) {
@@ -60,8 +65,35 @@ public class Saver {
             AdventureLog.getInstance(params[0]).save();
             PlotQueue.getInstance(params[0]).save();
 
-
             return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            Logger.i(TAG, "Saving finished.");
+            super.onPostExecute(aVoid);
+        }
+    }
+
+    private static class DeleteTask extends AsyncTask<Context, Void, Void>{
+        @Override
+        protected void onPreExecute() {
+            Logger.i(TAG, "Deleting game...");
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Void doInBackground(Context... params) {
+            params[0].getApplicationContext().deleteDatabase(QuestDbSchema.DATABASE_NAME);
+            PreferenceManager.getDefaultSharedPreferences(params[0]).edit().clear().apply();
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            dontSave = true;
+            Logger.i(TAG, "Delete finished.");
+            super.onPostExecute(aVoid);
         }
     }
 }
