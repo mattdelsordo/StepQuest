@@ -146,7 +146,7 @@ public class EventList {
     public Event getRandomEvent(int level){
         Event selectedEvent = new Event(mEvents.get(rand.nextInt(mEvents.size())));
 
-        int CR = selectLevelFromThree(level - 3);
+        int CR = selectLevelFromThree(level - 2);
         int duration = Event.getChallengeRating(CR);
         selectedEvent.setDuration(duration);
         return selectedEvent;

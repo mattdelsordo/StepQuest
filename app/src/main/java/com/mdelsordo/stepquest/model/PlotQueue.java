@@ -101,7 +101,7 @@ public class PlotQueue {
 
         //load quest stage
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mAppContext);
-        prefs.getInt(PREF_QUEST_STAGE, -1);
+        mQuestStage = prefs.getInt(PREF_QUEST_STAGE, -1);
     }
 
     private ContentValues getEntryContentValues(String text, int order){
