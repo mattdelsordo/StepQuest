@@ -65,7 +65,7 @@ public class InventoryFragment extends Fragment implements ActiveCharacter.Funds
         //get and set up recyclerview
         mRecycler = (RecyclerView)view.findViewById(R.id.recyclerview_inventory);
         mRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
-        updateUI();
+        //updateUI();
 
         return view;
     }
@@ -80,6 +80,8 @@ public class InventoryFragment extends Fragment implements ActiveCharacter.Funds
         super.onResume();
         ActiveCharacter.getInstance(getContext()).bindFundsUpdater(this);
         ActiveCharacter.getInstance(getContext()).bindWeaponListener(this);
+
+        updateUI();
     }
 
     @Override

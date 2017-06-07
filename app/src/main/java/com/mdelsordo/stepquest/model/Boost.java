@@ -26,7 +26,7 @@ public class Boost {
     private String mDesc;
     private String mName;
 
-    public Boost(double multiplier, int duration){
+    public Boost(double multiplier, long duration){
         mDuration = duration;
         mStepMultiplier = multiplier;
         mDesc = makeDesc(mDuration, mStepMultiplier);

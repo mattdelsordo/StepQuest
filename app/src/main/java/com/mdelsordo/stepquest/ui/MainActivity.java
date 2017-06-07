@@ -21,8 +21,7 @@ import android.widget.Toast;
 import com.mdelsordo.stepquest.R;
 import com.mdelsordo.stepquest.data.Saver;
 import com.mdelsordo.stepquest.model.*;
-import com.mdelsordo.stepquest.services.BoostTimerService;
-import com.mdelsordo.stepquest.services.MusicManagerService;
+import com.mdelsordo.stepquest.services.*;
 import com.mdelsordo.stepquest.util.BasicOKDialog;
 import com.mdelsordo.stepquest.util.FragmentTransitionBuilder;
 import com.mdelsordo.stepquest.util.InventorySoundListener;
@@ -60,6 +59,11 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
 
         setTitle(getString(R.string.app_name));
 
+        //connect to pedometer service
+        startService(new Intent(getApplicationContext(), PedometerService.class));
+        //connect to saver service
+        startService(new Intent(getApplicationContext(), SaverService.class));
+
         //start up effect player
         mEffectPlayer = new EffectPlayer(this);
 
@@ -86,8 +90,7 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
         mPlayMusic = prefs.getBoolean(SettingsFragment.PREF_MUSIC, true);
         mPlayEffects = prefs.getBoolean(SettingsFragment.PREF_EFFECTS, true);
 
-        //connect to pedometer service
-        startService(new Intent(getApplicationContext(), PedometerService.class));
+
 
         //do check for pedometer
         boolean doneCheck = prefs.getBoolean(PREF_DONE_SENSOR_CHECK, false);
@@ -103,7 +106,13 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
         }
 
         //check whether the current boost should continue
-        if(prefs.getBoolean(BoostTimerService.PREF_BOOST_ACTIVE, false)) ActiveCharacter.getInstance(this).removeBoost();
+        long boostTimeRemaining = prefs.getLong(BoostTimerService.PREF_BOOST_TIME_REMAINING, -1);
+        if(boostTimeRemaining > 0){
+            Double boostMagnitude = Double.longBitsToDouble(prefs.getLong(BoostTimerService.PREF_BOOST_MAGNITUDE, 1));
+            Boost boost = new Boost(boostMagnitude, boostTimeRemaining);
+            ActiveCharacter.getInstance(this).setBoost(boost);
+            startService(BoostTimerService.newInstance(this, boostTimeRemaining));
+        }
     }
 
     //replaces the fragment in the main frame with another

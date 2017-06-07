@@ -22,6 +22,7 @@ import com.mdelsordo.stepquest.R;
 import com.mdelsordo.stepquest.data.Saver;
 import com.mdelsordo.stepquest.model.EventQueue;
 import com.mdelsordo.stepquest.ui.LoadingActivity;
+import com.mdelsordo.stepquest.util.Logger;
 
 
 /**
@@ -122,6 +123,7 @@ public class PedometerService extends Service implements SensorEventListener, Ev
     //make sure to save all
     @Override
     public void onDestroy() {
+        Log.i(TAG, "PedometerService on destroy called.");
         Saver.saveAll(getApplicationContext(), false);
         //mSaveHandler.removeCallbacksAndMessages(null);
         super.onDestroy();
@@ -150,5 +152,13 @@ public class PedometerService extends Service implements SensorEventListener, Ev
 
         NotificationManagerCompat m = NotificationManagerCompat.from(this);
         m.notify(0, notification);
+    }
+
+    //save the game's state before the task is removed
+    @Override
+    public void onTaskRemoved(Intent rootIntent) {
+        Log.i(TAG, "Task removed.");
+        Saver.saveAll(this, false);
+        super.onTaskRemoved(rootIntent);
     }
 }
