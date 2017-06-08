@@ -47,7 +47,7 @@
 
         <service
             android:name=".services.BoostTimerService"
-            android:stopWithTask="true"/>
+            android:stopWithTask="true" />
         <service
             android:name=".services.MusicManagerService"
             android:stopWithTask="true" />
@@ -60,7 +60,9 @@
         <service
             android:name=".services.SaverService"
             android:enabled="true"
-            android:exported="true"/>
+            android:exported="true" />
+
+        <activity android:name=".ui.TutorialActivity"></activity>
     </application>
 
 </manifest>

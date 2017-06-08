@@ -69,8 +69,10 @@ public class LoadingActivity extends AppCompatActivity {
             //save everything
             Saver.saveAll(this, false);
 
-            //start main activity
-            startActivityForResult(new Intent(this, MainActivity.class), MainActivity.RC);
+//            //start main activity
+//            startActivityForResult(new Intent(this, MainActivity.class), MainActivity.RC);
+            //show tutorial
+            startActivityForResult(TutorialActivity.newInstance(this, true), TutorialActivity.REQUEST_CODE);
 
         }
         else if(requestCode == MainActivity.RC && resultCode == MainActivity.RESULT_DELETE){
@@ -80,6 +82,10 @@ public class LoadingActivity extends AppCompatActivity {
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
             prefs.edit().clear().commit();
             finishAndRemoveTask();
+        }
+        else if(requestCode == TutorialActivity.REQUEST_CODE && resultCode == RESULT_OK){
+            //start main activity
+            startActivityForResult(new Intent(this, MainActivity.class), MainActivity.RC);
         }
         else finish();
     }

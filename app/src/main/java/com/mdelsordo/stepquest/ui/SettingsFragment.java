@@ -55,7 +55,7 @@ public class SettingsFragment extends Fragment {
         effectsAttribute.setText(Html.fromHtml("<a href=\"https://www.looperman.com/users/profile/796811\">Zac Wilkins</a>"));
         effectsAttribute.setMovementMethod(LinkMovementMethod.getInstance());
         TextView musicAttribute = (TextView)view.findViewById(R.id.textview_settings_musicattribute);
-        musicAttribute.setText(Html.fromHtml("<a href=\"https://www.freesound.org/people/LittleRobotSoundFactory/\">LittleRobotSoundFactory</a>"));
+        musicAttribute.setText(Html.fromHtml("<a href=\"http://soundbible.com/\">SoundBible.com</a>"));
         musicAttribute.setMovementMethod(LinkMovementMethod.getInstance());
 
         SharedPreferences prefsGet = PreferenceManager.getDefaultSharedPreferences(getContext());

@@ -222,6 +222,11 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
                 handled = true;
                 startActivity(new Intent(this, AdventureLogActivity.class));
                 break;
+            case R.id.menu_tutorial:
+                if(mPlayEffects)mEffectPlayer.play(EffectPlayer.CLICK);
+                handled = true;
+                startActivity(TutorialActivity.newInstance(this, false));
+                break;
             default: handled = super.onOptionsItemSelected(item);
         }
         return handled;
