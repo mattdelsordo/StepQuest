@@ -1,0 +1,55 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    tools:context="com.mdelsordo.stepquest.ui.StatManipulationFragment"
+    android:gravity="center">
+
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/chr"
+        android:textSize="18sp"
+        android:drawableStart="@drawable/ic_charisma"
+        android:layout_marginStart="4dp"
+        android:id="@+id/b_statmanip_statinfo"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_weight="2">
+        <ImageButton
+            android:layout_marginStart="4dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_decrement"
+            android:id="@+id/button_statmanip_decrement"
+            android:enabled="false"
+            android:visibility="invisible"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/textview_statmanip_text"
+            android:text="@string/default_stat_value"
+            android:textSize="24sp"
+            android:layout_margin="2dp"
+            android:gravity="center"/>
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_increment"
+            android:id="@+id/button_statmanip_increment"
+            android:layout_marginEnd="4dp"/>
+    </LinearLayout>
+
+
+
+</LinearLayout>

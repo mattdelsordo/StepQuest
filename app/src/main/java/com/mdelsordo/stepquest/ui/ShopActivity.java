@@ -45,6 +45,8 @@ public class ShopActivity extends AppCompatActivity implements ShopFragmentListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop);
 
+        setTitle(getString(R.string.shop_activity_title));
+
         //load sounds
         mEffectPlayer = new EffectPlayer(this);
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -66,7 +68,8 @@ public class ShopActivity extends AppCompatActivity implements ShopFragmentListe
                         return true;
                     case R.id.m_shop_boosts:
                         if(mPlayEffects)mEffectPlayer.play(EffectPlayer.CLICK);
-                        swapFragment(new ShopBoostFragment(), FragmentTransitionBuilder.rightToLeft(ShopActivity.this));
+                        if(!(current instanceof ShopBoostFragment))swapFragment(new ShopBoostFragment(), FragmentTransitionBuilder.rightToLeft(ShopActivity.this));
+                        else swapFragment(new ShopBoostFragment(), getSupportFragmentManager().beginTransaction());
                         return true;
                     default: return false;
                 }

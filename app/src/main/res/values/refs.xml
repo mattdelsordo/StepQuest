@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <item name="fragment_inventory_md" type="layout">@layout/fragment_inventory</item>
+    <item name="fragment_character_creation" type="layout">@layout/fragment_character_creation_scroll</item>
+    <item name="fragment_level_up" type="layout">@layout/fragment_level_up_small</item>
+    <item name="fragment_stat_manipulation" type="layout">@layout/fragment_stat_manipulation_small</item>
 </resources>

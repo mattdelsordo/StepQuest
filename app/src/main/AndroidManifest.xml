@@ -27,7 +27,8 @@
         <activity
             android:name=".ui.MainActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:uiOptions="splitActionBarWhenNarrow"/>
         <activity
             android:name=".ui.CharacterCreationActivity"
             android:screenOrientation="portrait" />
@@ -62,7 +63,8 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".ui.TutorialActivity"></activity>
+        <activity android:name=".ui.TutorialActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

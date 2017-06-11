@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/tv_shop_weaponname"
                 android:text="@string/weapon_name"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:layout_gravity="center"/>
 
         </LinearLayout>
@@ -44,7 +44,6 @@
                 android:layout_width="wrap_content"
                 android:layout_weight="0"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"
                 android:textStyle="bold"
                 android:text="@string/default_buff_text"
                 android:id="@+id/tv_shop_weaponbuff"/>
@@ -67,8 +66,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/tv_shop_weaponprice"
-                    android:text="@string/default_weapon_price"
-                    android:textSize="16sp" />
+                    android:text="@string/default_weapon_price" />
             </LinearLayout>
         </LinearLayout>
 

@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">LEG</string>
-    <string name="default_character_name">Character Name</string>
+    <string name="default_character_name">Name</string>
     <string name="default_race_class">Race Class</string>
     <string name="default_str_display">STR: 20</string>
     <string name="default_con_display">CON: 9</string>
@@ -140,4 +140,7 @@
     <string name="tutorial_title">Tutorial</string>
     <string name="help">Help</string>
     <string name="tutorial_reminder">You can revisit this tutorial from the menu at any time!</string>
+    <string name="shop_activity_title">Blacksmith</string>
+    <string name="advlog_activity_title">Adventure Log</string>
+    <string name="levelup_activity_title">Level Up!</string>
 </resources>

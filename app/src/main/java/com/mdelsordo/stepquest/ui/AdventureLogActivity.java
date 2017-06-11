@@ -36,6 +36,7 @@ public class AdventureLogActivity extends AppCompatActivity implements EventQueu
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adventure_log);
+        setTitle(getString(R.string.advlog_activity_title));
 
         //load sounds
         mEffectPlayer = new EffectPlayer(this);

@@ -28,6 +28,8 @@ import com.mdelsordo.stepquest.util.InventorySoundListener;
 import com.mdelsordo.stepquest.util.NoPedometerDialog;
 import com.mdelsordo.stepquest.services.PedometerService;
 
+import java.lang.reflect.Method;
+
 /**
  * This Activity controls the rest of the app
  */
@@ -57,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        setTitle(getString(R.string.app_name));
+        setTitle("");
 
         //connect to pedometer service
         startService(new Intent(getApplicationContext(), PedometerService.class));
@@ -230,6 +232,29 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
             default: handled = super.onOptionsItemSelected(item);
         }
         return handled;
+    }
+
+    //adds icons to the overflow menu
+    @Override
+    public boolean onMenuOpened(int featureId, Menu menu)
+    {
+        if(menu != null){
+            if(menu.getClass().getSimpleName().equals("MenuBuilder")){
+                try{
+                    Method m = menu.getClass().getDeclaredMethod(
+                            "setOptionalIconsVisible", Boolean.TYPE);
+                    m.setAccessible(true);
+                    m.invoke(menu, true);
+                }
+                catch(NoSuchMethodException e){
+                    Log.e(TAG, "onMenuOpened", e);
+                }
+                catch(Exception e){
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+        return super.onMenuOpened(featureId, menu);
     }
 
     @Override

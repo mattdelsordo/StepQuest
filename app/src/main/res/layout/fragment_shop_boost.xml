@@ -32,7 +32,7 @@ tools:context="com.mdelsordo.stepquest.ui.ShopBoostFragment">
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/price_0g"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 android:layout_gravity="center"
                 android:id="@+id/tv_boostshop_price"/>
             <ImageView
@@ -92,7 +92,7 @@ tools:context="com.mdelsordo.stepquest.ui.ShopBoostFragment">
             android:id="@+id/b_boostshop_buy"
             android:text="@string/purchase"
             android:layout_gravity="center"
-            android:textSize="20dp"
+            android:textSize="16dp"
             android:layout_margin="10dp"/>
     </LinearLayout>
 

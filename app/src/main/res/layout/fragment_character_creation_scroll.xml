@@ -1,94 +1,91 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.mdelsordo.stepquest.ui.CharacterCreationFragment">
-
-
-    <LinearLayout
+    android:fillViewport="true">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="10dp"
-        android:id="@+id/layout_creation_top">
-
-        <FrameLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:id="@+id/frame_creation_character"
-            android:layout_margin="4dp"
-            android:elevation="3dp"
-            android:outlineProvider="bounds"
-            android:clipToPadding="false">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/imageview_creation_class"
-                android:background="@color/warrior"
-                android:padding="2dp"/>
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/imageview_creation_race"
-                android:scaleType="fitXY"
-                android:adjustViewBounds="true"
-                android:src="@drawable/birdperson1"
-                android:padding="2dp"/>
-        </FrameLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="6dp"
-            android:layout_gravity="center"
-            android:gravity="center">
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/default_character_name"
-                android:id="@+id/edittext_creation_name"
-                android:textSize="20sp"
-                android:paddingBottom="5dp"/>
-
-            <Spinner
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/spinner_creation_race"
-                android:paddingBottom="5dp"
-                android:paddingTop="5dp"/>
-
-            <Spinner
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/spinner_creation_class"
-                android:paddingTop="5dp"/>
-
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:gravity="center">
+        tools:context="com.mdelsordo.stepquest.ui.CharacterCreationFragment">
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:divider="?android:attr/dividerHorizontal"
-            android:showDividers="middle"
-            android:layout_margin="4dp">
+            android:layout_marginTop="10dp"
+            android:id="@+id/layout_creation_top">
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:id="@+id/frame_creation_character"
+                android:layout_margin="4dp"
+                android:elevation="3dp"
+                android:outlineProvider="bounds"
+                android:clipToPadding="false">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/imageview_creation_class"
+                    android:background="@color/warrior"
+                    android:padding="2dp"/>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/imageview_creation_race"
+                    android:scaleType="fitXY"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/birdperson1"
+                    android:padding="2dp"/>
+            </FrameLayout>
 
             <LinearLayout
                 android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="2dp"
+                android:layout_gravity="center">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/default_character_name"
+                    android:id="@+id/edittext_creation_name"
+                    android:textSize="20sp"
+                    android:paddingBottom="5dp"/>
+
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/spinner_creation_race"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp"/>
+
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/spinner_creation_class"
+                    android:paddingTop="5dp"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_weight="1"
                 android:layout_height="wrap_content">
 
@@ -98,7 +95,7 @@
                     android:text="@string/str"
                     android:layout_marginStart="10dp"
                     android:layout_weight="2"
-                    android:textSize="26sp"
+                    android:textSize="24sp"
                     android:drawableStart="@drawable/ic_strength"
                     android:id="@+id/b_create_strinfo" />
 
@@ -107,7 +104,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/default_stat_value"
                     android:layout_weight="1"
-                    android:textSize="26sp"
+                    android:textSize="24sp"
                     android:paddingStart="4dp"
                     android:id="@+id/textview_create_strval"
                     android:textStyle="bold" />
@@ -115,7 +112,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_weight="1"
                 android:layout_height="wrap_content">
 
@@ -124,7 +121,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/dex"
                     android:layout_marginStart="10dp"
-                    android:textSize="26sp"
+                    android:textSize="24sp"
                     android:drawableStart="@drawable/ic_dexterity"
                     android:id="@+id/b_create_dexinfo"
                     android:layout_weight="2"/>
@@ -134,24 +131,16 @@
                     android:layout_height="wrap_content"
                     android:text="@string/default_stat_value"
                     android:layout_weight="1"
-                    android:textSize="26sp"
+                    android:textSize="24sp"
                     android:paddingStart="4dp"
                     android:id="@+id/textview_create_dexval"
                     android:textStyle="bold"/>
 
             </LinearLayout>
-        </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:divider="?android:attr/dividerHorizontal"
-            android:showDividers="middle"
-            android:layout_margin="4dp">
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_weight="1"
                 android:layout_height="wrap_content">
 
@@ -161,7 +150,7 @@
                     android:layout_marginStart="10dp"
                     android:text="@string/con"
                     android:layout_weight="2"
-                    android:textSize="26sp"
+                    android:textSize="24sp"
                     android:drawableStart="@drawable/ic_constitution"
                     android:id="@+id/b_create_coninfo"/>
 
@@ -170,7 +159,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/default_stat_value"
-                    android:textSize="26sp"
+                    android:textSize="24sp"
                     android:paddingStart="4dp"
                     android:id="@+id/textview_create_conval"
                     android:textStyle="bold"/>
@@ -178,7 +167,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_weight="1"
                 android:layout_height="wrap_content">
 
@@ -188,7 +177,7 @@
                     android:layout_weight="2"
                     android:layout_marginStart="10dp"
                     android:text="@string/intelligence_abbrev"
-                    android:textSize="26sp"
+                    android:textSize="24sp"
                     android:drawableStart="@drawable/ic_intelligence"
                     android:id="@+id/b_create_intinfo"/>
 
@@ -197,24 +186,16 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/default_stat_value"
-                    android:textSize="26sp"
+                    android:textSize="24sp"
                     android:paddingStart="4dp"
                     android:id="@+id/textview_create_intval"
                     android:textStyle="bold"/>
 
             </LinearLayout>
-        </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:divider="?android:attr/dividerHorizontal"
-            android:showDividers="middle"
-            android:layout_margin="4dp">
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_weight="1"
                 android:layout_height="wrap_content">
 
@@ -224,7 +205,7 @@
                     android:layout_weight="2"
                     android:layout_marginStart="10dp"
                     android:text="@string/wis"
-                    android:textSize="26sp"
+                    android:textSize="24sp"
                     android:drawableStart="@drawable/ic_wisdom"
                     android:id="@+id/b_create_wisinfo"/>
 
@@ -233,7 +214,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/default_stat_value"
-                    android:textSize="26sp"
+                    android:textSize="24sp"
                     android:paddingStart="4dp"
                     android:id="@+id/textview_create_wisval"
                     android:textStyle="bold"/>
@@ -241,7 +222,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_weight="1"
                 android:layout_height="wrap_content">
 
@@ -251,7 +232,7 @@
                     android:layout_weight="2"
                     android:layout_marginStart="10dp"
                     android:text="@string/chr"
-                    android:textSize="26sp"
+                    android:textSize="24sp"
                     android:drawableStart="@drawable/ic_charisma"
                     android:id="@+id/b_create_chrinfo"/>
 
@@ -260,32 +241,33 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/default_stat_value"
-                    android:textSize="26sp"
+                    android:textSize="24sp"
                     android:paddingStart="4dp"
                     android:id="@+id/textview_create_chrval"
                     android:textStyle="bold"/>
 
             </LinearLayout>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/roll"
+                android:id="@+id/button_create_generateStats"
+                android:drawableStart="@drawable/ic_dice"
+                android:drawableEnd="@drawable/ic_dice"/>
         </LinearLayout>
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/roll"
-            android:id="@+id/button_create_generateStats"
-            android:drawableStart="@drawable/ic_dice"
-            android:drawableEnd="@drawable/ic_dice"/>
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/create"
+            android:id="@+id/button_create_create"/>
+
     </LinearLayout>
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
-        android:text="@string/create"
-        android:id="@+id/button_create_create"/>
-
-</LinearLayout>
+</ScrollView>

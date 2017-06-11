@@ -18,8 +18,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/primary_light"
-        app:itemIconTint="@color/primary_dark"
-        app:itemTextColor="@color/primary_dark"
+        app:itemIconTint="@drawable/bottomnav_colors"
+        app:itemTextColor="@drawable/bottomnav_colors"
         app:menu="@menu/menu_log"
         android:id="@+id/bnv_shop"/>
 

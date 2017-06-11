@@ -29,7 +29,7 @@ public class LevelUpActivity extends AppCompatActivity implements LevelUpFragmen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level_up);
 
-        //setTitle(getString(R.string.you_levelled_up_allocate_your_stat_points));
+        setTitle(getString(R.string.levelup_activity_title));
 
         //put fragment in thing
         LevelUpFragment frag = (LevelUpFragment)getSupportFragmentManager().findFragmentById(R.id.frame_levelupfragment);
@@ -47,10 +47,8 @@ public class LevelUpActivity extends AppCompatActivity implements LevelUpFragmen
         if(mPlayEffects)mEffectPlayer.play(EffectPlayer.LEVEL_UP);
 
         //show prompt if this just got created
-        if(savedInstanceState!=null){
-            if(savedInstanceState.getBoolean(ARG_SHOW_PROMPT)){
-                BasicOKDialog.newInstance(getString(R.string.you_levelled_up_allocate_your_stat_points)).show(getSupportFragmentManager(),"Prompt");
-            }
+        if(savedInstanceState==null){
+            BasicOKDialog.newInstance(getString(R.string.you_levelled_up_allocate_your_stat_points)).show(getSupportFragmentManager(),"Prompt");
         }
     }
 
@@ -134,6 +132,6 @@ public class LevelUpActivity extends AppCompatActivity implements LevelUpFragmen
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putBoolean(ARG_SHOW_PROMPT, true);
+        outState.putBoolean(ARG_SHOW_PROMPT, false);
     }
 }
