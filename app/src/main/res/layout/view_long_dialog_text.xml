@@ -9,7 +9,7 @@
         android:text="@string/no_pedometer_message"
         android:gravity="center"
         android:textStyle="bold"
-        android:textSize="18dp"
+        android:textSize="16dp"
         android:layout_margin="10dp"
         android:id="@+id/textview_longdialog"/>
 

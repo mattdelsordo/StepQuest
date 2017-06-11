@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">LEG</string>
+    <string name="app_name">Step Quest</string>
     <string name="default_character_name">Name</string>
     <string name="default_race_class">Race Class</string>
     <string name="default_str_display">STR: 20</string>
@@ -88,7 +88,7 @@
     <string name="sound_effects_by">Sound effects from </string>
     <string name="littlerobotsoundfactory">SoundBible.com</string>
     <string name="misc_text">This activity doesn\'t do anything, I just couldn\'t figure out an appropriate place to implement up-navigation so here\'s an activity that has it.</string>
-    <string name="no_pedometer_message">LEG relies on your device\'s pedometer but it looks like your device doesn\'t have one! You can still use the game but it\'ll probably be really boring for you. Sorry!</string>
+    <string name="no_pedometer_message">Step Quest relies on your device\'s pedometer but it looks like your device doesn\'t have one! You can still use the game but it\'ll probably be really boring for you. Sorry!</string>
     <string name="delete_character_confirmation">Clicking yes will delete your character data and then close the game. Are you sure?</string>
     <string name="confirm_delete">Yes, this is what I want</string>
     <string name="refuse_delete">No way</string>
