@@ -107,7 +107,7 @@ public class TutorialActivity extends AppCompatActivity implements EventQueue.Ma
         private int[] mImageIds;
 
         public ImageAdapter(){
-            mImageIds = new int[]{R.drawable.temp_tutorial, R.drawable.temp_tutorial, R.drawable.temp_tutorial};
+            mImageIds = new int[]{R.drawable.tutorial1, R.drawable.tutorial3, R.drawable.tutorial4, R.drawable.tutorial5, R.drawable.tutorial6};
         }
 
         @Override

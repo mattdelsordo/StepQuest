@@ -13,7 +13,7 @@
         android:text="@string/chr"
         android:textSize="26sp"
         android:drawableStart="@drawable/ic_charisma"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="4dp"
         android:id="@+id/b_statmanip_statinfo"/>
 
     <LinearLayout
@@ -22,7 +22,7 @@
         android:gravity="center"
         android:layout_weight="2">
         <ImageButton
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="4dp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -47,7 +47,7 @@
             android:layout_weight="1"
             android:src="@drawable/ic_increment"
             android:id="@+id/button_statmanip_increment"
-            android:layout_marginEnd="20dp"/>
+            android:layout_marginEnd="4dp"/>
     </LinearLayout>
 
 

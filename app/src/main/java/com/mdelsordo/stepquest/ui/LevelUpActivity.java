@@ -15,6 +15,7 @@ import com.mdelsordo.stepquest.data.Saver;
 import com.mdelsordo.stepquest.model.EffectPlayer;
 import com.mdelsordo.stepquest.model.EventQueue;
 import com.mdelsordo.stepquest.services.MusicManagerService;
+import com.mdelsordo.stepquest.util.BasicOKDialog;
 
 public class LevelUpActivity extends AppCompatActivity implements LevelUpFragment.LevelUpDoneListener, EventQueue.MakeToastListener{
     private static final String TAG = "LevelUpActivity";
@@ -28,7 +29,7 @@ public class LevelUpActivity extends AppCompatActivity implements LevelUpFragmen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level_up);
 
-        setTitle(getString(R.string.you_levelled_up_allocate_your_stat_points));
+        //setTitle(getString(R.string.you_levelled_up_allocate_your_stat_points));
 
         //put fragment in thing
         LevelUpFragment frag = (LevelUpFragment)getSupportFragmentManager().findFragmentById(R.id.frame_levelupfragment);
@@ -44,6 +45,13 @@ public class LevelUpActivity extends AppCompatActivity implements LevelUpFragmen
 
         mEffectPlayer = new EffectPlayer(this);
         if(mPlayEffects)mEffectPlayer.play(EffectPlayer.LEVEL_UP);
+
+        //show prompt if this just got created
+        if(savedInstanceState!=null){
+            if(savedInstanceState.getBoolean(ARG_SHOW_PROMPT)){
+                BasicOKDialog.newInstance(getString(R.string.you_levelled_up_allocate_your_stat_points)).show(getSupportFragmentManager(),"Prompt");
+            }
+        }
     }
 
     @Override
@@ -120,5 +128,12 @@ public class LevelUpActivity extends AppCompatActivity implements LevelUpFragmen
     protected void onDestroy() {
         super.onDestroy();
         mEffectPlayer.release();
+    }
+
+    private static final String ARG_SHOW_PROMPT = "ARG_PROMPT";
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean(ARG_SHOW_PROMPT, true);
     }
 }
