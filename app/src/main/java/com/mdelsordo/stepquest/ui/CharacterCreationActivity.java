@@ -55,7 +55,7 @@ public class CharacterCreationActivity extends AppCompatActivity implements Char
             mMusicPlayer = binder.getService();
             mIsBound = true;
 
-            mMusicPlayer.play(MusicManagerService.MAIN_JINGLE);
+            if(!mMusicPlayer.isPlayingTrack(MusicManagerService.MAIN_JINGLE))mMusicPlayer.play(MusicManagerService.MAIN_JINGLE);
         }
 
         @Override

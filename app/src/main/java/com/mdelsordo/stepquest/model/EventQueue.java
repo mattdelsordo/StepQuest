@@ -264,4 +264,9 @@ public class EventQueue {
             mDatabase.insert(QuestDbSchema.EventQueueTable.NAME, null, getEventContentValues(mQueue.get(i), i));
         }
     }
+
+    //makes the active instance null
+    public static void deleteInstance(){
+        sEventQueue = null;
+    }
 }

@@ -300,6 +300,10 @@ public class ActiveCharacter{
         }
     }
 
+    //makes the active instance null
+    public static void deleteInstance(){
+        sActiveCharacter = null;
+    }
 
 }
 

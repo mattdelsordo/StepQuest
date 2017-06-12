@@ -42,6 +42,7 @@ public class PedometerService extends Service implements SensorEventListener, Ev
 
     private Handler mSaveHandler;
     private Runnable mSaveTimer;
+    private final Handler mStepHandler = new Handler();
 
     public class LocalBinder extends Binder{
         public PedometerService getService(){
@@ -107,14 +108,14 @@ public class PedometerService extends Service implements SensorEventListener, Ev
     //simluates steps because I can't actually do that at all on an emulator
     public void simulateSteps(){
         //Handler is suggested but I'm not totally clear on how that works
-        final Handler h = new Handler();
+        //final Handler h = new Handler();
         final int delay  = 1000;
 
-        h.postDelayed(new Runnable() {
+        mStepHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 mEventQueue.incrementProgress(PedometerService.this);
-                h.postDelayed(this, delay);
+                mStepHandler.postDelayed(this, delay);
             }
         }, delay);
 
@@ -123,8 +124,9 @@ public class PedometerService extends Service implements SensorEventListener, Ev
     //make sure to save all
     @Override
     public void onDestroy() {
-        Log.i(TAG, "PedometerService on destroy called.");
-        Saver.saveAll(getApplicationContext(), false);
+        Logger.i(TAG, "PedometerService on destroy called.");
+        if(mStepHandler != null)mStepHandler.removeCallbacksAndMessages(null);
+        //Saver.saveAll(getApplicationContext(), false);
         //mSaveHandler.removeCallbacksAndMessages(null);
         super.onDestroy();
     }
@@ -154,11 +156,11 @@ public class PedometerService extends Service implements SensorEventListener, Ev
         m.notify(0, notification);
     }
 
-    //save the game's state before the task is removed
-    @Override
-    public void onTaskRemoved(Intent rootIntent) {
-        Log.i(TAG, "Task removed.");
-        Saver.saveAll(this, false);
-        super.onTaskRemoved(rootIntent);
-    }
+//    //save the game's state before the task is removed
+//    @Override
+//    public void onTaskRemoved(Intent rootIntent) {
+//        Log.i(TAG, "Task removed.");
+//        Saver.saveAll(this, false);
+//        super.onTaskRemoved(rootIntent);
+//    }
 }

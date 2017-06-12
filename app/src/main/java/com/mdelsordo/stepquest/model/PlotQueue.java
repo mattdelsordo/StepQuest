@@ -23,7 +23,7 @@ import java.util.ArrayDeque;
 public class PlotQueue {
     private static final String TAG = "PlotQueue";
 
-    private static PlotQueue mPlot;
+    private static PlotQueue sPlot;
     private Context mAppContext;
     private final String[] mPlotPoints;
     private ArrayDeque<String> mPlotQueue;
@@ -42,8 +42,8 @@ public class PlotQueue {
     }
 
     public static synchronized PlotQueue getInstance(Context context){
-        if(mPlot == null) mPlot = new PlotQueue(context);
-        return mPlot;
+        if(sPlot == null) sPlot = new PlotQueue(context);
+        return sPlot;
     }
 
     public void advancePlot(){
@@ -132,4 +132,9 @@ public class PlotQueue {
         mPlotListener = pal;
     }
     public void unbindPlotListener(){mPlotListener = null;}
+
+    //makes the active instance null
+    public static void deleteInstance(){
+       sPlot = null;
+    }
 }

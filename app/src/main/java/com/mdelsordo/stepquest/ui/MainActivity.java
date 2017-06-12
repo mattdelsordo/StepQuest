@@ -25,6 +25,7 @@ import com.mdelsordo.stepquest.services.*;
 import com.mdelsordo.stepquest.util.BasicOKDialog;
 import com.mdelsordo.stepquest.util.FragmentTransitionBuilder;
 import com.mdelsordo.stepquest.util.InventorySoundListener;
+import com.mdelsordo.stepquest.util.Logger;
 import com.mdelsordo.stepquest.util.NoPedometerDialog;
 import com.mdelsordo.stepquest.services.PedometerService;
 
@@ -144,6 +145,7 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
         super.onPause();
         //if(mPlayMusic)mMusicPlayer.pauseMusic();
         //save everything
+        Logger.i(TAG, "Main saving");
         Saver.saveAll(this, false);
 
         EventQueue.getInstance(getApplicationContext()).unbindToastListener();

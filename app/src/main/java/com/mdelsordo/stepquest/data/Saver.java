@@ -22,10 +22,11 @@ import com.mdelsordo.stepquest.util.Logger;
 
 public class Saver {
     private static final String TAG = "Saver";
-    private static boolean dontSave;
+    public static boolean dontSave;
 
     public static void saveAll(Context context, boolean displayToast){
-        if(!dontSave){
+        //dont save ever if a delete just happened to prevent attempting to write to a nonexistent database
+        if(dontSave == false){
             new SaveTask().execute(context);
 
             if(displayToast){
@@ -60,6 +61,7 @@ public class Saver {
 
         @Override
         protected Void doInBackground(Context... params) {
+            Logger.i(TAG, "Doing save.");
             ActiveCharacter.getInstance(params[0]).save();
             EventQueue.getInstance(params[0]).save();
             AdventureLog.getInstance(params[0]).save();
@@ -84,6 +86,11 @@ public class Saver {
 
         @Override
         protected Void doInBackground(Context... params) {
+            Logger.i(TAG, "Doing delete.");
+            ActiveCharacter.getInstance(params[0]).deleteInstance();
+            EventQueue.getInstance(params[0]).deleteInstance();
+            AdventureLog.getInstance(params[0]).deleteInstance();
+            PlotQueue.getInstance(params[0]).deleteInstance();
             params[0].getApplicationContext().deleteDatabase(QuestDbSchema.DATABASE_NAME);
             PreferenceManager.getDefaultSharedPreferences(params[0]).edit().clear().apply();
             return null;

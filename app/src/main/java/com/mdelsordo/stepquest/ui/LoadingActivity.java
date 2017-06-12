@@ -21,8 +21,13 @@ import com.mdelsordo.stepquest.model.EventQueue;
 import com.mdelsordo.stepquest.model.PlotQueue;
 import com.mdelsordo.stepquest.model.Race;
 import com.mdelsordo.stepquest.model.Vocation;
+import com.mdelsordo.stepquest.services.BoostTimerService;
 import com.mdelsordo.stepquest.services.MusicManagerService;
 import com.mdelsordo.stepquest.services.PedometerService;
+import com.mdelsordo.stepquest.services.SaverService;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class LoadingActivity extends AppCompatActivity {
     public static final String TAG = "LoadingActivity";
@@ -45,6 +50,13 @@ public class LoadingActivity extends AppCompatActivity {
 //            startActivityForResult(CharacterCreationActivity.newInstance(this), CharacterCreationActivity.REQUEST_CHARACTER_INFO);
 //        }
 //        else startActivityForResult(new Intent(this, MainActivity.class), MainActivity.RC);
+
+//        new Timer().schedule(new TimerTask() {
+//            @Override
+//            public void run() {
+//                new LoadDataTask().execute();
+//            }
+//        }, 1000);
 
         new LoadDataTask().execute();
     }
@@ -77,11 +89,24 @@ public class LoadingActivity extends AppCompatActivity {
         }
         else if(requestCode == MainActivity.RC && resultCode == MainActivity.RESULT_DELETE){
             stopService(new Intent(LoadingActivity.this, PedometerService.class));
+            stopService(new Intent(LoadingActivity.this, BoostTimerService.class));
+            stopService(new Intent(LoadingActivity.this, SaverService.class));
+            //unbindService(mSCon);
             //Log.i(TAG, "Deleing data...");
             Saver.deleteAll(this);
-            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-            prefs.edit().clear().commit();
-            finishAndRemoveTask();
+//            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+//            prefs.edit().clear().commit();
+            //finishAndRemoveTask();
+            //System.exit(0);
+//            int pid = android.os.Process.myPid();
+//            android.os.Process.killProcess(pid);
+
+            new Timer().schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    new LoadDataTask().execute();
+                }
+            }, 1000);
         }
         else if(requestCode == TutorialActivity.REQUEST_CODE && resultCode == RESULT_OK){
             //start main activity

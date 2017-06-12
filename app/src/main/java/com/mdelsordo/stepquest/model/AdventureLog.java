@@ -232,4 +232,9 @@ public class AdventureLog {
             mDatabase.insert(QuestDbSchema.JournalQueueTable.NAME, null, getJournalEntryValues(logCopy.removeFirst(), i));
         }
     }
+
+    //makes the active instance null
+    public static void deleteInstance(){
+        sLog = null;
+    }
 }

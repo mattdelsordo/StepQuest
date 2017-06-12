@@ -12,6 +12,8 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.mdelsordo.stepquest.util.Logger;
+
 import java.io.IOException;
 
 /**
@@ -30,6 +32,7 @@ public class MusicManagerService extends Service implements MediaPlayer.OnErrorL
     private final IBinder mBinder = new MusicBinder();
     private MediaPlayer mPlayer;
     private int position = 0;
+    private String mCurrentTrack;
 
     public class MusicBinder extends Binder {
         public MusicManagerService getService(){
@@ -93,7 +96,9 @@ public class MusicManagerService extends Service implements MediaPlayer.OnErrorL
     //plays a track based on a path
     public void play(String musicPath){
         String fullPath = DIR_MUSIC + musicPath;
+
         //Log.i(TAG, "Attempting to play track " + fullPath);
+        Logger.i(TAG, "Previous: " + mCurrentTrack);
         try{
             AssetFileDescriptor afd = mAssets.openFd(fullPath);
 
@@ -102,6 +107,8 @@ public class MusicManagerService extends Service implements MediaPlayer.OnErrorL
             afd.close();
             mPlayer.setLooping(true);
             mPlayer.prepareAsync();
+            mCurrentTrack = musicPath;
+            Logger.i(TAG, "Now playing " + mCurrentTrack);
 
         }catch(IOException ioe){
             //Log.e(TAG, "Failed to play " + fullPath);
@@ -164,5 +171,9 @@ public class MusicManagerService extends Service implements MediaPlayer.OnErrorL
 
     public boolean isPlaying(){
         return mPlayer.isPlaying();
+    }
+
+    public boolean isPlayingTrack(String track){
+        return track.equals(mCurrentTrack);
     }
 }

@@ -22,6 +22,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.mdelsordo.stepquest.R;
+import com.mdelsordo.stepquest.data.Saver;
 import com.mdelsordo.stepquest.util.SureYouWantToDeleteDialog;
 
 /**
@@ -105,6 +106,7 @@ public class SettingsFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == SureYouWantToDeleteDialog.REQUEST_CODE && resultCode == Activity.RESULT_OK){
             //Saver.deleteAll(getContext());
+            //Saver.dontSave = true;
             mListener.quitDelete();
         }
     }
