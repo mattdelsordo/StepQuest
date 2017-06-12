@@ -143,4 +143,5 @@
     <string name="shop_activity_title">Blacksmith</string>
     <string name="advlog_activity_title">Adventure Log</string>
     <string name="levelup_activity_title">Level Up!</string>
+    <string name="equip_weapon_on_purchase">Equip weapon on purchase</string>
 </resources>

@@ -17,6 +17,7 @@
 
     <color name="background_holo_dark">#ff000000</color>
     <color name="background_holo_light">#fff3f3f3</color>
+    <color name="background_card">#88f3f3f3</color>
 
     <color name="warrior">#990000</color>
     <color name="ranger">#023c19</color>

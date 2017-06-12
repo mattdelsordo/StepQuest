@@ -4,7 +4,9 @@ package com.mdelsordo.stepquest.ui;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +18,8 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -47,12 +51,25 @@ public class ShopWeaponFragment extends Fragment {
     private RecyclerView mRecycler;
     private ShopFragmentListener mGoldListener;
     private Weapon mQueuedWeapon;
+    private CheckBox mEquipYN;
+    private static final String PREF_EQUIP_ON_BUY = "pref_equip_on_buy";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_shop_weapon, container, false);
+
+        mEquipYN = (CheckBox)view.findViewById(R.id.cb_shop_equip);
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        mEquipYN.setChecked(prefs.getBoolean(PREF_EQUIP_ON_BUY, true));
+        mEquipYN.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+                prefs.edit().putBoolean(PREF_EQUIP_ON_BUY, isChecked).apply();
+            }
+        });
 
         mRecycler = (RecyclerView)view.findViewById(R.id.rv_shop_weapons);
         //GridLayoutManager layout = new GridLayoutManager(getActivity(), COLUMN_COUNT);
@@ -83,7 +100,9 @@ public class ShopWeaponFragment extends Fragment {
 
                 //add weapon to player inventory
                 ActiveCharacter active = ActiveCharacter.getInstance(getContext());
-                active.addWeaponToInventory(new Weapon(mQueuedWeapon));
+                Weapon bought = new Weapon(mQueuedWeapon);
+                active.addWeaponToInventory(bought);
+                if(mEquipYN.isChecked())active.setEquippedWeapon(bought);
                 //subtract gold
                 int newGoldAmnt = active.getActiveCharacter().getFunds() - mQueuedWeapon.getPrice(active.getActiveCharacter());
                 active.getActiveCharacter().setFunds(newGoldAmnt);

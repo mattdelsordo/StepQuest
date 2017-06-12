@@ -55,6 +55,7 @@ public class Weapon implements Serializable{
     }
 
     //modifier factors in the material, the type, and the relevant stat
+    //!! The main modifier calculating method!!
     public double getModifier(Character character) {
         double base = mMaterial;
         //Log.i(TAG, "Base weapon modifier = " + base);
@@ -79,6 +80,7 @@ public class Weapon implements Serializable{
         }
     }
 
+    //calculates the part of the modifier from the stat bonus
     public double getStatModifier(Character character){
         double modifier = 0;
         if(mType == BLADE){
@@ -188,6 +190,7 @@ public class Weapon implements Serializable{
     public static class WeaponComparator implements Comparator<Weapon> {
         @Override
         public int compare(Weapon o1, Weapon o2) {
+            if(o1.getType() == DEFAULT) return -1;
             int materialComp = o1.getMaterial().compareTo(o2.getMaterial());
             if(materialComp == 0){
                 return o1.getName().compareTo(o2.getName());
