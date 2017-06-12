@@ -83,8 +83,7 @@ public class LoadingActivity extends AppCompatActivity {
 
 //            //start main activity
 //            startActivityForResult(new Intent(this, MainActivity.class), MainActivity.RC);
-            //show tutorial
-            startActivityForResult(TutorialActivity.newInstance(this, true), TutorialActivity.REQUEST_CODE);
+            startActivityForResult(new Intent(this, MainActivity.class), MainActivity.RC);
 
         }
         else if(requestCode == MainActivity.RC && resultCode == MainActivity.RESULT_DELETE){

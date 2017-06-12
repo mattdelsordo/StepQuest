@@ -32,11 +32,11 @@
         app:showAsAction="ifRoom|withText"
         android:title="@string/adventure_log"/>
 
-    <item
+    <!--item
         android:id="@+id/menu_tutorial"
         android:icon="@drawable/ic_misc_dark"
         app:showAsAction="withText"
-        android:title="@string/help"/>
+        android:title="@string/help"/-->
 
     <item
         android:id="@+id/menu_settings"

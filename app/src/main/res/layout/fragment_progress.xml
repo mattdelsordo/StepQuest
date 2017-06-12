@@ -40,10 +40,16 @@
             android:layout_weight="0"
             android:text="@string/default_step_cost_indicator"
             android:layout_gravity="center"
-            android:paddingEnd="10dp"
-            android:textSize="14sp"
             android:id="@+id/textview_progress_total"
             />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_step"
+            android:paddingEnd="10dp"/>
     </LinearLayout>
 
     <LinearLayout
