@@ -1,12 +1,18 @@
 package com.mdelsordo.stepquest.ui;
 
+import android.animation.Animator;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.transition.Explode;
+import android.transition.Slide;
+import android.transition.TransitionInflater;
 import android.util.Log;
+import android.view.View;
+import android.view.animation.AccelerateDecelerateInterpolator;
 
 import com.mdelsordo.stepquest.R;
 import com.mdelsordo.stepquest.services.MusicManagerService;
@@ -28,6 +34,7 @@ public class CharacterCreationActivity extends AppCompatActivity implements Char
         setContentView(R.layout.activity_character_creation);
 
         setTitle(getString(R.string.create_your_hero));
+
 
         //put fragment in frame
         fragment = (CharacterCreationFragment)getSupportFragmentManager().findFragmentById(R.id.frame_charactercreation);

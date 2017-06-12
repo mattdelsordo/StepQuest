@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -231,7 +232,7 @@ public class InventoryFragment extends Fragment implements ActiveCharacter.Funds
             mIcon.setImageResource(mWeapon.getDrawable());
 
             if(mWeapon.getId() == ActiveCharacter.getInstance(getContext()).getEquippedWeapon().getId()){
-                mView.findViewById(R.id.layout_weapon_background).setBackgroundColor(Color.rgb(255,215,0)); //should probably make this color a resource
+                mView.findViewById(R.id.layout_weapon_background).setBackgroundColor(ContextCompat.getColor(getContext(), R.color.accent)); //should probably make this color a resource
             }
         }
     }
