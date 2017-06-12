@@ -190,7 +190,7 @@ public class Weapon implements Serializable{
     public static class WeaponComparator implements Comparator<Weapon> {
         @Override
         public int compare(Weapon o1, Weapon o2) {
-            if(o1.getType() == DEFAULT) return -1;
+            //if(o1.getType() == DEFAULT) return -1;
             int materialComp = o1.getMaterial().compareTo(o2.getMaterial());
             if(materialComp == 0){
                 return o1.getName().compareTo(o2.getName());
