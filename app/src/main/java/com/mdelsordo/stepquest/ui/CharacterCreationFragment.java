@@ -1,15 +1,22 @@
 package com.mdelsordo.stepquest.ui;
 
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.animation.ValueAnimatorCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.LinearInterpolator;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -26,6 +33,9 @@ import com.mdelsordo.stepquest.model.Race;
 import com.mdelsordo.stepquest.model.Stats;
 import com.mdelsordo.stepquest.model.Vocation;
 import com.mdelsordo.stepquest.util.BasicOKDialog;
+import com.mdelsordo.stepquest.util.Logger;
+
+import java.util.Arrays;
 
 /**
  * This fragment handles creating a new character
@@ -41,6 +51,7 @@ public class CharacterCreationFragment extends Fragment {
     private TextView mStrView, mDexView, mConView, mIntView, mWisView, mChrView;
     private Button mRoll, mCreate;
     private CreationCompleteListener mListener;
+    private EffectPlayer mEffectPlayer;
 
     private int[] mStats = new int[Stats.STAT_VOLUME]; //stats
     private int mRace = Race.BIRDPERSON;
@@ -50,6 +61,11 @@ public class CharacterCreationFragment extends Fragment {
         // Required empty public constructor
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mEffectPlayer = new EffectPlayer(getContext());
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -143,7 +159,8 @@ public class CharacterCreationFragment extends Fragment {
         mRoll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                generateStats();
+                //generateStats();
+                animateDiceroll();
             }
         });
 
@@ -168,6 +185,7 @@ public class CharacterCreationFragment extends Fragment {
 
         //generate stats
         generateStats();
+        updateAllStatViews();
 
         //load stuff from the saved state
         if(savedInstanceState != null){
@@ -234,7 +252,7 @@ public class CharacterCreationFragment extends Fragment {
         mStats[Stats.WIS] = Die.d20();
         mStats[Stats.CHR] = Die.d20();
 
-        updateAllStatViews();
+        //updateAllStatViews();
     }
 
     private void updateAllStatViews(){
@@ -275,5 +293,45 @@ public class CharacterCreationFragment extends Fragment {
     //listener for this fragment
     public interface CreationCompleteListener{
         void creationComplete(Intent intent);
+    }
+
+    //animates the stat generation process
+    public void animateDiceroll(){
+        mRoll.setEnabled(false);
+        int[] oldstats = Arrays.copyOf(mStats, mStats.length);
+        generateStats();
+        ValueAnimator animator = ValueAnimator.ofInt(0, 20);
+        animator.setDuration(400);
+        animator.setInterpolator(new LinearInterpolator());
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                mStrView.setText(Integer.toString(Die.d20()));
+                mConView.setText(Integer.toString(Die.d20()));
+                mDexView.setText(Integer.toString(Die.d20()));
+                mIntView.setText(Integer.toString(Die.d20()));
+                mWisView.setText(Integer.toString(Die.d20()));
+                mChrView.setText(Integer.toString(Die.d20()));
+            }
+        });
+        animator.addListener(new AnimatorListenerAdapter(){
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                //Logger.i(TAG, Arrays.toString(mStats));
+
+                updateAllStatViews();
+                mRoll.setEnabled(true);
+            }
+        });
+        mEffectPlayer.play(EffectPlayer.DICE);
+        animator.start();
+
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mEffectPlayer.release();
     }
 }

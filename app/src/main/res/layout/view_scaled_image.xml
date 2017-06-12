@@ -5,6 +5,7 @@
     android:adjustViewBounds="true"
     android:scaleType="fitXY"
     android:layout_centerInParent="true"
-    android:id="@+id/iv_tutorial_recyclerimage">
+    android:id="@+id/iv_tutorial_recyclerimage"
+    android:layout_margin="4dp">
 
 </ImageView>
