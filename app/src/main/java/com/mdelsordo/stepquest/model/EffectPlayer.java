@@ -38,8 +38,9 @@ public class EffectPlayer {
     public static final String WAND = TRACKS_FOLDER + "/wand.wav";
     public static final String DIALOG = TRACKS_FOLDER + "/dialogOpen.wav";
     public static final String DICE = TRACKS_FOLDER + "/dice.wav";
+    public static final String ACHIEVEMENT = TRACKS_FOLDER + "/achievement.wav";
 
-    private static final int MAX_STREAMS = 5;
+    private static final int MAX_STREAMS = 8;
 
     public EffectPlayer(Context context){
         mAssets = context.getAssets();

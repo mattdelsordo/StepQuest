@@ -44,7 +44,7 @@ public class LevelUpActivity extends AppCompatActivity implements LevelUpFragmen
         mPlayEffects = prefs.getBoolean(SettingsFragment.PREF_EFFECTS, true);
 
         mEffectPlayer = new EffectPlayer(this);
-        if(mPlayEffects)mEffectPlayer.play(EffectPlayer.LEVEL_UP);
+        if(mPlayEffects)mEffectPlayer.play(EffectPlayer.ACHIEVEMENT);
 
         //show prompt if this just got created
         if(savedInstanceState==null){
