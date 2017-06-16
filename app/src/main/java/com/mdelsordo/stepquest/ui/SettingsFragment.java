@@ -90,8 +90,7 @@ public class SettingsFragment extends Fragment {
         mDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AppCompatActivity parent = (AppCompatActivity)v.getContext();
-                FragmentManager manager = parent.getSupportFragmentManager();
+                FragmentManager manager = getActivity().getSupportFragmentManager();
                 SureYouWantToDeleteDialog dialog = new SureYouWantToDeleteDialog();
                 dialog.setTargetFragment(SettingsFragment.this, SureYouWantToDeleteDialog.REQUEST_CODE);
                 dialog.show(manager, "DialogDelete");

@@ -5,6 +5,7 @@ import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 import android.media.AudioManager;
 import android.media.SoundPool;
+import android.os.Build;
 import android.util.Log;
 
 import java.io.IOException;
@@ -38,10 +39,19 @@ public class EffectPlayer {
     public static final String DIALOG = TRACKS_FOLDER + "/dialogOpen.wav";
     public static final String DICE = TRACKS_FOLDER + "/dice.wav";
 
+    private static final int MAX_STREAMS = 5;
+
     public EffectPlayer(Context context){
         mAssets = context.getAssets();
         mTrackList = new HashMap<>();
-        mSoundPool = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            mSoundPool = new SoundPool.Builder()
+                    .setMaxStreams(MAX_STREAMS)
+                    .build();
+        } else {
+            mSoundPool = new SoundPool(MAX_STREAMS, AudioManager.STREAM_MUSIC, 0);
+        }
 
         //load tracks
         String[] trackNames;

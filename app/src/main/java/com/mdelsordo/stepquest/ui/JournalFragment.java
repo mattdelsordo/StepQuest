@@ -3,6 +3,7 @@ package com.mdelsordo.stepquest.ui;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -114,7 +115,7 @@ public class JournalFragment extends Fragment implements AdventureLog.LogUpdateL
         public JournalEntryViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             LayoutInflater inflater = LayoutInflater.from(parent.getContext());
             View view = inflater.inflate(R.layout.view_journal_entry, parent, false);
-            view.setElevation(2);
+            ViewCompat.setElevation(view, 2);
             JournalEntryViewHolder holder = new JournalEntryViewHolder(view);
             return holder;
         }

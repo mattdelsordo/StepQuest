@@ -30,6 +30,6 @@ public class NoPedometerDialog extends DialogFragment {
         TextView text = (TextView)view.findViewById(R.id.textview_longdialog);
         text.setText(getString(R.string.no_pedometer_message));
 
-        return new AlertDialog.Builder(getActivity()).setView(view).setPositiveButton(R.string.no_pedometer_confirm, null).create();
+        return new AlertDialog.Builder(getActivity(), AlertDialog.THEME_HOLO_LIGHT).setView(view).setPositiveButton(R.string.no_pedometer_confirm, null).create();
     }
 }

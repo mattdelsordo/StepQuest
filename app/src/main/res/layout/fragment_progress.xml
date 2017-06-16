@@ -31,7 +31,9 @@
             android:progress="50"
             android:paddingBottom="10dp"
             android:paddingStart="20dp"
+            android:paddingLeft="20dp"
             android:paddingEnd="10dp"
+            android:paddingRight="20dp"
             android:paddingTop="10dp"/>
 
         <TextView
@@ -49,7 +51,8 @@
             android:adjustViewBounds="true"
             android:scaleType="fitXY"
             android:src="@drawable/ic_step"
-            android:paddingEnd="10dp"/>
+            android:paddingEnd="10dp"
+            android:paddingRight="10dp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -78,6 +81,7 @@
             android:layout_gravity="center"
             android:visibility="invisible"
             android:layout_marginEnd="6dp"
+            android:layout_marginRight="6dp"
 />
     </LinearLayout>
 

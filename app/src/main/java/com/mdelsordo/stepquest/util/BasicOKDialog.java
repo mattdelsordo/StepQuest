@@ -38,7 +38,7 @@ public class BasicOKDialog extends DialogFragment {
         View view = LayoutInflater.from(getActivity()).inflate(R.layout.view_long_dialog_text, null);
         TextView vText = (TextView)view.findViewById(R.id.textview_longdialog);
         vText.setText(text);
-        return new AlertDialog.Builder(getActivity()).setView(view)
+        return new AlertDialog.Builder(getActivity(), AlertDialog.THEME_HOLO_LIGHT).setView(view)
                 .setPositiveButton(getString(R.string.ok), null).create();
     }
 

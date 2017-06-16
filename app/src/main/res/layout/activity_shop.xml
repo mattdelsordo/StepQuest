@@ -37,7 +37,8 @@
             android:id="@+id/tv_shop_goldtotal"
             android:text="@string/default_weapon_price"
             android:textSize="16sp"
-            android:layout_marginEnd="20dp"/>
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"/>
     </LinearLayout>
 
     <FrameLayout

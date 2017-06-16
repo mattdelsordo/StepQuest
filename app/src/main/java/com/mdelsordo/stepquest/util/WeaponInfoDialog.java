@@ -80,7 +80,7 @@ public class WeaponInfoDialog extends DialogFragment {
         TextView vTotalMod = (TextView)view.findViewById(R.id.tv_weaponinfo_modifier);
         vTotalMod.setText(wTotalMod);
 
-        return new AlertDialog.Builder(getActivity()).setView(view).setNeutralButton(getString(R.string.back), null)
+        return new AlertDialog.Builder(getActivity(), AlertDialog.THEME_HOLO_LIGHT).setView(view).setNegativeButton(getString(R.string.back), null)
                 .setPositiveButton(getString(R.string.equip_weapon), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -90,7 +90,7 @@ public class WeaponInfoDialog extends DialogFragment {
                                 null
                         );
                     }
-                }).setNegativeButton(getString(R.string.sell_one_weapon), new DialogInterface.OnClickListener() {
+                }).setNeutralButton(getString(R.string.sell_one_weapon), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         getTargetFragment().onActivityResult(

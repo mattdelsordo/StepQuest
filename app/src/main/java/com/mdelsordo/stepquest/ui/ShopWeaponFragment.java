@@ -140,9 +140,7 @@ public class ShopWeaponFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     mQueuedWeapon = mWeapon;
-
-                    AppCompatActivity parent = (AppCompatActivity)v.getContext();
-                    FragmentManager manager = parent.getSupportFragmentManager();
+                    FragmentManager manager = getActivity().getSupportFragmentManager();
                     PurchaseDialog dialog = PurchaseDialog.newInstance(mQueuedWeapon.getName(), mQueuedWeapon.getPrice(mActive));
                     dialog.setTargetFragment(ShopWeaponFragment.this, PurchaseDialog.REQUEST_CODE);
                     dialog.show(manager, "DialogPurchase");

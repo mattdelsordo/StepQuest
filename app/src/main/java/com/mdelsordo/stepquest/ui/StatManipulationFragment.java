@@ -127,37 +127,37 @@ public class StatManipulationFragment extends Fragment {
         switch(mStat){
             case Stats.STR:
                 text = getString(R.string.str);
-                draw = getResources().getDrawable(R.drawable.ic_strength);
+                draw = ContextCompat.getDrawable(getContext(), R.drawable.ic_strength);
                 infoText = getString(R.string.explainSTR);
                 break;
             case Stats.DEX:
                 text = getString(R.string.dex);
-                draw = getResources().getDrawable(R.drawable.ic_dexterity);
+                draw = ContextCompat.getDrawable(getContext(), R.drawable.ic_dexterity);
                 infoText = getString(R.string.explainDEX);
                 break;
             case Stats.CON:
                 text = getString(R.string.con);
-                draw = getResources().getDrawable(R.drawable.ic_constitution);
+                draw = ContextCompat.getDrawable(getContext(), R.drawable.ic_constitution);
                 infoText = getString(R.string.explainCON);
                 break;
             case Stats.INT:
                 text = getString(R.string.intelligence_abbrev);
-                draw = getResources().getDrawable(R.drawable.ic_intelligence);
+                draw = ContextCompat.getDrawable(getContext(), R.drawable.ic_intelligence);
                 infoText = getString(R.string.explainINT);
                 break;
             case Stats.WIS:
                 text = getString(R.string.wis);
-                draw = getResources().getDrawable(R.drawable.ic_wisdom);
+                draw = ContextCompat.getDrawable(getContext(), R.drawable.ic_wisdom);
                 infoText = getString(R.string.explainWIS);
                 break;
             case Stats.CHR:
                 text = getString(R.string.chr);
-                draw = getResources().getDrawable(R.drawable.ic_charisma);
+                draw = ContextCompat.getDrawable(getContext(), R.drawable.ic_charisma);
                 infoText = getString(R.string.explainCHR);
                 break;
             default:
                 text = getString(R.string.unknown_parameter);
-                draw = getResources().getDrawable(R.drawable.ic_misc);
+                draw = ContextCompat.getDrawable(getContext(), R.drawable.ic_misc);
                 infoText = getString(R.string.unknown_parameter);
                 break;
         }

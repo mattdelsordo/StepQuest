@@ -298,7 +298,7 @@ public class CharacterCreationFragment extends Fragment {
     //animates the stat generation process
     public void animateDiceroll(){
         mRoll.setEnabled(false);
-        int[] oldstats = Arrays.copyOf(mStats, mStats.length);
+        //int[] oldstats = Arrays.copyOf(mStats, mStats.length);
         generateStats();
         ValueAnimator animator = ValueAnimator.ofInt(0, 20);
         animator.setDuration(400);
