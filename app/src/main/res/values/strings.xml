@@ -89,7 +89,7 @@
     <string name="littlerobotsoundfactory">SoundBible.com</string>
     <string name="misc_text">This activity doesn\'t do anything, I just couldn\'t figure out an appropriate place to implement up-navigation so here\'s an activity that has it.</string>
     <string name="no_pedometer_message">Step Quest relies on your device\'s pedometer but it looks like your device doesn\'t have one! You can still use the game but it\'ll probably be really boring for you. Sorry!</string>
-    <string name="delete_character_confirmation">Clicking yes will delete your character data and then close the game. Are you sure?</string>
+    <string name="delete_character_confirmation">Clicking yes will delete all your character data! Are you sure?</string>
     <string name="confirm_delete">Yes, this is what I want</string>
     <string name="refuse_delete">No way</string>
     <string name="no_pedometer_confirm">Darn</string>
@@ -144,4 +144,9 @@
     <string name="advlog_activity_title">Adventure Log</string>
     <string name="levelup_activity_title">Level Up!</string>
     <string name="equip_weapon_on_purchase">Equip weapon on purchase</string>
+    <string name="send_feedback">Send Feedback?</string>
+    <string name="feedback_body">If you are reporting a bug, please include your device model and Android version number!</string>
+    <string name="dev_email">mattdelsordo+stepquest@gmail.com</string>
+    <string name="feedback_subject">Feedback</string>
+    <string name="send_feedback_colon">Send Feedback:</string>
 </resources>
