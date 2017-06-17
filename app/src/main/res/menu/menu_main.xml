@@ -42,7 +42,7 @@
         android:id="@+id/menu_settings"
         android:icon="@drawable/ic_settings_dark"
         app:showAsAction="withText"
-        android:title="@string/settings" />
+        android:title="@string/options" />
 
 
 </menu>

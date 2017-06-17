@@ -101,10 +101,10 @@ public class SettingsFragment extends Fragment {
                 iconAttribute.setText(Html.fromHtml("<a href=\"https://icons8.com/\">icons8</a>"));
                 iconAttribute.setMovementMethod(LinkMovementMethod.getInstance());
                 TextView effectsAttribute = (TextView)view.findViewById(R.id.textview_settings_effectsattribute);
-                effectsAttribute.setText(Html.fromHtml("<a href=\"https://www.looperman.com/users/profile/796811\">Zac Wilkins</a>"));
+                effectsAttribute.setText(Html.fromHtml("<a href=\"http://soundbible.com/\">SoundBible.com</a>"));
                 effectsAttribute.setMovementMethod(LinkMovementMethod.getInstance());
                 TextView musicAttribute = (TextView)view.findViewById(R.id.textview_settings_musicattribute);
-                musicAttribute.setText(Html.fromHtml("<a href=\"http://soundbible.com/\">SoundBible.com</a>"));
+                musicAttribute.setText(Html.fromHtml("<a href=\"https://www.looperman.com/users/profile/796811\">Zac Wilkins</a>"));
                 musicAttribute.setMovementMethod(LinkMovementMethod.getInstance());
 
                 new AlertDialog.Builder(getActivity(), AlertDialog.THEME_HOLO_LIGHT).setView(view)
