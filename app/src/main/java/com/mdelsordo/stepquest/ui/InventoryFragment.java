@@ -259,7 +259,7 @@ public class InventoryFragment extends Fragment implements ActiveCharacter.Funds
         public void onBindViewHolder(WeaponViewHolder holder, int position) {
             Weapon w = mWeapons.get(position);
             holder.bindWeapon(w);
-            setAnimation(holder.itemView, position);
+            //setAnimation(holder.itemView, position);
         }
 
         private void setAnimation(View viewToAnimate, int position){

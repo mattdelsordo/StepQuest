@@ -185,7 +185,7 @@ public class ShopWeaponFragment extends Fragment {
         public void onBindViewHolder(ShopWeaponViewHolder holder, int position) {
             Weapon w = mWeapons.get(position);
             holder.bindWeapon(w);
-            setAnimation(holder.itemView, position);
+            //setAnimation(holder.itemView, position);
         }
 
         private void setAnimation(View viewToAnimate, int position){
