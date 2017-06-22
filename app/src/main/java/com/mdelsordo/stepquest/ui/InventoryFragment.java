@@ -106,7 +106,7 @@ public class InventoryFragment extends Fragment implements ActiveCharacter.Funds
 
     @Override
     public void updateFunds(int totalFunds) {
-        mGoldCount.setText("Gold: " + totalFunds);
+        mGoldCount.setText(Integer.toString(totalFunds));
     }
 
     @Override

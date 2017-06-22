@@ -19,12 +19,20 @@
             android:textStyle="bold"
             android:textSize="20sp"/>
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="16sp"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/gold"/>
+
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/default_gold_text"
+            android:layout_gravity="center"
+            android:text="@string/_0"
             android:textSize="18sp"
             android:id="@+id/textview_inventory_goldcount"/>
     </LinearLayout>
