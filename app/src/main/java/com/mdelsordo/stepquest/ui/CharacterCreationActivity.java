@@ -51,6 +51,11 @@ public class CharacterCreationActivity extends AppCompatActivity implements Char
 //        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 
+    @Override
+    public void playEffect(String effectPath) {
+        mMusicPlayer.playEffect(effectPath);
+    }
+
     //Bind activity to music player service
     private boolean mIsBound = false;
     private MusicManagerService mMusicPlayer;
@@ -62,7 +67,7 @@ public class CharacterCreationActivity extends AppCompatActivity implements Char
             mMusicPlayer = binder.getService();
             mIsBound = true;
 
-            if(!mMusicPlayer.isPlayingTrack(MusicManagerService.MAIN_JINGLE))mMusicPlayer.play(MusicManagerService.MAIN_JINGLE);
+            if(!mMusicPlayer.isPlayingTrack(MusicManagerService.MAIN_JINGLE))mMusicPlayer.playMusic(MusicManagerService.MAIN_JINGLE);
         }
 
         @Override

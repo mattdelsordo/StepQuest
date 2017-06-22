@@ -2,16 +2,20 @@ package com.mdelsordo.stepquest.services;
 
 import android.app.Service;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Binder;
 import android.os.IBinder;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.mdelsordo.stepquest.model.EffectPlayer;
+import com.mdelsordo.stepquest.ui.SettingsFragment;
 import com.mdelsordo.stepquest.util.Logger;
 
 import java.io.IOException;
@@ -33,6 +37,9 @@ public class MusicManagerService extends Service implements MediaPlayer.OnErrorL
     private MediaPlayer mPlayer;
     private int position = 0;
     private String mCurrentTrack;
+
+    private EffectPlayer mEffectPlayer;
+    private boolean mPlayEffects, mPlayMusic;
 
     public class MusicBinder extends Binder {
         public MusicManagerService getService(){
@@ -56,6 +63,12 @@ public class MusicManagerService extends Service implements MediaPlayer.OnErrorL
     @Override
     public void onCreate() {
         super.onCreate();
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        mPlayMusic = prefs.getBoolean(SettingsFragment.PREF_MUSIC, true);
+        mPlayEffects = prefs.getBoolean(SettingsFragment.PREF_EFFECTS, true);
+
+        mEffectPlayer = new EffectPlayer(this);
 
         mAssets = getAssets();
         mPlayer = new MediaPlayer();
@@ -94,7 +107,7 @@ public class MusicManagerService extends Service implements MediaPlayer.OnErrorL
     }
 
     //plays a track based on a path
-    public void play(String musicPath){
+    private void play(String musicPath){
         String fullPath = DIR_MUSIC + musicPath;
 
         //Log.i(TAG, "Attempting to play track " + fullPath);
@@ -113,6 +126,10 @@ public class MusicManagerService extends Service implements MediaPlayer.OnErrorL
         }catch(IOException ioe){
             //Log.e(TAG, "Failed to play " + fullPath);
         }
+    }
+
+    public void playMusic(String musicPath){
+        if(mPlayMusic&&!mPlayer.isPlaying())play(musicPath);
     }
 
     public void pauseMusic(){
@@ -153,6 +170,8 @@ public class MusicManagerService extends Service implements MediaPlayer.OnErrorL
                 mPlayer = null;
             }
         }
+
+        mEffectPlayer.release();
     }
 
     @Override
@@ -167,6 +186,21 @@ public class MusicManagerService extends Service implements MediaPlayer.OnErrorL
             }
         }
         return false;
+    }
+
+    //plays effect via the effect player
+    public void playEffect(String effectPath){
+        Logger.i(TAG, "playing " + effectPath);
+        if(mPlayEffects)mEffectPlayer.play(effectPath);
+    }
+
+    public void toggleMusic(boolean playMusic){
+        mPlayMusic = playMusic;
+        if(!mPlayer.isPlaying())playMusic(MusicManagerService.MAIN_JINGLE);
+        else stopMusic();
+    }
+    public void toggleEffects(boolean playEffects){
+        mPlayEffects = playEffects;
     }
 
     public boolean isPlaying(){

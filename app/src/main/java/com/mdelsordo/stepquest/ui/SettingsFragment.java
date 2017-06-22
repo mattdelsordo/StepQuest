@@ -25,6 +25,7 @@ import android.widget.TextView;
 
 import com.mdelsordo.stepquest.R;
 import com.mdelsordo.stepquest.data.Saver;
+import com.mdelsordo.stepquest.model.EffectPlayer;
 import com.mdelsordo.stepquest.util.SureYouWantToDeleteDialog;
 
 /**
@@ -61,6 +62,7 @@ public class SettingsFragment extends Fragment {
         mMusicSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                mListener.playEffect(EffectPlayer.CLICK);
                 SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
                 prefs.edit().putBoolean(PREF_MUSIC, isChecked).apply();
                 mListener.toggleMusic(isChecked);
@@ -73,6 +75,7 @@ public class SettingsFragment extends Fragment {
         mEffectSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                mListener.playEffect(EffectPlayer.CLICK);
                 SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
                 prefs.edit().putBoolean(PREF_EFFECTS, isChecked).apply();
                 mListener.toggleEffects(isChecked);
@@ -84,6 +87,8 @@ public class SettingsFragment extends Fragment {
         mDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mListener.playEffect(EffectPlayer.CLICK);
+                mListener.playEffect(EffectPlayer.DIALOG);
                 FragmentManager manager = getActivity().getSupportFragmentManager();
                 SureYouWantToDeleteDialog dialog = new SureYouWantToDeleteDialog();
                 dialog.setTargetFragment(SettingsFragment.this, SureYouWantToDeleteDialog.REQUEST_CODE);
@@ -95,6 +100,8 @@ public class SettingsFragment extends Fragment {
         mInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mListener.playEffect(EffectPlayer.CLICK);
+                mListener.playEffect(EffectPlayer.DIALOG);
                 View view = LayoutInflater.from(getActivity()).inflate(R.layout.view_game_credits, null);
                 //arrange hyperlinks
                 TextView iconAttribute = (TextView)view.findViewById(R.id.textview_settings_iconattribute);
@@ -116,6 +123,7 @@ public class SettingsFragment extends Fragment {
         mFeedback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mListener.playEffect(EffectPlayer.CLICK);
                 Intent email = new Intent(Intent.ACTION_SEND);
                 email.setType("message/rfc822");
                 email.putExtra(Intent.EXTRA_EMAIL, new String[]{getString(R.string.dev_email)});
@@ -142,6 +150,7 @@ public class SettingsFragment extends Fragment {
         void toggleEffects(boolean shouldPlay);
         void toggleMusic(boolean shouldPlay);
         void quitDelete();
+        void playEffect(String effectPath);
     }
     public SettingsListener mListener;
 

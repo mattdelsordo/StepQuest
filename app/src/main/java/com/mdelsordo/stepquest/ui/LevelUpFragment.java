@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.mdelsordo.stepquest.R;
 import com.mdelsordo.stepquest.model.ActiveCharacter;
 import com.mdelsordo.stepquest.model.Character;
+import com.mdelsordo.stepquest.model.EffectPlayer;
 import com.mdelsordo.stepquest.model.Stats;
 
 /**
@@ -26,6 +27,7 @@ public class LevelUpFragment extends Fragment implements StatManipulationFragmen
 
     public interface LevelUpDoneListener{
         void lvlUpDone();
+        void playEffect(String effectPath);
     }
     private LevelUpDoneListener mListener;
 
@@ -107,6 +109,7 @@ public class LevelUpFragment extends Fragment implements StatManipulationFragmen
         mCommit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mListener.playEffect(EffectPlayer.CLICK);
                 //check to see if all points have been allocated
                 if(mLevelUpTokenTotal > 0){
                     Toast.makeText(getContext(), "You have " + mLevelUpTokenTotal + " points left to allocate!", Toast.LENGTH_SHORT).show();
@@ -179,6 +182,11 @@ public class LevelUpFragment extends Fragment implements StatManipulationFragmen
         mChr.updateButtons(mStatIncrements[Stats.CHR], mLevelUpTokenTotal);
 
         return mStatIncrements[stat];
+    }
+
+    @Override
+    public void playEffect(String effectPath) {
+        mListener.playEffect(effectPath);
     }
 
     @Override

@@ -4,7 +4,6 @@ package com.mdelsordo.stepquest.ui;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -31,7 +30,7 @@ import com.mdelsordo.stepquest.model.Character;
 import com.mdelsordo.stepquest.model.EffectPlayer;
 import com.mdelsordo.stepquest.model.Weapon;
 import com.mdelsordo.stepquest.util.BasicOKDialog;
-import com.mdelsordo.stepquest.util.InventorySoundListener;
+import com.mdelsordo.stepquest.util.PlayEffectListener;
 import com.mdelsordo.stepquest.util.SellItemDialog;
 import com.mdelsordo.stepquest.util.WeaponInfoDialog;
 
@@ -42,7 +41,7 @@ public class InventoryFragment extends Fragment implements ActiveCharacter.Funds
 
     private RecyclerView mRecycler;
     private TextView mGoldCount;
-    private InventorySoundListener mSoundListener;
+    private PlayEffectListener mSoundListener;
     private Weapon mQueuedWeapon;
     //private Vocation mCharVocation;
 
@@ -95,7 +94,7 @@ public class InventoryFragment extends Fragment implements ActiveCharacter.Funds
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        mSoundListener = (InventorySoundListener)context;
+        mSoundListener = (PlayEffectListener)context;
     }
 
     @Override
@@ -214,9 +213,8 @@ public class InventoryFragment extends Fragment implements ActiveCharacter.Funds
                     WeaponInfoDialog dialog = WeaponInfoDialog.newInstance(mWeapon, mActive, mAmnt);
                     dialog.setTargetFragment(InventoryFragment.this, WeaponInfoDialog.REQUEST_CODE);
                     dialog.show(manager, "WeaponInfo");
+                    mSoundListener.playEffect(EffectPlayer.CLICK);
                     mSoundListener.playEffect(EffectPlayer.DIALOG);
-
-
                 }
             });
         }

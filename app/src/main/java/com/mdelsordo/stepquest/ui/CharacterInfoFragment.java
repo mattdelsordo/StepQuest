@@ -17,10 +17,9 @@ import com.mdelsordo.stepquest.model.ActiveCharacter;
 import com.mdelsordo.stepquest.model.Character;
 
 import com.mdelsordo.stepquest.R;
-import com.mdelsordo.stepquest.model.EffectPlayer;
 import com.mdelsordo.stepquest.model.Stats;
 import com.mdelsordo.stepquest.util.BasicOKDialog;
-import com.mdelsordo.stepquest.util.InventorySoundListener;
+import com.mdelsordo.stepquest.util.PlayEffectListener;
 
 
 /**
@@ -31,7 +30,7 @@ public class CharacterInfoFragment extends Fragment implements ActiveCharacter.E
     private TextView mName, mRaceClass, mLevel, mSTR, mDEX, mCON, mINT, mWIS, mCHR;
     private ImageView mRaceImage, mClassImage;
     private ProgressBar mExpProgress;
-    private InventorySoundListener mSoundListener;
+    private PlayEffectListener mSoundListener;
 
     public CharacterInfoFragment() {
         // Required empty public constructor
@@ -164,7 +163,7 @@ public class CharacterInfoFragment extends Fragment implements ActiveCharacter.E
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        mSoundListener = (InventorySoundListener)context;
+        mSoundListener = (PlayEffectListener)context;
     }
 
     @Override

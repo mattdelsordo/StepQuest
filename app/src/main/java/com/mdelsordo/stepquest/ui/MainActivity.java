@@ -8,14 +8,10 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.transition.Explode;
-import android.transition.TransitionInflater;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
@@ -28,7 +24,7 @@ import com.mdelsordo.stepquest.model.*;
 import com.mdelsordo.stepquest.services.*;
 import com.mdelsordo.stepquest.util.BasicOKDialog;
 import com.mdelsordo.stepquest.util.FragmentTransitionBuilder;
-import com.mdelsordo.stepquest.util.InventorySoundListener;
+import com.mdelsordo.stepquest.util.PlayEffectListener;
 import com.mdelsordo.stepquest.util.Logger;
 import com.mdelsordo.stepquest.util.NoPedometerDialog;
 import com.mdelsordo.stepquest.services.PedometerService;
@@ -39,7 +35,7 @@ import java.lang.reflect.Method;
  * This Activity controls the rest of the app
  */
 
-public class MainActivity extends AppCompatActivity implements EventQueue.MakeToastListener, ActiveCharacter.LevelUpListener, SettingsFragment.SettingsListener, InventorySoundListener, PlotQueue.PlotAdvancedListener {
+public class MainActivity extends AppCompatActivity implements EventQueue.MakeToastListener, ActiveCharacter.LevelUpListener, SettingsFragment.SettingsListener, PlayEffectListener, PlotQueue.PlotAdvancedListener {
     private static final String TAG = "MainActivity";
     private static final String PREF_DONE_SENSOR_CHECK = "pref_has_sensor";
     private static final String CHECKED_SENSOR_THIS_RUN = "checked sensor this run";
@@ -50,8 +46,8 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
 
     private ProgressFragment mProgress;
     //private MusicPlayerFragment mMusic;
-    private EffectPlayer mEffectPlayer;
-    private boolean mPlayMusic, mPlayEffects;
+    //private EffectPlayer mEffectPlayer;
+    //private boolean mPlayMusic, mPlayEffects;
 
     public static Intent newInstance(Context c){
         Intent intent = new Intent(c, MainActivity.class);
@@ -72,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
         startService(new Intent(getApplicationContext(), SaverService.class));
 
         //start up effect player
-        mEffectPlayer = new EffectPlayer(this);
+        //mEffectPlayer = new EffectPlayer(this);
 
         //put progress bar in frame
         mProgress = (ProgressFragment)getSupportFragmentManager().findFragmentById(R.id.frame_main_progress);
@@ -89,13 +85,13 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
         //get info from saved state
         if(savedInstanceState != null){
             mDoneSensorCheck = savedInstanceState.getBoolean(CHECKED_SENSOR_THIS_RUN);
-            mPlayMusic = savedInstanceState.getBoolean(ARG_MUSIC_PLAYING);
+            //mPlayMusic = savedInstanceState.getBoolean(ARG_MUSIC_PLAYING);
         }
 
         //retrieve sound settings
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        mPlayMusic = prefs.getBoolean(SettingsFragment.PREF_MUSIC, true);
-        mPlayEffects = prefs.getBoolean(SettingsFragment.PREF_EFFECTS, true);
+//        mPlayMusic = prefs.getBoolean(SettingsFragment.PREF_MUSIC, true);
+//        mPlayEffects = prefs.getBoolean(SettingsFragment.PREF_EFFECTS, true);
 
 
 
@@ -107,7 +103,8 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
             //Log.i(TAG, "pedometer=" + hasPedometer);
             if(hasPedometer == false){
                 new NoPedometerDialog().show(getSupportFragmentManager(), NoPedometerDialog.TAG);
-                if(mPlayEffects)mEffectPlayer.play(EffectPlayer.DIALOG);
+                //if(mPlayEffects)mEffectPlayer.play(EffectPlayer.DIALOG);
+                if(mMusicPlayer!=null)mMusicPlayer.playEffect(EffectPlayer.DIALOG);
             }
             prefs.edit().putBoolean(PREF_DONE_SENSOR_CHECK, true).apply();
         }
@@ -125,7 +122,8 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
     //replaces the fragment in the main frame with another
     private void swapFragments(Fragment frag, FragmentTransaction ft){
         ft.replace(R.id.frame_main_gamepane, frag).commit();
-        if(mPlayEffects)mEffectPlayer.play(EffectPlayer.FRAGMENT_SWAP);
+        //if(mPlayEffects)mEffectPlayer.play(EffectPlayer.FRAGMENT_SWAP);
+        mMusicPlayer.playEffect(EffectPlayer.FRAGMENT_SWAP);
         //Log.i(TAG, "Game fragment swapped.");
     }
 
@@ -160,7 +158,7 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mEffectPlayer.release();
+        //mEffectPlayer.release();
     }
 
     @Override
@@ -172,7 +170,8 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
 
     @Override
     public void playJingle() {
-        if(mPlayEffects)mEffectPlayer.play(EffectPlayer.TASK_DONE);
+        mMusicPlayer.playEffect(EffectPlayer.TASK_DONE);
+        //if(mPlayEffects)mEffectPlayer.play(EffectPlayer.TASK_DONE);
     }
 
     @Override
@@ -205,28 +204,34 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
         Fragment current = getSupportFragmentManager().findFragmentById(R.id.frame_main_gamepane);
         switch(item.getItemId()){
             case R.id.menu_charinfo: handled = true;
-                if(mPlayEffects)mEffectPlayer.play(EffectPlayer.CLICK);
+                mMusicPlayer.playEffect(EffectPlayer.CLICK);
+                //if(mPlayEffects)mEffectPlayer.play(EffectPlayer.CLICK);
                 if(!(current instanceof CharacterInfoFragment)) swapFragments(new CharacterInfoFragment(), FragmentTransitionBuilder.leftToRight(this));
                 break;
             case R.id.menu_inventory: handled = true;
-                if(mPlayEffects)mEffectPlayer.play(EffectPlayer.CLICK);
+                mMusicPlayer.playEffect(EffectPlayer.CLICK);
+                //if(mPlayEffects)mEffectPlayer.play(EffectPlayer.CLICK);
                 if(!(current instanceof InventoryFragment)) swapFragments(new InventoryFragment(), FragmentTransitionBuilder.rightToLeft(this));
                 break;
             case R.id.menu_save: handled = true;
-                if(mPlayEffects)mEffectPlayer.play(EffectPlayer.CLICK);
+                mMusicPlayer.playEffect(EffectPlayer.CLICK);
+                //if(mPlayEffects)mEffectPlayer.play(EffectPlayer.CLICK);
                 Saver.saveAll(this, true);
                 break;
             case R.id.menu_settings: handled = true;
-                if(mPlayEffects)mEffectPlayer.play(EffectPlayer.CLICK);
+                mMusicPlayer.playEffect(EffectPlayer.CLICK);
+                //if(mPlayEffects)mEffectPlayer.play(EffectPlayer.CLICK);
                 if(!(current instanceof SettingsFragment)) swapFragments(new SettingsFragment(), FragmentTransitionBuilder.rightToLeft(this));
                 break;
             case R.id.menu_shop:
-                if(mPlayEffects)mEffectPlayer.play(EffectPlayer.CLICK);
+                mMusicPlayer.playEffect(EffectPlayer.CLICK);
+                //if(mPlayEffects)mEffectPlayer.play(EffectPlayer.CLICK);
                 handled = true;
                 startActivity(new Intent(this, ShopActivity.class));
                 break;
             case R.id.menu_advlog:
-                if(mPlayEffects)mEffectPlayer.play(EffectPlayer.CLICK);
+                mMusicPlayer.playEffect(EffectPlayer.CLICK);
+                //if(mPlayEffects)mEffectPlayer.play(EffectPlayer.CLICK);
                 handled = true;
                 startActivity(new Intent(this, AdventureLogActivity.class));
                 break;
@@ -265,15 +270,18 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
 
     @Override
     public void toggleEffects(boolean shouldPlay) {
-        mPlayEffects = shouldPlay;
+        //mPlayEffects = shouldPlay;
+//        mMusicPlayer.setPlayEffects(shouldPlay);
+        mMusicPlayer.toggleEffects(shouldPlay);
     }
 
     @Override
     public void toggleMusic(boolean shouldPlay) {
-        mPlayMusic = shouldPlay;
-        //do check for music playing
-        if(mPlayMusic&&!mMusicPlayer.isPlaying())mMusicPlayer.play(MusicManagerService.MAIN_JINGLE);
-        else mMusicPlayer.stopMusic();
+//        mPlayMusic = shouldPlay;
+//        //do check for music playing
+//        if(!mMusicPlayer.isPlaying())mMusicPlayer.playMusic(MusicManagerService.MAIN_JINGLE);
+//        else mMusicPlayer.stopMusic();
+        mMusicPlayer.toggleMusic(shouldPlay);
     }
 
     @Override
@@ -286,12 +294,13 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putBoolean(CHECKED_SENSOR_THIS_RUN, mDoneSensorCheck);
-        outState.putBoolean(ARG_MUSIC_PLAYING, mPlayMusic);
+        //outState.putBoolean(ARG_MUSIC_PLAYING, mPlayMusic);
     }
 
     @Override
     public void playEffect(String effectPath) {
-        if(mPlayEffects)mEffectPlayer.play(effectPath);
+        //if(mPlayEffects)mEffectPlayer.play(effectPath);
+        mMusicPlayer.playEffect(effectPath);
     }
 
 
@@ -307,7 +316,7 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
             mIsBound = true;
 
             //do check for music playing
-            if(mPlayMusic&&!mMusicPlayer.isPlaying())mMusicPlayer.play(MusicManagerService.MAIN_JINGLE);
+            mMusicPlayer.playMusic(MusicManagerService.MAIN_JINGLE);
         }
 
         @Override

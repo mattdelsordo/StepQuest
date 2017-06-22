@@ -142,7 +142,7 @@ public class TutorialActivity extends AppCompatActivity implements EventQueue.Ma
             mIsBound = true;
 
             //do check for music playing
-            if(mPlayMusic&&!mMusicPlayer.isPlaying())mMusicPlayer.play(MusicManagerService.MAIN_JINGLE);
+            if(mPlayMusic&&!mMusicPlayer.isPlaying())mMusicPlayer.playMusic(MusicManagerService.MAIN_JINGLE);
         }
 
         @Override

@@ -14,6 +14,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.mdelsordo.stepquest.R;
+import com.mdelsordo.stepquest.model.EffectPlayer;
 import com.mdelsordo.stepquest.model.Stats;
 import com.mdelsordo.stepquest.util.BasicOKDialog;
 
@@ -64,6 +65,7 @@ public class StatManipulationFragment extends Fragment {
         mDecrement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mListener.playEffect(EffectPlayer.CLICK);
                 mOriginal--;
                 updateStatIndicator();
                 mListener.statDecremented(mStat);
@@ -76,6 +78,7 @@ public class StatManipulationFragment extends Fragment {
         mIncrement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mListener.playEffect(EffectPlayer.CLICK);
                 mOriginal++;
                 updateStatIndicator();
                 mListener.statIncremented(mStat);
@@ -167,6 +170,8 @@ public class StatManipulationFragment extends Fragment {
         mStatInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mListener.playEffect(EffectPlayer.CLICK);
+                mListener.playEffect(EffectPlayer.DIALOG);
                 new BasicOKDialog().newInstance(infoText).show(getActivity().getSupportFragmentManager(), "Explaination");
             }
         });
@@ -175,6 +180,7 @@ public class StatManipulationFragment extends Fragment {
     public interface StatManipListener{
         int statIncremented(int stat); //returns the remaining amount of points
         int statDecremented(int stat); //returns the number of increments done so far
+        void playEffect(String effectPath);
     }
     private StatManipListener mListener;
 

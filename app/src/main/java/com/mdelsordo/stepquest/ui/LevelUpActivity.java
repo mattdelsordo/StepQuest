@@ -21,8 +21,8 @@ public class LevelUpActivity extends AppCompatActivity implements LevelUpFragmen
     private static final String TAG = "LevelUpActivity";
 
     public static boolean sIsRunning = false;
-    private boolean mPlayMusic, mPlayEffects;
-    private EffectPlayer mEffectPlayer;
+//    private boolean mPlayMusic, mPlayEffects;
+//    private EffectPlayer mEffectPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,12 +39,13 @@ public class LevelUpActivity extends AppCompatActivity implements LevelUpFragmen
         }
 
         //retrieve sound settings
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        mPlayMusic = prefs.getBoolean(SettingsFragment.PREF_MUSIC, true);
-        mPlayEffects = prefs.getBoolean(SettingsFragment.PREF_EFFECTS, true);
+//        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+//        mPlayMusic = prefs.getBoolean(SettingsFragment.PREF_MUSIC, true);
+//        mPlayEffects = prefs.getBoolean(SettingsFragment.PREF_EFFECTS, true);
 
-        mEffectPlayer = new EffectPlayer(this);
-        if(mPlayEffects)mEffectPlayer.play(EffectPlayer.ACHIEVEMENT);
+//        mEffectPlayer = new EffectPlayer(this);
+//        if(mPlayEffects)mEffectPlayer.play(EffectPlayer.ACHIEVEMENT);
+
 
         //show prompt if this just got created
         if(savedInstanceState==null){
@@ -57,6 +58,11 @@ public class LevelUpActivity extends AppCompatActivity implements LevelUpFragmen
         Saver.saveAll(this.getApplicationContext(), false);
         setResult(RESULT_OK);
         finish();
+    }
+
+    @Override
+    public void playEffect(String effectPath) {
+        mMusicPlayer.playEffect(effectPath);
     }
 
     @Override
@@ -112,7 +118,8 @@ public class LevelUpActivity extends AppCompatActivity implements LevelUpFragmen
             mMusicPlayer = binder.getService();
             mIsBound = true;
 
-            if(mPlayMusic&&!mMusicPlayer.isPlaying())mMusicPlayer.play(MusicManagerService.MAIN_JINGLE);
+            mMusicPlayer.playMusic(MusicManagerService.MAIN_JINGLE);
+            mMusicPlayer.playEffect(EffectPlayer.LEVEL_UP);
         }
 
         @Override
@@ -125,7 +132,6 @@ public class LevelUpActivity extends AppCompatActivity implements LevelUpFragmen
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mEffectPlayer.release();
     }
 
     private static final String ARG_SHOW_PROMPT = "ARG_PROMPT";

@@ -34,6 +34,7 @@ import com.mdelsordo.stepquest.model.Stats;
 import com.mdelsordo.stepquest.model.Vocation;
 import com.mdelsordo.stepquest.util.BasicOKDialog;
 import com.mdelsordo.stepquest.util.Logger;
+import com.mdelsordo.stepquest.util.PlayEffectListener;
 
 import java.util.Arrays;
 
@@ -51,7 +52,7 @@ public class CharacterCreationFragment extends Fragment {
     private TextView mStrView, mDexView, mConView, mIntView, mWisView, mChrView;
     private Button mRoll, mCreate;
     private CreationCompleteListener mListener;
-    private EffectPlayer mEffectPlayer;
+//    private EffectPlayer mEffectPlayer;
 
     private int[] mStats = new int[Stats.STAT_VOLUME]; //stats
     private int mRace = Race.BIRDPERSON;
@@ -64,7 +65,7 @@ public class CharacterCreationFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mEffectPlayer = new EffectPlayer(getContext());
+        //mEffectPlayer = new EffectPlayer(getContext());
     }
 
     @Override
@@ -160,6 +161,7 @@ public class CharacterCreationFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //generateStats();
+                mListener.playEffect(EffectPlayer.CLICK);
                 animateDiceroll();
             }
         });
@@ -168,6 +170,7 @@ public class CharacterCreationFragment extends Fragment {
         mCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mListener.playEffect(EffectPlayer.CLICK);
                 String name = mName.getText().toString();
                 if(!name.equals(null) && !name.equals("")){
                     Intent returnIntent = new Intent();
@@ -201,6 +204,8 @@ public class CharacterCreationFragment extends Fragment {
         strInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mListener.playEffect(EffectPlayer.CLICK);
+                mListener.playEffect(EffectPlayer.DIALOG);
                 new BasicOKDialog().newInstance(getString(R.string.explainSTR)).show(getActivity().getSupportFragmentManager(), "Explaination");
             }
         });
@@ -208,6 +213,8 @@ public class CharacterCreationFragment extends Fragment {
         dexInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mListener.playEffect(EffectPlayer.CLICK);
+                mListener.playEffect(EffectPlayer.DIALOG);
                 new BasicOKDialog().newInstance(getString(R.string.explainDEX)).show(getActivity().getSupportFragmentManager(), "Explaination");
             }
         });
@@ -215,6 +222,8 @@ public class CharacterCreationFragment extends Fragment {
         conInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mListener.playEffect(EffectPlayer.CLICK);
+                mListener.playEffect(EffectPlayer.DIALOG);
                 new BasicOKDialog().newInstance(getString(R.string.explainCON)).show(getActivity().getSupportFragmentManager(), "Explaination");
             }
         });
@@ -222,6 +231,8 @@ public class CharacterCreationFragment extends Fragment {
         intInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mListener.playEffect(EffectPlayer.CLICK);
+                mListener.playEffect(EffectPlayer.DIALOG);
                 new BasicOKDialog().newInstance(getString(R.string.explainINT)).show(getActivity().getSupportFragmentManager(), "Explaination");
             }
         });
@@ -229,6 +240,8 @@ public class CharacterCreationFragment extends Fragment {
         wisInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mListener.playEffect(EffectPlayer.CLICK);
+                mListener.playEffect(EffectPlayer.DIALOG);
                 new BasicOKDialog().newInstance(getString(R.string.explainWIS)).show(getActivity().getSupportFragmentManager(), "Explaination");
             }
         });
@@ -236,6 +249,8 @@ public class CharacterCreationFragment extends Fragment {
         chrInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mListener.playEffect(EffectPlayer.CLICK);
+                mListener.playEffect(EffectPlayer.DIALOG);
                 new BasicOKDialog().newInstance(getString(R.string.explainCHR)).show(getActivity().getSupportFragmentManager(), "Explaination");
             }
         });
@@ -293,6 +308,7 @@ public class CharacterCreationFragment extends Fragment {
     //listener for this fragment
     public interface CreationCompleteListener{
         void creationComplete(Intent intent);
+        void playEffect(String effectPath);
     }
 
     //animates the stat generation process
@@ -324,7 +340,8 @@ public class CharacterCreationFragment extends Fragment {
                 mRoll.setEnabled(true);
             }
         });
-        mEffectPlayer.play(EffectPlayer.DICE);
+        mListener.playEffect(EffectPlayer.DICE);
+        //mEffectPlayer.play(EffectPlayer.DICE);
         animator.start();
 
     }
@@ -332,6 +349,6 @@ public class CharacterCreationFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mEffectPlayer.release();
+        //mEffectPlayer.release();
     }
 }

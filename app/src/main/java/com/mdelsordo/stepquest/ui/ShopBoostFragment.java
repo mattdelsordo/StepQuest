@@ -136,6 +136,7 @@ public class ShopBoostFragment extends Fragment implements BoostOverListener{
                 PurchaseDialog dialog = PurchaseDialog.newInstance(mQueuedBoost.getName(), mQueuedBoost.getPrice());
                 dialog.setTargetFragment(ShopBoostFragment.this, PurchaseDialog.REQUEST_CODE);
                 dialog.show(manager, "DialogPurchase");
+                mGoldListener.playEffect(EffectPlayer.CLICK);
                 mGoldListener.playEffect(EffectPlayer.DIALOG);
             }
         });

@@ -37,8 +37,8 @@ public class ShopActivity extends AppCompatActivity implements ShopFragmentListe
     private TextView mGoldTotal;
 
     //music player handlers
-    private EffectPlayer mEffectPlayer;
-    private boolean mPlayEffects, mPlayMusic;
+//    private EffectPlayer mEffectPlayer;
+//    private boolean mPlayEffects, mPlayMusic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,10 +48,10 @@ public class ShopActivity extends AppCompatActivity implements ShopFragmentListe
         setTitle(getString(R.string.shop_activity_title));
 
         //load sounds
-        mEffectPlayer = new EffectPlayer(this);
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        mPlayEffects = prefs.getBoolean(SettingsFragment.PREF_EFFECTS, true);
-        mPlayMusic = prefs.getBoolean(SettingsFragment.PREF_MUSIC, true);
+        //mEffectPlayer = new EffectPlayer(this);
+        //SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        //mPlayEffects = prefs.getBoolean(SettingsFragment.PREF_EFFECTS, true);
+        //mPlayMusic = prefs.getBoolean(SettingsFragment.PREF_MUSIC, true);
 
         mGoldTotal = (TextView)findViewById(R.id.tv_shop_goldtotal);
 
@@ -63,11 +63,13 @@ public class ShopActivity extends AppCompatActivity implements ShopFragmentListe
                 Fragment current = getSupportFragmentManager().findFragmentById(R.id.fl_shop_mainframe);
                 switch(item.getItemId()){
                     case R.id.m_shop_weapons:
-                        if(mPlayEffects)mEffectPlayer.play(EffectPlayer.CLICK);
+                        if(mMusicPlayer!=null)mMusicPlayer.playEffect(EffectPlayer.CLICK);
+                        //if(mPlayEffects)mEffectPlayer.play(EffectPlayer.CLICK);
                         if(!(current instanceof ShopWeaponFragment)) swapFragment(new ShopWeaponFragment(), FragmentTransitionBuilder.leftToRight(ShopActivity.this));
                         return true;
                     case R.id.m_shop_boosts:
-                        if(mPlayEffects)mEffectPlayer.play(EffectPlayer.CLICK);
+                        mMusicPlayer.playEffect(EffectPlayer.CLICK);
+                        //if(mPlayEffects)mEffectPlayer.play(EffectPlayer.CLICK);
                         if(!(current instanceof ShopBoostFragment))swapFragment(new ShopBoostFragment(), FragmentTransitionBuilder.rightToLeft(ShopActivity.this));
                         else swapFragment(new ShopBoostFragment(), getSupportFragmentManager().beginTransaction());
                         return true;
@@ -88,7 +90,8 @@ public class ShopActivity extends AppCompatActivity implements ShopFragmentListe
     //swaps fragments in the main frame
     public void swapFragment(Fragment fragment, FragmentTransaction ft){
         ft.replace(R.id.fl_shop_mainframe, fragment).commit();
-        if(mPlayEffects)mEffectPlayer.play(EffectPlayer.FRAGMENT_SWAP);
+        //if(mPlayEffects)mEffectPlayer.play(EffectPlayer.FRAGMENT_SWAP);
+        if(mMusicPlayer!=null)mMusicPlayer.playEffect(EffectPlayer.FRAGMENT_SWAP);
     }
 
     @Override
@@ -98,7 +101,8 @@ public class ShopActivity extends AppCompatActivity implements ShopFragmentListe
 
     @Override
     public void playEffect(String effectPath) {
-        if(mPlayEffects)mEffectPlayer.play(effectPath);
+        mMusicPlayer.playEffect(effectPath);
+        //if(mPlayEffects)mEffectPlayer.play(effectPath);
     }
 
     @Override
@@ -117,7 +121,7 @@ public class ShopActivity extends AppCompatActivity implements ShopFragmentListe
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mEffectPlayer.release();
+        //mEffectPlayer.release();
     }
 
     @Override
@@ -142,7 +146,7 @@ public class ShopActivity extends AppCompatActivity implements ShopFragmentListe
             mMusicPlayer = binder.getService();
             mIsBound = true;
 
-            if(mPlayMusic&&!mMusicPlayer.isPlaying())mMusicPlayer.play(MusicManagerService.MAIN_JINGLE);
+            mMusicPlayer.playMusic(MusicManagerService.MAIN_JINGLE);
         }
 
         @Override
