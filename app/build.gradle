@@ -7,8 +7,8 @@ android {
         applicationId "com.mdelsordo.stepquest"
         minSdkVersion 14
         targetSdkVersion 25
-        versionCode 8
-        versionName '0.1.7'
+        versionCode 9
+        versionName '1.0.1'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -35,4 +35,5 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:25.3.0'
     compile 'com.android.support:design:25.3.0'
     testCompile 'junit:junit:4.12'
+    compile 'com.android.support:cardview-v7:25.3.0'
 }

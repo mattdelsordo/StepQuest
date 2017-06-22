@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -19,15 +20,13 @@
             android:layout_marginTop="10dp"
             android:id="@+id/layout_creation_top">
 
-            <FrameLayout
+            <android.support.v7.widget.CardView
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:id="@+id/frame_creation_character"
                 android:layout_margin="4dp"
-                android:elevation="3dp"
-                android:outlineProvider="bounds"
-                android:clipToPadding="false">
+                card_view:cardCornerRadius="4dp">
 
                 <ImageView
                     android:layout_width="match_parent"
@@ -44,7 +43,7 @@
                     android:adjustViewBounds="true"
                     android:src="@drawable/birdperson1"
                     android:padding="2dp"/>
-            </FrameLayout>
+            </android.support.v7.widget.CardView>
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -93,10 +92,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/str"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_weight="2"
                     android:textSize="24sp"
-                    android:drawableStart="@drawable/ic_strength"
+                    android:drawableLeft="@drawable/ic_strength"
                     android:id="@+id/b_create_strinfo" />
 
                 <TextView
@@ -105,7 +104,7 @@
                     android:text="@string/default_stat_value"
                     android:layout_weight="1"
                     android:textSize="24sp"
-                    android:paddingStart="4dp"
+                    android:paddingLeft="4dp"
                     android:id="@+id/textview_create_strval"
                     android:textStyle="bold" />
 
@@ -120,9 +119,9 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/dex"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
                     android:textSize="24sp"
-                    android:drawableStart="@drawable/ic_dexterity"
+                    android:drawableLeft="@drawable/ic_dexterity"
                     android:id="@+id/b_create_dexinfo"
                     android:layout_weight="2"/>
 
@@ -132,7 +131,7 @@
                     android:text="@string/default_stat_value"
                     android:layout_weight="1"
                     android:textSize="24sp"
-                    android:paddingStart="4dp"
+                    android:paddingLeft="4dp"
                     android:id="@+id/textview_create_dexval"
                     android:textStyle="bold"/>
 
@@ -147,11 +146,11 @@
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
                     android:text="@string/con"
                     android:layout_weight="2"
                     android:textSize="24sp"
-                    android:drawableStart="@drawable/ic_constitution"
+                    android:drawableLeft="@drawable/ic_constitution"
                     android:id="@+id/b_create_coninfo"/>
 
                 <TextView
@@ -160,7 +159,7 @@
                     android:layout_weight="1"
                     android:text="@string/default_stat_value"
                     android:textSize="24sp"
-                    android:paddingStart="4dp"
+                    android:paddingLeft="4dp"
                     android:id="@+id/textview_create_conval"
                     android:textStyle="bold"/>
 
@@ -175,10 +174,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
                     android:text="@string/intelligence_abbrev"
                     android:textSize="24sp"
-                    android:drawableStart="@drawable/ic_intelligence"
+                    android:drawableLeft="@drawable/ic_intelligence"
                     android:id="@+id/b_create_intinfo"/>
 
                 <TextView
@@ -187,7 +186,7 @@
                     android:layout_weight="1"
                     android:text="@string/default_stat_value"
                     android:textSize="24sp"
-                    android:paddingStart="4dp"
+                    android:paddingLeft="4dp"
                     android:id="@+id/textview_create_intval"
                     android:textStyle="bold"/>
 
@@ -203,10 +202,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
                     android:text="@string/wis"
                     android:textSize="24sp"
-                    android:drawableStart="@drawable/ic_wisdom"
+                    android:drawableLeft="@drawable/ic_wisdom"
                     android:id="@+id/b_create_wisinfo"/>
 
                 <TextView
@@ -215,7 +214,7 @@
                     android:layout_weight="1"
                     android:text="@string/default_stat_value"
                     android:textSize="24sp"
-                    android:paddingStart="4dp"
+                    android:paddingLeft="4dp"
                     android:id="@+id/textview_create_wisval"
                     android:textStyle="bold"/>
 
@@ -230,10 +229,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
                     android:text="@string/chr"
                     android:textSize="24sp"
-                    android:drawableStart="@drawable/ic_charisma"
+                    android:drawableLeft="@drawable/ic_charisma"
                     android:id="@+id/b_create_chrinfo"/>
 
                 <TextView
@@ -242,7 +241,7 @@
                     android:layout_weight="1"
                     android:text="@string/default_stat_value"
                     android:textSize="24sp"
-                    android:paddingStart="4dp"
+                    android:paddingLeft="4dp"
                     android:id="@+id/textview_create_chrval"
                     android:textStyle="bold"/>
 
@@ -253,8 +252,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/roll"
                 android:id="@+id/button_create_generateStats"
-                android:drawableStart="@drawable/ic_dice"
-                android:drawableEnd="@drawable/ic_dice"/>
+                android:drawableLeft="@drawable/ic_dice"
+                android:drawableRight="@drawable/ic_dice"/>
         </LinearLayout>
 
         <Button
