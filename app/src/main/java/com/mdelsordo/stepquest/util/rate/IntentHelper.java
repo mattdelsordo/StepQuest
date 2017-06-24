@@ -1,11 +1,9 @@
-package hotchemi.android.rate;
+package com.mdelsordo.stepquest.util.rate;
 
 import android.content.Context;
 import android.content.Intent;
 
-import static hotchemi.android.rate.UriHelper.getGooglePlay;
-import static hotchemi.android.rate.UriHelper.getAmazonAppstore;
-import static hotchemi.android.rate.UriHelper.isPackageExists;
+import static com.mdelsordo.stepquest.util.rate.UriHelper.*;
 
 final class IntentHelper {
 

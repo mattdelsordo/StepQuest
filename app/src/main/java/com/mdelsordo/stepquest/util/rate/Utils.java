@@ -1,9 +1,11 @@
-package hotchemi.android.rate;
+package com.mdelsordo.stepquest.util.rate;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Build;
+
+import com.mdelsordo.stepquest.R;
 
 final class Utils {
 
@@ -19,11 +21,12 @@ final class Utils {
     }
 
     static int getDialogTheme() {
-        return isLollipop() ? R.style.CustomLollipopDialogStyle : 0;
+        return isLollipop() ? AlertDialog.THEME_HOLO_LIGHT : 0;
     }
 
     @SuppressLint("NewApi")
     static AlertDialog.Builder getDialogBuilder(Context context) {
+//        return new AlertDialog.Builder(context, AlertDialog.THEME_HOLO_LIGHT);
         if (underHoneyComb()) {
             return new AlertDialog.Builder(context);
         } else {

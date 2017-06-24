@@ -1,7 +1,9 @@
-package hotchemi.android.rate;
+package com.mdelsordo.stepquest.util.rate;
 
 import android.content.Context;
 import android.view.View;
+
+import com.mdelsordo.stepquest.R;
 
 import java.lang.ref.Reference;
 import java.lang.ref.WeakReference;

@@ -18,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.mdelsordo.stepquest.BuildConfig;
 import com.mdelsordo.stepquest.R;
 import com.mdelsordo.stepquest.data.Saver;
 import com.mdelsordo.stepquest.model.*;
@@ -28,6 +29,7 @@ import com.mdelsordo.stepquest.util.PlayEffectListener;
 import com.mdelsordo.stepquest.util.Logger;
 import com.mdelsordo.stepquest.util.NoPedometerDialog;
 import com.mdelsordo.stepquest.services.PedometerService;
+import com.mdelsordo.stepquest.util.rate.AppRate;
 
 import java.lang.reflect.Method;
 
@@ -117,6 +119,8 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
             ActiveCharacter.getInstance(this).setBoost(boost);
             startService(BoostTimerService.newInstance(this, boostTimeRemaining));
         }
+
+        promptForRating();
     }
 
     //replaces the fragment in the main frame with another
@@ -350,5 +354,15 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
     private void checkPlotAdvanced(){
         String plotText = PlotQueue.getInstance(this).plotAvailable();
         if(plotText != null) BasicOKDialog.newInstance(plotText).show(getSupportFragmentManager(), "Plot");
+    }
+
+    //prompts the user to rate the app at some specified interval
+    private void promptForRating(){
+        AppRate.with(this)
+                .setRemindInterval(3)
+                .setShowLaterButton(true)
+                .setDebug(BuildConfig.DEBUG)
+                .monitor();
+        AppRate.showRateDialogIfMeetsConditions(this);
     }
 }

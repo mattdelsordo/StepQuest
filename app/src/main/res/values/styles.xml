@@ -28,6 +28,9 @@
         <item name="android:indeterminate">false</item>
     </style>
 
+    <style name="DialogTheme" parent="AlertDialog.AppCompat.Light">
+
+    </style>
 
 
 

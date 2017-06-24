@@ -1,4 +1,4 @@
-package hotchemi.android.rate;
+package com.mdelsordo.stepquest.util.rate;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -6,12 +6,13 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.View;
+import android.widget.Toast;
 
-import static hotchemi.android.rate.IntentHelper.createIntentForAmazonAppstore;
-import static hotchemi.android.rate.IntentHelper.createIntentForGooglePlay;
-import static hotchemi.android.rate.PreferenceHelper.setAgreeShowDialog;
-import static hotchemi.android.rate.PreferenceHelper.setRemindInterval;
-import static hotchemi.android.rate.Utils.getDialogBuilder;
+import com.mdelsordo.stepquest.R;
+
+import static com.mdelsordo.stepquest.util.rate.IntentHelper.*;
+import static com.mdelsordo.stepquest.util.rate.PreferenceHelper.*;
+import static com.mdelsordo.stepquest.util.rate.Utils.*;
 
 final class DialogManager {
 
@@ -34,10 +35,14 @@ final class DialogManager {
         builder.setPositiveButton(options.getPositiveText(context), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                final Intent intentToAppstore = options.getStoreType() == StoreType.GOOGLEPLAY ?
-                createIntentForGooglePlay(context) : createIntentForAmazonAppstore(context);
-                context.startActivity(intentToAppstore);
-                setAgreeShowDialog(context, false);
+                final Intent intentToAppstore = options.getStoreType() == StoreType.GOOGLEPLAY ? createIntentForGooglePlay(context) : createIntentForAmazonAppstore(context);
+                if(context.getPackageManager().queryIntentActivities(intentToAppstore, 0).size() > 0){
+                    context.startActivity(intentToAppstore);
+                    setAgreeShowDialog(context, false);
+                }else{
+                    Toast.makeText(context, R.string.unable_to_handle_market_url, Toast.LENGTH_LONG).show();
+                }
+
                 if (listener != null) listener.onClickButton(which);
             }
         });

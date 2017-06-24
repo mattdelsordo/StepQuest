@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <TextView
+    <!--TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/no_pedometer_message"
@@ -12,7 +12,7 @@
         android:textStyle="bold"
         android:textSize="16dp"
         android:layout_margin="10dp"
-        android:id="@+id/textview_longdialog"/>
+        android:id="@+id/textview_longdialog"/-->
 
     <CheckBox
         android:layout_width="wrap_content"

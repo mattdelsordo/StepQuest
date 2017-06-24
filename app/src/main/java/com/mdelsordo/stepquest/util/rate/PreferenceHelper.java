@@ -1,4 +1,4 @@
-package hotchemi.android.rate;
+package com.mdelsordo.stepquest.util.rate;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -35,7 +35,7 @@ final class PreferenceHelper {
      * @param context context
      */
     static void clearSharedPreferences(Context context) {
-        SharedPreferences.Editor editor = getPreferencesEditor(context);
+        Editor editor = getPreferencesEditor(context);
         editor.remove(PREF_KEY_INSTALL_DATE);
         editor.remove(PREF_KEY_LAUNCH_TIMES);
         editor.apply();
@@ -49,7 +49,7 @@ final class PreferenceHelper {
      * @param isAgree agree with showing rate dialog
      */
     static void setAgreeShowDialog(Context context, boolean isAgree) {
-        SharedPreferences.Editor editor = getPreferencesEditor(context);
+        Editor editor = getPreferencesEditor(context);
         editor.putBoolean(PREF_KEY_IS_AGREE_SHOW_DIALOG, isAgree);
         editor.apply();
     }
@@ -59,7 +59,7 @@ final class PreferenceHelper {
     }
 
     static void setRemindInterval(Context context) {
-        SharedPreferences.Editor editor = getPreferencesEditor(context);
+        Editor editor = getPreferencesEditor(context);
         editor.remove(PREF_KEY_REMIND_INTERVAL);
         editor.putLong(PREF_KEY_REMIND_INTERVAL, new Date().getTime());
         editor.apply();
@@ -70,7 +70,7 @@ final class PreferenceHelper {
     }
 
     static void setInstallDate(Context context) {
-        SharedPreferences.Editor editor = getPreferencesEditor(context);
+        Editor editor = getPreferencesEditor(context);
         editor.putLong(PREF_KEY_INSTALL_DATE, new Date().getTime());
         editor.apply();
     }
@@ -80,7 +80,7 @@ final class PreferenceHelper {
     }
 
     static void setLaunchTimes(Context context, int launchTimes) {
-        SharedPreferences.Editor editor = getPreferencesEditor(context);
+        Editor editor = getPreferencesEditor(context);
         editor.putInt(PREF_KEY_LAUNCH_TIMES, launchTimes);
         editor.apply();
     }

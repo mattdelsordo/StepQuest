@@ -1,4 +1,4 @@
-package hotchemi.android.rate;
+package com.mdelsordo.stepquest.util.rate;
 
 public interface OnClickButtonListener {
 

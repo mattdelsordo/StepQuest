@@ -1,4 +1,4 @@
-package hotchemi.android.rate;
+package com.mdelsordo.stepquest.util.rate;
 
 import android.app.Activity;
 import android.content.Context;
@@ -6,13 +6,10 @@ import android.view.View;
 
 import java.util.Date;
 
-import static hotchemi.android.rate.DialogManager.create;
-import static hotchemi.android.rate.PreferenceHelper.getInstallDate;
-import static hotchemi.android.rate.PreferenceHelper.getIsAgreeShowDialog;
-import static hotchemi.android.rate.PreferenceHelper.getLaunchTimes;
-import static hotchemi.android.rate.PreferenceHelper.getRemindInterval;
-import static hotchemi.android.rate.PreferenceHelper.isFirstLaunch;
-import static hotchemi.android.rate.PreferenceHelper.setInstallDate;
+import static com.mdelsordo.stepquest.util.rate.DialogManager.create;
+import static com.mdelsordo.stepquest.util.rate.IntentHelper.*;
+import static com.mdelsordo.stepquest.util.rate.PreferenceHelper.*;
+import static com.mdelsordo.stepquest.util.rate.Utils.*;
 
 public final class AppRate {
 

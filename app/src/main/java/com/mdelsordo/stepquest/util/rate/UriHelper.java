@@ -1,9 +1,10 @@
-package hotchemi.android.rate;
+package com.mdelsordo.stepquest.util.rate;
 
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.util.Log;
 
 import java.util.List;
 
@@ -17,6 +18,7 @@ final class UriHelper {
     }
 
     static Uri getGooglePlay(String packageName) {
+        //Log.i("bs", GOOGLE_PLAY + packageName);
         return packageName == null ? null : Uri.parse(GOOGLE_PLAY + packageName);
     }
 
