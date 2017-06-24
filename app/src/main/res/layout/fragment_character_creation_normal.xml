@@ -101,20 +101,20 @@
                         android:id="@+id/b_create_strinfo"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_weight="2"
-                        android:drawableStart="@drawable/ic_strength"
+                        android:drawableLeft="@drawable/ic_strength"
                         android:text="@string/str"
-                        android:textSize="18sp" />
+                        android:textSize="18dp" />
 
                     <TextView
                         android:id="@+id/textview_create_strval"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:paddingStart="4dp"
+                        android:paddingLeft="4dp"
                         android:text="@string/default_stat_value"
-                        android:textSize="18sp"
+                        android:textSize="18dp"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -128,20 +128,20 @@
                         android:id="@+id/b_create_dexinfo"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_weight="2"
-                        android:drawableStart="@drawable/ic_dexterity"
+                        android:drawableLeft="@drawable/ic_dexterity"
                         android:text="@string/dex"
-                        android:textSize="18sp" />
+                        android:textSize="18dp" />
 
                     <TextView
                         android:id="@+id/textview_create_dexval"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:paddingStart="4dp"
+                        android:paddingLeft="4dp"
                         android:text="@string/default_stat_value"
-                        android:textSize="18sp"
+                        android:textSize="18dp"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -163,20 +163,20 @@
                         android:id="@+id/b_create_coninfo"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_weight="2"
-                        android:drawableStart="@drawable/ic_constitution"
+                        android:drawableLeft="@drawable/ic_constitution"
                         android:text="@string/con"
-                        android:textSize="18sp" />
+                        android:textSize="18dp" />
 
                     <TextView
                         android:id="@+id/textview_create_conval"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:paddingStart="4dp"
+                        android:paddingLeft="4dp"
                         android:text="@string/default_stat_value"
-                        android:textSize="18sp"
+                        android:textSize="18dp"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -190,20 +190,20 @@
                         android:id="@+id/b_create_intinfo"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_weight="2"
-                        android:drawableStart="@drawable/ic_intelligence"
+                        android:drawableLeft="@drawable/ic_intelligence"
                         android:text="@string/intelligence_abbrev"
-                        android:textSize="18sp" />
+                        android:textSize="18dp" />
 
                     <TextView
                         android:id="@+id/textview_create_intval"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:paddingStart="4dp"
+                        android:paddingLeft="4dp"
                         android:text="@string/default_stat_value"
-                        android:textSize="18sp"
+                        android:textSize="18dp"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -225,20 +225,20 @@
                         android:id="@+id/b_create_wisinfo"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_weight="2"
-                        android:drawableStart="@drawable/ic_wisdom"
+                        android:drawableLeft="@drawable/ic_wisdom"
                         android:text="@string/wis"
-                        android:textSize="18sp" />
+                        android:textSize="18dp" />
 
                     <TextView
                         android:id="@+id/textview_create_wisval"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:paddingStart="4dp"
+                        android:paddingLeft="4dp"
                         android:text="@string/default_stat_value"
-                        android:textSize="18sp"
+                        android:textSize="18dp"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -252,20 +252,20 @@
                         android:id="@+id/b_create_chrinfo"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_weight="2"
-                        android:drawableStart="@drawable/ic_charisma"
+                        android:drawableLeft="@drawable/ic_charisma"
                         android:text="@string/chr"
-                        android:textSize="18sp" />
+                        android:textSize="18dp" />
 
                     <TextView
                         android:id="@+id/textview_create_chrval"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:paddingStart="4dp"
+                        android:paddingLeft="4dp"
                         android:text="@string/default_stat_value"
-                        android:textSize="18sp"
+                        android:textSize="18dp"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -275,8 +275,8 @@
                 android:id="@+id/button_create_generateStats"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableEnd="@drawable/ic_dice"
-                android:drawableStart="@drawable/ic_dice"
+                android:drawableRight="@drawable/ic_dice"
+                android:drawableLeft="@drawable/ic_dice"
                 android:text="@string/roll" />
         </LinearLayout>
 

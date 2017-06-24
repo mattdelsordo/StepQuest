@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
 
 
         //do check for pedometer
-        boolean doneCheck = prefs.getBoolean(PREF_DONE_SENSOR_CHECK, false);
+        boolean doneCheck = prefs.getBoolean(NoPedometerDialog.PREF_DONT_SHOW, false);
         //Log.i(TAG, "hasSensor=" + doneCheck);
         if(!doneCheck){
             boolean hasPedometer = getPackageManager().hasSystemFeature(PackageManager.FEATURE_SENSOR_STEP_DETECTOR);
@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
                 //if(mPlayEffects)mEffectPlayer.play(EffectPlayer.DIALOG);
                 if(mMusicPlayer!=null)mMusicPlayer.playEffect(EffectPlayer.DIALOG);
             }
-            prefs.edit().putBoolean(PREF_DONE_SENSOR_CHECK, true).apply();
+            //prefs.edit().putBoolean(PREF_DONE_SENSOR_CHECK, true).apply();
         }
 
         //check whether the current boost should continue

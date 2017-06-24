@@ -151,4 +151,5 @@
     <string name="send_feedback_colon">Send Feedback:</string>
     <string name="options">Options</string>
     <string name="_0">0</string>
+    <string name="don_t_show_again">Don\'t show again.</string>
 </resources>
