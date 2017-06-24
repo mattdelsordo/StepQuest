@@ -29,12 +29,12 @@ public class SureYouWantToDeleteDialog extends DialogFragment{
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        View view = LayoutInflater.from(getActivity()).inflate(R.layout.view_long_dialog_text, null);
-        TextView text = (TextView)view.findViewById(R.id.textview_longdialog);
-        text.setText(getString(R.string.delete_character_confirmation));
+        //View view = LayoutInflater.from(getActivity()).inflate(R.layout.view_long_dialog_text, null);
+        //TextView text = (TextView)view.findViewById(R.id.textview_longdialog);
+        //text.setText(getString(R.string.delete_character_confirmation));
 
         //TextView textView = new TextView();
-        return new AlertDialog.Builder(getActivity(), AlertDialog.THEME_HOLO_LIGHT).setView(view).setNegativeButton(R.string.refuse_delete, null).setPositiveButton(R.string.confirm_delete, new DialogInterface.OnClickListener() {
+        return new AlertDialog.Builder(getActivity(), AlertDialog.THEME_HOLO_LIGHT).setTitle(R.string.delete_save_file).setMessage(getString(R.string.delete_character_confirmation)).setNegativeButton(R.string.refuse_delete, null).setPositiveButton(R.string.confirm_delete, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 getTargetFragment().onActivityResult(

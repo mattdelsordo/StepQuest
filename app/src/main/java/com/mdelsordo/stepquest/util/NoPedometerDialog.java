@@ -33,11 +33,11 @@ public class NoPedometerDialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         View view = LayoutInflater.from(getActivity()).inflate(R.layout.view_no_pedometer, null);
-        TextView text = (TextView)view.findViewById(R.id.textview_longdialog);
-        text.setText(getString(R.string.no_pedometer_message));
+        //TextView text = (TextView)view.findViewById(R.id.textview_longdialog);
+        //text.setText(getString(R.string.no_pedometer_message));
         final CheckBox cb = (CheckBox)view.findViewById((R.id.cb_nopedometer_dontshow));
 
-        return new AlertDialog.Builder(getActivity(), AlertDialog.THEME_HOLO_LIGHT).setView(view).setPositiveButton(R.string.no_pedometer_confirm, new DialogInterface.OnClickListener() {
+        return new AlertDialog.Builder(getActivity(), AlertDialog.THEME_HOLO_LIGHT).setView(view).setTitle(R.string.no_pedometer_detected).setMessage(R.string.no_pedometer_message).setPositiveButton(R.string.no_pedometer_confirm, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());

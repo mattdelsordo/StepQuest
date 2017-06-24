@@ -39,10 +39,10 @@ public class SellItemDialog extends DialogFragment{
         String name = args.getString(ARG_NAME);
         int price = args.getInt(ARG_PRICE);
 
-        View view = LayoutInflater.from(getActivity()).inflate(R.layout.view_long_dialog_text, null);
-        TextView text = (TextView)view.findViewById(R.id.textview_longdialog);
-        text.setText("Are you sure you want to sell one (1) "+ name + " for " + price + " gold?");
-        return new AlertDialog.Builder(getActivity(), AlertDialog.THEME_HOLO_LIGHT).setView(view).setNegativeButton(getString(R.string.no_thanks), null)
+        //View view = LayoutInflater.from(getActivity()).inflate(R.layout.view_long_dialog_text, null);
+        //TextView text = (TextView)view.findViewById(R.id.textview_longdialog);
+        //text.setText("Are you sure you want to sell one (1) "+ name + " for " + price + " gold?");
+        return new AlertDialog.Builder(getActivity(), AlertDialog.THEME_HOLO_LIGHT).setTitle("Sell " + name + "?").setMessage("Are you sure you want to sell one (1) "+ name + " for " + price + " gold?").setNegativeButton(getString(R.string.no_thanks), null)
                 .setPositiveButton(getString(R.string.make_the_sale), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

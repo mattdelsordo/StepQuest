@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.app.NotificationCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -19,11 +20,21 @@ import com.mdelsordo.stepquest.R;
 public class BasicOKDialog extends DialogFragment {
 
     public static final int REQUEST_CODE = 17;
-    public static final String ARG_TEXT = "arg_text";
+    public static final String ARG_TEXT = "arg_text", ARG_TITLE = "arg_title";
 
     public static BasicOKDialog newInstance(String text) {
         Bundle args = new Bundle();
         args.putString(ARG_TEXT, text);
+        args.putString(ARG_TITLE, null);
+        BasicOKDialog fragment = new BasicOKDialog();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    public static BasicOKDialog newInstance(String text, String title) {
+        Bundle args = new Bundle();
+        args.putString(ARG_TEXT, text);
+        args.putString(ARG_TITLE, title);
         BasicOKDialog fragment = new BasicOKDialog();
         fragment.setArguments(args);
         return fragment;
@@ -34,12 +45,15 @@ public class BasicOKDialog extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         Bundle args = getArguments();
         String text = args.getString(ARG_TEXT);
+        String title = args.getString(ARG_TITLE);
 
-        View view = LayoutInflater.from(getActivity()).inflate(R.layout.view_long_dialog_text, null);
-        TextView vText = (TextView)view.findViewById(R.id.textview_longdialog);
-        vText.setText(text);
-        return new AlertDialog.Builder(getActivity(), AlertDialog.THEME_HOLO_LIGHT).setView(view)
-                .setPositiveButton(getString(R.string.ok), null).create();
+        //View view = LayoutInflater.from(getActivity()).inflate(R.layout.view_long_dialog_text, null);
+        //TextView vText = (TextView)view.findViewById(R.id.textview_longdialog);
+        //vText.setText(text);
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), AlertDialog.THEME_HOLO_LIGHT).setMessage(text)
+                .setPositiveButton(getString(R.string.ok), null);
+        if(title != null) builder.setTitle(title);
+        return builder.create();
     }
 
 

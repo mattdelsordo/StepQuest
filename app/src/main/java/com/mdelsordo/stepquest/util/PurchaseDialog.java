@@ -42,10 +42,10 @@ public class PurchaseDialog extends DialogFragment{
         String name = args.getString(ARG_NAME);
         int price = args.getInt(ARG_PRICE);
 
-        View view = LayoutInflater.from(getActivity()).inflate(R.layout.view_long_dialog_text, null);
-        TextView text = (TextView)view.findViewById(R.id.textview_longdialog);
-        text.setText("Are you sure you want to buy that " + name + " for " + price + "g?");
-        return new AlertDialog.Builder(getActivity(), AlertDialog.THEME_HOLO_LIGHT).setView(view).setNegativeButton(R.string.no_thanks, null).setPositiveButton(R.string.yes_please, new DialogInterface.OnClickListener() {
+        //View view = LayoutInflater.from(getActivity()).inflate(R.layout.view_long_dialog_text, null);
+        //TextView text = (TextView)view.findViewById(R.id.textview_longdialog);
+        //text.setText("Are you sure you want to buy that " + name + " for " + price + "g?");
+        return new AlertDialog.Builder(getActivity(), AlertDialog.THEME_HOLO_LIGHT).setTitle("Purchase " + name + "?").setMessage("Are you sure you want to buy that " + name + " for " + price + "g?").setNegativeButton(R.string.no_thanks, null).setPositiveButton(R.string.yes_please, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 getTargetFragment().onActivityResult(
