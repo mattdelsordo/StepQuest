@@ -15,6 +15,8 @@ import static com.mdelsordo.stepquest.util.rate.IntentHelper.*;
 import static com.mdelsordo.stepquest.util.rate.PreferenceHelper.*;
 import static com.mdelsordo.stepquest.util.rate.Utils.*;
 
+
+
 public final class AppRate {
 
     private static AppRate singleton;
@@ -30,6 +32,8 @@ public final class AppRate {
     private int remindInterval = 1;
 
     private boolean isDebug = false;
+
+    private static final int PROMPT_CAP = 3;
 
     private AppRate(Context context) {
         this.context = context.getApplicationContext();
@@ -185,10 +189,13 @@ public final class AppRate {
         if (!activity.isFinishing()) {
             Dialog dialog = create(activity, options);
             dialog.show();
+            incrementNumberOfPrompts(activity);
         }
     }
 
     public boolean shouldShowRateDialog() {
+        if(getNumberOfPrompts(context) > PROMPT_CAP) return false;
+
         return getIsAgreeShowDialog(context) &&
                 isOverLaunchTimes() &&
                 isOverInstallDate() &&

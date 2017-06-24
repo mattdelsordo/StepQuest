@@ -18,6 +18,8 @@ final class PreferenceHelper {
 
     private static final String PREF_KEY_REMIND_INTERVAL = "android_rate_remind_interval";
 
+    private static final String PREF_KEY_NUMBER_OF_PROMPTS = "android_number_of_prompts";
+
     private PreferenceHelper() {
     }
 
@@ -93,4 +95,12 @@ final class PreferenceHelper {
         return getPreferences(context).getLong(PREF_KEY_INSTALL_DATE, 0) == 0L;
     }
 
+    static int getNumberOfPrompts(Context context){
+        return getPreferences(context).getInt(PREF_KEY_NUMBER_OF_PROMPTS, 0);
+    }
+    static void incrementNumberOfPrompts(Context context){
+        Editor editor = getPreferencesEditor(context);
+        editor.putInt(PREF_KEY_LAUNCH_TIMES, getNumberOfPrompts(context) + 1);
+        editor.apply();
+    }
 }
