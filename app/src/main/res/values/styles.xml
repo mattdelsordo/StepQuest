@@ -9,6 +9,7 @@
         <item name="android:textColorLink">@color/primary_dark</item>
         <item name="android:soundEffectsEnabled">false</item>
 
+
         <!--
         <item name="android:windowActivityTransitions">true</item>
         <item name="android:windowEnterTransition">@transition/activity_explode</item>
@@ -28,8 +29,25 @@
         <item name="android:indeterminate">false</item>
     </style>
 
-    <style name="DialogTheme" parent="AlertDialog.AppCompat.Light">
 
+    <!-- Local copy of android:Theme.Holo.Dialog.Alert -->
+    <style name="Theme_Holo_Dialog_Alert" parent="@android:style/Theme.Holo.Light.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowTitleStyle">@style/DialogWindowTitle_Holo</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowMinWidthMajor">@android:dimen/dialog_min_width_major</item>
+        <item name="android:windowMinWidthMinor">@android:dimen/dialog_min_width_minor</item>
+    </style>
+
+    <!-- Local copy of android:DialogWindowTitle.Holo -->
+    <style name="DialogWindowTitle_Holo">
+        <item name="android:maxLines">1</item>
+        <item name="android:scrollHorizontally">true</item>
+        <item name="android:textAppearance">@android:style/TextAppearance.Holo.DialogWindowTitle</item>
+    </style>-->
+
+    <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:textColor">@color/primary_dark</item>
     </style>
 
 

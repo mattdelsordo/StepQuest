@@ -37,7 +37,7 @@ public class NoPedometerDialog extends DialogFragment {
         //text.setText(getString(R.string.no_pedometer_message));
         final CheckBox cb = (CheckBox)view.findViewById((R.id.cb_nopedometer_dontshow));
 
-        return new AlertDialog.Builder(getActivity(), AlertDialog.THEME_HOLO_LIGHT).setView(view).setTitle(R.string.no_pedometer_detected).setMessage(R.string.no_pedometer_message).setPositiveButton(R.string.no_pedometer_confirm, new DialogInterface.OnClickListener() {
+        return new AlertDialog.Builder(getActivity(), R.style.DialogTheme).setView(view).setTitle(R.string.no_pedometer_detected).setMessage(R.string.no_pedometer_message).setPositiveButton(R.string.no_pedometer_confirm, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());

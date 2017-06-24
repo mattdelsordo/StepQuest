@@ -1,8 +1,12 @@
 package com.mdelsordo.stepquest.util.rate;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
+import com.mdelsordo.stepquest.R;
 
 import java.util.Date;
 
@@ -179,7 +183,8 @@ public final class AppRate {
 
     public void showRateDialog(Activity activity) {
         if (!activity.isFinishing()) {
-            create(activity, options).show();
+            Dialog dialog = create(activity, options);
+            dialog.show();
         }
     }
 

@@ -21,17 +21,17 @@ final class Utils {
     }
 
     static int getDialogTheme() {
-        return isLollipop() ? AlertDialog.THEME_HOLO_LIGHT : 0;
+        return isLollipop() ? R.style.DialogTheme : 0;
     }
 
     @SuppressLint("NewApi")
     static AlertDialog.Builder getDialogBuilder(Context context) {
-//        return new AlertDialog.Builder(context, AlertDialog.THEME_HOLO_LIGHT);
-        if (underHoneyComb()) {
-            return new AlertDialog.Builder(context);
-        } else {
-            return new AlertDialog.Builder(context, getDialogTheme());
-        }
+        return new AlertDialog.Builder(context, R.style.DialogTheme);
+//        if (underHoneyComb()) {
+//            return new AlertDialog.Builder(context);
+//        } else {
+//            return new AlertDialog.Builder(context, getDialogTheme());
+//        }
     }
 
 }

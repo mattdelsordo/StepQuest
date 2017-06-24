@@ -2,10 +2,13 @@ package com.mdelsordo.stepquest.util;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.NotificationCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -18,9 +21,12 @@ import com.mdelsordo.stepquest.R;
  */
 
 public class BasicOKDialog extends DialogFragment {
+    private static final String TAG = "BasicOkDialog";
 
     public static final int REQUEST_CODE = 17;
     public static final String ARG_TEXT = "arg_text", ARG_TITLE = "arg_title";
+
+    private Dialog dialog;
 
     public static BasicOKDialog newInstance(String text) {
         Bundle args = new Bundle();
@@ -50,11 +56,11 @@ public class BasicOKDialog extends DialogFragment {
         //View view = LayoutInflater.from(getActivity()).inflate(R.layout.view_long_dialog_text, null);
         //TextView vText = (TextView)view.findViewById(R.id.textview_longdialog);
         //vText.setText(text);
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), AlertDialog.THEME_HOLO_LIGHT).setMessage(text)
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.DialogTheme).setMessage(text)
                 .setPositiveButton(getString(R.string.ok), null);
         if(title != null) builder.setTitle(title);
-        return builder.create();
+        dialog = builder.create();
+        return dialog;
     }
-
 
 }

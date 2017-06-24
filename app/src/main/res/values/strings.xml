@@ -162,6 +162,7 @@
     <string name="delete_save_file">Delete Save File?</string>
     <string name="sell_item">Sell Item?</string>
     <string name="no_pedometer_detected">No Pedometer Detected</string>
+    <string name="quest_note_title">Quest Notes</string>
 
 
 </resources>

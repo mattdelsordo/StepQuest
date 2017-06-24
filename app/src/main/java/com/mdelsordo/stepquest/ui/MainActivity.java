@@ -353,7 +353,7 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
 
     private void checkPlotAdvanced(){
         String plotText = PlotQueue.getInstance(this).plotAvailable();
-        if(plotText != null) BasicOKDialog.newInstance(plotText).show(getSupportFragmentManager(), "Plot");
+        if(plotText != null) BasicOKDialog.newInstance(plotText, getString(R.string.quest_note_title)).show(getSupportFragmentManager(), "Plot");
     }
 
     //prompts the user to rate the app at some specified interval
@@ -361,7 +361,7 @@ public class MainActivity extends AppCompatActivity implements EventQueue.MakeTo
         AppRate.with(this)
                 .setRemindInterval(3)
                 .setShowLaterButton(true)
-                .setDebug(BuildConfig.DEBUG)
+                //.setDebug(BuildConfig.DEBUG)
                 .monitor();
         AppRate.showRateDialogIfMeetsConditions(this);
     }
