@@ -6,13 +6,10 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.animation.ValueAnimatorCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,22 +18,20 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mdelsordo.stepquest.R;
-import com.mdelsordo.stepquest.model.Die;
+import com.mdelsordo.stepquest.data.Die;
+import com.mdelsordo.stepquest.data.Randomizer;
 import com.mdelsordo.stepquest.model.EffectPlayer;
 import com.mdelsordo.stepquest.model.Race;
 import com.mdelsordo.stepquest.model.Stats;
 import com.mdelsordo.stepquest.model.Vocation;
 import com.mdelsordo.stepquest.util.BasicOKDialog;
-import com.mdelsordo.stepquest.util.Logger;
-import com.mdelsordo.stepquest.util.PlayEffectListener;
-
-import java.util.Arrays;
 
 /**
  * This fragment handles creating a new character
@@ -79,6 +74,13 @@ public class CharacterCreationFragment extends Fragment {
         mRaceImage = (ImageView)view.findViewById(R.id.imageview_creation_race);
 
         mName = (EditText)view.findViewById(R.id.edittext_creation_name);
+        ImageButton mRandName  = (ImageButton)view.findViewById(R.id.ib_creation_randName);
+        mRandName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mName.setText(Randomizer.getInstance(getContext()).getHeroName());
+            }
+        });
 
         mStrView = (TextView)view.findViewById(R.id.textview_create_strval);
         mDexView = (TextView)view.findViewById(R.id.textview_create_dexval);

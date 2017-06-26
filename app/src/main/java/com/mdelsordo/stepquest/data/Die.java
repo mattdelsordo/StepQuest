@@ -1,4 +1,4 @@
-package com.mdelsordo.stepquest.model;
+package com.mdelsordo.stepquest.data;
 
 import java.util.Random;
 
